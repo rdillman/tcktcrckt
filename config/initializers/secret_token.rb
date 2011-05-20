@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Tcktcrckt::Application.config.secret_token = '401a13b49e35b08d428e0c8d3117a1cf0bc70d694848dbae8f23f22b7b1a742f5505dd83b09d4ad2a40a2cadbfbfc27fd64fcd97dc18dd3d950efe4d3542a17a'
+Tcktcrckt::Application.config.secret_token = 'a5f0d79c5a20b0a71cee4e6363c6db18943a6a6208f8f30f3e1fd042e6f796d31d00e132afec3b42d12c84dbbf20914806e1a8e002ee1d6832ac1504c7700ec7'
