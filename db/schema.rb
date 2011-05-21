@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110520232554) do
+ActiveRecord::Schema.define(:version => 20110521003510) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -45,6 +45,69 @@ ActiveRecord::Schema.define(:version => 20110520232554) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
+  create_table "blocks", :force => true do |t|
+    t.integer "cnn"
+    t.string  "streetname"
+    t.string  "suff"
+    t.integer "botl"
+    t.integer "topl"
+    t.integer "botr"
+    t.integer "topr"
+    t.integer "txcnn"
+    t.integer "bxcnn"
+    t.string  "nhood"
+    t.boolean "cleaned"
+    t.string  "nct"
+  end
+
+  create_table "cleans", :force => true do |t|
+    t.integer "cnn"
+    t.string  "side"
+    t.string  "wday"
+    t.string  "start"
+    t.string  "stop"
+    t.string  "boolyuns"
+    t.string  "dir"
+    t.string  "nct"
+    t.integer "ct_id"
+    t.integer "block_id"
+  end
+
+  add_index "cleans", ["cnn"], :name => "index_cleans_on_cnn"
+
+  create_table "cts", :force => true do |t|
+    t.string "wday"
+    t.string "start"
+    t.string "stop"
+    t.string "boolyuns"
+    t.string "nct"
+  end
+
+  create_table "nhoods", :force => true do |t|
+    t.string "nhood"
+  end
+
+  add_index "nhoods", ["nhood"], :name => "index_nhoods_on_nhood"
+
+  create_table "points", :force => true do |t|
+    t.integer "cnn"
+    t.float   "lat"
+    t.float   "lng"
+  end
+
+  add_index "points", ["cnn"], :name => "index_points_on_cnn"
+
+  create_table "streets", :force => true do |t|
+    t.string "streetname"
+  end
+
+  add_index "streets", ["streetname"], :name => "index_streets_on_streetname"
+
+  create_table "suffixes", :force => true do |t|
+    t.string "suff"
+    t.string "alias"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
@@ -65,5 +128,12 @@ ActiveRecord::Schema.define(:version => 20110520232554) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "xions", :force => true do |t|
+    t.integer "xcnn"
+    t.string  "streetname"
+  end
+
+  add_index "xions", ["xcnn"], :name => "index_xions_on_xcnn"
 
 end
