@@ -1,5 +1,5 @@
 class Ct < ActiveRecord::Base
-  has_many: clean
+  has_many :clean
   
   #Determines whether a given date is a SFDPW Holiday
   def is_holiday?(time)
@@ -106,9 +106,11 @@ class Ct < ActiveRecord::Base
       end
       if self.boolyuns[5] == 84
         next_time = Chronic.parse("5th "+self.wday+" in "+month)
-        next_time = self.chronify_other_weeks(next_time)
-        if now < next_time && !is_holiday?(next_time)
-            return self.prepare_nt(next_time,stop,now)
+        if next_time
+          next_time = self.chronify_other_weeks(next_time)
+          if now < next_time && !is_holiday?(next_time)
+              return self.prepare_nt(next_time,stop,now)
+          end
         end
       end
       next_time = nil 
