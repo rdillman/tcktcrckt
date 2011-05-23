@@ -1,4 +1,14 @@
 Tcktcrckt::Application.routes.draw do
+  get "alert/show"
+
+  get "alert/create"
+
+  get "alert/kill"
+
+  get "lookup/addr"
+
+  get "lookup/map"
+
   resources :authentications
 
   devise_for :users

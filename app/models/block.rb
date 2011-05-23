@@ -152,13 +152,15 @@ class Block < ActiveRecord::Base
     #@bl is a list of blocks 
     bl,side = Block.lookup_cnn(usr_qry)
 
-    if@bl.size > 1
-      return @bl,"Which of these Streets?"
-    end
 
     #Go through all the cts for a given block and find the smallest
     if side != -1
-      return Block.get_best_ct(bl[0].cnn)
+      
+      if@bl.size > 1
+        return @bl,"Which of these Streets?"
+      end
+      
+      return Block.get_best_ct(bl[0].cnn,side)
     else
       return "Invalid Address - No Address or No Street"
     end
@@ -174,7 +176,7 @@ class Block < ActiveRecord::Base
   ##################################
   
   
-  def self.get_best_ct(cnn)
+  def self.get_best_ct(cnn,side)
     @cts = Clean.where("cnn = ? AND side =?", cnn, side)
     if @cts == [] #FUCK we don't have the records - maybe in the north beach or ingleside black hole?
       return "Oops We Don't Have a Cleaning Record for this Street"

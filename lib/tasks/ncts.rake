@@ -1,12 +1,6 @@
 desc "This adds the nct value to each ct element"
 task :ncts => :environment do
-  Ct.all.each do |c|
-    c.update_attribute(:nct,c.next_time.join('|'))
-    print(c.id)
-  end
-  Clean.all.each do |cl|
-    cl.update_attribute(:nct,Ct.find(cl.ct_id).nct)
-  end
+
   
 #  b = Block.where("cleaned =? ", true)
 #  b.each do |block|

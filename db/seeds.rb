@@ -6,13 +6,16 @@ FasterCSV.foreach("db/point.csv") do |row|
 end
 last = Time.now
 time_str = (last-start).to_s
-puts("CNN loaded - time (in seconds) : "<<time_str)
+puts("Point loaded - time (in seconds) : "<<time_str)
 
   
 Ct.delete_all
 FasterCSV.foreach("db/ct.csv", :col_sep => ' ') do |row|
   Ct.create!(:wday => row[0], :start => row[1], :stop => row[2], :boolyuns => row[3])
 end
+time_str = (Time.now-last).to_s
+last = Time.now
+puts("Ct loaded  - time (in seconds) : "<<time_str)
 
 Block.delete_all
 FasterCSV.foreach("db/block.csv") do |row|

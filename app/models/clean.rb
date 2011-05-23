@@ -3,8 +3,8 @@ class Clean < ActiveRecord::Base
     nct_str = Ct.find(self.ct_id).nct
     nct_str = nct_str.split('|')
     times = Array.new
-    times << nct_str[0].to_time
-    times << nct_str[1].to_time
+    times << Chronic.parse(nct_str[0])
+    times << Chronic.parse(nct_str[1])
     return times
   end
   
