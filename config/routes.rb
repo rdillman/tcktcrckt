@@ -1,4 +1,16 @@
 Tcktcrckt::Application.routes.draw do
+  get "alert/show"
+
+  get "alert/create"
+
+  get "alert/kill"
+
+  get "results/show"
+
+  get "lookup/addr"
+
+  get "lookup/map"
+
   devise_for :users
 
   ActiveAdmin.routes(self)

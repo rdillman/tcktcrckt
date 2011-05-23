@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110522213233) do
+ActiveRecord::Schema.define(:version => 20110522220440) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20110522213233) do
     t.string  "send_time"
     t.integer "user_id"
     t.integer "ct_id"
+    t.boolean "nb4"
   end
 
   create_table "blocks", :force => true do |t|
