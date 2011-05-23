@@ -9,6 +9,8 @@ gem 'pg'
 gem 'activeadmin'
 gem 'devise'
 gem 'fastercsv'
+gem 'omniauth'
+gem 'nifty-generators', '>= 0.4.0'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -32,3 +34,4 @@ gem 'fastercsv'
 # group :development, :test do
 #   gem 'webrat'
 # end
+gem "mocha", :group => :test

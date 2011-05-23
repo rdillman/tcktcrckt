@@ -1,10 +1,14 @@
 Tcktcrckt::Application.routes.draw do
+  resources :authentications
+
   devise_for :users
 
   ActiveAdmin.routes(self)
 
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
+  
+  match '/auth/:provider/callback', :to => 'sessions#create'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
