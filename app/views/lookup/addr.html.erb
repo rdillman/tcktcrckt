@@ -1,0 +1,5 @@
+<%= form_tag("/alert/create/", :method => "get") do %>
+	  <%= text_field_tag(:q, nil, :placeholder => "101 Market") %><br />
+
+	  <%= submit_tag("Create Alert", :class => "user_submit") %>
+<% end %>
