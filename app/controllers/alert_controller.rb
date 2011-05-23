@@ -47,12 +47,16 @@ class AlertController < ApplicationController
   #    
     else
       
-
-      @a = Alarm.create!(:location => @usr_qry, :clean_time => @results[0].strftime("%B %e %y %H:%M"))
+  #
+  # Ideal case ###################################################################
+  #
+      send = @results[0] - 1.hour
+      @a = Alarm.create!(:location => @usr_qry, :clean_time => @results[0].strftime("%B %e %y %H:%M"), :send_time => send.strftime("%B %e %y %H:%M"), :nb4 => false)
       if @a
-      respond_to do |format|
-          format.html # show.html.erb
-          format.xml  { render :xml => @results }
+        respond_to do |format|
+            format.html # show.html.erb
+            format.xml  { render :xml => @a }
+        end
       end
     end
     
