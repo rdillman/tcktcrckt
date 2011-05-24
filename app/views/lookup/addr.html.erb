@@ -8,3 +8,4 @@
 	  <%= text_field_tag(:q, nil, :placeholder => "101 Market") %><br />
 	  <%= submit_tag("Create Alert", :class => "user_submit") %>
 <% end %>
+<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>

@@ -12,10 +12,11 @@ Tcktcrckt::Application.routes.draw do
   resources :authentications
   ActiveAdmin.routes(self)
 
-  devise_for :users#, :path_name => { :sign_up => "register"}
+
   devise_for :admin_users, ActiveAdmin::Devise.config
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   
-  match '/auth/:provider/callback', :to => 'sessions#create'
+  match '/auth/:provider/callback', :to => 'authentications#create'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
