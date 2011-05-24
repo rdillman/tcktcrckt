@@ -5,4 +5,4 @@ Tcktcrckt::Application.config.session_store :cookie_store, :key => '_tcktcrckt_s
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
 # (create the session table with "rails generate session_migration")
-# Tcktcrckt::Application.config.session_store :active_record_store
+#Tcktcrckt::Application.config.session_store :active_record_store

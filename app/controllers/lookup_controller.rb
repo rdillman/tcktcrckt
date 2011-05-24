@@ -1,4 +1,5 @@
 class LookupController < ApplicationController
+  
   def addr
   end
 

@@ -1,4 +1,5 @@
 class AlertController < ApplicationController
+  
   def show
     @alerts = Alarm.all
     respond_to do |format|
@@ -8,6 +9,7 @@ class AlertController < ApplicationController
   end
 
   def create
+    @user = current_user
     @usr_qry = params[:q]
     @results = Block.next_ct_from_addr(@usr_qry)
     
@@ -51,7 +53,7 @@ class AlertController < ApplicationController
         format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
         format.xml  {render :xml => @message}
       end
-    elsif alert_exists?(@results[1])
+    elsif alert_exists?(@results[1],@user)
       @message = exists_message
       @alerts = Alarm.all
       respond_to do |format|
@@ -70,7 +72,7 @@ class AlertController < ApplicationController
   # Ideal case ###################################################################
   #
       send = @results[0][0] - 1.hour
-      @a = Alarm.create!(:location => @usr_qry, :clean_time => @results[0][0].strftime("%B %e %y %H:%M"), :send_time => send.strftime("%B %e %y %H:%M"), :cnn => @results[1], :nb4 => false)
+      @a = Alarm.create!(:location => @usr_qry, :clean_time => @results[0][0].strftime("%B %e %y %H:%M"), :send_time => send.strftime("%B %e %y %H:%M"), :cnn => @results[1], :nb4 => false, :user_id => @user.id)
       if @a
         @message = create_message(@a)
         @alerts = Alarm.all
@@ -126,8 +128,8 @@ class AlertController < ApplicationController
     message << "has been deleted."
   end
      
-  def alert_exists?(cnn)
-    if Alarm.where("cnn = ?", cnn) != []
+  def alert_exists?(cnn, user)
+    if Alarm.where("cnn = ? AND user_id = ?", cnn, user.id) != []
       return true
     else
       return false

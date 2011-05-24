@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_filter :authenticate_user!
   
   class SessionsController < ApplicationController
     def create

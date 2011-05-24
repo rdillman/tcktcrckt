@@ -12,7 +12,7 @@ Tcktcrckt::Application.routes.draw do
   resources :authentications
   ActiveAdmin.routes(self)
 
-  devise_for :users, :path_name => { :sign_up => "register"}
+  devise_for :users#, :path_name => { :sign_up => "register"}
   devise_for :admin_users, ActiveAdmin::Devise.config
   
   match '/auth/:provider/callback', :to => 'sessions#create'
