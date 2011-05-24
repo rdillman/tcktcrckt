@@ -14,6 +14,7 @@ gem 'oa-oauth', :require => 'omniauth/oauth'
 gem 'nifty-generators', '>= 0.4.0'
 gem 'geokit'
 gem 'chronic'
+gem 'formtastic', '~> 1.2.3'
 
 # Use unicorn as the web server
 # gem 'unicorn'
