@@ -1,0 +1,191 @@
+.container{
+	margin-right: auto;
+	margin-left: auto;
+	width:75%;
+	text-align: center;
+}
+
+#table{
+/*	color: white;*/
+}
+
+#user_nav{
+	color: #06275D;
+	background-color: #06275d;
+	padding: 10px 10px 10px 10px;
+}
+
+#user_sign{
+	text-align: right;
+	float: right;
+	color: white;
+}
+
+#footer_nav{
+    position: fixed;
+    bottom:0;
+    left:0;
+    margin-left: auto;
+	margin-right: auto;
+    width:100%;
+	color: #EEC015;
+	padding: 10px 10px 10px 10px;
+    background-color: #06275d;
+}
+
+#footer_nav ul{
+	list-style: none;
+	display: inline;
+}
+
+#pretty_str{
+}
+
+#body{
+	margin: 0px;
+	background-color: white;
+}
+
+#logo{
+	text-align: center;
+	font-size: 50px;
+	margin: 0px;
+}
+
+#yield_page{
+	text-align: center;
+}
+
+p{
+	margin: 0px;
+}
+
+#links{
+	text-align: center;
+}
+
+#feedback_head{
+	text-align: center;
+}
+
+.field{
+	text-align: center;
+}
+
+.button{
+	width: 100px;
+}
+
+a{
+	color: #EEC015;
+	text-decoration: none;
+}
+
+a:visited{
+	color: #EEC015;
+}
+
+a:hover{
+	color: white;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.content_box{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 40px;
+    margin-bottom: 40px;
+	width: 300px;
+	padding:40 20 60 20;
+	background: white;
+	border: 12px solid black;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	color: black;
+	
+}
+
+.content_box p{
+	color: black;
+	text-align: block;
+}
+
+.content_box h2, h3, h4{
+	color: black;
+}
+
+#about_box{
+	width: 50%;
+	text-align: left;
+}
+
+.content_box .content_border{
+	border: 12px solid #EEC015;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	filter:alpha(opacity=50); opacity: 0.5; -moz-opacity:0.5;
+}
+
+input{
+	margin-bottom: 10px;
+	border-radius: 7px;
+}
+
+label{
+	text-align: left;
+}
+
+.user_submit{
+	font-size: 150%;
+	font-weight: bold;
+	-webkit-appearance: none;
+	background: #EEC015;
+	margin-top: 10px;
+	padding: 10 30 10 30;
+	width: 175px;
+	border-radius: 15px;
+	border: 0;
+}
+
+#paypal_form{
+	display: inline;
+	height: 47px;
+	margin: 0;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 5px;
+}
+
+#paypal_form input{
+	margin: 0;
+}
+
+#paypal_button{
+	-webkit-appearance: none;
+	background: #EEC015;
+	border-radius: 15px;
+	border: 0;
+}
+
+#tos{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 40px;
+    margin-bottom: 40px;
+	width: 75%;
+	padding:40 20 40 20;
+	background: #06275D;
+	border: none;
+	color: black;
+	text-align: left;
+}
+#tos p{
+	color: #6C7A7D;
+}
+
+#show_alert{
+	color: black;
+	text-align: center;
+	padding-top: 20px;
+}

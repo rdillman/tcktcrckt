@@ -17,6 +17,11 @@ Tcktcrckt::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   
   match '/auth/:provider/callback', :to => 'authentications#create'
+  
+  # Links
+  get "layouts/about_us"
+  get "layouts/contact_us"
+  get "layouts/tos"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
