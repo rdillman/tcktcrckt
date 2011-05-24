@@ -1,3 +1,9 @@
+<%= link_to "See Alerts", :controller => "alert", :action => "show"%>
+<hr>
+<%if @message%>
+	<%=@message%>
+<hr>	
+<%end%>
 <%= form_tag("/alert/create/", :method => "get") do %>
 	  <%= text_field_tag(:q, nil, :placeholder => "101 Market") %><br />
 	  <%= submit_tag("Create Alert", :class => "user_submit") %>

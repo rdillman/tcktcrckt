@@ -184,7 +184,7 @@ class Block < ActiveRecord::Base
       nts = Array.new
       @cts.each {|x| nts << x.nct_to_times}
       b = nts.min
-      return b
+      return b,cnn
     end
   end
   

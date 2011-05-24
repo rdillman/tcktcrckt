@@ -1,1 +1,18 @@
-<%=@a.clean_times%> <%=@a.location%> <%=@a.send_time%> 
+<%if @message%>
+	<font color='red'><%=@message%><br></font>
+	<br>
+	<hr>
+	<br>
+<%end%>
+
+
+
+<%if @alerts != []%>
+	<%@alerts.each do |a|%>
+		<%=a.clean_time%> <%=a.location%> <%=a.send_time%> <%=link_to "delete", :controller => "alert", :action => "kill", :q => a.id, :method => "get" %><br>
+	<%end%>
+<%else%>
+	You have no fucking alerts right now
+<%end%>
+<hr>
+<%=link_to "Search Again", :controller => "lookup", :action => "addr"%>
