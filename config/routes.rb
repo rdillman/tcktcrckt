@@ -10,12 +10,9 @@ Tcktcrckt::Application.routes.draw do
   get "lookup/map"
 
   resources :authentications
-
-  devise_for :users
-
   ActiveAdmin.routes(self)
 
-  devise_for :users
+  devise_for :users, :path_name => { :sign_up => "register"}
   devise_for :admin_users, ActiveAdmin::Devise.config
   
   match '/auth/:provider/callback', :to => 'sessions#create'
@@ -69,7 +66,7 @@ Tcktcrckt::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => "welcome#index"
+  root :to => "lookup#addr"
 
   # See how all your routes lay out with "rake routes"
 

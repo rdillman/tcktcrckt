@@ -28,7 +28,7 @@ task :add_ct_idto_clean => :environment do
       tmp.update_attribute(:cleaned, true)
     end
   end
-end
+
   
   
 end
