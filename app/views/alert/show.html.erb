@@ -1,8 +1,18 @@
 <%if @message%>
-	<font color='red'><%=@message%><br></font>
-	<br>
-	<hr>
-	<br>
+		<%if @message != "!NO!" %>
+			<font color='red'><%=@message%><br></font>
+			<br>
+			<hr>
+			<br>
+		<%else%>
+			Almost There! In order to send you alarms we need to know phone number and carrier<br>
+			<b><font size=2><%=label_tag "num", "Phone Number"%></font></b>
+		  	<%= text_field_tag(:num, nil, :placeholder => "415 867 5309", :size => 10) -%>
+			<b><font size=2><%=label_tag "car", "Select Carrier"%></font></b>
+			<%= select_tag "car", options_for_select([ "AT&T", "TMobile", "Verizon", "Sprint" ], "TMobile") %><br>
+			<%= submit_tag("Get Results!", :class => "user_submit") %>
+			<hr><br><br>
+		<%end%>
 <%end%>
 
 

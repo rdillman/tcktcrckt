@@ -2,17 +2,29 @@
 <head>
     <%= stylesheet_link_tag 'formtastic', 'formtastic_changes' %>	
 </head>	
-	
-<%= link_to "See Alerts", :controller => "alert", :action => "show"%>
-<hr>
+
 <%if @message%>
 	<%=@message%>
 <hr>	
 <%end%>
 <%= form_tag("/alert/create/", :method => "get") do %>
-	  <%= text_field_tag(:q, nil, :placeholder => "101 Market") %><br />
-	  <%= submit_tag("Create Alert", :class => "user_submit") %>
+	<br>
+	<br>
+	<b><font size=2><%=label_tag "q", "1. Search for Cleaning Times by Address"%></font><br></b>
+  	<%= text_field_tag(:q, nil, :placeholder => "101 Larkin St", :size => 27) -%><br><br>
+	  
+	<font size=2><b><%= label_tag "st", "2. Set Alarm Options"-%></b></font><br> 
+	<%= select_tag "st", options_for_select([ "Night Before", "1 Hour Before", "Both", "Don't Create an Alarm" ], "Night Before") %><br>
+ 	<br>
+
+	<font size=2><b><%= label_tag "Get Next Time", "3. Find out when the next streetclean is"-%></b></font><br> 
+    <%= submit_tag("Get Results!", :class => "user_submit") %>
 <% end %>
+
+
+
+
+
 <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
 
 </html>

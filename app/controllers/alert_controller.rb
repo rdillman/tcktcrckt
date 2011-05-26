@@ -9,87 +9,82 @@ class AlertController < ApplicationController
   end
 
   def create
+    
     @user = current_user
     @usr_qry = params[:q]
+    @st = params[:st]
     @results = Block.next_ct_from_addr(@usr_qry)
     
-  
+
   #
   #  
   #Problem Cases ############################################################## 
   # 
-    if @results == "Invalid Address - No Address or No Street"
-      @message = @results
-      @message <<" "<< @usr_qry
-      respond_to do |format|
-        format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
-        format.xml  {render :xml => @message}
-      end
-    elsif @results == "We don't have a record for that address for that street"
-      @message = @results
-      @message<<" "<<usr_qry
-      respond_to do |format|
-        format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
-        format.xml  {render :xml => @message}
-       end
-    elsif @results == "Invalid Address"
-      @message = @results
-      @message<<" "<<@usr_qry
-      respond_to do |format|
-        format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
-        format.xml  {render :xml => @message}
-      end
-    elsif @results[1] == "Which of these Streets?"
-      @message = @results
-      @message<<" "<<@usr_qry
-      respond_to do |format|
-        format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
-        format.xml  {render :xml => @message}
-      end
-    elsif @results == "Oops We Don't Have a Cleaning Record for this Street"
-      @message = @results
-      @message<<" "<<@usr_qry
-      respond_to do |format|
-        format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
-        format.xml  {render :xml => @message}
-      end
-    elsif alert_exists?(@results[1],@user)
-      @message = exists_message
-      @alerts = Alarm.all
-      respond_to do |format|
-        format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
-        format.xml  { render :xml => @message}
-        format.xml  { render :xml => @alerts}
-      end
-      
+    res = @results
+    uq  = @usr_qry 
+    if res == "Invalid Address - No Address or No Street"
+      do_invalid(res,uq)
+
+    elsif res == "We don't have a record for that address for that street"
+      do_invalid(res,uq)
+  
+    elsif res == "Invalid Address"
+      do_invalid(res,uq)
+
+    elsif res[1] == "Which of these Streets?"
+      do_multiple(res,uq)
+
+    elsif res == "Oops We Don't Have a Cleaning Record for this Street"
+      do_no_entry(uq)
+  
+    elsif alert_exists?(res[1],@user)
+       do_alert_exists
+        
   #
   #End Problem Cases #########################################################    
   #    
   #    
-    else
-      
+     else 
   #
   # Ideal case ###################################################################
   #
-      send = @results[0][0] - 1.hour
-      @a = Alarm.create!(:location => @usr_qry, :clean_time => @results[0][0].strftime("%B %e %y %H:%M"), :send_time => send.strftime("%B %e %y %H:%M"), :cnn => @results[1], :nb4 => false, :user_id => @user.id)
+  
+      if (@st[0] == 78) #Night Before Case
+        nb4_time = @results[0][0]-1.day + (19 - @results[0][0].hour).hour
+        send = @results[0][0] - 1.hour
+        @a = Alarm.create!(:location => @usr_qry, :clean_time => nb4_time.strftime("%B %e %y %H:%M"), :send_time => send.strftime("%B %e %y %H:%M"), :cnn => @results[1], :nb4 => false, :user_id => @user.id)
+      elsif (@st[0] == 66)
+        nb4_time = @results[0][0]-1.day + (19 - @results[0][0].hour).hour
+        send = @results[0][0] - 1.hour
+        @a = Alarm.create!(:location => @usr_qry, :clean_time => nb4_time.strftime("%B %e %y %H:%M"), :send_time => send.strftime("%B %e %y %H:%M"), :cnn => @results[1], :nb4 => true, :user_id => @user.id)
+      elsif (@st[0] == 68)
+        @message = @results[0][0]
+        send = @results[0][0] - 1.hour
+        respond_to do |format|
+          format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+          format.xml  {render :xml => @message}
+        end
+      else  
+        send = @results[0][0] - 1.hour
+        @a = Alarm.create!(:location => @usr_qry, :clean_time => @results[0][0].strftime("%B %e %y %H:%M"), :send_time => send.strftime("%B %e %y %H:%M"), :cnn => @results[1], :nb4 => false, :user_id => @user.id)
+      end
       if @a
-        @message = create_message(@a)
-        @alerts = Alarm.all
+        if !@user.phone_number or !@user.carrier
+          @message = "!NO!"
+        else
+          @message = create_message(@a)
+        end
+        @alerts = Alarm.where("user_id = ?",@user.id)
         respond_to do |format|
             format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
             format.xml  { render :xml => @alerts }
             format.xml  { render :xml => @message }
-        end
-        
-        
-        
+        end 
       end
-    end
-    
+    end  
   end
   
-  
+
   
 
   def kill
@@ -110,7 +105,6 @@ class AlertController < ApplicationController
     change_id = params[:q]
     
   end
-
 
 
   private
@@ -136,6 +130,56 @@ class AlertController < ApplicationController
     end
   end
   
+  def do_alert_exists
+    @message = exists_message
+    @alerts = Alarm.where("user_id = ?",current_user.id)
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
+      format.xml  { render :xml => @message}
+      format.xml  { render :xml => @alerts}
+    end
+  end
+
+  
+  def do_invalid(res,uq)
+    @message = res
+    @message<<" "<<uq
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+      format.xml  {render :xml => @message}
+    end
+  end
+  
+  def do_no_entry(uq)
+    @message = @results
+    @message<<" "<<uq
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+      format.xml  {render :xml => @message}
+    end
+  end
+  
+  def do_multiple(res,uq)
+    @message = res
+    @message<<" "<<uq
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+      format.xml  {render :xml => @message}
+    end
+  end
+  
+  def no_phone_data(usr,u)
+      @message = "!NO!"
+      @usr_qry  = u
+      @alerts = Alarm.where("user_id = ?", usr.id)
+      respond_to do |format|
+        format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+        format.xml  {render :xml => @message}
+        format.xml  {render :xml => @message}
+        format.xml  {render :xml => @message}
+      end
+  end
+        
   def exists_message
     "An alert for this block already exists"
   end
