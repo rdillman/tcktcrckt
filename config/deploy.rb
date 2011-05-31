@@ -11,6 +11,7 @@ set :deploy_to, "/src/www/#{application}"
 set :use_sudo, false
 ssh_options[:forward_agent] = true
 ssh_options[:verbose] = :debug
+set :port, 16888
 
 
 
