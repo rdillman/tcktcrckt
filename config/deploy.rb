@@ -1,7 +1,7 @@
 set :application, "tcktcrckt.com"
 
 set :scm, :git
-set :repository,  "."
+set :repository,  "svn+project1ssh://96.126.101.42/srv/www/tcktcrckt"
 set :deploy_via, :copy
 
 set :user, :deploy
