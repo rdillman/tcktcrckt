@@ -10,6 +10,8 @@ set :user, :deploy
 set :deploy_to, "/src/www/#{application}"
 set :use_sudo, false
 ssh_options[:forward_agent] = true
+ssh_options[:verbose] = :debug
+
 
 
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
