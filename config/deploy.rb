@@ -1,12 +1,13 @@
 set :application, "tcktcrckt.com"
 
 set :scm, :git
-set :repository,  "svn+project1ssh://96.126.101.42/srv/www/tcktcrckt"
+set :repository,  "."
 set :deploy_via, :copy
 
 set :user, :deploy
 set :deploy_to, "/srv/www/#{application}"
 set :use_sudo, false
+set :port, 16888
 
 
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
