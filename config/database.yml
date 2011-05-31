@@ -49,4 +49,4 @@ production:
   database: tcktcrckt_production
   pool: 5
   username: tcktcrckt
-  password:
+  password: tcktcrckt
