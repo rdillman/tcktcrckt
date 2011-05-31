@@ -1,8 +1,10 @@
 set :application, "tcktcrckt"
 
 set :scm, :git
-set :repository,  "."
-set :deploy_via, :copy
+set :repository,  "git@github.com:rdillman/tcktcrckt.git"
+set :branch, "master"
+set :deploy_via, :remote_cache
+
 
 set :user, :deploy
 set :deploy_to, "/src/www/#{application}"
