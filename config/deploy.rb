@@ -6,7 +6,7 @@ set :deploy_via, :copy
 
 
 set :user, :deploy
-set :deploy_to, "/srv/www/#{application}"
+set :deploy_to, "/var/www/#{application}"
 set :use_sudo, false
 ssh_options[:forward_agent] = true
 set :port, 16888
