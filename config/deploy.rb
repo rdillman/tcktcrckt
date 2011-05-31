@@ -1,16 +1,14 @@
 set :application, "tcktcrckt"
 
 set :scm, :git
-set :repository,  "git@github.com:rdillman/tcktcrckt.git"
-set :branch, "master"
-set :deploy_via, :remote_cache
+set :repository,  "."
+set :deploy_via, :copy
 
 
 set :user, :deploy
 set :deploy_to, "/src/www/#{application}"
 set :use_sudo, false
 ssh_options[:forward_agent] = true
-ssh_options[:verbose] = :debug
 set :port, 16888
 
 
