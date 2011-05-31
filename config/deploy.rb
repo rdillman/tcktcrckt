@@ -1,8 +1,7 @@
 set :application, "tcktcrckt.com"
 
-default_run_options[:pty] = true  # Must be set for the password prompt from git to work
 set :scm, :git
-set :repository,  "git@github.com:rdillman/tcktcrckt.git"
+set :repository,  "."
 set :deploy_via, :copy
 
 set :user, :deploy
