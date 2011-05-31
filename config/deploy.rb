@@ -7,7 +7,6 @@ set :deploy_via, :copy
 set :user, :deploy
 set :deploy_to, "/srv/www/#{application}"
 set :use_sudo, false
-set :port, 16888
 
 
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
