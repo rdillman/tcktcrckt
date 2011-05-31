@@ -48,5 +48,5 @@ production:
   encoding: unicode
   database: tcktcrckt_production
   pool: 5
-  username: tcktcrckt
-  password: tcktcrckt
+  username: rails
+  password: rails
