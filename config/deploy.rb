@@ -1,4 +1,4 @@
-set :application, "tcktcrckt"
+set :application, "tcktcrckt.com"
 
 set :scm, :git
 set :repository,  "."
