@@ -3,10 +3,10 @@ set :application, "tcktcrckt.com"
 default_run_options[:pty] = true  # Must be set for the password prompt from git to work
 set :scm, :git
 set :repository,  "git@github.com:rdillman/tcktcrckt.git"
-set :deploy_via, :copy
+set :branch, "master"
+set :deploy_via, :remote_cache
 
 set :user, :deploy
-set :scm_passphrase, "fuckthep0p0!"  # The deploy user's password
 
 set :deploy_to, "/var/www/#{application}"
 
