@@ -4,7 +4,7 @@ default_run_options[:pty] = true
 set :application, "tcktcrckt.com"
 
 set :scm, :git
-set :repository,  "git@github.com:rdillman/tcktcrckt.git"
+set :repository,  "."
 set :deploy_via, :copy
 
 set :user, :deploy
