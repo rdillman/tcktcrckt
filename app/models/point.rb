@@ -1,5 +1,5 @@
 class Point < ActiveRecord::Base
-  #acts_as_mappable
+  acts_as_mappable
   
   def nearby_cnns(radius)
     start = Time.now
