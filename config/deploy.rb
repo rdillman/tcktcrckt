@@ -1,6 +1,6 @@
 require 'bundler/capistrano'
 
-set :application, "tcktcrckt.com"
+set :application, "www.tcktcrckt.com"
 
 set :scm, :git
 set :repository,  "."
@@ -13,9 +13,9 @@ set :use_sudo, false
 
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-role :web, "tcktcrckt.com"                          # Your HTTP server, Apache/etc
-role :app, "tcktcrckt.com"                          # This may be the same as your `Web` server
-role :db,  "tcktcrckt.com", :primary => true # This is where Rails migrations will run
+role :web, "www.tcktcrckt.com"                          # Your HTTP server, Apache/etc
+role :app, "www.tcktcrckt.com"                          # This may be the same as your `Web` server
+role :db,  "www.tcktcrckt.com", :primary => true # This is where Rails migrations will run
 #role :db,  "your slave db-server here"
 
 # if you're still using the script/reaper helper you will need
