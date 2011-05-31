@@ -3,14 +3,12 @@ set :application, "tcktcrckt.com"
 default_run_options[:pty] = true  # Must be set for the password prompt from git to work
 set :scm, :git
 set :repository,  "git@github.com:rdillman/tcktcrckt.git"
-set :branch, "master"
-set :deploy_via, :remote_cache
+set :deploy_via, :copy
 
 set :user, :deploy
 
-set :deploy_to, "/var/www/#{application}"
-
-ssh_options[:forward_agent] = true
+set :deploy_to, "/src/www/#{application}/"
+set :use_sudo, false
 
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
