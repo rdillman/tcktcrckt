@@ -1,6 +1,3 @@
-require 'bundler/capistrano'
-
-default_run_options[:pty] = true 
 set :application, "tcktcrckt.com"
 
 set :scm, :git
