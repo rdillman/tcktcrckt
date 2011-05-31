@@ -5,9 +5,10 @@ set :repository,  "."
 set :deploy_via, :copy
 
 set :user, :deploy
-
 set :deploy_to, "/src/www/#{application}"
 set :use_sudo, false
+ssh_options[:forward_agent] = true
+
 
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
