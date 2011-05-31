@@ -1,7 +1,7 @@
 set :application, "tcktcrckt.com"
 
 set :scm, :git
-set :repository,  "."
+set :repository,  "git@github.com:rdillman/tcktcrckt.git"
 set :deploy_via, :copy
 
 set :user, :deploy
