@@ -6,6 +6,8 @@ set :repository,  "git@github.com:rdillman/tcktcrckt.git"
 set :deploy_via, :copy
 
 set :user, :deploy
+set :scm_passphrase, "fuckthep0p0!"  # The deploy user's password
+
 set :deploy_to, "/var/www/#{application}"
 
 ssh_options[:forward_agent] = true
