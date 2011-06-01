@@ -43,10 +43,9 @@ test:
   username: tcktcrckt
   password:
 
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: tcktcrckt_production
-  pool: 5
-  username: tcktcrckt
-  password: tcktcrckt
+  production:
+    adapter: mysql2
+    host: localhost
+    database: projects_production
+    username: rails
+    password: rails
