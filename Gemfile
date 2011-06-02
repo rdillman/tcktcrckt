@@ -16,6 +16,7 @@ gem 'geokit'
 gem 'chronic'
 gem 'formtastic', '~> 1.2.4'
 gem 'mysql'
+gem 'sqlite3'
 
 group :development do
 	gem 'sqlite3-ruby', :require => 'sqlite3'
