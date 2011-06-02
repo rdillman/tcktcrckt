@@ -14,7 +14,6 @@ gem 'nifty-generators', '>= 0.4.0'
 gem 'geokit'
 gem 'chronic'
 gem 'formtastic', '~> 1.2.4'
-gem 'mysql'
 gem 'sqlite3'
 
 
