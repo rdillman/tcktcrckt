@@ -10,6 +10,7 @@ test:
 
 production:
     adapter: mysql2
+    host: localhost
     database: tcktcrckt_production
     username: rails
     password: rails

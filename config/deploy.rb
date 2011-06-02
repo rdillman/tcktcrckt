@@ -1,3 +1,5 @@
+require 'bundler/capistrano'
+
 set :application, "tcktcrckt"
 
 set :scm, :git
