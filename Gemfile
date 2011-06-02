@@ -5,7 +5,6 @@ gem 'rails', '3.0.7'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
 gem 'activeadmin'
 gem 'devise'
 gem 'fastercsv'
@@ -15,14 +14,14 @@ gem 'nifty-generators', '>= 0.4.0'
 gem 'geokit'
 gem 'chronic'
 gem 'formtastic', '~> 1.2.4'
-gem 'mysql'
+#gem 'mysql'
 
 group :development do
 	gem 'sqlite3-ruby', :require => 'sqlite3'
 end
 	
 group :production do
-	gem 'mysql2', '~> 0.2.7'
+	#gem 'mysql2', '~> 0.2.7'
 end
 
 # Use unicorn as the web server

@@ -89,8 +89,6 @@ GEM
     mocha (0.9.12)
     multi_json (0.0.5)
     multipart-post (1.1.2)
-    mysql (2.8.1)
-    mysql2 (0.2.7)
     net-ldap (0.1.1)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
@@ -141,7 +139,6 @@ GEM
       oa-oauth (= 0.2.3)
       oa-openid (= 0.2.3)
     orm_adapter (0.0.5)
-    pg (0.11.0)
     polyglot (0.3.1)
     pyu-ruby-sasl (0.0.3.3)
     rack (1.2.3)
@@ -202,12 +199,9 @@ DEPENDENCIES
   formtastic (~> 1.2.4)
   geokit
   mocha
-  mysql
-  mysql2 (~> 0.2.7)
   nifty-generators (>= 0.4.0)
   oa-oauth
   omniauth
-  pg
   rails (= 3.0.7)
   ruby-debug
   sqlite3-ruby
