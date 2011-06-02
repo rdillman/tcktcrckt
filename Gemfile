@@ -22,7 +22,7 @@ group :development do
 end
 	
 group :production do
-	#gem 'mysql2', '~> 0.2.7'
+	gem 'mysql2', '~> 0.2.7'
 end
 
 # Use unicorn as the web server
