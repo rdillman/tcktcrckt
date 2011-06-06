@@ -4,7 +4,7 @@ Almost There! In order to send you alarms we need to know phone number and carri
 	<b><font size=2><%=label_tag "num", "Phone Number"%></font></b>
 	<%= text_field_tag(:num, nil, :placeholder => "415 867 5309", :size => 10) -%>
 	<b><font size=2><%=label_tag "car", "Select Carrier"%></font></b>
-	<%= select_tag "car", options_for_select([ "AT&T", "TMobile", "Verizon", "Sprint" ], "TMobile") %><br>
+	<%= select_tag "car", options_for_select([ "AT&T", "T-Mobile", "Verizon", "Sprint" ], "TMobile") %><br>
 	<%= submit_tag("Get Results!", :class => "user_submit") %>
 	<hr><br><br>
 <%end%>
