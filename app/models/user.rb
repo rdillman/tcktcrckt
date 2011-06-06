@@ -23,4 +23,19 @@ class User < ActiveRecord::Base
     end
   end
   
+  def text_address
+    str = self.phone_number.gsub!(/[^0-9]*/,'')
+    if self.carrier == "Verizon"
+      str<<"@vtext.com"
+    elsif self.carrier == "AT&T"
+      str<<"@txt.att.net" 
+    elsif self.carrier == "T-Mobile"
+      str<<"@tmomail.net"
+    elsif self.carrier == "Sprint"
+      str<<"@messaging.sprintpcs.com"
+    else
+      str="Fuck"
+    end
+  end
+  
 end
