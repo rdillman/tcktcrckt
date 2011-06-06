@@ -1,9 +1,23 @@
 class AlertController < ApplicationController
   
   def show
-    @alerts = Alarm.all
+    @user = current_user
+    @alerts = Alarm.where("user_id=?",@user.id)
     respond_to do |format|
       format.html
+      format.xml {render :xml => @alerts}
+    end
+  end
+  
+  def update_phone
+    @num = params[:num]
+    @car = params[:car]
+    @user = current_user
+    @user.update_attribute(:phone_number, @num)
+    @user.update_attribute(:carrier, @car)
+    @alerts = Alarm.where("user_id=?",@user.id)
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
       format.xml {render :xml => @alerts}
     end
   end
@@ -14,7 +28,7 @@ class AlertController < ApplicationController
     @usr_qry = params[:q]
     @st = params[:st]
     @results = Block.next_ct_from_addr(@usr_qry)
-    
+
 
   #
   #  

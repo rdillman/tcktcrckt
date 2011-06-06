@@ -1,6 +1,6 @@
 Almost There! In order to send you alarms we need to know phone number and carrier<br>
 
-<%= form_tag("/alert/show/", :method => "get") do %>
+<%= form_tag("/alert/update_phone/", :method => "get") do %>
 	<b><font size=2><%=label_tag "num", "Phone Number"%></font></b>
 	<%= text_field_tag(:num, nil, :placeholder => "415 867 5309", :size => 10) -%>
 	<b><font size=2><%=label_tag "car", "Select Carrier"%></font></b>

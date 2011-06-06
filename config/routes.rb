@@ -8,6 +8,8 @@ Tcktcrckt::Application.routes.draw do
   get "lookup/addr"
 
   get "lookup/map"
+  
+  get "alert/update_phone"
 
   resources :authentications
   ActiveAdmin.routes(self)

@@ -7,12 +7,12 @@
 
 
 
-<%if @alerts != []%>
+<%if @alerts != [] && @alerts != nil%>
 	<%@alerts.each do |a|%>
 		<%=a.clean_time%> <%=a.location%> <%=a.send_time%> <%=link_to "delete", :controller => "alert", :action => "kill", :q => a.id, :method => "get" %><br>
 	<%end%>
 <%else%>
-	You have no fucking alerts right now
+	You have no alerts right now
 <%end%>
 <hr>
 <%=link_to "Search Again", :controller => "lookup", :action => "addr"%>
