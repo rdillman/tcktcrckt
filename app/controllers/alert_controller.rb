@@ -49,14 +49,19 @@ class AlertController < ApplicationController
   # Ideal case ###################################################################
   #
   
+  
+  #Construct Alarm
+  
       if (@st[0] == 78) #Night Before Case
         nb4_time = @results[0][0]-1.day + (19 - @results[0][0].hour).hour
         send = @results[0][0] - 1.hour
         @a = Alarm.create!(:location => @usr_qry, :clean_time => nb4_time.strftime("%B %e %y %H:%M"), :send_time => send.strftime("%B %e %y %H:%M"), :cnn => @results[1], :nb4 => false, :user_id => @user.id)
+      
       elsif (@st[0] == 66)
         nb4_time = @results[0][0]-1.day + (19 - @results[0][0].hour).hour
         send = @results[0][0] - 1.hour
         @a = Alarm.create!(:location => @usr_qry, :clean_time => nb4_time.strftime("%B %e %y %H:%M"), :send_time => send.strftime("%B %e %y %H:%M"), :cnn => @results[1], :nb4 => true, :user_id => @user.id)
+      
       elsif (@st[0] == 68)
         @message = @results[0][0]
         send = @results[0][0] - 1.hour
@@ -68,18 +73,24 @@ class AlertController < ApplicationController
         send = @results[0][0] - 1.hour
         @a = Alarm.create!(:location => @usr_qry, :clean_time => @results[0][0].strftime("%B %e %y %H:%M"), :send_time => send.strftime("%B %e %y %H:%M"), :cnn => @results[1], :nb4 => false, :user_id => @user.id)
       end
+      
+      
+      
+      #If it worked --- 
       if @a
         if !@user.phone_number or !@user.carrier
-          @message = "!NO!"
+          respond_to do |format|
+              format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
+        end
         else
           @message = create_message(@a)
-        end
-        @alerts = Alarm.where("user_id = ?",@user.id)
-        respond_to do |format|
-            format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
-            format.xml  { render :xml => @alerts }
-            format.xml  { render :xml => @message }
-        end 
+          @alerts = Alarm.where("user_id = ?",@user.id)
+          respond_to do |format|
+              format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
+              format.xml  { render :xml => @alerts }
+              format.xml  { render :xml => @message }
+          end
+        end   
       end
     end  
   end
@@ -168,17 +179,7 @@ class AlertController < ApplicationController
     end
   end
   
-  def no_phone_data(usr,u)
-      @message = "!NO!"
-      @usr_qry  = u
-      @alerts = Alarm.where("user_id = ?", usr.id)
-      respond_to do |format|
-        format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
-        format.xml  {render :xml => @message}
-        format.xml  {render :xml => @message}
-        format.xml  {render :xml => @message}
-      end
-  end
+
         
   def exists_message
     "An alert for this block already exists"
