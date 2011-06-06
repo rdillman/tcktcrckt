@@ -1,6 +1,5 @@
 class Clean < ActiveRecord::Base
   def nct_to_times
-    debugger
     nct_str = self.nct
     nct_str = nct_str.split('|')
     times = Array.new

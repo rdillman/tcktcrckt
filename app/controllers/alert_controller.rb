@@ -80,8 +80,8 @@ class AlertController < ApplicationController
       if @a
         if !@user.phone_number or !@user.carrier
           respond_to do |format|
-              format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
-        end
+              format.html { render :file => "#{Rails.root}/app/views/alert/no_phone.html.erb"}
+          end
         else
           @message = create_message(@a)
           @alerts = Alarm.where("user_id = ?",@user.id)

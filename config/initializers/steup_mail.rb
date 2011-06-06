@@ -1,9 +1,12 @@
+ ActionMailer::Base.smtp_settings = {
+   :address              => "smtp.gmail.com",
+   :port                 => 587,
+  :domain               => "gmail.com",
+   :user_name            => "streetsweeper.sf",
+   :password             => "fuckthep0l1c3",
+   :authentication       => "plain",
+   :enable_starttls_auto => true
+ }
 
-
-ActionMailer::Base.smtp_settings = {
-  :address              => "127.0.0.1",
-  :port                 => 25,
-  :domain               => "hankwilliams3.tcktcrckt.com",
-  :authentication       => :none,
-  :enable_starttls_auto => false
-}
+#For Local Host
+ActionMailer::Base.default_url_options[:host] = "localhost:3000"

@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  
+
+
   def self.create_from_hash!(hash)
     create(:name => hash['user_info']['name'])
   end
