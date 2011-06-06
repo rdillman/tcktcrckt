@@ -9,6 +9,10 @@ class AlertController < ApplicationController
     end
   end
   
+  def edit
+    
+  end
+  
   def update_phone
     @num = params[:num]
     @car = params[:car]
@@ -69,15 +73,9 @@ class AlertController < ApplicationController
       if (@st[0] == 78) #Night Before Case
         nb4_time = @results[0][0]-1.day + (19 - @results[0][0].hour).hour
         send = @results[0][0] - 1.hour
-        @a = Alarm.create!(:location => @usr_qry, :clean_time => nb4_time.strftime("%B %e %y %H:%M"), :send_time => send.strftime("%B %e %y %H:%M"), :cnn => @results[1], :nb4 => false, :user_id => @user.id)
-      
-      elsif (@st[0] == 66)
-        nb4_time = @results[0][0]-1.day + (19 - @results[0][0].hour).hour
-        send = @results[0][0] - 1.hour
-        @a = Alarm.create!(:location => @usr_qry, :clean_time => nb4_time.strftime("%B %e %y %H:%M"), :send_time => send.strftime("%B %e %y %H:%M"), :cnn => @results[1], :nb4 => true, :user_id => @user.id)
-      
+        @a = Alarm.create!(:location => @usr_qry, :clean_time => @results[0][0].strftime("%H:%M %B %e, %Y"), :send_time => nb4_time.strftime("%H:%M %B %e, %Y"), :cnn => @results[1], :nb4 => true, :user_id => @user.id)
       elsif (@st[0] == 68)
-        @message = @results[0][0]
+        @message = "The next cleantime for that street begins at "<<@results[0][0].strftime("%A %B %e at %I:%M%p.")
         send = @results[0][0] - 1.hour
         respond_to do |format|
           format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
