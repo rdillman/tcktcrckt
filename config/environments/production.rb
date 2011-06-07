@@ -37,9 +37,9 @@ Tcktcrckt::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
   ActionMailer::Base.smtp_settings = {
-    :address              => localhost,
+    :address              => 'localhost',
     :port                 => 25,
-    :domain               => "www.tcktcrckt.com",
+    :domain               => 'www.tcktcrckt.com',
   }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
