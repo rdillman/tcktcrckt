@@ -3,21 +3,29 @@
     <%= stylesheet_link_tag 'formtastic', 'formtastic_changes' %>	
 </head>	
 
-<%if @message%>
-	<%=@message%>
-<hr>	
+<%if @message&&@box%>
+	<%if @box == "error"%>
+		<div class='error'><%=@message%></div>
+	<%elsif @box == "warn"%>
+		<div class='warning'><%=@message%></div>
+	<%elsif @box == 'info'%>
+		<div class='info'><%=@message%></div>
+	<%elsif @box == 'error'%>
+		<div class='error'><%=@message%></div>
+	<%end%>
 <%end%>
+
 <%= form_tag("/alert/create/", :method => "get") do %>
 	<br>
 	<br>
-	<b><font size=2><%=label_tag "q", "1. Search for Cleaning Times by Address"%></font><br></b>
-  	<%= text_field_tag(:q, nil, :placeholder => "101 Larkin St", :size => 27) -%><br><br>
+	<b><font size=5><%=label_tag "q", "1. Search for Cleaning Times by Address"%><br></b>
+  	<%= text_field_tag(:q, nil, :placeholder => "101 Larkin St", :size => 27) -%><br><br></font>
 	  
-	<font size=2><b><%= label_tag "st", "2. Set Alarm Options"-%></b></font><br> 
+	<font size=5><b><%= label_tag "st", "2. Set Alarm Options"-%></b></font><br> 
 	<%= select_tag "st", options_for_select([ "Night Before", "1 Hour Before", "Don't Create an Alarm" ], "Night Before") %><br>
  	<br>
 
-	<font size=2><b><%= label_tag "Get Next Time", "3. Find out when the next streetclean is"-%></b></font><br> 
+	<font size=5><b><%= label_tag "Get Next Time", "3. Find out when the next streetclean is"-%></b></font><br> 
     <%= submit_tag("Get Results!", :class => "user_submit") %>
 <% end %>
 

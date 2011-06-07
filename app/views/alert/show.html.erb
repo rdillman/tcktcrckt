@@ -1,8 +1,13 @@
-<%if @message%>
-			<font color='red'><%=@message%><br></font>
-			<br>
-			<hr>
-			<br>
+<%if @message&&@box%>
+	<%if @box == "error"%>
+		<div class='error'><%=@message%></div>
+	<%elsif @box == "warn"%>
+		<div class='warning'><%=@message%></div>
+	<%elsif @box == 'info'%>
+		<div class='info'><%=@message%></div>
+	<%elsif @box == 'success'%>
+		<div class='success'><%=@message%></div>
+	<%end%>
 <%end%>
 
 
@@ -15,17 +20,15 @@
 	<th><u>Location</u></th>
 	<th><u>CleanTime</u></th>
 	<th><u>Alert Send</u></th>
-	<th></th>
-	<th></th>
+	<th><th>
   </tr>
 	
 	<%@alerts.each do |a|%>
 	<tr>
 		<td><%=a.location%>  </td>
 		<td><%=a.clean_time%>  </td>
-		<td> <%if a.nb4%>Night Before<%else%>One Hour Before<%end%>  </td>
-		<td><%=link_to "delete", :controller => "alert", :action => "kill", :q => a.id, :method => "get" %></td>
-		<td><%= link_to "edit", :controller => "alert", :action => "kill", :q => a.id, :method => "get"%></td>
+		<td> <%if a.nb4%>Night Before<%else%>One Hour Before<%end%> </td>
+		<td> <%=link_to "delete", :controller => "alert", :action => "kill", :q => a.id, :method => "get" %> | <%= link_to "edit", :controller => "alert", :action => "kill", :q => a.id, :method => "get"%></td>
 	</tr>
 	<%end%>
 </table>
