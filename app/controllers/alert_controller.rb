@@ -9,6 +9,26 @@ class AlertController < ApplicationController
     end
   end
   
+  def beef
+    @user = current_user
+    @alerts = Alarm.where("user_id=?",@user.id)
+    if UserMailer.send_alert(Alarm.first).deliver
+      respond_to do |format|
+        format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
+        format.xml {render :xml => @alerts}
+      end
+    else
+      @message = "Your phone number had been updated"
+      @box = "success"
+      respond_to do |format|
+        format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
+        format.xml {render :xml => @alerts}
+        format.xml  {render :xml => @message}
+        format.xml  {render :xml => @box}
+      end
+    end
+  end 
+  
   def edit
     
   end

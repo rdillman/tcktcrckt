@@ -26,7 +26,6 @@ class User < ActiveRecord::Base
   
   def text_address
     str = self.phone_number.gsub!(/[^0-9]*/,'')
-    debugger
     if self.carrier == "Verizon"
       str<<"@vtext.com"
     elsif self.carrier == "AT&T"

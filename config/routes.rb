@@ -9,6 +9,8 @@ Tcktcrckt::Application.routes.draw do
 
   get "lookup/map"
   
+  get "alert/beef"
+  
   get "alert/update_phone"
 
   resources :authentications
