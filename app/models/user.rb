@@ -25,10 +25,11 @@ class User < ActiveRecord::Base
   end
   
   def text_address
+    str = self.phone_number
     if !str 
-      return "fuckshit"
+      return "fuckshit@balls.com"
     end
-    str = self.phone_number.gsub!(/[^0-9]*/,'')
+    str = str.gsub!(/[^0-9]*/,'')
     if self.carrier == "Verizon"
       str<<"@vtext.com"
     elsif self.carrier == "AT&T"
