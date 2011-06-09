@@ -1,8 +1,8 @@
 class UserMailer < ActionMailer::Base
-  default :from => "tcktcrckt@tcktcrckt.com"
-    
+    default :from => "no-reply@tcktcrckt.com"
+  
   def send_alert(alert)
-    if !alert
+    if alert == []
       return nil
     end
     @user= User.find(alert.user_id)
@@ -10,6 +10,8 @@ class UserMailer < ActionMailer::Base
       return nil
     end
     @alarm_message = "Warning! Your location, "<<alert.location<<" will be swept at"<<alert.clean_time<<". - tcktcrckt"
-    mail(:to => "<#{user.text_address}>", :from => "tcktcrckt@tcktcrckt.com",:subject => "TicketCricket Alert!")
+    mail(:to => "<#{user.text_address}>",:subject => "TicketCricket Alert!")
   end
+  
+  
 end
