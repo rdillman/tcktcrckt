@@ -4,7 +4,6 @@ class UserMailer < ActionMailer::Base
   def send_alert(alert)
     @user= User.find(alert.user_id)
     user = @user
-    debugger
     @alarm_message = "Warning! Your location, "<<alert.location<<" will be swept at"<<alert.clean_time<<". - tcktcrckt"
     mail(:to => "<#{user.text_address}",:subject => "TicketCricket Alert!")
   end
