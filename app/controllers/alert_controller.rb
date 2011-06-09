@@ -10,27 +10,48 @@ class AlertController < ApplicationController
   end
   
   def beef
-    @user = current_user
-    @alerts = Alarm.where("user_id=?",@user.id)
-    if UserMailer.send_alert(@alerts.first).deliver
+    user = current_user
+    @alerts = Alarm.where("user_id=?",user.id)
+    if @alerts != [] && UserMailer.send_alert(@alerts.first).deliver
       respond_to do |format|
         format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
         format.xml {render :xml => @alerts}
       end
     else
-      @message = "fuckity fuck fuck"
-      @box = "success"
+      @message = "you ain't got no alertz"
+      @box = "error"
       respond_to do |format|
-        format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
-        format.xml {render :xml => @alerts}
-        format.xml  {render :xml => @message}
-        format.xml  {render :xml => @box}
+        format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb" }
+        format.xml  { render :xml => @alerts }
+        format.xml  { render :xml => @message }
+        format.xml  { render :xml => @box }
       end
     end
   end 
   
   def edit
-    
+    user = current_user
+    @alerts = Alarm.where("user_id=?",user.id)
+    @alarm = params[:alarm]
+    alert = Alarm.find(@alarm)
+    ct = Chronic.parse(alert.clean_time)
+    if alert.nb4
+      send = ct - 1.hour
+      alert.update_attribute(:send_time, send.strftime("%B %e %Y at %H:%M"))
+      alert.update_attribute(:nb4, false)
+    else
+      nb4_time = ct-1.day + (19 - ct.hour).hour
+      alert.update_attribute(:send_time, nb4_time.strftime("%B %e %Y at %H:%M"))
+      alert.update_attribute(:nb4, true)
+    end
+    @message = "Your Alert has been changed!"
+    @box = "success"
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb" }
+      format.xml  { render :xml => @alerts }
+      format.xml  { render :xml => @message }
+      format.xml  { render :xml => @box }
+      end
   end
   
   def update_phone
@@ -123,9 +144,13 @@ class AlertController < ApplicationController
       #If it worked --- 
       if @a
         if !@user.phone_number or !@user.carrier
+          @message = "Almost There! In order to send you alarms we need to know phone number and carrier"
+          @box = "warn"
           respond_to do |format|
               format.html { render :file => "#{Rails.root}/app/views/alert/no_phone.html.erb"}
-          end
+              format.xml  { render :xml => @message }
+              format.xml  {render :xml => @box}   
+          end       
         else
           @message = create_message(@a)
           @alerts = Alarm.where("user_id = ?",@user.id)
@@ -135,7 +160,6 @@ class AlertController < ApplicationController
               format.xml  { render :xml => @alerts }
               format.xml  { render :xml => @message }
               format.xml  {render :xml => @box}
-              
           end
         end   
       end
@@ -178,12 +202,12 @@ class AlertController < ApplicationController
   def make_nb4_alarm(uq, res, usr)
      nb4_time = res[0][0]-1.day + (19 - res[0][0].hour).hour
      send = res[0][0] - 1.hour
-     @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime("%H:%M %B %e, %Y"), :send_time => nb4_time.strftime("%H:%M %B %e, %Y"), :cnn => res[1], :nb4 => true, :user_id => usr.id)
+     @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime("%B %e %Y at %H:%M"), :send_time => nb4_time.strftime("%B %e %Y at %H:%M"), :cnn => res[1], :nb4 => true, :user_id => usr.id)
   end
     
     def make_regular_alarm(uq,res,usr)
         send = res[0][0] - 1.hour
-        @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime("%H:%M %B %e, %Y"), :send_time => send.strftime("%H:%M %B %e, %Y"), :cnn => res[1], :nb4 => false, :user_id => usr.id)
+        @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime("%B %e %Y at %H:%M"), :send_time => send.strftime("%B %e %Y at %H:%M"), :cnn => res[1], :nb4 => false, :user_id => usr.id)
     end
   
   def night_before?(alarm_type)

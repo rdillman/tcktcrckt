@@ -28,7 +28,7 @@
 		<td><%=a.location%>  </td>
 		<td><%=a.clean_time%>  </td>
 		<td> <%if a.nb4%>Night Before<%else%>One Hour Before<%end%> </td>
-		<td> <%=link_to "delete", :controller => "alert", :action => "kill", :q => a.id, :method => "get" %> | <%= link_to "edit", :controller => "alert", :action => "kill", :q => a.id, :method => "get"%></td>
+		<td> <%=link_to "delete", :controller => "alert", :action => "kill", :q => a.id, :method => "get" %> | <%= link_to "edit", :controller => "alert", :action => "edit", :alarm => a.id, :method => "get"%></td>
 	</tr>
 	<%end%>
 </table>
