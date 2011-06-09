@@ -10,21 +10,21 @@ class AlertController < ApplicationController
   end
   
   def beef
-    @user = current_user
-    @alerts = Alarm.where("user_id=?",@user.id)
-    if UserMailer.send_alert(@alerts.first).deliver
+    user = current_user
+    @alerts = Alarm.where("user_id=?",user.id)
+    if @alerts != [] && UserMailer.send_alert(@alerts.first).deliver
       respond_to do |format|
         format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
         format.xml {render :xml => @alerts}
       end
     else
-      @message = "fuckity fuck fuck"
-      @box = "success"
+      @message = "you ain't got no alertz"
+      @box = "error"
       respond_to do |format|
-        format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
-        format.xml {render :xml => @alerts}
-        format.xml  {render :xml => @message}
-        format.xml  {render :xml => @box}
+        format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb" }
+        format.xml  { render :xml => @alerts }
+        format.xml  { render :xml => @message }
+        format.xml  { render :xml => @box }
       end
     end
   end 
