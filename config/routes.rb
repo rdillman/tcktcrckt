@@ -11,6 +11,8 @@ Tcktcrckt::Application.routes.draw do
   
   get "alert/beef"
   
+  get "alert/edit"
+  
   get "alert/update_phone"
 
   resources :authentications
