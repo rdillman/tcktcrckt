@@ -43,7 +43,7 @@ class AlertController < ApplicationController
     @alerts = Alarm.where("user_id=?",@user.id)
     @message = "Your phone number had been updated"
     @box = "success"
-    @nums = user.phone_number
+    @message << user.phone_number
     @nums <<" "<< user.carrier
     respond_to do |format|
       format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
