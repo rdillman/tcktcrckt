@@ -36,13 +36,15 @@ class AlertController < ApplicationController
   def update_phone
     @num = params[:num]
     @car = params[:car]
-    @user = current_user
-    @user.update_attribute(:phone_number, @num)
-    @user.update_attribute(:carrier, @car)
-    @user.save!
+    user = current_user
+    user.update_attribute(:phone_number, @num)
+    user.update_attribute(:carrier, @car)
+    user.save!
     @alerts = Alarm.where("user_id=?",@user.id)
     @message = "Your phone number had been updated"
     @box = "success"
+    @nums = user.phone_number
+    @nums <<" "<< user.carrier
     respond_to do |format|
       format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
       format.xml {render :xml => @alerts}
