@@ -18,7 +18,7 @@ class AlertController < ApplicationController
         format.xml {render :xml => @alerts}
       end
     else
-      @message = "Your phone number had been updated"
+      @message = "fuckity fuck fuck"
       @box = "success"
       respond_to do |format|
         format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
