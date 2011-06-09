@@ -144,9 +144,13 @@ class AlertController < ApplicationController
       #If it worked --- 
       if @a
         if !@user.phone_number or !@user.carrier
+          @message = "Almost There! In order to send you alarms we need to know phone number and carrier"
+          @box = "warn"
           respond_to do |format|
               format.html { render :file => "#{Rails.root}/app/views/alert/no_phone.html.erb"}
-          end
+              format.xml  { render :xml => @message }
+              format.xml  {render :xml => @box}   
+          end       
         else
           @message = create_message(@a)
           @alerts = Alarm.where("user_id = ?",@user.id)
@@ -156,7 +160,6 @@ class AlertController < ApplicationController
               format.xml  { render :xml => @alerts }
               format.xml  { render :xml => @message }
               format.xml  {render :xml => @box}
-              
           end
         end   
       end
