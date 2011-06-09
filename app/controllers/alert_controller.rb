@@ -12,7 +12,7 @@ class AlertController < ApplicationController
   def beef
     @user = current_user
     @alerts = Alarm.where("user_id=?",@user.id)
-    if UserMailer.send_alert(Alarm.first).deliver
+    if UserMailer.send_alert(@alerts.first).deliver
       respond_to do |format|
         format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
         format.xml {render :xml => @alerts}
