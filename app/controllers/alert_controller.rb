@@ -62,7 +62,7 @@ class AlertController < ApplicationController
     user.update_attribute(:carrier, @car)
     user.save!
     @alerts = Alarm.where("user_id=?",@user.id)
-    @message = "Your phone number had been updated"
+    @message = "Your phone number had been updated "
     @box = "success"
     @message << user.phone_number.to_s
     respond_to do |format|
