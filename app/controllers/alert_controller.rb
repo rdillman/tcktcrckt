@@ -79,6 +79,8 @@ class AlertController < ApplicationController
     @user = current_user
     @usr_qry = params[:q]
     @st = params[:st]
+    
+    
     @results = Block.next_ct_from_addr(@usr_qry)
 
 
@@ -88,6 +90,8 @@ class AlertController < ApplicationController
   # 
     res = @results
     uq  = @usr_qry 
+
+    
     if res == "Invalid Address - No Address or No Street"
       do_invalid(res,uq)
 
@@ -103,9 +107,10 @@ class AlertController < ApplicationController
     elsif res == "Oops We Don't Have a Cleaning Record for this Street"
       do_no_entry(uq)
   
-    elsif alert_exists?(res[1],@user)
+    elsif alert_exists?(res[1],@user,@st)
        do_alert_exists
-        
+    elsif res == "empty"
+        do_empty
   #
   #End Problem Cases #########################################################    
   #    
@@ -234,7 +239,10 @@ class AlertController < ApplicationController
     message << "has been deleted."
   end
      
-  def alert_exists?(cnn, user)
+  def alert_exists?(cnn, user, st)
+    if st == "Don't Create an Alarm"
+      return false
+    end
     if Alarm.where("cnn = ? AND user_id = ?", cnn, user.id) != []
       return true
     else
@@ -289,6 +297,15 @@ class AlertController < ApplicationController
     end
   end
   
+  def do_empty
+    @message = "Please enter something"
+    @box = "error"
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+      format.xml  {render :xml => @message}
+      format.xml  {render :xml => @box}
+    end
+  end
 
         
   def exists_message

@@ -150,6 +150,10 @@ class Block < ActiveRecord::Base
   
   def self.next_ct_from_addr(usr_qry)
     #@bl is a list of blocks 
+    if usr_qry == ""
+      return "empty"
+    end
+       
     bl,side = Block.lookup_cnn(usr_qry)
 
 
