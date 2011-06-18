@@ -33,25 +33,36 @@ class AlertController < ApplicationController
     user = current_user
     @alerts = Alarm.where("user_id=?",user.id)
     @alarm = params[:alarm]
-    alert = Alarm.find(@alarm)
-    ct = Chronic.parse(alert.clean_time)
-    if alert.nb4
-      send = ct - 1.hour
-      alert.update_attribute(:send_time, send.strftime("%B %e %Y at %H:%M"))
-      alert.update_attribute(:nb4, false)
-    else
-      nb4_time = ct-1.day + (19 - ct.hour).hour
-      alert.update_attribute(:send_time, nb4_time.strftime("%B %e %Y at %H:%M"))
-      alert.update_attribute(:nb4, true)
-    end
-    @message = "Your Alert has been changed!"
-    @box = "success"
-    respond_to do |format|
-      format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb" }
-      format.xml  { render :xml => @alerts }
-      format.xml  { render :xml => @message }
-      format.xml  { render :xml => @box }
+    if Alarm.exists?(@alarm)
+      alert = Alarm.find(@alarm)
+      ct = Chronic.parse(alert.clean_time)
+      if alert.nb4
+        send = ct - 1.hour
+        alert.update_attribute(:send_time, send.strftime("%B %e %Y at %H:%M"))
+        alert.update_attribute(:nb4, false)
+      else
+        nb4_time = ct-1.day + (19 - ct.hour).hour
+        alert.update_attribute(:send_time, nb4_time.strftime("%B %e %Y at %H:%M"))
+        alert.update_attribute(:nb4, true)
       end
+      @message = "Your Alert has been changed!"
+      @box = "success"
+      respond_to do |format|
+        format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb" }
+        format.xml  { render :xml => @alerts }
+        format.xml  { render :xml => @message }
+        format.xml  { render :xml => @box }
+        end
+    else
+      @message = "Oh No! that alert was deleted earlier"
+      @box = "warn"
+      respond_to do |format|
+        format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb" }
+        format.xml  { render :xml => @alerts }
+        format.xml  { render :xml => @message }
+        format.xml  { render :xml => @box }
+      end
+    end
   end
   
   def update_phone
@@ -176,22 +187,34 @@ class AlertController < ApplicationController
 
   def kill
     kill_id = params[:q]
-    to_delete = Alarm.find(kill_id)
-    if current_user.id == to_delete.user_id
-      @message = kill_message(to_delete)
-      if to_delete.destroy
-        @alerts = Alarm.where("user_id = ?",current_user.id)
-        @box = "success"
-        respond_to do |format|
-          format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
-          format.xml  { render :xml => @alerts }
-          format.xml  { render :xml => @message }
-          format.xml  {render :xml => @box}
+    if Alarm.exists?(kill_id)
+      to_delete = Alarm.find(kill_id)
+        if current_user.id == to_delete.user_id
+          @message = kill_message(to_delete)
+          if to_delete.destroy
+            @alerts = Alarm.where("user_id = ?",current_user.id)
+            @box = "success"
+            respond_to do |format|
+              format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
+              format.xml  { render :xml => @alerts }
+              format.xml  { render :xml => @message }
+              format.xml  {render :xml => @box}
+            end
+          end
+        else
+          respond_to do |format|
+            format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+          end
         end
-      end
     else
+      @message = "The Alarm has been deleted"
+      @alerts = Alarm.where("user_id = ?",current_user.id)
+      @box = "success"
       respond_to do |format|
-        format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+        format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
+        format.xml  { render :xml => @alerts }
+        format.xml  { render :xml => @message }
+        format.xml  {render :xml => @box}
       end
     end
   end
