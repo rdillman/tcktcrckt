@@ -1,4 +1,6 @@
 class LookupController < ApplicationController
+  before_filter :authenticate_user!, :except => :addr
+  
   
   def addr
   end

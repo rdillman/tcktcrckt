@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110524181709) do
+ActiveRecord::Schema.define(:version => 20110621191129) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -133,6 +133,13 @@ ActiveRecord::Schema.define(:version => 20110524181709) do
     t.string "alias"
   end
 
+  create_table "temp_vals", :force => true do |t|
+    t.integer  "ip"
+    t.string   "qry"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
@@ -149,6 +156,9 @@ ActiveRecord::Schema.define(:version => 20110524181709) do
     t.string   "carrier"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "tmpqry"
+    t.string   "valphone"
+    t.integer  "valcode"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

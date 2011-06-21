@@ -1,4 +1,28 @@
 class AlertController < ApplicationController
+  before_filter :authenticate_user!, :except => :create
+  # before_filter :validated?, :except => :create
+  
+  # before_filter :validate_user, :except => validate
+  
+  # def validate
+  #   @code = params[:code]
+  #   @user = current_user
+  #   @usr_qry = params[:q]
+  #   
+  #   if @code == @user.val
+  #     @message = "Your phone number has been validated!"
+  #     
+  #     respond_to do |format|
+  #       format.html {render :file => "#{Rails.root}/app/views/alert/validate.html.erb"}
+  #       format.xml  {render : => @message}
+  #     end
+  #   else
+  #     respond_to do |format|
+  #       format.html
+  #       format.xml {render :xml => @alerts}
+  #     end
+  #   end
+  # end
   
   def show
     @user = current_user
@@ -91,7 +115,6 @@ class AlertController < ApplicationController
     @usr_qry = params[:q]
     @st = params[:st]
     
-    
     @results = Block.next_ct_from_addr(@usr_qry)
 
 
@@ -131,55 +154,68 @@ class AlertController < ApplicationController
   # Ideal case ###################################################################
   #
   
+  # Is there a User? #############################################################
   
-  #Construct Alarm
-  @a = nil
-      if (night_before?(@st[0])) #Night Before Case
+  if !@user && !no_alarm?(@st[0])
+    redirect_to "/users/sign_in"
+  # elsif !@user.validated?
+  #     @box = "info"
+  #     @message "Before "
+  #     respond_to do |format|
+  #       format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
+  #       format.xml  {render :xml => @message}
+  #       format.xml  {render :xml => @box}
+  #     end
+    else
+    #Construct Alarm
+    @a = nil
+        if (night_before?(@st[0])) #Night Before Case
         
-      @a = make_nb4_alarm(@usr_qry,@results,@user)
-        # nb4_time = @results[0][0]-1.day + (19 - @results[0][0].hour).hour
-        #       send = @results[0][0] - 1.hour
-        #       @a = Alarm.create!(:location => @usr_qry, :clean_time => @results[0][0].strftime("%H:%M %B %e, %Y"), :send_time => nb4_time.strftime("%H:%M %B %e, %Y"), :cnn => @results[1], :nb4 => true, :user_id => @user.id)
-      elsif (no_alarm?(@st[0]))
-        @message = 'The next cleantime for that street begins at '<<@results[0][0].strftime("%A %B %e at %I:%M%p.")
-        send = @results[0][0] - 1.hour
-        @box = "info"
-        respond_to do |format|
-          format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
-          format.xml  {render :xml => @message}
-          format.xml  {render :xml => @box}
-        end
-      else  
-        @a = make_regular_alarm(@usr_qry,@results,@user)
-        # send = @results[0][0] - 1.hour
-        #         @a = Alarm.create!(:location => @usr_qry, :clean_time => @results[0][0].strftime("%B %e %y %H:%M"), :send_time => send.strftime("%B %e %y %H:%M"), :cnn => @results[1], :nb4 => false, :user_id => @user.id)
-      end
-      
-      
-      
-      #If it worked --- 
-      if @a
-        if !@user.phone_number or !@user.carrier
-          @message = "Almost There! In order to send you alarms we need to know phone number and carrier"
-          @box = "warn"
+        @a = make_nb4_alarm(@usr_qry,@results,@user)
+          # nb4_time = @results[0][0]-1.day + (19 - @results[0][0].hour).hour
+          #       send = @results[0][0] - 1.hour
+          #       @a = Alarm.create!(:location => @usr_qry, :clean_time => @results[0][0].strftime("%H:%M %B %e, %Y"), :send_time => nb4_time.strftime("%H:%M %B %e, %Y"), :cnn => @results[1], :nb4 => true, :user_id => @user.id)
+        elsif (no_alarm?(@st[0]))
+          @message = 'The next cleantime for that street begins at '<<@results[0][0].strftime("%A %B %e at %I:%M%p.")
+          send = @results[0][0] - 1.hour
+          @box = "info"
           respond_to do |format|
-              format.html { render :file => "#{Rails.root}/app/views/alert/no_phone.html.erb"}
-              format.xml  { render :xml => @message }
-              format.xml  {render :xml => @box}   
-          end       
-        else
-          @message = create_message(@a)
-          @alerts = Alarm.where("user_id = ?",@user.id)
-          @box = "success"
-          respond_to do |format|
-              format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
-              format.xml  { render :xml => @alerts }
-              format.xml  { render :xml => @message }
-              format.xml  {render :xml => @box}
+            format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+            format.xml  {render :xml => @message}
+            format.xml  {render :xml => @box}
           end
-        end   
-      end
-    end  
+        else  
+          @a = make_regular_alarm(@usr_qry,@results,@user)
+          # send = @results[0][0] - 1.hour
+          #         @a = Alarm.create!(:location => @usr_qry, :clean_time => @results[0][0].strftime("%B %e %y %H:%M"), :send_time => send.strftime("%B %e %y %H:%M"), :cnn => @results[1], :nb4 => false, :user_id => @user.id)
+        end
+      
+      
+      
+        #If it worked --- 
+        if @a
+          if !@user.phone_number or !@user.carrier
+            @message = "Almost There! In order to send you alarms we need to know phone number and carrier"
+            @box = "warn"
+            respond_to do |format|
+                format.html { render :file => "#{Rails.root}/app/views/alert/no_phone.html.erb"}
+                format.xml  { render :xml => @message }
+                format.xml  {render :xml => @box}   
+            end       
+          else
+            @message = create_message(@a)
+            @alerts = Alarm.where("user_id = ?",@user.id)
+            @box = "success"
+            respond_to do |format|
+                format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
+                format.xml  { render :xml => @alerts }
+                format.xml  { render :xml => @message }
+                format.xml  {render :xml => @box}
+            end
+          end   
+        end
+      end  
+    end
   end
   
 
@@ -263,6 +299,9 @@ class AlertController < ApplicationController
   end
      
   def alert_exists?(cnn, user, st)
+    if !user
+      return false
+    end
     if st == "Don't Create an Alarm"
       return false
     end
