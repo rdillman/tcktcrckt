@@ -182,9 +182,19 @@ label{
 	background: #EEC015;
 	margin-top: 10px;
 	padding: 10 30 10 30;
-	width: 175px;
+	width: 185px;
 	border-radius: 15px;
 	border: 0;
+}
+
+.user_delete{
+	-webkit-appearance: none;
+	background: #EEC015;
+	border: 0;
+	border-radius: 15px;
+	margin-top: 10px;
+	padding: 10 30 10 30;
+	width: 75px;
 }
 
 #paypal_form{
