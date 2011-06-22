@@ -1,0 +1,20 @@
+<%if @message&&@box%>
+	<%if @box == "error"%>
+		<div class='error'><%=@message%></div>
+	<%elsif @box == "warn"%>
+		<div class='warning'><%=@message%></div>
+	<%elsif @box == 'info'%>
+		<div class='info'><%=@message%></div>
+	<%elsif @box == 'error'%>
+		<div class='error'><%=@message%></div>
+	<%end%>
+<%else%>
+	A Validation Code has been sent your phone number : <%=@phone%>, you should receive it shorty.</br>
+	Enter it below and start creating alerts!</br></br>
+<%end%>
+
+<%= form_tag("val", :method => "get") do %>
+<font size=5><%=label_tag "code", "Validation Code: "%>
+<%= text_field_tag(:code, nil, :size => 27) -%></font>
+<%= submit_tag("Enter", :class => "user_submit") %>
+<%end%>

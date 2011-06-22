@@ -7,5 +7,9 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.text_address,:subject => "The Ticket Police are Coming!")
   end
   
+  def send_val_code(usr,code)
+    @val_code = code.to_s
+    mail(:to => usr.text_address,:subject => "Validation Code")
+  end
   
 end

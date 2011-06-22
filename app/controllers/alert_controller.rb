@@ -1,6 +1,6 @@
 class AlertController < ApplicationController
-  before_filter :authenticate_user!, :except => :create
-  # before_filter :validated?, :except => :create
+  before_filter :authenticate_user!
+  before_filter :validated?
   
   # before_filter :validate_user, :except => validate
   
@@ -179,10 +179,12 @@ class AlertController < ApplicationController
           @message = 'The next cleantime for that street begins at '<<@results[0][0].strftime("%A %B %e at %I:%M%p.")
           send = @results[0][0] - 1.hour
           @box = "info"
+          @alerts = Alarm.where("user_id = ?",current_user.id)
           respond_to do |format|
-            format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+            format.html 
             format.xml  {render :xml => @message}
             format.xml  {render :xml => @box}
+            format.xml  { render :xml => @alerts }
           end
         else  
           @a = make_regular_alarm(@usr_qry,@results,@user)
@@ -239,7 +241,7 @@ class AlertController < ApplicationController
           end
         else
           respond_to do |format|
-            format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+            format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
           end
         end
     else
@@ -317,33 +319,39 @@ class AlertController < ApplicationController
     @box ="warn"
     @alerts = Alarm.where("user_id = ?",current_user.id)
     respond_to do |format|
-      format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
+      format.html 
       format.xml  { render :xml => @message}
       format.xml  { render :xml => @alerts}
       format.xml  { render :xml => @box}
     end
   end
-
+  
   
   def do_invalid(res,uq)
     @message = res
     @message<<" "<<uq
     @box = "error"
     respond_to do |format|
-      format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+      format.html
       format.xml  {render :xml => @message}
       format.xml  {render :xml => @box}
+      format.xml  { render :xml => @alerts }
+      
     end
   end
   
   def do_no_entry(uq)
+    @alerts = Alarm.where("user_id = ?",current_user.id)
     @message = @results
     @message<<" "<<uq
     @box = "warn"
+    
     respond_to do |format|
-      format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+      format.html 
       format.xml  {render :xml => @message}
       format.xml  {render :xml => @box}
+      format.xml  { render :xml => @alerts }
+      
       
     end
   end
@@ -353,9 +361,11 @@ class AlertController < ApplicationController
     @message<<" "<<uq
     @box = "info"
     respond_to do |format|
-      format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+      format.html 
       format.xml  {render :xml => @message}
       format.xml  {render :xml => @box}
+      format.xml  { render :xml => @alerts }
+      
     end
   end
   
@@ -363,9 +373,11 @@ class AlertController < ApplicationController
     @message = "Please enter something"
     @box = "error"
     respond_to do |format|
-      format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+      format.html 
       format.xml  {render :xml => @message}
       format.xml  {render :xml => @box}
+      format.xml  { render :xml => @alerts }
+      
     end
   end
 
@@ -373,5 +385,11 @@ class AlertController < ApplicationController
   def exists_message
     "An alert for this block already exists"
   end
-
+  
+  def validated?
+    @user = current_user
+    if @user.phone_number != @user.valphone
+      redirect_to :controller => "validator", :action => "enter"
+    end
+  end
 end
