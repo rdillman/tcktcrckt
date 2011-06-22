@@ -125,7 +125,7 @@ a:visited{
 }
 
 a:hover{
-	color: white;
+	color: blue;
 	text-decoration: none;
 	font-weight: bold;
 }

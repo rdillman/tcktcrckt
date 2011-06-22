@@ -1,4 +1,8 @@
 Tcktcrckt::Application.routes.draw do
+  get "validator/val"
+
+  get "validator/enter"
+
   get "alert/show"
 
   get "alert/create"
@@ -6,6 +10,8 @@ Tcktcrckt::Application.routes.draw do
   get "alert/kill"
 
   get "lookup/addr"
+  
+  get "lookup/home"
 
   get "lookup/map"
   
@@ -78,7 +84,7 @@ Tcktcrckt::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "lookup#addr"
+  root :to => "lookup#home"
 
   # See how all your routes lay out with "rake routes"
 
