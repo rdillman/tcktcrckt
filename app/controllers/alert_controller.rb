@@ -170,26 +170,20 @@ class AlertController < ApplicationController
     #Construct Alarm
     @a = nil
         if (night_before?(@st[0])) #Night Before Case
-        
-        @a = make_nb4_alarm(@usr_qry,@results,@user)
-          # nb4_time = @results[0][0]-1.day + (19 - @results[0][0].hour).hour
-          #       send = @results[0][0] - 1.hour
-          #       @a = Alarm.create!(:location => @usr_qry, :clean_time => @results[0][0].strftime("%H:%M %B %e, %Y"), :send_time => nb4_time.strftime("%H:%M %B %e, %Y"), :cnn => @results[1], :nb4 => true, :user_id => @user.id)
+          @a = make_nb4_alarm(@usr_qry,@results,@user)
         elsif (no_alarm?(@st[0]))
           @message = 'The next cleantime for that street begins at '<<@results[0][0].strftime("%A %B %e at %I:%M%p.")
           send = @results[0][0] - 1.hour
           @box = "info"
           @alerts = Alarm.where("user_id = ?",current_user.id)
           respond_to do |format|
-            format.html 
+            format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
             format.xml  {render :xml => @message}
             format.xml  {render :xml => @box}
             format.xml  { render :xml => @alerts }
           end
         else  
           @a = make_regular_alarm(@usr_qry,@results,@user)
-          # send = @results[0][0] - 1.hour
-          #         @a = Alarm.create!(:location => @usr_qry, :clean_time => @results[0][0].strftime("%B %e %y %H:%M"), :send_time => send.strftime("%B %e %y %H:%M"), :cnn => @results[1], :nb4 => false, :user_id => @user.id)
         end
       
       
