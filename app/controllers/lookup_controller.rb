@@ -72,8 +72,8 @@ class LookupController < ApplicationController
   end
   
   def do_multiple(res,uq)
-    @message = res
-    @message<<" "<<uq
+    
+    @message = "We have mulitple streets with that name, try adding St or Ave to your search"
     @box = "info"
     respond_to do |format|
       format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}

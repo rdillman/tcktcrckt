@@ -313,7 +313,7 @@ class AlertController < ApplicationController
     @box ="warn"
     @alerts = Alarm.where("user_id = ?",current_user.id)
     respond_to do |format|
-      format.html 
+      format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
       format.xml  { render :xml => @message}
       format.xml  { render :xml => @alerts}
       format.xml  { render :xml => @box}
@@ -325,8 +325,9 @@ class AlertController < ApplicationController
     @message = res
     @message<<" "<<uq
     @box = "error"
+    @alerts = Alarm.where("user_id = ?",current_user.id)
     respond_to do |format|
-      format.html
+      format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
       format.xml  {render :xml => @message}
       format.xml  {render :xml => @box}
       format.xml  { render :xml => @alerts }
@@ -341,7 +342,7 @@ class AlertController < ApplicationController
     @box = "warn"
     
     respond_to do |format|
-      format.html 
+      format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
       format.xml  {render :xml => @message}
       format.xml  {render :xml => @box}
       format.xml  { render :xml => @alerts }
@@ -351,11 +352,11 @@ class AlertController < ApplicationController
   end
   
   def do_multiple(res,uq)
-    @message = res
-    @message<<" "<<uq
+    @alerts = Alarm.where("user_id = ?",current_user.id)
+    @message = "We have mulitple streets with that name, try adding St or Ave to your searches"
     @box = "info"
     respond_to do |format|
-      format.html 
+      format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
       format.xml  {render :xml => @message}
       format.xml  {render :xml => @box}
       format.xml  { render :xml => @alerts }
@@ -364,10 +365,11 @@ class AlertController < ApplicationController
   end
   
   def do_empty
+    @alerts = Alarm.where("user_id = ?",current_user.id)
     @message = "Please enter something"
     @box = "error"
     respond_to do |format|
-      format.html 
+      format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
       format.xml  {render :xml => @message}
       format.xml  {render :xml => @box}
       format.xml  { render :xml => @alerts }
