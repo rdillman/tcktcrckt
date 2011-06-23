@@ -12,6 +12,12 @@
   <p><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></p>
 
+	<p><%= f.label :phone_number, "PHONE NUMBER" %><br />
+  <%= f.telephone_field :phone_number, :placeholder => "415 867 5309"%></p>
+
+  <p><%= f.label :carrier, "CARRIER" %><br />
+	<%= f.select :carrier, ["AT&T", "Verizon", "T-Mobile", "Sprint"] %>  </p>
+
   <p><%= f.submit "Sign up" %></p>
 <% end %>
 
