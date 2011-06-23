@@ -38,9 +38,6 @@
 	display: inline;
 }
 
-#pretty_str{
-}
-
 #logo{
 	float: left;
 }
@@ -49,12 +46,14 @@
 	margin: 0px;
 	background: url('/images/bgimage.jpg');
 	font-size:14px;
+	display: block;
 	
 }
 
 body{
 font-family:Futura, Helvetica, sans-serif; 
 font-size:12px;
+color: white;
 
 }
 
@@ -136,10 +135,22 @@ font-size:12px;
 	margin: 0px;
 }
 
+.about_image{
+/*	margin-left: auto;
+	margin-right: auto;*/
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	text-align: center;
+	
+	
+}
+
 #yield_page{
 	vertical-align:center;
-
-	float: center;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
 }
 
 #login{
