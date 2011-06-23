@@ -2,17 +2,20 @@
 <head>	
 </head>	
 
+<div id="alertmsg">
+
 <%if @message&&@box%>
 	<%if @box == "error"%>
 		<div class='error'><%=@message%></div>
 	<%elsif @box == "warn"%>
 		<div class='warning'><%=@message%></div>
 	<%elsif @box == 'info'%>
-		<div class='info'><%=@message%></div>
+		<div class='info'><%=@message%><%=link_to image_tag "alert.png", :class => "cell",:controller=>"alert", :action=>"create", :method => "get"%></div>
 	<%elsif @box == 'error'%>
 		<div class='error'><%=@message%></div>
 	<%end%>
 <%end%>
+</div>
 
 
 
