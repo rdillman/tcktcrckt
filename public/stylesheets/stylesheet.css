@@ -38,9 +38,6 @@
 	display: inline;
 }
 
-#pretty_str{
-}
-
 #logo{
 	float: left;
 }
@@ -119,6 +116,17 @@ font-size:12px;
 	text-align: center;
 	font-size: 50px;
 	margin: 0px;
+}
+
+.about_image{
+/*	margin-left: auto;
+	margin-right: auto;*/
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	text-align: center;
+	
+	
 }
 
 #yield_page{
