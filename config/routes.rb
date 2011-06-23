@@ -1,4 +1,8 @@
 Tcktcrckt::Application.routes.draw do
+  get "validator/val"
+
+  get "validator/enter"
+
   get "alert/show"
 
   get "alert/create"
@@ -6,6 +10,8 @@ Tcktcrckt::Application.routes.draw do
   get "alert/kill"
 
   get "lookup/addr"
+  
+  get "lookup/home"
 
   get "lookup/map"
   

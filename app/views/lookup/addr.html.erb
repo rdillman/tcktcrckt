@@ -14,19 +14,17 @@
 	<%end%>
 <%end%>
 
-<hr>
-<%= form_tag("/alert/create/", :method => "get") do %>
-	<br>
-	<br>
-	<b><font size=5><%=label_tag "q", "1. Search for Cleaning Times by Address"%><br></b>
-  	<%= text_field_tag(:q, nil, :placeholder => "101 Larkin St", :size => 27) -%><br><br></font>
-	  
-	<font size=5><b><%= label_tag "st", "2. Set Alarm Options"-%></b></font><br> 
-	<%= select_tag "st", options_for_select([ "Night Before", "1 Hour Before", "Don't Create an Alarm" ], "Night Before") %><br>
- 	<br>
 
-	<font size=5><b><%= label_tag "Get Next Time", "3. Find out when the next streetclean is"-%></b></font><br> 
-    <%= submit_tag("Get Results!", :class => "user_submit") %>
+
+<div id="lookup">
+<%= form_tag("/lookup/addr", :method => "get") do %>
+
+	<b><font size=5>
+		<div id="input">
+  	<%= text_field_tag(:q, nil, :placeholder => "Search address for cleaning times in San Francisco...", :size => 55) -%></font>
+    <%= submit_tag("", :class => "user_submit") %>
+		</div>
 <% end %>
+</div>
 
 </html>

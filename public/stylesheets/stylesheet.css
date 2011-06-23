@@ -47,25 +47,51 @@
 
 #body{
 	margin: 0px;
-	background-color: #02a181;
+	background: url('/images/bgimage.jpg');
 	font-size:14px;
 	
 }
+
 body{
 font-family:Futura, Helvetica, sans-serif; 
 font-size:12px;
+
+}
+
+#lookup{
+/*	float: left;*/
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	position:relative;
+	top:100px;
+	height:55px;
+	margin: auto;
+	vertical-align:center;
+	line-height: 50px;
+	width:595px;
+	-moz-width:900px;
+	
+}
+
+#input{
+	background-color: #ffffff;
+	margin: 0px;
+	width:595px;
+	padding:0px;
 }
 
 .info, .success, .warning, .error, .validation {
-/*margin-left:auto;
-margin-right:auto;*/
+    margin-left:auto;
+    margin-right:auto;*/
 	font-size:25px;
 	font-weight:bold;
 	border: 1px solid;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
-	margin: 10px 5px 5px 5px;
+	margin: auto;
+	width:70%;
 	padding:15px 10px 15px 50px;
+	
 /*	background-repeat: no-repeat;
 	background-position: 10px center;*/
 }
@@ -96,8 +122,9 @@ margin-right:auto;*/
 }
 
 #yield_page{
-	
-	float: right;
+	vertical-align:center;
+
+	float: center;
 }
 
 #login{
@@ -136,7 +163,7 @@ a:visited{
 }
 
 a:hover{
-	color: white;
+	color: blue;
 	text-decoration: none;
 }
 
@@ -177,8 +204,13 @@ a:hover{
 }
 
 input{
-	margin-bottom: 10px;
 	border-radius: 7px;
+/*	margin:2px;
+*/	border: 0px;
+	font-size: 20px;
+	height:50px;
+	width:525px;
+	vertical-align: center;
 }
 
 label{
@@ -186,15 +218,21 @@ label{
 }
 
 .user_submit{
-	font-size: 150%;
-	font-weight: bold;
+	background-image: url('/images/eyeglass.png');
+	height:50px;
+	width:55px;
+	line-height:50px;
+	padding:0px;
+}
+
+.user_delete{
 	-webkit-appearance: none;
 	background: #EEC015;
+	border: 0;
+	border-radius: 15px;
 	margin-top: 10px;
 	padding: 10 30 10 30;
-	width: 175px;
-	border-radius: 15px;
-	border: 0;
+	width: 75px;
 }
 
 #paypal_form{

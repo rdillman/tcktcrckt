@@ -1,4 +1,28 @@
 class AlertController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :validated?
+  
+  # before_filter :validate_user, :except => validate
+  
+  # def validate
+  #   @code = params[:code]
+  #   @user = current_user
+  #   @usr_qry = params[:q]
+  #   
+  #   if @code == @user.val
+  #     @message = "Your phone number has been validated!"
+  #     
+  #     respond_to do |format|
+  #       format.html {render :file => "#{Rails.root}/app/views/alert/validate.html.erb"}
+  #       format.xml  {render : => @message}
+  #     end
+  #   else
+  #     respond_to do |format|
+  #       format.html
+  #       format.xml {render :xml => @alerts}
+  #     end
+  #   end
+  # end
   
   def show
     @user = current_user
@@ -33,25 +57,36 @@ class AlertController < ApplicationController
     user = current_user
     @alerts = Alarm.where("user_id=?",user.id)
     @alarm = params[:alarm]
-    alert = Alarm.find(@alarm)
-    ct = Chronic.parse(alert.clean_time)
-    if alert.nb4
-      send = ct - 1.hour
-      alert.update_attribute(:send_time, send.strftime("%B %e %Y at %H:%M"))
-      alert.update_attribute(:nb4, false)
-    else
-      nb4_time = ct-1.day + (19 - ct.hour).hour
-      alert.update_attribute(:send_time, nb4_time.strftime("%B %e %Y at %H:%M"))
-      alert.update_attribute(:nb4, true)
-    end
-    @message = "Your Alert has been changed!"
-    @box = "success"
-    respond_to do |format|
-      format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb" }
-      format.xml  { render :xml => @alerts }
-      format.xml  { render :xml => @message }
-      format.xml  { render :xml => @box }
+    if Alarm.exists?(@alarm)
+      alert = Alarm.find(@alarm)
+      ct = Chronic.parse(alert.clean_time)
+      if alert.nb4
+        send = ct - 1.hour
+        alert.update_attribute(:send_time, send.strftime("%B %e %Y at %H:%M"))
+        alert.update_attribute(:nb4, false)
+      else
+        nb4_time = ct-1.day + (19 - ct.hour).hour
+        alert.update_attribute(:send_time, nb4_time.strftime("%B %e %Y at %H:%M"))
+        alert.update_attribute(:nb4, true)
       end
+      @message = "Your Alert has been changed!"
+      @box = "success"
+      respond_to do |format|
+        format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb" }
+        format.xml  { render :xml => @alerts }
+        format.xml  { render :xml => @message }
+        format.xml  { render :xml => @box }
+        end
+    else
+      @message = "Oh No! that alert was deleted earlier"
+      @box = "warn"
+      respond_to do |format|
+        format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb" }
+        format.xml  { render :xml => @alerts }
+        format.xml  { render :xml => @message }
+        format.xml  { render :xml => @box }
+      end
+    end
   end
   
   def update_phone
@@ -79,6 +114,7 @@ class AlertController < ApplicationController
     @user = current_user
     @usr_qry = params[:q]
     @st = params[:st]
+    
     @results = Block.next_ct_from_addr(@usr_qry)
 
 
@@ -88,6 +124,8 @@ class AlertController < ApplicationController
   # 
     res = @results
     uq  = @usr_qry 
+
+    
     if res == "Invalid Address - No Address or No Street"
       do_invalid(res,uq)
 
@@ -103,9 +141,10 @@ class AlertController < ApplicationController
     elsif res == "Oops We Don't Have a Cleaning Record for this Street"
       do_no_entry(uq)
   
-    elsif alert_exists?(res[1],@user)
+    elsif alert_exists?(res[1],@user,@st)
        do_alert_exists
-        
+    elsif res == "empty"
+        do_empty
   #
   #End Problem Cases #########################################################    
   #    
@@ -115,55 +154,64 @@ class AlertController < ApplicationController
   # Ideal case ###################################################################
   #
   
+  # Is there a User? #############################################################
   
-  #Construct Alarm
-  @a = nil
-      if (night_before?(@st[0])) #Night Before Case
-        
-      @a = make_nb4_alarm(@usr_qry,@results,@user)
-        # nb4_time = @results[0][0]-1.day + (19 - @results[0][0].hour).hour
-        #       send = @results[0][0] - 1.hour
-        #       @a = Alarm.create!(:location => @usr_qry, :clean_time => @results[0][0].strftime("%H:%M %B %e, %Y"), :send_time => nb4_time.strftime("%H:%M %B %e, %Y"), :cnn => @results[1], :nb4 => true, :user_id => @user.id)
-      elsif (no_alarm?(@st[0]))
-        @message = 'The next cleantime for that street begins at '<<@results[0][0].strftime("%A %B %e at %I:%M%p.")
-        send = @results[0][0] - 1.hour
-        @box = "info"
-        respond_to do |format|
-          format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
-          format.xml  {render :xml => @message}
-          format.xml  {render :xml => @box}
-        end
-      else  
-        @a = make_regular_alarm(@usr_qry,@results,@user)
-        # send = @results[0][0] - 1.hour
-        #         @a = Alarm.create!(:location => @usr_qry, :clean_time => @results[0][0].strftime("%B %e %y %H:%M"), :send_time => send.strftime("%B %e %y %H:%M"), :cnn => @results[1], :nb4 => false, :user_id => @user.id)
-      end
-      
-      
-      
-      #If it worked --- 
-      if @a
-        if !@user.phone_number or !@user.carrier
-          @message = "Almost There! In order to send you alarms we need to know phone number and carrier"
-          @box = "warn"
+  if !@user && !no_alarm?(@st[0])
+    redirect_to "/users/sign_in"
+  # elsif !@user.validated?
+  #     @box = "info"
+  #     @message "Before "
+  #     respond_to do |format|
+  #       format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
+  #       format.xml  {render :xml => @message}
+  #       format.xml  {render :xml => @box}
+  #     end
+    else
+    #Construct Alarm
+    @a = nil
+        if (night_before?(@st[0])) #Night Before Case
+          @a = make_nb4_alarm(@usr_qry,@results,@user)
+        elsif (no_alarm?(@st[0]))
+          @message = 'The next cleantime for that street begins at '<<@results[0][0].strftime("%A %B %e at %I:%M%p.")
+          send = @results[0][0] - 1.hour
+          @box = "info"
+          @alerts = Alarm.where("user_id = ?",current_user.id)
           respond_to do |format|
-              format.html { render :file => "#{Rails.root}/app/views/alert/no_phone.html.erb"}
-              format.xml  { render :xml => @message }
-              format.xml  {render :xml => @box}   
-          end       
-        else
-          @message = create_message(@a)
-          @alerts = Alarm.where("user_id = ?",@user.id)
-          @box = "success"
-          respond_to do |format|
-              format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
-              format.xml  { render :xml => @alerts }
-              format.xml  { render :xml => @message }
-              format.xml  {render :xml => @box}
+            format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
+            format.xml  {render :xml => @message}
+            format.xml  {render :xml => @box}
+            format.xml  { render :xml => @alerts }
           end
-        end   
-      end
-    end  
+        else  
+          @a = make_regular_alarm(@usr_qry,@results,@user)
+        end
+      
+      
+      
+        #If it worked --- 
+        if @a
+          if !@user.phone_number or !@user.carrier
+            @message = "Almost There! In order to send you alarms we need to know phone number and carrier"
+            @box = "warn"
+            respond_to do |format|
+                format.html { render :file => "#{Rails.root}/app/views/alert/no_phone.html.erb"}
+                format.xml  { render :xml => @message }
+                format.xml  {render :xml => @box}   
+            end       
+          else
+            @message = create_message(@a)
+            @alerts = Alarm.where("user_id = ?",@user.id)
+            @box = "success"
+            respond_to do |format|
+                format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
+                format.xml  { render :xml => @alerts }
+                format.xml  { render :xml => @message }
+                format.xml  {render :xml => @box}
+            end
+          end   
+        end
+      end  
+    end
   end
   
 
@@ -171,22 +219,34 @@ class AlertController < ApplicationController
 
   def kill
     kill_id = params[:q]
-    to_delete = Alarm.find(kill_id)
-    if current_user.id == to_delete.user_id
-      @message = kill_message(to_delete)
-      if to_delete.destroy
-        @alerts = Alarm.where("user_id = ?",current_user.id)
-        @box = "success"
-        respond_to do |format|
-          format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
-          format.xml  { render :xml => @alerts }
-          format.xml  { render :xml => @message }
-          format.xml  {render :xml => @box}
+    if Alarm.exists?(kill_id)
+      to_delete = Alarm.find(kill_id)
+        if current_user.id == to_delete.user_id
+          @message = kill_message(to_delete)
+          if to_delete.destroy
+            @alerts = Alarm.where("user_id = ?",current_user.id)
+            @box = "success"
+            respond_to do |format|
+              format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
+              format.xml  { render :xml => @alerts }
+              format.xml  { render :xml => @message }
+              format.xml  {render :xml => @box}
+            end
+          end
+        else
+          respond_to do |format|
+            format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
+          end
         end
-      end
     else
+      @message = "The Alarm has been deleted"
+      @alerts = Alarm.where("user_id = ?",current_user.id)
+      @box = "success"
       respond_to do |format|
-        format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+        format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
+        format.xml  { render :xml => @alerts }
+        format.xml  { render :xml => @message }
+        format.xml  {render :xml => @box}
       end
     end
   end
@@ -234,7 +294,13 @@ class AlertController < ApplicationController
     message << "has been deleted."
   end
      
-  def alert_exists?(cnn, user)
+  def alert_exists?(cnn, user, st)
+    if !user
+      return false
+    end
+    if st == "Don't Create an Alarm"
+      return false
+    end
     if Alarm.where("cnn = ? AND user_id = ?", cnn, user.id) != []
       return true
     else
@@ -253,46 +319,73 @@ class AlertController < ApplicationController
       format.xml  { render :xml => @box}
     end
   end
-
+  
   
   def do_invalid(res,uq)
     @message = res
     @message<<" "<<uq
     @box = "error"
+    @alerts = Alarm.where("user_id = ?",current_user.id)
     respond_to do |format|
-      format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+      format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
       format.xml  {render :xml => @message}
       format.xml  {render :xml => @box}
+      format.xml  { render :xml => @alerts }
+      
     end
   end
   
   def do_no_entry(uq)
+    @alerts = Alarm.where("user_id = ?",current_user.id)
     @message = @results
     @message<<" "<<uq
     @box = "warn"
+    
     respond_to do |format|
-      format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+      format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
       format.xml  {render :xml => @message}
       format.xml  {render :xml => @box}
+      format.xml  { render :xml => @alerts }
+      
       
     end
   end
   
   def do_multiple(res,uq)
-    @message = res
-    @message<<" "<<uq
+    @alerts = Alarm.where("user_id = ?",current_user.id)
+    @message = "We have mulitple streets with that name, try adding St or Ave to your searches"
     @box = "info"
     respond_to do |format|
-      format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+      format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
       format.xml  {render :xml => @message}
       format.xml  {render :xml => @box}
+      format.xml  { render :xml => @alerts }
+      
     end
   end
   
+  def do_empty
+    @alerts = Alarm.where("user_id = ?",current_user.id)
+    @message = "Please enter something"
+    @box = "error"
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
+      format.xml  {render :xml => @message}
+      format.xml  {render :xml => @box}
+      format.xml  { render :xml => @alerts }
+      
+    end
+  end
 
         
   def exists_message
     "An alert for this block already exists"
   end
-
+  
+  def validated?
+    @user = current_user
+    if @user.phone_number != @user.valphone
+      redirect_to :controller => "validator", :action => "enter"
+    end
+  end
 end
