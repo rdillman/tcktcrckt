@@ -58,6 +58,12 @@ font-size:12px;
 
 }
 
+#alertmsg{
+	position:relative;
+	top: 25px;
+	height:50px;
+}
+
 #lookup{
 /*	float: left;*/
 	border-radius: 5px;
@@ -71,6 +77,13 @@ font-size:12px;
 	width:595px;
 	-moz-width:900px;
 	
+	
+}
+
+#cell{
+	position:relative;
+	top:10px;
+	left:50px;
 }
 
 #input{
@@ -82,15 +95,16 @@ font-size:12px;
 
 .info, .success, .warning, .error, .validation {
     margin-left:auto;
-    margin-right:auto;*/
-	font-size:25px;
+    margin-right:auto;
+	font-size:15px;
 	font-weight:bold;
+	text-align:center;
+	position:relative;
 	border: 1px solid;
 	border-radius: 5px;
+	width:830px;
 	-moz-border-radius: 5px;
-	margin: auto;
-	width:70%;
-	padding:15px 10px 15px 50px;
+	padding:15px 10px 15px 20px;
 	
 /*	background-repeat: no-repeat;
 	background-position: 10px center;*/
@@ -98,18 +112,19 @@ font-size:12px;
 .info {
 	color: #00529B;
 	background-color: #BDE5F8;
-/*	background-image: url('info.png');
-*/}
+	vertical-align:center;
+	padding:0px;
+	height:50px;
+
+}
 .success {
 	color: #4F8A10;
 	background-color: #DFF2BF;
-/*	background-image:url('success.png');
-*/}
+}
 .warning {
 	color: #9F6000;
 	background-color: #ffff66;
-/*	background-image: url('warning.png');
-*/}
+}
 .error {
 	color: #D8000C;
 	background-color: #FFBABA;
