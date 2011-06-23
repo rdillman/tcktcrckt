@@ -5,6 +5,9 @@
   <!-- Grabs the stylesheets -->
   <%= stylesheet_link_tag :all %>
 
+  <%= stylesheet_link_tag 'mobile' if mobile_device?%>
+
+
   <!-- Default JavaScript include files -->
   <%= javascript_include_tag :defaults %>
 
@@ -45,6 +48,11 @@
 						<% else %>
 							<%= link_to "Sign Up", new_user_registration_path %>
 						<% end %>
+						<% if mobile_device? %>
+					    	<%= link_to "FULL SITE", :mobile => 0 %>
+					  	<% else %>
+					    	<%= link_to "Mobile Site", :mobile => 1 %>
+					  	<% end %> |
 					</div>
 			</header>
 	  

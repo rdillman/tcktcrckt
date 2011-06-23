@@ -172,7 +172,7 @@ class AlertController < ApplicationController
         if (night_before?(@st[0])) #Night Before Case
           @a = make_nb4_alarm(@usr_qry,@results,@user)
         elsif (no_alarm?(@st[0]))
-          @message = 'The next cleantime for that street begins at '<<@results[0][0].strftime("%A %B %e at %I:%M%p.")
+          @message = 'Next Street Clean: '<<@results[0][0].strftime("%A %B %e at %I:%M%p.")
           send = @results[0][0] - 1.hour
           @box = "info"
           @alerts = Alarm.where("user_id = ?",current_user.id)
