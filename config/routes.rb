@@ -15,6 +15,8 @@ Tcktcrckt::Application.routes.draw do
 
   get "lookup/map"
   
+  get "lookup/how_to"
+  
   get "alert/beef"
   
   get "alert/edit"

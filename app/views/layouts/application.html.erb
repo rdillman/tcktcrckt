@@ -36,7 +36,7 @@
 		<body id="body">
 			<header id="user_nav">
 
-				<%= link_to image_tag "tcktcrckt.png", :controller => "lookup", :action => "addr" %> |
+				<%= link_to image_tag "tcktcrckt.png", :controller => "lookup", :action => "addr", :method => "get" %> |
 				<%= link_to "My Alerts", alert_show_path %> |
 				<%= link_to "About Us", layouts_about_us_path%> |
 				<%= link_to "Contact Us", layouts_contact_us_path %>
