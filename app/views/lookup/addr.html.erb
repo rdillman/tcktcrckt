@@ -1,7 +1,3 @@
-<html>
-<head>	
-</head>	
-
 <div id="alertmsg">
 
 <%if @message&&@box%>
@@ -19,15 +15,11 @@
 
 
 
-<div id="lookup">
+<div class="lookup">
 <%= form_tag("/lookup/addr", :method => "get") do %>
 
-	<b><font size=5>
-		<div id="input">
-  	<%= text_field_tag(:q, nil, :placeholder => "Search address for cleaning times in San Francisco...", :size => 55) -%></font>
+	 <div>
+  	<%= text_field_tag(:q, nil, :placeholder => "Search address for cleaning times in San Francisco...", :size => 55, :class => "input1") -%></font>
     <%= submit_tag("", :class => "user_submit") %>
+		<% end %>
 		</div>
-<% end %>
-</div>
-
-</html>

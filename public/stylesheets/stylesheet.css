@@ -3,6 +3,11 @@
 	margin-left: auto;
 	width:75%;
 	text-align: center;
+	position: relative;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto 14em;
 }
 
 #table{
@@ -19,18 +24,6 @@
 	text-align: right;
 	float: right;
 	color: white;
-}
-
-#footer_nav{
-    position: fixed;
-    bottom:0;
-    left:0;
-    margin-left: auto;
-	margin-right: auto;
-    width:100%;
-	color: #ffffff;
-	padding: 10px 10px 10px 10px;
-    background-color: #06275d;
 }
 
 #footer_nav ul{
@@ -63,8 +56,8 @@ color: white;
 	height:50px;
 }
 
-#lookup{
-/*	float: left;*/
+.lookup{
+	background-color:white;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	position:relative;
@@ -73,10 +66,9 @@ color: white;
 	margin: auto;
 	vertical-align:center;
 	line-height: 50px;
-	width:595px;
+	width:700px;
 	-moz-width:900px;
-	
-	
+
 }
 
 #cell{
@@ -85,12 +77,6 @@ color: white;
 	left:50px;
 }
 
-#input{
-	background-color: #ffffff;
-	margin: 0px;
-	width:595px;
-	padding:0px;
-}
 
 .info, .success, .warning, .error, .validation {
     margin-left:auto;
@@ -136,8 +122,6 @@ color: white;
 }
 
 .about_image{
-/*	margin-left: auto;
-	margin-right: auto;*/
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
@@ -229,14 +213,39 @@ a:hover{
 	filter:alpha(opacity=50); opacity: 0.5; -moz-opacity:0.5;
 }
 
-input{
+.input1{
 	border-radius: 7px;
-/*	margin:2px;
-*/	border: 0px;
+	border: 0px;
 	font-size: 20px;
 	height:50px;
-	width:525px;
+	width:635px;
 	vertical-align: center;
+}
+
+/*#footer_nav{
+    position: absolute;
+  	bottom:0;
+	text-align: right;
+    /*left:0;*/
+/*    margin-left: auto;
+	margin-right: auto;
+    width:100%;*/
+/*	color: #ffffff;
+	padding: 10px 10px 10px 10px;
+    background-color: #06275d;*/
+/*    height: 4em;
+}
+
+#footer_nav ul{
+	list-style: none;
+	display: inline;
+}*/
+
+#footer_pay{
+	text-align: right;
+	bottom: 0
+	position: absolute;
+	
 }
 
 label{
@@ -249,6 +258,8 @@ label{
 	width:55px;
 	line-height:50px;
 	padding:0px;
+	margin: 0px;
+	border: 0px;
 }
 
 .user_delete{
@@ -261,26 +272,6 @@ label{
 	width: 75px;
 }
 
-#paypal_form{
-	display: inline;
-	height: 47px;
-	margin: 0;
-	margin-left: auto;
-	margin-right: auto;
-	padding-left: 5px;
-}
-
-#paypal_form input{
-	margin: 0;
-}
-
-#paypal_button{
-	-webkit-appearance: none;
-	background: #EEC015;
-	border-radius: 15px;
-	border: 0;
-}
-
 #tos{
 	margin-left: auto;
 	margin-right: auto;
@@ -291,7 +282,7 @@ label{
 	background: #06275D;
 	border: none;
 	color: black;
-	text-align: left;
+	float: left;
 }
 #tos p{
 	color: #6C7A7D;
