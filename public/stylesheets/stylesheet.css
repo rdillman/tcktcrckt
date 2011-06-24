@@ -253,7 +253,7 @@ label{
 }
 
 .user_submit{
-	background-image: url('/images/eyeglass.png');
+	background-image: url('public/images/eyeglass.png');
 	height:50px;
 	width:55px;
 	line-height:50px;
