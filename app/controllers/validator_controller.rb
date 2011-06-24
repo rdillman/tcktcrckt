@@ -25,7 +25,10 @@ class ValidatorController < ApplicationController
     @validation_code = @user.valcode
     if !@validation_code
       #Create Validation Code
-      new_val_code = rand(999)
+      new_val_code = rand(10000)
+      if new_val_code < 1000
+        new_val_code = new_val_code +1000
+      end
       @user.update_attribute(:valcode,new_val_code)
       UserMailer.send_val_code(@user,new_val_code)
     end

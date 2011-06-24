@@ -5,6 +5,9 @@
   <!-- Grabs the stylesheets -->
   <%= stylesheet_link_tag :all %>
 
+  <%= stylesheet_link_tag 'mobile' if mobile_device?%>
+
+
   <!-- Default JavaScript include files -->
   <%= javascript_include_tag :defaults %>
 
@@ -33,8 +36,10 @@
 		<body id="body">
 			<header id="user_nav">
 
-				<%= link_to image_tag "tcktcrckt.png", :controller => "lookup", :action => "addr" %>
-				<%= link_to "My Alerts", alert_show_path %>
+				<%= link_to image_tag "tcktcrckt.png", :controller => "lookup", :action => "addr" %> |
+				<%= link_to "My Alerts", alert_show_path %> |
+				<%= link_to "About Us", layouts_about_us_path%> |
+				<%= link_to "Contact Us", layouts_contact_us_path %>
 
 					<div id="user_sign">
 
@@ -44,6 +49,11 @@
 						<% else %>
 							<%= link_to "Sign Up", new_user_registration_path %>
 						<% end %>
+						<% if mobile_device? %>
+					    	<%= link_to "FULL SITE", :mobile => 0 %>
+					  	<% else %>
+					    	<%= link_to "Mobile Site", :mobile => 1 %>
+					  	<% end %> |
 					</div>
 			</header>
 	  
@@ -53,25 +63,13 @@
 		<!-- <%= image_tag "tcktcrckt.png"%> -->
 		</div>
 			<%= yield %>
-		 
-	  </div>
-
-		<footer align="center" id="footer_nav">		
-	          <%= link_to "About Us", layouts_about_us_path%>
-
+		</body>
+		<footer id="footer_pay">
 			<form id="paypal_form" action="https://www.paypal.com/cgi-bin/webscr" method="post">
 			<input type="hidden" name="cmd" value="_s-xclick">
 			<input type="hidden" name="hosted_button_id" value="K5ELFZECZQM66">
 			<input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110429-1/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 			<img alt="" border="0" src="https://www.paypalobjects.com/WEBSCR-640-20110429-1/en_US/i/scr/pixel.gif" width="1" height="1">
 			</form>
-
-			  <%= link_to "Contact Us", layouts_contact_us_path %>
-			</ul>
-		</footer>
-
-		</body>
-	</div>
-
-</body>
+		</footer>	
 </html>
