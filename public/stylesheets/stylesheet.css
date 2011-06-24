@@ -222,25 +222,6 @@ a:hover{
 	vertical-align: center;
 }
 
-/*#footer_nav{
-    position: absolute;
-  	bottom:0;
-	text-align: right;
-    /*left:0;*/
-/*    margin-left: auto;
-	margin-right: auto;
-    width:100%;*/
-/*	color: #ffffff;
-	padding: 10px 10px 10px 10px;
-    background-color: #06275d;*/
-/*    height: 4em;
-}
-
-#footer_nav ul{
-	list-style: none;
-	display: inline;
-}*/
-
 #footer_pay{
 	text-align: right;
 	bottom: 0
@@ -253,7 +234,7 @@ label{
 }
 
 .user_submit{
-	background-image: url('public/images/eyeglass.png');
+	background-image: url('/images/eyeglass.png');
 	height:50px;
 	width:55px;
 	line-height:50px;
