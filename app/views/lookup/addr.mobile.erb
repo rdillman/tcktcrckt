@@ -2,7 +2,7 @@
 <head>	
 	<script type="text/javascript">
 	/*accordion gloabal vars*/
-	var ContentHeight = 100;
+	var ContentHeight = 300;
 	var TimeToSlide = 250.0;
 
 	var openAccordion = '';
@@ -69,8 +69,8 @@
 	<div class="search_bar">
 		<%= form_tag("/lookup/addr", :method => "get") do %>
 			<div id="input">
-	  		<%= text_field_tag(:q, nil, :placeholder => "Enter address, search cleaning times in San Francisco...", :class => "user_search", :size => 55 ) -%>
-		    <%= submit_tag("Search", :class => "user_submit") %>
+	  		<%= text_field_tag(:q, nil, :placeholder => "Entr address, Srch Times", :size => 55,  :class => "input") -%>
+		    <%= submit_tag("Search", :class => "user_msubmit") %>
 			</div>
 		<% end %>
 	</div>
@@ -100,11 +100,23 @@
 	  </div>
 	
 	  <div id="Accordion1Content" class="AccordionContent">
-	    <div class="alert_row">Alert 1</div>	
-		<div class="alert_row">Alert 2</div>
-		<div class="alert_row">Recent Alert 1</div>
-		<div class="alert_row">Recent Alert 2</div>
-		<div class="alert_row">Recent Alert 3</div>
+	    <div class="alert_row">Alert 1
+		<%= submit_tag("Delete", :class => "user_mdelete") %>
+		</div>	
+		
+		<div class="alert_row">Alert 2
+		<%= submit_tag("Delete", :class => "user_mdelete") %>	
+		</div>
+		
+		<div class="alert_row">Recent Alert 1
+		<%= submit_tag("Create", :class => "user_msubmit") %>	
+		</div>
+		<div class="alert_row">Recent Alert 2
+		<%= submit_tag("Create", :class => "user_msubmit") %>	
+		</div>
+		<div class="alert_row">Recent Alert 3
+		<%= submit_tag("Create", :class => "user_msubmit") %>	
+		</div>
       </div>
 
 	  <div onclick="runAccordion(2);">
