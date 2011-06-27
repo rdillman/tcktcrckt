@@ -91,18 +91,19 @@
 .info, .success, .warning, .error, .validation {
     margin-left:auto;
     margin-right:auto;
-	font-size:15px;
-	height:30px;
+	font-size:1em;
+	height:45px;
 	font-weight:bold;
+	vertical-align:center;
 	text-align:center;
 	position:relative;
-	top:6px;
+	top:0px;
 	border:0px;
 	margin:0px;
 	width:100%;
 	padding:0px;
-
 }
+
 .info {
 	color: #00529B;
 	background-color: #BDE5F8;

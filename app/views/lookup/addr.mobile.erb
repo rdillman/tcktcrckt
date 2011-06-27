@@ -93,7 +93,7 @@
 		<%elsif @box == "warn"%>
 			<div class='warning'><%=@message%></div>
 		<%elsif @box == 'info'%>
-			<div class='info'><%=@message%></div>
+			<div class='info'><%=@message%><%=image_tag 'alert.png' %></div>
 		<%elsif @box == 'error'%>
 			<div class='error'><%=@message%></div>
 		<%end%>
