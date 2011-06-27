@@ -225,11 +225,12 @@ a:hover{
 }
 
 .input1{
-	border-radius: 7px;
+	border-radius: 17px;
+	-moz-border-radius: 17px;
 	border: 0px;
-	font-size: 20px;
+	font-size: 15px;
 	height:50px;
-	width:635px;
+	width:400px;
 	vertical-align: center;
 }
 
@@ -290,13 +291,39 @@ border-radius: 3px;
 }
 
 .user_delete{
-	-webkit-appearance: none;
-	background: #EEC015;
-	border: 0;
-	border-radius: 15px;
-	margin-top: 10px;
-	padding: 10 30 10 30;
-	width: 75px;
+	height:20px;
+	width: 50px;
+	margin: 3px 3px 3px 3px;
+	padding: 3px 3px 3px 3px;
+	font-family: Helvetica;
+	font-size: 10px;
+	text-decoration: none;
+	color: #EEC015;
+	text-shadow: -1px -1px 2px #618926;
+	background: -moz-linear-gradient(#2660ff, #06275d 35%, #3232a8);
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #2660ff),color-stop(.35, #06275d),color-stop(1, #3232a8));
+	border: 1px solid #3232a8;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+.user_delete:hover {
+height:20px;
+width: 50px;
+margin: 3px 3px 3px 3px;
+padding: 3px 3px 3px 3px;
+font-family: Helvetica;
+font-size: 10px;
+text-decoration: none;
+color: #EEC015;
+text-shadow: -1px -1px 2px #465f97;
+background: -moz-linear-gradient(#3232a8, #06275d 75%, #2660ff);
+background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #3232a8),color-stop(.75, #06275d),color-stop(1, #2660ff));
+border: 1px solid #3232a8;
+border-radius: 3px;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
 }
 
 #tos{

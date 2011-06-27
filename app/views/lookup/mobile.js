@@ -56,3 +56,4 @@ function animate(lastTick, timeLeft, closingId, openingId)
   setTimeout("animate(" + curTick + "," + timeLeft + ",'" 
       + closingId + "','" + openingId + "')", 33);
 }
+
