@@ -33,9 +33,11 @@ class LookupController < ApplicationController
       else 
         @message = 'Next Streetclean:'<<@results[0][0].strftime("%A %B %e at %I:%M%p.")
         @box = "info"
-        @alerts = Alarm.where("user_id =?",@user.id)
-        @recs = []
-        @recs << @user.rec1 <<@user.rec2<<@user.rec3
+        if @user
+          @alerts = Alarm.where("user_id =?",@user.id)
+          @recs = []
+          @recs << @user.rec1 <<@user.rec2<<@user.rec3
+        end
         
         respond_to do |format|
           format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
@@ -49,9 +51,11 @@ class LookupController < ApplicationController
       end
       
     else
-      @alerts = Alarm.where("user_id =?",@user.id)
-      @recs = []
-      @recs << @user.rec1 <<@user.rec2<<@user.rec3
+      if @user
+        @alerts = Alarm.where("user_id =?",@user.id)
+        @recs = []
+        @recs << @user.rec1 <<@user.rec2<<@user.rec3
+      end
       respond_to do |format|
         format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
         format.xml  { render :xml => @alerts }
@@ -74,9 +78,11 @@ class LookupController < ApplicationController
   
   def do_empty
     @user = current_user
-    @alerts = Alarm.where("user_id = ?",@user.id)
-    @recs = []
-    @recs << @user.rec1 <<@user.rec2<<@user.rec3
+    if @user
+      @alerts = Alarm.where("user_id =?",@user.id)
+      @recs = []
+      @recs << @user.rec1 <<@user.rec2<<@user.rec3
+    end
     @message = "Please enter something"
     @box = "error"
     respond_to do |format|
@@ -95,10 +101,11 @@ class LookupController < ApplicationController
     @message = res
     @message<<" "<<uq
     @box = "error"
-    @alerts = Alarm.where("user_id = ?",@user.id)
-    @user  = current_user
-    @recs = []
-    @recs << @user.rec1 <<@user.rec2<<@user.rec3
+    if @user
+      @alerts = Alarm.where("user_id =?",@user.id)
+      @recs = []
+      @recs << @user.rec1 <<@user.rec2<<@user.rec3
+    end
     respond_to do |format|
       format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
       format.xml  {render :xml => @message}
@@ -114,9 +121,11 @@ class LookupController < ApplicationController
     @message<<" "<<uq
     @box = "warn"
     @user  = current_user
-    @recs = []
-    @recs << @user.rec1 <<@user.rec2<<@user.rec3
-    @alerts = Alarm.where("user_id = ?",@user.id) 
+    if @user
+      @alerts = Alarm.where("user_id =?",@user.id)
+      @recs = []
+      @recs << @user.rec1 <<@user.rec2<<@user.rec3
+    end
     respond_to do |format|
       format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
       format.xml  {render :xml => @message}
@@ -133,10 +142,11 @@ class LookupController < ApplicationController
     @message = "We have mulitple streets with that name, try adding St or Ave to your search"
     @box = "info"
     @user  = current_user
-    @recs = []
-    @recs << @user.rec1 <<@user.rec2<<@user.rec3
-    @alerts = Alarm.where("user_id = ?",@user.id)
-    respond_to do |format|
+    if @user
+      @alerts = Alarm.where("user_id =?",@user.id)
+      @recs = []
+      @recs << @user.rec1 <<@user.rec2<<@user.rec3
+    end
       format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
       format.xml  {render :xml => @message}
       format.xml  {render :xml => @box}
@@ -150,9 +160,11 @@ class LookupController < ApplicationController
     @message = "Please enter something"
     @box = "error"
     @user  = current_user
-    @recs = []
-    @recs << @user.rec1 <<@user.rec2<<@user.rec3
-    @alerts = Alarm.where("user_id = ?",@user.id)
+    if @user
+      @alerts = Alarm.where("user_id =?",@user.id)
+      @recs = []
+      @recs << @user.rec1 <<@user.rec2<<@user.rec3
+    end
     respond_to do |format|
       format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
       format.xml  {render :xml => @message}
