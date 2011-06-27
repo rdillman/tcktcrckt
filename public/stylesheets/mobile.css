@@ -6,10 +6,10 @@
 }
 
 /*Header/Navigation*/
-#user_nav{
+#user_nav_mob{
 	color: #06275D;
 	background-color: black;
-	height:50px;
+	height:45px;
 	padding: 3px;
 	z-index:0;
 }

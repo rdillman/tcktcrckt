@@ -1,11 +1,12 @@
+/*contains everything above search bar including menu*/
 .container{
 	margin-right: auto;
 	margin-left: auto;
 	width:75%;
 	text-align: center;
 	position: relative;
-	min-height: 100%;
-	height: auto !important;
+	/*min-height: 100%;
+		height: auto !important;*/
 	height: 100%;
 	margin: 0 auto 14em;
 }
@@ -14,7 +15,17 @@
 /*	color: white;*/
 }
 
+/*includes top menu and top logo*/
+#user_nav_basic{
+	position:relative;
+	margin: auto;
+	float:left;
+	color: #FFFFFF;/*uuuuuuuuuuuuuuuuu*/
+}
+
+/*includes user_nav_basic*/
 #user_nav{
+	height: 30px;
 	color: #06275D;
 	background-color: #06275d;
 	padding: 10px 10px 10px 10px;
@@ -22,7 +33,7 @@
 
 #user_sign{
 	text-align: right;
-	float: right;
+	float: left;
 	color: white;
 }
 

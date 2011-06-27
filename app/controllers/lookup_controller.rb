@@ -147,6 +147,7 @@ class LookupController < ApplicationController
       @recs = []
       @recs << @user.rec1 <<@user.rec2<<@user.rec3
     end
+    respond_to do |format|
       format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
       format.xml  {render :xml => @message}
       format.xml  {render :xml => @box}
@@ -174,9 +175,6 @@ class LookupController < ApplicationController
     end
   end
   
-  # def text_message
-  #   @user = current_user
-  #   UserMailer.send_next_time(@user).deliver
-  # end
+
 
 end

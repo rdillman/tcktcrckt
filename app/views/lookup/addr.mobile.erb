@@ -121,6 +121,7 @@
 	</div>
 	<h3><a href="#">Recent alerts</a></h3>
 	<div>
+		<%if @recs%>
 		<ul>
 			<li><%if @recs[0]%>
 					<%=@recs[0]%>
@@ -132,6 +133,9 @@
 					<%=@recs[2]%>
 				<%end%></li>
 		</ul>
+		<%else%>
+		No recent searches
+		<%end%>
 	</div>
 </div>
 
