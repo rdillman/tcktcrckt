@@ -14,11 +14,13 @@
 /*	color: white;*/
 }
 
+/*Defines the top banner*/
 #user_nav{
 	color: #06275D;
 	background-color: #06275d;
 	padding: 10px 10px 10px 10px;
 }
+
 
 #user_sign{
 	text-align: right;
