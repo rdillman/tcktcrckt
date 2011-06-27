@@ -29,7 +29,7 @@ es:
       updated: 'Your password was changed successfully. You are now signed in.'
     confirmations:
       send_instructions: 'Recibirás un email con instrucciones para cambiar tu contraseña en poco minutos.'
-      updated: 'Tu contraseña ha sido modificada. Ya has accedido a tu cuenta.'
+      confirmed: 'Tu contraseña ha sido modificada. Ya has accedido a tu cuenta.'
     registrations:
       signed_up: '¡Bienvenido! Te has registrado correctamente.'
       inactive_signed_up: 'Te has registrado correctamente. Sin embargo, no hemos podido iniciar su sesión porque tu cuenta es %{reason}.'

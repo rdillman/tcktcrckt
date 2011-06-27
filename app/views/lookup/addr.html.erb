@@ -15,13 +15,8 @@
 
 <div class="lookup">
 	<%= form_tag("/lookup/addr", :method => "get") do %>
-
-<<<<<<< HEAD
   	<%= text_field_tag(:q, nil, :placeholder => "Search address for cleaning times in San Francisco...", :size => 55, :class => "input1") -%>	
-=======
-	 <div>
-  	<%= text_field_tag(:q, nil, :placeholder => "Search address for cleaning times in San Francisco...", :size => 55,  :class => "input1",) -%></font>
->>>>>>> bc87182af44272ca2de039ede4cc87c6e213b4a1
+
     <%= submit_tag("Search", :class => "user_submit") %>
 		<% end %>
 </div>
