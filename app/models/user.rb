@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :phone_number, :carrier, :username
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :phone_number, :carrier, :username, :rec1, :rec2, :rec3
 
 
   def self.create_from_hash!(hash)
@@ -22,6 +22,12 @@ class User < ActiveRecord::Base
     else # Create a user with a stub password. 
       User.create!(:email => data["email"], :password => Devise.friendly_token[0,20]) 
     end
+  end
+  
+  def update_rec(qry)
+    self.update_attribute(:rec3,self.rec2)
+    self.update_attribute(:rec2,self.rec1)
+    self.update_attribute(:rec1,qry)
   end
   
   def text_address

@@ -106,36 +106,41 @@
 <div id="accordion">
 	<h3><a href="#">Current Alerts</a></h3>
 	<div>
-		<%if @alerts != [] && @alerts != nil%>
-		<br>
-		<font size=5><b>Your Current Alerts!</b></font>
-		<table align="center" cellspacing="10">
+		<%if @alerts != [] && @alerts != nil-%>
+		<ul>
+		<table align="center" cellspacing="1">
 		  <tr>	
 			<th><u>Location</u></th>
 			<th><u>CleanTime</u></th>
 			<th><u>Alert Send</u></th>
 			<th><th>
 		  </tr>
-
-			<%@alerts.each do |a|%>
+			<%@alerts.each do |a|-%>
 			<tr>
-				<td><%=a.location%>  </td>
+				<td><li><%=a.location%>  </td>
 				<td><%=a.clean_time%>  </td>
 				<td> <%if a.nb4%>Night Before<%else%>One Hour Before<%end%> </td>
 				<td> <%= submit_tag("delete", :controller => "alert", :action => "kill", :q => a.id, :method => "get", :class => "user_delete") %> | <%= submit_tag("edit", :controller => "alert", :action => "edit", :alarm => a.id, :method => "get", :class => "user_delete" ) %></td>
 			</tr>
 			<%end%>
 		</table>
+		</ul>
 		<%else%>
 			<h2>You have no alerts right now</h2>
 		<%end%>
 	</div>
-	<h3><a href="#">Recent searches</a></h3>
+	<h3><a href="#">Recent alerts</a></h3>
 	<div>
 		<ul>
-			<li>Recent Search 1</li>
-			<li>Recent Search 2</li>
-			<li>REcent Search 3</li>
+			<li><%if @recs[0]%>
+					<%=@recs[0]%>
+				<%end%></li>
+			<li><%if @recs[1]%>
+					<%=@recs[1]%>
+				<%end%></li>
+			<li><%if @recs[2]%>
+					<%=@recs[2]%>
+				<%end%></li>
 		</ul>
 	</div>
 	<h3><a href="#">Map</a></h3>
