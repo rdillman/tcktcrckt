@@ -212,7 +212,7 @@
 	-webkit-border-radius: 3px;
 }
 
-.user_msubmit:hover {
+/*.user_msubmit:hover {
 	height:20px;
 	width: 50px;
 	margin: 3px 3px 3px 3px;
@@ -240,7 +240,7 @@
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
-}
+}*/
 
 .user_mdelete{
 	height:20px;
@@ -272,7 +272,7 @@
 	-webkit-border-radius: 3px;
 }
 
-.user_mdelete:hover {
+/*.user_mdelete:hover {
 	height:20px;
 	width: 50px;
 	margin: 3px 3px 3px 3px;
@@ -301,3 +301,4 @@
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 }
+*/

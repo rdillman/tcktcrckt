@@ -108,22 +108,12 @@
 	<div>
 		<%if @alerts != [] && @alerts != nil-%>
 		<ul>
-		<table align="center" cellspacing="1">
-		  <tr>	
-			<th><u>Location</u></th>
-			<th><u>CleanTime</u></th>
-			<th><u>Alert Send</u></th>
-			<th><th>
-		  </tr>
 			<%@alerts.each do |a|-%>
-			<tr>
-				<td><li><%=a.location%>  </td>
-				<td><%=a.clean_time%>  </td>
-				<td> <%if a.nb4%>Night Before<%else%>One Hour Before<%end%> </td>
-				<td> <%= submit_tag("delete", :controller => "alert", :action => "kill", :q => a.id, :method => "get", :class => "user_delete") %> | <%= submit_tag("edit", :controller => "alert", :action => "edit", :alarm => a.id, :method => "get", :class => "user_delete" ) %></td>
-			</tr>
+				<li><%=a.location%> <br/>
+				<%=a.clean_time%> <br/>
+				<%if a.nb4%>Night Before<%else%>One Hour Before<%end%> 
+				 <%= submit_tag("delete", :controller => "alert", :action => "kill", :q => a.id, :method => "get", :class => "user_delete") %> | <%= submit_tag("edit", :controller => "alert", :action => "edit", :alarm => a.id, :method => "get", :class => "user_delete" ) %></li>
 			<%end%>
-		</table>
 		</ul>
 		<%else%>
 			<h2>You have no alerts right now</h2>
@@ -142,12 +132,6 @@
 					<%=@recs[2]%>
 				<%end%></li>
 		</ul>
-	</div>
-	<h3><a href="#">Map</a></h3>
-	<div>
-		<p>
-			Map will go here one day!
-		</p>
 	</div>
 </div>
 
