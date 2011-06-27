@@ -168,6 +168,7 @@ class AlertController < ApplicationController
       
         #If it worked --- 
         if @a
+          @user.update_rec(uq)
           if !@user.phone_number or !@user.carrier
             @message = "Almost There! In order to send you alarms we need to know phone number and carrier"
             @box = "warn"
