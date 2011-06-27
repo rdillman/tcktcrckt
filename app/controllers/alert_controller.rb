@@ -2,28 +2,6 @@ class AlertController < ApplicationController
   before_filter :authenticate_user!
   before_filter :validated?
   
-  # before_filter :validate_user, :except => validate
-  
-  # def validate
-  #   @code = params[:code]
-  #   @user = current_user
-  #   @usr_qry = params[:q]
-  #   
-  #   if @code == @user.val
-  #     @message = "Your phone number has been validated!"
-  #     
-  #     respond_to do |format|
-  #       format.html {render :file => "#{Rails.root}/app/views/alert/validate.html.erb"}
-  #       format.xml  {render : => @message}
-  #     end
-  #   else
-  #     respond_to do |format|
-  #       format.html
-  #       format.xml {render :xml => @alerts}
-  #     end
-  #   end
-  # end
-  
   def show
     @user = current_user
     @alerts = Alarm.where("user_id=?",@user.id)
@@ -383,7 +361,6 @@ class AlertController < ApplicationController
   end
   
   def validated?
-    debugger
     @user = current_user
     if @user.phone_number != @user.valphone
       redirect_to :controller => "validator", :action => "enter"

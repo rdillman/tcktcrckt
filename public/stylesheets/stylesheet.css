@@ -14,12 +14,17 @@
 /*	color: white;*/
 }
 
+/*Defines the top banner*/
 #user_nav{
 	color: #06275D;
 	background-color: #06275d;
 	padding: 10px 10px 10px 20px;
 }
 
+<<<<<<< HEAD
+
+#user_sign{
+=======
 #user_nav a{
 	padding:5px;
 }
@@ -30,6 +35,7 @@
 }
 
 #user_nav_sign{
+>>>>>>> b204236549a7b5fd5fb25a61cb45b4a70e03cc6c
 	text-align: right;
 	float: right;
 	color: white;
