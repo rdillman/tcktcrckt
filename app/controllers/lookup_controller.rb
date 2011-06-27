@@ -32,10 +32,24 @@ class LookupController < ApplicationController
       else 
         @message = 'Next Streetclean:'<<@results[0][0].strftime("%A %B %e at %I:%M%p.")
         @box = "info"
-        respond_to do |format|
-          format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
-          format.xml  {render :xml => @message}
-          format.xml  {render :xml => @box}
+        if mobile_device?
+          @user = current_user
+          @alerts = Alarm.where("user_id =?",@user.id)
+          #@recent_searches = 
+          respond_to do |format|
+            format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+            format.xml  {render :xml => @message}
+            format.xml  {render :xml => @box}
+            format.xml  {render :xml => @alerts}
+          end
+          
+        else
+
+          respond_to do |format|
+            format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+            format.xml  {render :xml => @message}
+            format.xml  {render :xml => @box}
+          end
         end
       end
     end
