@@ -14,19 +14,12 @@
 </div>
 
 <div class="lookup">
-	<%= form_tag("/lookup/addr", :method => "get") do %>
-
-<<<<<<< HEAD
-  	<%= text_field_tag(:q, nil, :placeholder => "Search address for cleaning times in San Francisco...", :size => 55, :class => "input1") -%>	
-=======
+<%= form_tag("/lookup/addr", :method => "get") do %>
 	 <div>
-<<<<<<< HEAD
   	<%= text_field_tag(:q, nil, :placeholder => "Search address for cleaning times in San Francisco...", :size => 55,  :class => "input1") -%></font>
-=======
-  	<%= text_field_tag(:q, nil, :placeholder => "Search address for cleaning times in San Francisco...", :size => 55,  :class => "input1",) -%></font>
->>>>>>> bc87182af44272ca2de039ede4cc87c6e213b4a1
->>>>>>> b204236549a7b5fd5fb25a61cb45b4a70e03cc6c
     <%= submit_tag("Search", :class => "user_submit") %>
 		<% end %>
 </div>
-
+<div id="how_to">
+	<%= link_to "How it Works", lookup_how_to_path %>
+</div>
