@@ -54,10 +54,10 @@ es:
   validator_controller:
     incorrect_code: "Código incorrecto, por favor, inténtalo de nuevo."
   about_us:
-    intro: "Thanks for visiting Ticket Cricket. We created this site so that we could stop the onslaught of parking tickets. We're just a few people who wanted to help, so we worked many hours making this site what it is today - with no prior knowledge of how to do it."
-    facts_title: "A FEW FACTS:"
-    fact_1: "There are 89 neighborhoods that San Francisco recognizes for street cleaning."
-    fact_2: "In those 89 neighborhoods there are 238 unique cleaning times."
-    fact_3: "With those 238 unique times there are around 1425 streets that use them."
-    closing: "That is A LOT to remember. So we have Ticket Cricket. Just enter the address where you parked and we will send you a text alert when it is time for you to move your car. It's that easy!"
+    intro: "Gracias por visitar Ticket Cricket. Hemos creado este sitio para que podríamos detener el ataque de multas de estacionamiento. Somos unas pocas personas que querían ayudar, por lo que hemos trabajado muchas horas haciendo este sitio lo que es hoy, sin conocimiento anterior de cómo hacerlo."
+    facts_title: "ALGUNOS HECHOS:"
+    fact_1: "Hay 89 barrios que San Francisco reconoce para la limpieza de calles."
+    fact_2: "En esos 89 barrios hay 238 tiempos de limpieza únicas."
+    fact_3: "Con esos 238 únicas veces hay alrededor de 1425 calles que los utilizan."
+    closing: "Eso es mucho para recordar. Así que tenemos Ticket Cricket. Sólo tienes que entregar la dirección donde estas estacionado y le enviaremos una alerta de texto cuando es hora de mudar su vehículo. ¡Es así de fácil!"
 

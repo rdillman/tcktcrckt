@@ -1,4 +1,4 @@
-I18n.translate('alert_controller.alert_messages.multiple')
+<% I18n.translate('alert_controller.alert_messages.multiple')%>
 <br>
 <% @results[0].each do |x| %>
  	<%=link_to @usr_qry+" "+x.suff , :commit=>"Search", :action =>"create", :q=>@usr_qry+" "+x.suff , :controller=>"alert" %><br>
