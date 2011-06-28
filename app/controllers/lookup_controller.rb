@@ -49,11 +49,11 @@ class LookupController < ApplicationController
   end
   
   private
-  
+   # Joseles - all the strings for il8n are in these functions
   
   def do_empty
     @alerts = Alarm.where("user_id = ?",current_user.id)
-    @message = "Please enter something"
+    @message = i18n.translate('alert_controller.do_empty.message')
     @box = "error"
     respond_to do |format|
       format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
@@ -65,7 +65,7 @@ class LookupController < ApplicationController
   end
   
   def do_invalid(res,uq)
-    @message = res
+    @message = i18n.translate('alert_controller.create.res.invalid')
     @message<<" "<<uq
     @box = "error"
     respond_to do |format|
@@ -76,7 +76,7 @@ class LookupController < ApplicationController
   end
   
   def do_no_entry(uq)
-    @message = @results
+    @message = i18n.translate('alert_controller.create.res.no_entry')
     @message<<" "<<uq
     @box = "warn"
     respond_to do |format|
@@ -89,7 +89,7 @@ class LookupController < ApplicationController
   
   def do_multiple(res,uq)
     
-    @message = "We have mulitple streets with that name, try adding St or Ave to your search"
+    @message = i18n.translate('alert_controller.do_multiple.message')
     @box = "info"
     respond_to do |format|
       format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
@@ -98,15 +98,6 @@ class LookupController < ApplicationController
     end
   end
   
-  def do_empty
-    @message = "Please enter something"
-    @box = "error"
-    respond_to do |format|
-      format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
-      format.xml  {render :xml => @message}
-      format.xml  {render :xml => @box}
-    end
-  end
   
   # def text_message
   #   @user = current_user

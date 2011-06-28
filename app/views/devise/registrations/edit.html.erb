@@ -24,6 +24,9 @@
   <p><%= f.label :new_password_confirmation %><br />
   <%= f.password_field :password_confirmation, :placeholder => "Leave blank if not changing" %></p>
 
+  <p><%= f.label :language, "language"%><br />
+  <%= f.select :language, [['English', 'en'], ['Espanol', 'es']]%></p>
+
   <p><%= f.submit "Update" %></p>
 <% end %>
 

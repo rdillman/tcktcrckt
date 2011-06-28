@@ -10,7 +10,7 @@ class ValidatorController < ApplicationController
     
     else
       #render incorrect
-      @message = "Incorrect Code, Please Try Again"
+      @message =  i18n.translate('validator_controller.incorrect_code')
       @box = "error"
       respond_to do |format|
         format.html {render :file => "#{Rails.root}/app/views/validator/enter.html.erb"}

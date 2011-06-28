@@ -1,10 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :prepare_for_mobile
-  
+                :set_user_language
   
   private
-  
+  def set_user_language
+    il8n.locale = current_user.language if logged_in?
+  end
   def mobile_device?
     if session[:mobile_param]
       session[:mobile_param] == "1"
@@ -18,5 +20,4 @@ class ApplicationController < ActionController::Base
     session[:mobile_param] = params[:mobile] if params[:mobile]
     request.format = :mobile if mobile_device?
   end
-
 end

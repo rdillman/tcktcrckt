@@ -17,6 +17,9 @@
 
   <p><%= f.label :carrier, "CARRIER" %><br />
 	<%= f.select :carrier, ["AT&T", "Verizon", "T-Mobile", "Sprint"] %>  </p>
+	
+  <p><%= f.label :language, "language"%><br />
+   <%= f.select :language, [['English', 'en'], ['Espanol', 'es']]%></p>
 
   <p><%= f.submit "Sign up" %></p>
 <% end %>

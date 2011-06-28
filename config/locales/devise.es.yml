@@ -3,13 +3,13 @@
 es:
   errors:
     messages:
-      expired: "ha expirado, por favor solicite uno nuevo"
-      not_found: "no se encuentra"
-      already_confirmed: "se confirmó ya, por favor intenta acceder"
-      not_locked: "no fue cerrado"
+      expired: 'ha expirado, por favor solicite uno nuevo'
+      not_found: 'no se encuentra'
+      already_confirmed: 'se confirmó ya, por favor intenta acceder'
+      not_locked: 'no fue cerrado'
       not_saved:
-        one: "Un error prohibida que este %{resource} se guarde:"
-        other: "%{count} de errores prohibida que este %{resource} se guarde:"
+        one: 'Un error prohibida que este %{resource} se guarde:'
+        other: '%{count} de errores prohibida que este %{resource} se guarde:'
 
   devise:
     failure:
@@ -17,7 +17,7 @@ es:
       unauthenticated: 'Necesitas acceder o registrar antes de seguir.'
       unconfirmed: 'Necesitas confirmar tu cuenta antes de seguir.'
       locked: 'Tu cuenta esta bloqueado.'
-      invalid: 'Correo electronico o contraseña inválido.'
+      invalid: 'Email o contraseña inválido.'
       invalid_token: 'Token de autenticación inválido.'
       timeout: 'Su sesión ha expirado, por favor accede de nuevo para seguir.'
       inactive: 'Aún su cuenta no fue activado.'
@@ -25,11 +25,11 @@ es:
       signed_in: 'Has ingresado correctamente'
       signed_out: 'Has salido correctamente'
     passwords:
-      send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
-      updated: 'Your password was changed successfully. You are now signed in.'
-    confirmations:
       send_instructions: 'Recibirás un email con instrucciones para cambiar tu contraseña en poco minutos.'
       updated: 'Tu contraseña ha sido modificada. Ya has accedido a tu cuenta.'
+    confirmations:
+      send_instructions: 'Recibirás un email con instrucciones para confirmar tu cuenta en poco minutos.'
+      updated: 'Tu contraseña ha sido confirmada. Ya has accedido a tu cuenta.'
     registrations:
       signed_up: '¡Bienvenido! Te has registrado correctamente.'
       inactive_signed_up: 'Te has registrado correctamente. Sin embargo, no hemos podido iniciar su sesión porque tu cuenta es %{reason}.'

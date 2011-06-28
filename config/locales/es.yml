@@ -1,0 +1,58 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+es:
+  alert_controller:
+    edit:
+      success: 'Su alerta fue cambiado.'
+      warn: '¡Ay! Esa alerta fue eliminado anteriormente.'
+    update_phone:
+      success:  'Su numero ha sido actualizado.'
+    create:
+      res:
+        invalid_address: 'Invalid Address - No Address or No Street'
+        no_record: "We don't have a record for that address for that street"
+        invalid: 'Invalid Address'
+        multiple: 'Which of these Streets?'
+        no_entry: "Oops We Don't Have a Cleaning Record for this Street"
+        empty: 'empty'
+      construct_alarm:
+        next_clean: 'Next Street Clean'
+        time: '%A %B %e at %I:%M%p.'
+        warn: 'Almost There! In order to send you alarms we need to know phone number and carrier'
+      kill:
+        delete: 'The Alarm has been deleted'
+    create_message:
+      alert_created: 'An alert has been created for the streetcleaning of '
+      begins: ' which begins at '
+    kill_message:
+      alert_for: 'Streetcleaning alert for '
+      deleted: 'has been deleted.'
+    do_alert_exists:
+      message:'An alert for this block already exists'
+    do_multiple:
+      message: 'We have mulitple streets with that name, try adding St or Ave to your searches'
+    do_empty:
+      message: 'Please enter something'
+    alert_messages:
+      multiple: 'Which of these?'
+      new: 'New Search'
+      alarm_options: 'Alarm Options'
+      options:
+        night_before: 'Night Before
+        1_hour: '1 Hour Before'
+        no_alarm: "Don't Create an Alarm'
+      get_results: 'Get Results!'
+      titles:
+        current: 'Your Current Alerts!'
+        none: 'You have no Current Alerts'
+        location: 'Location'
+        cleantime: 'CleanTime'
+        alert:  'Alert Send'
+  sessions_controller:
+    welcome: "Welcome, "
+  validator_controller:
+    incorrect_code: "Incorrect Code, Please Try Again"
+
+  
+  
