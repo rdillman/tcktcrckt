@@ -80,7 +80,7 @@ class LookupController < ApplicationController
   def do_empty
 
     @alerts = Alarm.where("user_id = ?",current_user.id)
-    @message = i18n.translate('alert_controller.do_empty.message')
+    @message = I18n.translate('alert_controller.do_empty.message')
 
     @user = current_user
     if @user
@@ -102,7 +102,7 @@ class LookupController < ApplicationController
   end
   
   def do_invalid(res,uq)
-    @message = i18n.translate('alert_controller.create.res.invalid')
+    @message = I18n.translate('alert_controller.create.res.invalid')
     @user  = current_user
     @message<<" "<<uq
     @box = "error"
@@ -122,7 +122,7 @@ class LookupController < ApplicationController
   end
   
   def do_no_entry(uq)
-    @message = i18n.translate('alert_controller.create.res.no_entry')
+    @message = I18n.translate('alert_controller.create.res.no_entry')
     @message<<" "<<uq
     @box = "warn"
     @user  = current_user
@@ -144,7 +144,7 @@ class LookupController < ApplicationController
   
   def do_multiple(res,uq)
     
-    @message = i18n.translate('alert_controller.do_multiple.message')
+    @message = I18n.translate('alert_controller.do_multiple.message')
     @box = "info"
     @user  = current_user
     if @user

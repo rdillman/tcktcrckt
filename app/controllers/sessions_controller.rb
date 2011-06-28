@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       # Log the authorizing user in.
       self.current_user = @auth.user
 
-      render :text => i18n.translate('sessions_controller.welcome') "#{current_user.name}."
+      render :text => I18n.translate('sessions_controller.welcome') "#{current_user.name}."
     end
   end
   

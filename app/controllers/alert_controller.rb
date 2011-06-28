@@ -47,7 +47,7 @@ class AlertController < ApplicationController
         alert.update_attribute(:send_time, nb4_time.strftime("%B %e %Y at %H:%M"))
         alert.update_attribute(:nb4, true)
       end
-      @message = i18n.translate('alert_controller.edit.success')
+      @message = I18n.translate('alert_controller.edit.success')
       @box = "success"
       respond_to do |format|
         format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb" }
@@ -56,7 +56,7 @@ class AlertController < ApplicationController
         format.xml  { render :xml => @box }
         end
     else
-      @message = i18n.translate('alert_controller.edit.warn')
+      @message = I18n.translate('alert_controller.edit.warn')
       @box = "warn"
       respond_to do |format|
         format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb" }
@@ -75,7 +75,7 @@ class AlertController < ApplicationController
     user.update_attribute(:carrier, @car)
     user.save!
     @alerts = Alarm.where("user_id=?",@user.id)
-    @message = i18n.translate('alert_controller.update_phone.success')
+    @message = I18n.translate('alert_controller.update_phone.success')
     @box = "success"
     @message << user.phone_number.to_s
     respond_to do |format|
@@ -104,24 +104,24 @@ class AlertController < ApplicationController
     uq  = @usr_qry 
 
     
-    if res == i18n.translate('alert_controller.create.res.invalid_address')
+    if res == I18n.translate('alert_controller.create.res.invalid_address')
       do_invalid(res,uq)
 
-    elsif res == i18n.translate('alert_controller.create.res.no_record')
+    elsif res == I18n.translate('alert_controller.create.res.no_record')
       do_invalid(res,uq)
   
-    elsif res == i18n.translate('alert_controller.create.res.invalid')
+    elsif res == I18n.translate('alert_controller.create.res.invalid')
       do_invalid(res,uq)
 
-    elsif res[1] == i18n.translate('alert_controller.create.res.multiple')
+    elsif res[1] == I18n.translate('alert_controller.create.res.multiple')
       do_multiple(res,uq)
 
-    elsif res == i18n.translate('alert_controller.create.res.no_entry')
+    elsif res == I18n.translate('alert_controller.create.res.no_entry')
       do_no_entry(uq)
   
     elsif alert_exists?(res[1],@user,@st)
        do_alert_exists
-    elsif res == i18n.translate('alert_controller.create.res.empty')
+    elsif res == I18n.translate('alert_controller.create.res.empty')
         do_empty
   #
   #End Problem Cases #########################################################    
@@ -150,7 +150,7 @@ class AlertController < ApplicationController
         if (night_before?(@st[0])) #Night Before Case
           @a = make_nb4_alarm(@usr_qry,@results,@user)
         elsif (no_alarm?(@st[0]))
-          @message = i18n.translate('alert_controller.create.construct_alarm.next_clean')<<@results[0][0].strftime(i18n.translate('alert_controller.create.construct_alarm.time'))
+          @message = I18n.translate('alert_controller.create.construct_alarm.next_clean')<<@results[0][0].strftime(I18n.translate('alert_controller.create.construct_alarm.time'))
           send = @results[0][0] - 1.hour
           @box = "info"
           @alerts = Alarm.where("user_id = ?",current_user.id)
@@ -170,7 +170,7 @@ class AlertController < ApplicationController
         if @a
           @user.update_rec(uq)
           if !@user.phone_number or !@user.carrier
-            @message = i18n.translate('alert_controller.create.construct_alarm.warn')
+            @message = I18n.translate('alert_controller.create.construct_alarm.warn')
             @box = "warn"
             respond_to do |format|
                 format.html { render :file => "#{Rails.root}/app/views/alert/no_phone.html.erb"}
@@ -218,7 +218,7 @@ class AlertController < ApplicationController
           end
         end
     else
-      @message = i18n.translate('alert_controller.create.kill.delete')
+      @message = I18n.translate('alert_controller.create.kill.delete')
       @alerts = Alarm.where("user_id = ?",current_user.id)
       @box = "success"
       respond_to do |format|
@@ -241,12 +241,12 @@ class AlertController < ApplicationController
   def make_nb4_alarm(uq, res, usr)
      nb4_time = res[0][0]-1.day + (19 - res[0][0].hour).hour
      send = res[0][0] - 1.hour
-     @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime(i18n.translate('alert_controller.create.construct_alarm.time')), :send_time => nb4_time.strftime(i18n.translate('alert_controller.create.construct_alarm.time')), :cnn => res[1], :nb4 => true, :user_id => usr.id)
+     @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime(I18n.translate('alert_controller.create.construct_alarm.time')), :send_time => nb4_time.strftime(I18n.translate('alert_controller.create.construct_alarm.time')), :cnn => res[1], :nb4 => true, :user_id => usr.id)
   end
     
     def make_regular_alarm(uq,res,usr)
         send = res[0][0] - 1.hour
-        @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime(i18n.translate('alert_controller.create.construct_alarm.time')), :send_time => send.strftime(i18n.translate('alert_controller.create.construct_alarm.time')), :cnn => res[1], :nb4 => false, :user_id => usr.id)
+        @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime(I18n.translate('alert_controller.create.construct_alarm.time')), :send_time => send.strftime(I18n.translate('alert_controller.create.construct_alarm.time')), :cnn => res[1], :nb4 => false, :user_id => usr.id)
     end
   
   def night_before?(alarm_type)
@@ -261,16 +261,16 @@ class AlertController < ApplicationController
     
   
   def create_message(alert)
-    message = i18n.translate('alert_controller.create_message.alert_created')
+    message = I18n.translate('alert_controller.create_message.alert_created')
     message << alert.location
-    message << i18n.translate('alert_controller.create_message.begins')
+    message << I18n.translate('alert_controller.create_message.begins')
     message << alert.clean_time
   end
   
   def kill_message(alert)
-    message = i18n.translate('alert_controller.kill_message.alert_for')
+    message = I18n.translate('alert_controller.kill_message.alert_for')
     message << alert.location
-    message << i18n.translate('alert_controller.kill_message.deleted')
+    message << I18n.translate('alert_controller.kill_message.deleted')
   end
      
   def alert_exists?(cnn, user, st)
@@ -288,7 +288,7 @@ class AlertController < ApplicationController
   end
   
   def do_alert_exists
-    @message = i18n.translate('alert_controller.do_alert_exists.message')
+    @message = I18n.translate('alert_controller.do_alert_exists.message')
     @box ="warn"
     @alerts = Alarm.where("user_id = ?",current_user.id)
     respond_to do |format|
@@ -332,7 +332,7 @@ class AlertController < ApplicationController
   
   def do_multiple(res,uq)
     @alerts = Alarm.where("user_id = ?",current_user.id)
-    @message = i18n.translate('alert_controller.do_multiple.message')
+    @message = I18n.translate('alert_controller.do_multiple.message')
     @box = "info"
     respond_to do |format|
       format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
@@ -345,7 +345,7 @@ class AlertController < ApplicationController
   
   def do_empty
     @alerts = Alarm.where("user_id = ?",current_user.id)
-    @message = i18n.translate('alert_controller.do_empty.message')
+    @message = I18n.translate('alert_controller.do_empty.message')
     @box = "error"
     respond_to do |format|
       format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}

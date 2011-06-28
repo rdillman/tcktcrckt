@@ -1,11 +1,11 @@
 
 <%= form_tag("/alert/create", :method => "get") do %>
-	<b><font size=5><%=label_tag "q", i18n.translate('alert_controller.alert_messages.new')%></b>
+	<b><font size=5><%=label_tag "q", I18n.translate('alert_controller.alert_messages.new')%></b>
   	<%= text_field_tag(:q, nil, :placeholder => "101 Larkin St", :size => 27) -%></font>
 	  
-	<font size=5><b><%= label_tag "st", i18n.translate('alert_controller.alert_messages.alarm_options')-%></b></font>
-	<%= select_tag "st", options_for_select([ i18n.translate('alert_controller.alert_messages.options.night_before'), i18n.translate('alert_controller.alert_messages.options.1_hour'), i18n.translate('alert_controller.alert_messages.options.no_alarm') ], i18n.translate('alert_controller.alert_messages.options.night_before')) %>
-    <%= submit_tag(i18n.translate('alert_controller.alert_messages.get_results'), :class => "user_submit") %>
+	<font size=5><b><%= label_tag "st", I18n.translate('alert_controller.alert_messages.alarm_options')-%></b></font>
+	<%= select_tag "st", options_for_select([ I18n.translate('alert_controller.alert_messages.options.night_before'), I18n.translate('alert_controller.alert_messages.options.1_hour'), I18n.translate('alert_controller.alert_messages.options.no_alarm') ], I18n.translate('alert_controller.alert_messages.options.night_before')) %>
+    <%= submit_tag(I18n.translate('alert_controller.alert_messages.get_results'), :class => "user_submit") %>
 <% end %>
 
 <hr>
@@ -26,12 +26,12 @@
 
 <%if @alerts != [] && @alerts != nil%>
 <br>
-<font size=5><b>i18n.translate('alert_controller.alert_messages.titles.current')</b></font>
+<font size=5><b>I18n.translate('alert_controller.alert_messages.titles.current')</b></font>
 <table align="center" cellspacing="10">
   <tr>	
-	<th><u>i18n.translate('alert_controller.alert_messages.titles.location')</u></th>
-	<th><u>i18n.translate('alert_controller.alert_messages.titles.cleantime')</u></th>
-	<th><u>i18n.translate('alert_controller.alert_messages.titles.alert')</u></th>
+	<th><u><% I18n.translate('alert_controller.alert_messages.titles.location')%></u></th>
+	<th><u><% I18n.translate('alert_controller.alert_messages.titles.cleantime')%></u></th>
+	<th><u><% I18n.translate('alert_controller.alert_messages.titles.alert')%></u></th>
 	<th><th>
   </tr>
 	
@@ -39,11 +39,11 @@
 	<tr>
 		<td><%=a.location%>  </td>
 		<td><%=a.clean_time%>  </td>
-		<td> <%if a.nb4%>i18n.translate('alert_controller.alert_messages.options.night_before')<%else%>i18n.translate('alert_controller.alert_messages.options.1_hour')<%end%> </td>
+		<td> <%if a.nb4%><% I18n.translate('alert_controller.alert_messages.options.night_before')%><%else%><% I18n.translate('alert_controller.alert_messages.options.1_hour')%><%end%> </td>
 		<td> <%= submit_tag("delete", :controller => "alert", :action => "kill", :q => a.id, :method => "get", :class => "user_delete") %> | <%= submit_tag("edit", :controller => "alert", :action => "edit", :alarm => a.id, :method => "get", :class => "user_delete" ) %></td>
 	</tr>
 	<%end%>
 </table>
 <%else%>
-	<h2>i18n.translate('alert_controller.alert_messages.titles.none')</h2>
+	<h2><% I18n.translate('alert_controller.alert_messages.titles.none')%></h2>
 <%end%>

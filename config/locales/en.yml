@@ -53,6 +53,13 @@ en:
     welcome: "Welcome, "
   validator_controller:
     incorrect_code: "Incorrect Code, Please Try Again"
+  about_us:
+    intro: "Thanks for visiting Ticket Cricket. We created this site so that we could stop the onslaught of parking tickets. We're just a few people who wanted to help, so we worked many hours making this site what it is today - with no prior knowledge of how to do it."
+    facts_title: "A FEW FACTS:"
+    fact_1: "There are 89 neighborhoods that San Francisco recognizes for street cleaning."
+    fact_2: "In those 89 neighborhoods there are 238 unique cleaning times."
+    fact_3: "With those 238 unique times there are around 1425 streets that use them."
+    closing: "That is A LOT to remember. So we have Ticket Cricket. Just enter the address where you parked and we will send you a text alert when it is time for you to move your car. It's that easy!"
 
   
   

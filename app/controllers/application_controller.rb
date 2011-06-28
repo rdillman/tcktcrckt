@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   
   private
   def set_user_language
-    il8n.locale = current_user.language if logged_in?
+    Il8n.locale = current_user.language if logged_in?
   end
   def mobile_device?
     if session[:mobile_param]
