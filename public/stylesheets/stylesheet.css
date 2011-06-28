@@ -1,11 +1,12 @@
+/*contains everything above search bar including menu*/
 .container{
 	margin-right: auto;
 	margin-left: auto;
 	width:75%;
 	text-align: center;
 	position: relative;
-	min-height: 100%;
-	height: auto !important;
+	/*min-height: 100%;
+		height: auto !important;*/
 	height: 100%;
 	margin: 0 auto 14em;
 }
@@ -14,7 +15,17 @@
 /*	color: white;*/
 }
 
+/*includes top menu and top logo*/
+#user_nav_basic{
+	position:relative;
+	margin: auto;
+	float:left;
+	color: #FFFFFF;/*uuuuuuuuuuuuuuuuu*/
+}
+
+/*includes user_nav_basic*/
 #user_nav{
+	height: 30px;
 	color: #06275D;
 	background-color: #06275d;
 	padding: 10px 10px 10px 10px;
@@ -22,7 +33,7 @@
 
 #user_sign{
 	text-align: right;
-	float: right;
+	float: left;
 	color: white;
 }
 
@@ -214,11 +225,12 @@ a:hover{
 }
 
 .input1{
-	border-radius: 7px;
+	border-radius: 17px;
+	-moz-border-radius: 17px;
 	border: 0px;
-	font-size: 20px;
+	font-size: 15px;
 	height:50px;
-	width:635px;
+	width:400px;
 	vertical-align: center;
 }
 
@@ -234,23 +246,84 @@ label{
 }
 
 .user_submit{
-	background-image: url('/images/eyeglass.png');
+/*	background-image: url('/images/eyeglass.png');
 	height:50px;
 	width:55px;
 	line-height:50px;
 	padding:0px;
 	margin: 0px;
-	border: 0px;
+	border: 0px;*/
+	
+	
+	height:25px;
+	width: 50px;
+	margin: 15px 15px 15px 15px;
+	padding: 5px 5px 5px 5px;
+	font-family: Helvetica;
+	font-size: 12px;
+	text-decoration: none;
+	color: #EEC015;
+	text-shadow: -1px -1px 2px #618926;
+	background: -moz-linear-gradient(#2660ff, #06275d 35%, #3232a8);
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #2660ff),color-stop(.35, #06275d),color-stop(1, #3232a8));
+	border: 1px solid #3232a8;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+.user_submit:hover {
+height:25px;
+width: 50px;
+margin: 15px 15px 15px 15px;
+padding: 5px 5px 5px 5px;
+font-family: Helvetica;
+font-size: 12px;
+text-decoration: none;
+color: #EEC015;
+text-shadow: -1px -1px 2px #465f97;
+background: -moz-linear-gradient(#3232a8, #06275d 75%, #2660ff);
+background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #3232a8),color-stop(.75, #06275d),color-stop(1, #2660ff));
+border: 1px solid #3232a8;
+border-radius: 3px;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
 }
 
 .user_delete{
-	-webkit-appearance: none;
-	background: #EEC015;
-	border: 0;
-	border-radius: 15px;
-	margin-top: 10px;
-	padding: 10 30 10 30;
-	width: 75px;
+	height:20px;
+	width: 50px;
+	margin: 3px 3px 3px 3px;
+	padding: 3px 3px 3px 3px;
+	font-family: Helvetica;
+	font-size: 10px;
+	text-decoration: none;
+	color: #EEC015;
+	text-shadow: -1px -1px 2px #618926;
+	background: -moz-linear-gradient(#2660ff, #06275d 35%, #3232a8);
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #2660ff),color-stop(.35, #06275d),color-stop(1, #3232a8));
+	border: 1px solid #3232a8;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+.user_delete:hover {
+height:20px;
+width: 50px;
+margin: 3px 3px 3px 3px;
+padding: 3px 3px 3px 3px;
+font-family: Helvetica;
+font-size: 10px;
+text-decoration: none;
+color: #EEC015;
+text-shadow: -1px -1px 2px #465f97;
+background: -moz-linear-gradient(#3232a8, #06275d 75%, #2660ff);
+background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #3232a8),color-stop(.75, #06275d),color-stop(1, #2660ff));
+border: 1px solid #3232a8;
+border-radius: 3px;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
 }
 
 #tos{
@@ -273,4 +346,20 @@ label{
 	color: black;
 	text-align: center;
 	padding-top: 20px;
+}
+
+.how_para{
+	font-size: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 40px;
+    margin-bottom: 40px;
+	width: 500px;
+	padding:40 20 60 20;
+	background: white;
+	border: 12px solid black;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
+	color: black;
+	text-align: center;
 }

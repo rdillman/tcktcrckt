@@ -32,30 +32,36 @@
 
 	</head>
 	<body id="body">
-	<div id="container">
-		<body id="body">
+		<div id="container">
+		<!-- <body id="body"> -->
 			<header id="user_nav">
-
-				<%= link_to image_tag "tcktcrckt.png", :controller => "lookup", :action => "addr" %> |
+				<div id="user_nav_basic">
+				<%= link_to image_tag "tcktcrckt.png", :controller => "lookup", :action => "addr", :method => "get" %> |	
+		
+				<%= link_to "How it Works", lookup_how_to_path %> |
 				<%= link_to "My Alerts", alert_show_path %> |
 				<%= link_to "About Us", layouts_about_us_path%> |
-				<%= link_to "Contact Us", layouts_contact_us_path %>
-
-					<div id="user_sign">
-
-						<% if user_signed_in? %>
-							Signed In as <%= link_to current_user.username.blank? ? current_user.email : current_user.username, edit_user_registration_path %>. Not you?
-							<%= link_to "Sign Out", destroy_user_session_path %>
-						<% else %>
-							<%= link_to "Sign Up", new_user_registration_path %>
-						<% end %>
-						<% if mobile_device? %>
-					    	<%= link_to "FULL SITE", :mobile => 0 %>
-					  	<% else %>
-					    	<%= link_to "Mobile Site", :mobile => 1 %>
-					  	<% end %>
-					</div>
+				<%= link_to "Contact Us", layouts_contact_us_path %> |	
+				
+				<!-- <div id="user_nav_sign"> -->
+					<% if user_signed_in? %>
+						Signed In as <%= link_to current_user.username.blank? ? current_user.email : current_user.username, edit_user_registration_path %>. Not you?
+						<%= link_to "Sign Out", destroy_user_session_path %>
+					<% else %>
+						<%= link_to "Sign Up", new_user_registration_path %>
+					<% end %> |
+					<% if mobile_device? %>
+				    	<%= link_to "FULL SITE", :mobile => 0 %>
+				  	<% else %>
+				    	<%= link_to "Mobile Site", :mobile => 1 %>
+				  	<% end %>
+				<!-- </div> -->
+				
+				</div>
+				
+				
 			</header>
+			<!-- </header> -->
 	  
 	  <div id="yield_page">
 		 	
@@ -64,5 +70,13 @@
 		</div>
 			<%= yield %>
 		</body>
+
+		<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+		<input type="hidden" name="cmd" value="_s-xclick">
+		<input type="hidden" name="hosted_button_id" value="K5ELFZECZQM66">
+		<input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110429-1/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+		<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+		</form>
+
 
 </html>

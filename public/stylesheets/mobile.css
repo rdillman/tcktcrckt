@@ -5,19 +5,28 @@
 	text-align: center;
 }
 
+/*Header/Navigation*/
 #user_nav{
 	color: #06275D;
 	background-color: black;
-	height:45px;
-	padding: 0px;
+	height:50px;
+	padding: 3px;
+	z-index:0;
+}
+
+#user_nav_mob{
+	color: #06275D;
+	background-color: black;
+	height:50px;
+	padding: 3px;
 	z-index:0;
 }
 
 #left_tab{
 	float:left;
 	width:auto;
-	padding:1px;
-	margin:0px;
+	padding:5px;
+	margin:5px;
 	border:10px;
 	border-color:white;
 	z-index:1;
@@ -26,60 +35,83 @@
 
 #right_tab{
 	float:right;
+	height:46px;
 	width:auto;
 	padding:2px;
-	margin:0px;
+	margin:2px;
 	border:10px;
 	border-color:white;
 	z-index:1;
 }
 
+/*element containing the search bar and button*/
 .search_bar{
-	border-radius: 5px;
-	-moz-border-radius: 5px;
+	border-radius: 15px;
+	-moz-border-radius: 15px;
 	position:relative;
 	top:0px;
 	height:55px;
-	margin: auto;
-	width:100%;
+	margin: 5px 5px 5px 5px;
+	width:99%;
 	-moz-width:100%;
-	padding:0px;
+	padding:2px 2px 2px 2px;
 }
 
+/*div containing the actual search input bar*/
 .input{
-	border-radius: 5px;
+	border-radius: 7px;
+	float:center;
 	position:relative;
-	float:left;
-	-moz-border-radius: 5px;
+	-moz-border-radius: 7px;
 	border: 0px;
-	font-size: 20px;
-	height:55px;
-	padding:0px;
-	
+	font-size: 15px;
+	display:center;
+	height:12px;
+	padding:5px 5px 5px 5px;
+	margin: 15px 7px 7px 7px;
+	width:220px;
 }
+	
+/*styling for search bar*/	
+.user_search{
+	border-radius: 17px;
+	moz-border-radius: 17px;
+	height:45px;
+	margin: 5px 5px 5px 5px;
+	padding: 10px 10px 10px 10px;
+	vertical-align:center;
+}
+
+/*Search Button div*/
 .search_button{
 	position:relative;
 	float:right;
 	height:55px;
 }
+
+/*container including search, accordion*/
 #yield_page{
 	width:100%;
+	margin: 5px;
 }
+
+/*Messages to user*/
 .info, .success, .warning, .error, .validation {
     margin-left:auto;
     margin-right:auto;
-	font-size:15px;
-	height:30px;
+	font-size:1em;
+	height:45px;
 	font-weight:bold;
+	vertical-align:center;
 	text-align:center;
 	position:relative;
-	top:6px;
+	top:0px;
 	border:0px;
 	margin:0px;
 	width:100%;
 	padding:0px;
-
 }
+
 .info {
 	color: #00529B;
 	background-color: #BDE5F8;
@@ -95,12 +127,187 @@
 .error {
 	color: #D8000C;
 	background-color: #FFBABA;
-*/}
+}
 
+/*Accordion content for My Alerts*/
 .alert{
-	background-color: white;
 	postion:relative;
 	top:50px;
-	width:100%;
+	width:99%;
 	color:black;
 }
+
+.alert_head{
+	position: relative;
+	width: 98%;
+	margin: 10px 10px 10px 10px;
+	padding: 10px 5px 10px 5px;
+	
+}
+
+.alert_row{
+	position: relative;
+	float:center;
+	text-align:right;
+	width: 60%;
+	margin-left:20%;
+	margin-right:20%;
+	padding: 10px 5px 10px 5px;
+}
+
+/*Accordion CSS*/
+.AccordionContainer {
+  float:center;  
+  position:relative;
+  width:50%;
+  margin-left:25%;
+  margin-right:25%;
+}
+
+.AccordionTitle
+{
+  height:25px;
+  overflow:hidden;
+  cursor:pointer;
+  font-family:Helvetica;
+  font-size:12pt;
+  font-style: uppercase;
+  vertical-align:middle;
+  text-align:left;
+  width:60%;
+  margin-left:20%;
+  margin-right:20%;
+  -moz-user-select:none;
+  padding:3px;
+}
+
+.AccordionContent
+{
+  height:25px;
+  overflow:auto;
+  display:none; 
+  text-align:center;
+}
+
+
+/*Mobile Buttons Styling*/
+.user_msubmit{	
+	height:20px;
+	width: 50px;
+	margin: 3px 3px 3px 3px;
+	padding: 3px 3px 3px 3px;
+	font-family: Helvetica;
+	font-size: 10px;
+	text-decoration: none;
+	color: #EEC015;
+	text-shadow: -1px -1px 2px #618926;
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0, #000000),
+	    color-stop(0, #000000),
+	    color-stop(0.72, #414242)
+	);
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    #000000 0%,
+	    #000000 0%,
+	    #414242 72%
+	);
+	border: 1px solid #3232a8;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+/*.user_msubmit:hover {
+	height:20px;
+	width: 50px;
+	margin: 3px 3px 3px 3px;
+	padding: 3px 3px 3px 3px;
+	font-family: Helvetica;
+	font-size: 10px;
+	text-decoration: none;
+	color: #EEC015;
+	text-shadow: -1px -1px 2px #465f97;
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.15, #414242),
+	    color-stop(0.42, #292929),
+	    color-stop(0.86, #000000)
+	);
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    #414242 15%,
+	    #292929 42%,
+	    #000000 86%
+	);
+		border: 1px solid #3232a8;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}*/
+
+.user_mdelete{
+	height:20px;
+	width: 50px;
+	margin: 3px 3px 3px 3px;
+	padding: 3px 3px 3px 3px;
+	font-family: Helvetica;
+	font-size: 10px;
+	text-decoration: none;
+	color: #EEC015;
+	text-shadow: -1px -1px 2px #618926;
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0, #000000),
+	    color-stop(0, #000000),
+	    color-stop(0.72, #414242)
+	);
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    #000000 0%,
+	    #000000 0%,
+	    #414242 72%
+	);
+	border: 1px solid #3232a8;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+/*.user_mdelete:hover {
+	height:20px;
+	width: 50px;
+	margin: 3px 3px 3px 3px;
+	padding: 3px 3px 3px 3px;
+	font-family: Helvetica;
+	font-size: 10px;
+	text-decoration: none;
+	color: #EEC015;
+	text-shadow: -1px -1px 2px #465f97;
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.15, #414242),
+	    color-stop(0.42, #292929),
+	    color-stop(0.86, #000000)
+	);
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    #414242 15%,
+	    #292929 42%,
+	    #000000 86%
+	);
+	border: 1px solid #3232a8;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+*/

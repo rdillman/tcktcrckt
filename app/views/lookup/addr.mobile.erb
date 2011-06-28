@@ -1,41 +1,183 @@
 <html>
 <head>	
+
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+	  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+	  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+	  <script>
+	  $(document).ready(function() {
+	    $("#accordion").accordion();
+	  });
+	  </script>
+
+	<script type="text/javascript">
+	/*accordion gloabal vars*/
+	var ContentHeight = 300;
+	var TimeToSlide = 250.0;
+
+	var openAccordion = '';
+
+	/*run accordion function for mobile accordion menu*/
+
+	function runAccordion(index) {
+	  var nID = "Accordion" + index + "Content";
+	  if(openAccordion == nID)
+	    nID = '';
+
+	  setTimeout("animate(" + new Date().getTime() + "," + TimeToSlide + ",'" 
+	      + openAccordion + "','" + nID + "')", 33);
+
+	  openAccordion = nID;
+	}
+
+	/*Accordion animate function that makes it slide*/
+	function animate(lastTick, timeLeft, closingId, openingId){  
+	  var curTick = new Date().getTime();
+	  var elapsedTicks = curTick - lastTick;
+
+	  var opening = (openingId == '') ? null : document.getElementById(openingId);
+	  var closing = (closingId == '') ? null : document.getElementById(closingId);
+
+	  if(timeLeft <= elapsedTicks){
+	    if(opening != null){
+	      opening.style.height = ContentHeight + 'px';
+        }
+	    if(closing != null){
+	      closing.style.display = 'none';
+	      closing.style.height = '0px';
+	    }
+	    return;
+	  }
+
+	  timeLeft -= elapsedTicks;
+	  var newClosedHeight = Math.round((timeLeft/TimeToSlide) * ContentHeight);
+
+	  if(opening != null){
+	    if(opening.style.display != 'block')
+	      opening.style.display = 'block';
+	    opening.style.height = (ContentHeight - newClosedHeight) + 'px';
+	  }
+
+	  if(closing != null){
+	    closing.style.height = newClosedHeight + 'px';
+
+	  setTimeout("animate(" + curTick + "," + timeLeft + ",'" 
+	      + closingId + "','" + openingId + "')", 33);
+	  }
+	}
+	</script>
 </head>	
 
 
 
+<div id='container'>
 
 <!-- ################### Search Bar ################### -->
-<div class="search_bar">
-<%= form_tag("/lookup/addr", :method => "get") do %>
 
-	<b><font size=5>
-		<div id="input">
-  		<%= text_field_tag(:q, nil, :placeholder => "Search address for cleaning times in San Francisco...", :size => 55) -%></font>
-	    <%= submit_tag("", :class => "user_submit") %>
-		</div>
-<% end %>
-</div>
+<!-- why are there 2 divs below, the search bar div and the input div? -->
+
+	<div class="search_bar">
+		<%= form_tag("/lookup/addr", :method => "get") do %>
+			<div id="input">
+	  		<%= text_field_tag(:q, nil, :placeholder => "Entr address, Srch Times", :size => 55,  :class => "input") -%>
+		    <%= submit_tag("Search", :class => "user_msubmit") %>
+			</div>
+		<% end %>
+	</div>
 
 <!-- ##################  Message Box ################## -->
-<%if @message&&@box%>
-	<%if @box == "error"%>
-		<div class='error'><%=@message%></div>
-	<%elsif @box == "warn"%>
-		<div class='warning'><%=@message%></div>
-	<%elsif @box == 'info'%>
-		<div class='info'><%=@message%></div>
-	<%elsif @box == 'error'%>
-		<div class='error'><%=@message%></div>
-	<%end%>
-<%end%> 
+	<%if @message&&@box%>
+		<%if @box == "error"%>
+			<div class='error'><%=@message%></div>
+		<%elsif @box == "warn"%>
+			<div class='warning'><%=@message%></div>
+		<%elsif @box == 'info'%>
+			<div class='info'><%=@message%><%=image_tag 'alert.png' %></div>
+		<%elsif @box == 'error'%>
+			<div class='error'><%=@message%></div>
+		<%end%>
+	<%end%> 
 <!--- ################   Alerts ###################### -->
-<div class="alert">
-	ALERTS<br/>
-	ALERTS<br/>
-	ALERTS<br/>
-	ALERTS<br/>
-	ALERTS<br/>
-	ALERTS<br/>
+
+    <!-- #######  Accordion Codez  ############ -->
+
+
+<div id="accordion">
+	<h3><a href="#">Current Alerts</a></h3>
+	<div>
+		<%if @alerts != [] && @alerts != nil-%>
+		<ul>
+			<%@alerts.each do |a|-%>
+				<li><%=a.location%> <br/>
+				<%=a.clean_time%> <br/>
+				<%if a.nb4%>Night Before<%else%>One Hour Before<%end%> 
+				 <%= submit_tag("delete", :controller => "alert", :action => "kill", :q => a.id, :method => "get", :class => "user_delete") %> | <%= submit_tag("edit", :controller => "alert", :action => "edit", :alarm => a.id, :method => "get", :class => "user_delete" ) %></li>
+			<%end%>
+		</ul>
+		<%else%>
+			<h2>You have no alerts right now</h2>
+		<%end%>
+	</div>
+	<h3><a href="#">Recent alerts</a></h3>
+	<div>
+		<%if @recs%>
+		<ul>
+			<li><%if @recs[0]%>
+					<%=@recs[0]%>
+				<%end%></li>
+			<li><%if @recs[1]%>
+					<%=@recs[1]%>
+				<%end%></li>
+			<li><%if @recs[2]%>
+					<%=@recs[2]%>
+				<%end%></li>
+		</ul>
+		<%else%>
+		no recent searches
+		<%end%>
+	</div>
+</div>
+
+
+<!-- <div id="AccordionContainer" class="AccordionContainer">
+
+  <div onclick="runAccordion(1);">
+     <div class="AccordionTitle" onselectstart="return false;">
+      My Alerts
+     </div>
+  </div>
+
+  <div id="Accordion1Content" class="AccordionContent">
+    <div class="alert_row">Alert 1</div>	
+	<div class="alert_row">Alert 2</div>
+	<div class="alert_row">Recent Alert 1</div>
+	<div class="alert_row">Recent Alert 2</div>
+	<div class="alert_row">Recent Alert 3</div>
+     </div>
+
+  <div onclick="runAccordion(2);">
+    <div class="AccordionTitle" onselectstart="return false;">
+      Use Map
+    </div>
+  </div>
+
+  <div id="Accordion2Content" class="AccordionContent">
+    This is where the map will live!!
+  </div>
+ 
+</div> -->
+
+<!--<div class="alert">
+	<div id="alert_head">My Alerts</div>
+	<div class="alert_row">Alert 1</div>	
+	<div class="alert_row">Alert 2</div>
+	<div class="alert_row">Alert 3</div>
+	<div class="alert_row">Alert 4</div>
+	<div class="alert_row">Alert 5</div>
+	<div class="alert_row">Alert 6</div>
+	<div class="alert_row">Alert 7</div>
+</div> -->
+
 </div>
 </html>

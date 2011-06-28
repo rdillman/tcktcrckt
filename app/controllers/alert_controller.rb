@@ -2,28 +2,6 @@ class AlertController < ApplicationController
   before_filter :authenticate_user!
   before_filter :validated?
   
-  # before_filter :validate_user, :except => validate
-  
-  # def validate
-  #   @code = params[:code]
-  #   @user = current_user
-  #   @usr_qry = params[:q]
-  #   
-  #   if @code == @user.val
-  #     @message = "Your phone number has been validated!"
-  #     
-  #     respond_to do |format|
-  #       format.html {render :file => "#{Rails.root}/app/views/alert/validate.html.erb"}
-  #       format.xml  {render : => @message}
-  #     end
-  #   else
-  #     respond_to do |format|
-  #       format.html
-  #       format.xml {render :xml => @alerts}
-  #     end
-  #   end
-  # end
-  
   def show
     @user = current_user
     @alerts = Alarm.where("user_id=?",@user.id)
@@ -190,6 +168,7 @@ class AlertController < ApplicationController
       
         #If it worked --- 
         if @a
+          @user.update_rec(uq)
           if !@user.phone_number or !@user.carrier
             @message = "Almost There! In order to send you alarms we need to know phone number and carrier"
             @box = "warn"
@@ -380,6 +359,10 @@ class AlertController < ApplicationController
         
   
   def validated?
+<<<<<<< HEAD
+=======
+    @user = current_user
+>>>>>>> e9a5dae32f794501559336bfbede6dc0f9c89f73
     if @user.phone_number != @user.valphone
       redirect_to :controller => "validator", :action => "enter"
     end

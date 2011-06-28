@@ -31,31 +31,32 @@
 	</script>
 	<!-- end Google analytics -->
 </head>
+
 <body id="body">
 	<div id="container">
-	<body id="body">
-		<div id="user_nav">
+		<div id="user_nav_mob">
 			<div id="left_tab"><%= image_tag "tcktcrckt.png" %>
+				<% if mobile_device? %>
+			    	<%= link_to "Full Site", :mobile => 0 %>
+			  	<% else %>
+			    	<%= link_to "Mobile Site", :mobile => 1 %>
+			  	<% end %>
 			</div>
-			<% if mobile_device? %>
-		    	<%= link_to "FULL SITE", :mobile => 0 %>
-		  	<% else %>
-		    	<%= link_to "Mobile Site", :mobile => 1 %>
-		  	<% end %>
+			
 			<div id="right_tab"><%= image_tag "alert.png" %></div>
 		</div>
 	  
-	  <div id="yield_page">
+	    <div id="yield_page">
 		 	
-		<div id="logo">
-		<!-- <%= image_tag "tcktcrckt.png"%> -->
-		</div>
+		  <div id="logo">
+		  <!-- <%= image_tag "tcktcrckt.png"%> -->
+		  </div>
 			<%= yield %>
 		 
-	  </div>
+	    </div>
 	</div>
 </div>
-</div>
+
 
 </html>	
 

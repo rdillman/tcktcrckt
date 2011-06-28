@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110627191718) do
+ActiveRecord::Schema.define(:version => 20110627191837) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -160,6 +160,9 @@ ActiveRecord::Schema.define(:version => 20110627191718) do
     t.string   "valphone"
     t.integer  "valcode"
     t.string   "language"
+    t.string   "rec1"
+    t.string   "rec2"
+    t.string   "rec3"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

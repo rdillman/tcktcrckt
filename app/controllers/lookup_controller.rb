@@ -3,6 +3,7 @@ class LookupController < ApplicationController
   
   def addr
     @usr_qry = params[:q]
+    @user = current_user
     
     if @usr_qry
       @results = Block.next_ct_from_addr(@usr_qry)
@@ -32,13 +33,37 @@ class LookupController < ApplicationController
       else 
         @message = 'Next Streetclean:'<<@results[0][0].strftime("%A %B %e at %I:%M%p.")
         @box = "info"
+        if @user
+          @alerts = Alarm.where("user_id =?",@user.id)
+          @recs = []
+          @recs << @user.rec1 <<@user.rec2<<@user.rec3
+        end
+        
         respond_to do |format|
           format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
           format.xml  {render :xml => @message}
           format.xml  {render :xml => @box}
+          format.xml  { render :xml => @alerts }
+          format.xml  { render :xml => @recs }
+          
+          
         end
       end
+      
+    else
+      if @user
+        @alerts = Alarm.where("user_id =?",@user.id)
+        @recs = []
+        @recs << @user.rec1 <<@user.rec2<<@user.rec3
+      end
+      respond_to do |format|
+        format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+        format.xml  { render :xml => @alerts }
+        format.xml  { render :xml => @recs }
+        
+      end
     end
+      
   
   end
   
@@ -52,26 +77,45 @@ class LookupController < ApplicationController
    # Joseles - all the strings for il8n are in these functions
   
   def do_empty
+
     @alerts = Alarm.where("user_id = ?",current_user.id)
     @message = i18n.translate('alert_controller.do_empty.message')
+
+    @user = current_user
+    if @user
+      @alerts = Alarm.where("user_id =?",@user.id)
+      @recs = []
+      @recs << @user.rec1 <<@user.rec2<<@user.rec3
+    end
     @box = "error"
     respond_to do |format|
       format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
       format.xml  {render :xml => @message}
       format.xml  {render :xml => @box}
       format.xml  { render :xml => @alerts }
+      format.xml  { render :xml => @recs }
+      
       
     end
   end
   
   def do_invalid(res,uq)
     @message = i18n.translate('alert_controller.create.res.invalid')
+    @user  = current_user
     @message<<" "<<uq
     @box = "error"
+    if @user
+      @alerts = Alarm.where("user_id =?",@user.id)
+      @recs = []
+      @recs << @user.rec1 <<@user.rec2<<@user.rec3
+    end
     respond_to do |format|
       format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
       format.xml  {render :xml => @message}
       format.xml  {render :xml => @box}
+      format.xml  { render :xml => @alerts }     
+      format.xml  { render :xml => @recs }
+      
     end
   end
   
@@ -79,10 +123,19 @@ class LookupController < ApplicationController
     @message = i18n.translate('alert_controller.create.res.no_entry')
     @message<<" "<<uq
     @box = "warn"
+    @user  = current_user
+    if @user
+      @alerts = Alarm.where("user_id =?",@user.id)
+      @recs = []
+      @recs << @user.rec1 <<@user.rec2<<@user.rec3
+    end
     respond_to do |format|
       format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
       format.xml  {render :xml => @message}
       format.xml  {render :xml => @box}
+      format.xml  { render :xml => @alerts }
+      format.xml  { render :xml => @recs }
+      
       
     end
   end
@@ -91,17 +144,37 @@ class LookupController < ApplicationController
     
     @message = i18n.translate('alert_controller.do_multiple.message')
     @box = "info"
+    @user  = current_user
+    if @user
+      @alerts = Alarm.where("user_id =?",@user.id)
+      @recs = []
+      @recs << @user.rec1 <<@user.rec2<<@user.rec3
+    end
     respond_to do |format|
       format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
       format.xml  {render :xml => @message}
       format.xml  {render :xml => @box}
+      format.xml  { render :xml => @alerts }
+      format.xml  { render :xml => @recs }
+      
     end
   end
   
-  
-  # def text_message
-  #   @user = current_user
-  #   UserMailer.send_next_time(@user).deliver
-  # end
-
+  def do_empty
+    @message = "Please enter something"
+    @box = "error"
+    @user  = current_user
+    if @user
+      @alerts = Alarm.where("user_id =?",@user.id)
+      @recs = []
+      @recs << @user.rec1 <<@user.rec2<<@user.rec3
+    end
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+      format.xml  {render :xml => @message}
+      format.xml  {render :xml => @box}
+      format.xml  { render :xml => @alerts }
+      format.xml  { render :xml => @recs }
+    end
+  end
 end
