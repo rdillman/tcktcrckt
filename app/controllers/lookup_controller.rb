@@ -8,6 +8,7 @@ class LookupController < ApplicationController
     if @usr_qry
       @results = Block.next_ct_from_addr(@usr_qry)
     
+     #What does res mean?? Does uq mean user_query?
       res = @results
       uq  = @usr_qry 
 
@@ -81,6 +82,7 @@ class LookupController < ApplicationController
     if @user
       @alerts = Alarm.where("user_id =?",@user.id)
       @recs = []
+      # What does rec1, rec2, rec3 mean??? What does recs mean??
       @recs << @user.rec1 <<@user.rec2<<@user.rec3
     end
     @message = "Please enter something"
@@ -157,6 +159,8 @@ class LookupController < ApplicationController
     end
   end
   
+  
+  #Should this function be gone??
   def do_empty
     @message = "Please enter something"
     @box = "error"
