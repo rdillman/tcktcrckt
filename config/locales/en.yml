@@ -31,7 +31,7 @@ en:
     do_alert_exists:
       message:'An alert for this block already exists'
     do_multiple:
-      message: 'We have mulitple streets with that name, try adding St or Ave to your searches'
+      message: 'We have multiple streets with that name, try adding St or Ave to your searches'
     do_empty:
       message: 'Please enter something'
     alert_messages:
@@ -41,7 +41,7 @@ en:
       options:
         night_before: 'Night Before
         1_hour: '1 Hour Before'
-        no_alarm: "Don't Create an Alarm'
+        no_alarm: "Don't Create an Alarm"
       get_results: 'Get Results!'
       titles:
         current: 'Your Current Alerts!'
