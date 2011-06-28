@@ -24,7 +24,7 @@ en:
         delete: 'The Alarm has been deleted'
     create_message:
       alert_created: 'An alert has been created for the streetcleaning of '
-      begins: ' which begins at '
+      begins: ' which begins on '
     kill_message:
       alert_for: 'Streetcleaning alert for '
       deleted: 'has been deleted.'

@@ -10,46 +10,46 @@ es:
       success:  'Su numero ha sido actualizado.'
     create:
       res:
-        invalid_address: 'Invalid Address - No Address or No Street'
-        no_record: "We don't have a record for that address for that street"
-        invalid: 'Invalid Address'
-        multiple: 'Which of these Streets?'
-        no_entry: "Oops We Don't Have a Cleaning Record for this Street"
-        empty: 'empty'
+        invalid_address: 'Dirección Invalido - Dirección o calle no existe'
+        no_record: "No tenemos un archivo para esa dirección para esa calle"
+        invalid: 'Dirección Invalido'
+        multiple: '¿Cuál de estas calles?'
+        no_entry: 'Uy, No tenemos un archivo de limpieza para esta calle.'
+        empty: 'Vacío'
       construct_alarm:
-        next_clean: 'Next Street Clean'
-        time: '%A %B %e at %I:%M%p.'
-        warn: 'Almost There! In order to send you alarms we need to know phone number and carrier'
+        next_clean: 'La próxima limpieza de calle'
+        time: '%A %B %e a las %I:%M%p.'
+        warn: '¡Casi Ya! Para enviarle alarmas necesitamos su número de teléfono y compañia.'
       kill:
-        delete: 'The Alarm has been deleted'
+        delete: 'La alarma ha sido eliminado'
     create_message:
-      alert_created: 'An alert has been created for the streetcleaning of '
-      begins: ' which begins at '
+      alert_created: 'Una alerta se ha creado para la limpieza de calle de '
+      begins: ' que comienza el '
     kill_message:
-      alert_for: 'Streetcleaning alert for '
-      deleted: 'has been deleted.'
+      alert_for: 'Alerta de limpieza de calle para '
+      deleted: 'ha sido eliminado.'
     do_alert_exists:
-      message:'An alert for this block already exists'
+      message:'Ya existe una alerta para este bloque'
     do_multiple:
-      message: 'We have mulitple streets with that name, try adding St or Ave to your searches'
+      message: 'Tenemos varios calles con ese nombre, trate de añadir St o Ave a su búsqueda.'
     do_empty:
-      message: 'Please enter something'
+      message: 'Por favor escriba algo'
     alert_messages:
-      multiple: 'Which of these?'
-      new: 'New Search'
-      alarm_options: 'Alarm Options'
+      multiple: '¿Cuál de estos?'
+      new: 'Nueva Búsqueda'
+      alarm_options: 'Opciones de Alarma'
       options:
-        night_before: 'Night Before'
-        1_hour: '1 Hour Before'
-        no_alarm: 'Do not Create an Alarm'
-      get_results: 'Get Results!'
+        night_before: 'Noche Antes'
+        1_hour: '1 Hora Antes'
+        no_alarm: 'No crear una Alarma'
+      get_results: '¡Conseguir resultados!'
       titles:
-        current: 'Your Current Alerts!'
-        none: 'You have no Current Alerts'
-        location: 'Location'
-        cleantime: 'CleanTime'
-        alert:  'Alert Send'
+        current: 'Sus Alertas Actuales!'
+        none: 'No tienes Alertas Actuales'
+        location: 'Ubicación'
+        cleantime: 'Tiempo de Limpieza'
+        alert:  'Enviar Alerta'
   sessions_controller:
-    welcome: "Welcome, "
+    welcome: "Bienvenido, "
   validator_controller:
-    incorrect_code: "Incorrect Code, Please Try Again"
+    incorrect_code: "Código incorrecto, por favor, inténtalo de nuevo."
