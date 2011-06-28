@@ -26,14 +26,10 @@ es:
       signed_out: 'Has salido correctamente'
     passwords:
       send_instructions: 'Recibirás un email con instrucciones para cambiar tu contraseña en poco minutos.'
-<<<<<<< HEAD
       updated: 'Tu contraseña ha sido modificada. Ya has accedido a tu cuenta.'
     confirmations:
       send_instructions: 'Recibirás un email con instrucciones para confirmar tu cuenta en poco minutos.'
-      updated: 'Tu contraseña ha sido confirmada. Ya has accedido a tu cuenta.'
-=======
-      confirmed: 'Tu contraseña ha sido modificada. Ya has accedido a tu cuenta.'
->>>>>>> e9a5dae32f794501559336bfbede6dc0f9c89f73
+      confirmed: 'Tu contraseña ha sido confirmada. Ya has accedido a tu cuenta.'
     registrations:
       signed_up: '¡Bienvenido! Te has registrado correctamente.'
       inactive_signed_up: 'Te has registrado correctamente. Sin embargo, no hemos podido iniciar su sesión porque tu cuenta es %{reason}.'

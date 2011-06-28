@@ -39,9 +39,9 @@ en:
       new: 'New Search'
       alarm_options: 'Alarm Options'
       options:
-        night_before: 'Night Before
+        night_before: 'Night Before'
         1_hour: '1 Hour Before'
-        no_alarm: "Don't Create an Alarm"
+        no_alarm: 'Do not Create an Alarm'
       get_results: 'Get Results!'
       titles:
         current: 'Your Current Alerts!'
