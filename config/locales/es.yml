@@ -49,10 +49,13 @@ es:
         location: 'Ubicación'
         cleantime: 'Tiempo de Limpieza'
         alert:  'Enviar Alerta'
+        
   sessions_controller:
     welcome: "Bienvenido, "
+    
   validator_controller:
     incorrect_code: "Código incorrecto, por favor, inténtalo de nuevo."
+  
   about_us:
     intro: "Gracias por visitar Ticket Cricket. Hemos creado este sitio para que podríamos detener el ataque de multas de estacionamiento. Somos unas pocas personas que querían ayudar, por lo que hemos trabajado muchas horas haciendo este sitio lo que es hoy, sin conocimiento anterior de cómo hacerlo."
     facts_title: "ALGUNOS HECHOS:"
@@ -60,6 +63,7 @@ es:
     fact_2: "En esos 89 barrios hay 238 tiempos de limpieza únicas."
     fact_3: "Con esos 238 únicas veces hay alrededor de 1425 calles que los utilizan."
     closing: "Eso es mucho para recordar. Así que tenemos Ticket Cricket. Sólo tienes que entregar la dirección donde estas estacionado y le enviaremos una alerta de texto cuando es hora de mudar su vehículo. ¡Es así de fácil!"
+  
   header:
     title: "¡Pierde las Vocales, Pierde las Multas!"
     search: "Entrega Dirección para buscar los tiempos de limpieza en San Francisco..."
@@ -74,6 +78,7 @@ es:
       sign_up: "Regístrese"
       full_site: "Sitio Lleno"
       mobile: "Sitio Móvil"
+  
   how_to:
     title: "Cómo utilizar TcktCrckt"
     intro:
@@ -88,12 +93,15 @@ es:
       step_4: "Entrega esta dirección en el cuadro de texto en la página principal."
       step_5: "Si desea que nosotros le enviaremos una alerta antes de que el limpiador viene, elige si desea ser notificado una hora antes del tiempo de limpieza o de la noche anterior desde el menú desplegable que esta junto a su tiempo de limpieza."
       step_6: "Ahora haga clic en el botón verde y bonito etiquetado como 'Create txt Alert.'"
+  
   contact_us: "¡Da nos un grito!"
+  
   validator:
     text_1: "Se ha enviado un código de validación a tu numero de teléfono :"
     text_2: ", debe recibirlo en poco tiempo."
     text_3: "¡Entregalo a lo siguiente y comenza a crear alertas!"
     text_4: "Código de Validación: "
+  
   registration:
     sign_up: "Regístrese"
     edit: "Editar"

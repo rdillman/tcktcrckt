@@ -1,4 +1,4 @@
-<h2><%= I18n.translate('registration.edit')%> <%= resource_name.to_s.humanize %></h2>
+<h2><%= I18n.translate('registration.edit')%> <%= resource_name.to_s.humanize %></h2>#can "resource_name.tos.humanize" be called as a string instead?
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -29,9 +29,7 @@
 
   <p><%= f.submit I18n.translate('registration.update') %></p>
 <% end %>
-
-<h3><%= I18n.translate('registration.cancel')%></h3>
-
+<br>
 <p><%= I18n.translate('registration.unhappy')%> <%= link_to I18n.translate('registration.cancel'), registration_path(resource_name), :confirm => "Are you sure?", :method => :delete %>.</p>
 
 <%= link_to I18n.translate('registration.back'), :back %>
