@@ -31,7 +31,7 @@ class LookupController < ApplicationController
           do_empty
       
       else 
-        @message = 'Next Streetclean:'<<@results[0][0].strftime("%A %B %e at %I:%M%p.")
+        @message = @results[0][0].strftime("%A %B %e at %I:%M%p.")
         @box = "info"
         if @user
           @alerts = Alarm.where("user_id =?",@user.id)
@@ -45,7 +45,7 @@ class LookupController < ApplicationController
           format.xml  {render :xml => @box}
           format.xml  { render :xml => @alerts }
           format.xml  { render :xml => @recs }
-          
+          format.xml {render :xml => @usr_qry}
           
         end
       end
@@ -72,7 +72,7 @@ class LookupController < ApplicationController
 
   def map
   end
-  
+    
   private
   
   

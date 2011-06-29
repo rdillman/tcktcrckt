@@ -81,6 +81,11 @@
 	height:55px;
 }
 
+#alerts{
+	position:relative;
+	float:bottom;
+}
+
 /*container including search, accordion*/
 #yield_page{
 	width:100%;
@@ -92,7 +97,7 @@
     margin-left:auto;
     margin-right:auto;
 	font-size:1em;
-	height:45px;
+	height:5em;
 	font-weight:bold;
 	vertical-align:center;
 	text-align:center;
@@ -108,6 +113,7 @@
 	color: #00529B;
 	background-color: #BDE5F8;
 }
+
 .success {
 	color: #4F8A10;
 	background-color: #DFF2BF;
@@ -146,6 +152,8 @@
 	margin-right:20%;
 	padding: 10px 5px 10px 5px;
 }
+
+
 
 /*Accordion CSS*/
 .AccordionContainer {
