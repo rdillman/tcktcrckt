@@ -1,11 +1,23 @@
+<div class="lookup">
+	<%= form_tag("/alert/create", :method => "get") do %>
+	<%=label_tag "q", I18n.translate('alert_controller.alert_messages.new')%>
+	<%= text_field_tag(:q, nil, :placeholder => "101 Larkin St", :size => 55, :class => "input1") %>
+	
+</div>
 
-<%= form_tag("/alert/create", :method => "get") do %>
-	<b><font size=5><%=label_tag "q", I18n.translate('alert_controller.alert_messages.new')%></b>
-  	<%= text_field_tag(:q, nil, :placeholder => "101 Larkin St", :size => 27) -%></font>
+
+
+
 	  
 	<font size=5><b><%= label_tag "st", I18n.translate('alert_controller.alert_messages.alarm_options')-%></b></font>
-	<%= select_tag "st", options_for_select([ I18n.translate('alert_controller.alert_messages.options.night_before'), I18n.translate('alert_controller.alert_messages.options.1_hour'), I18n.translate('alert_controller.alert_messages.options.no_alarm') ], I18n.translate('alert_controller.alert_messages.options.night_before')) %>
-    <%= submit_tag(I18n.translate('alert_controller.alert_messages.get_results'), :class => "user_submit") %>
+	
+	<%= select_tag "st", options_for_select([ 
+		I18n.translate('alert_controller.alert_messages.options.night_before'),
+		I18n.translate('alert_controller.alert_messages.options.1_hour'), 
+		I18n.translate('alert_controller.alert_messages.options.no_alarm') ], 
+		I18n.translate('alert_controller.alert_messages.options.night_before')) %>
+		
+  <%= submit_tag(I18n.translate('alert_controller.alert_messages.get_results'), :class => "user_submit") %>
 <% end %>
 
 <hr>

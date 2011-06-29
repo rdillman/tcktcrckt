@@ -248,7 +248,7 @@ label{
 	
 	
 	height:25px;
-	width: 50px;
+	width: 150px;
 	margin: 15px 15px 15px 15px;
 	padding: 5px 5px 5px 5px;
 	font-family: Helvetica;
@@ -266,7 +266,7 @@ label{
 
 .user_submit:hover {
 height:25px;
-width: 50px;
+width: 150px;
 margin: 15px 15px 15px 15px;
 padding: 5px 5px 5px 5px;
 font-family: Helvetica;
