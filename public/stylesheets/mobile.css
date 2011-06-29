@@ -4,34 +4,3 @@
 	width:100%;
 	text-align: center;
 }
-
-
-/*.user_mdelete:hover {
-	height:20px;
-	width: 50px;
-	margin: 3px 3px 3px 3px;
-	padding: 3px 3px 3px 3px;
-	font-family: Helvetica;
-	font-size: 10px;
-	text-decoration: none;
-	color: #EEC015;
-	text-shadow: -1px -1px 2px #465f97;
-	background-image: -webkit-gradient(
-	    linear,
-	    left bottom,
-	    left top,
-	    color-stop(0.15, #414242),
-	    color-stop(0.42, #292929),
-	    color-stop(0.86, #000000)
-	);
-	background-image: -moz-linear-gradient(
-	    center bottom,
-	    #414242 15%,
-	    #292929 42%,
-	    #000000 86%
-	);
-	border: 1px solid #3232a8;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-}

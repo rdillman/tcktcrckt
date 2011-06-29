@@ -1,10 +1,17 @@
-<html>
 <head>	
 
 	<!-- JQUERY CODE -->
 	  <script>
 	  $(document).ready(function() {
-	    $("#accordion").accordion();
+	    $("#searchbutton").click(function(){
+			alert("yes");
+			var search = $("#searchinput").attr("value");
+			alert(search);
+			$.get("lookup/get_next_time?q="+search,function(data){
+			alert("hey");
+			});
+		});
+		
 	  });
 	  </script>
 </head>	
@@ -49,8 +56,8 @@
 			<form_action='addr' method="get">
 				<div data-role="fieldcontain">
 						    <label for="search">Search Cleaning Times</label>
-						    <input type="search" name="streetclean" id="search" value="" />
-					        <button type="submit" name="submit" value="submit-value">Submit</button>
+						    <input type="search" name="streetclean" id="searchinput" value="" />
+					        <button type="submit" name="submit" id ="searchbutton" value="submit-value">Submit</button>
 				</div>
 			</form>
 		</div>
