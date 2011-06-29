@@ -16,14 +16,14 @@ class LookupController < ApplicationController
         @message = @results 
       end
       respond_to do |format|
-        format.json  {render :json => @message}          
+        format.xml  {render :text => @message}          
       end
 
       
     else
       @message = "Please Enter Something"
       respond_to do |format|
-        format.json  {render :json => @message}          
+        format.xml  {render :xml => @message}          
       end
     end
   end
