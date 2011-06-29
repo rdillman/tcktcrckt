@@ -88,3 +88,27 @@ es:
       step_4: "Entrega esta dirección en el cuadro de texto en la página principal."
       step_5: "Si desea que nosotros le enviaremos una alerta antes de que el limpiador viene, elige si desea ser notificado una hora antes del tiempo de limpieza o de la noche anterior desde el menú desplegable que esta junto a su tiempo de limpieza."
       step_6: "Ahora haga clic en el botón verde y bonito etiquetado como 'Create txt Alert.'"
+  contact_us: "¡Da nos un grito!"
+  validator:
+    text_1: "Se ha enviado un código de validación a tu numero de teléfono :"
+    text_2: ", debe recibirlo en poco tiempo."
+    text_3: "¡Entregalo a lo siguiente y comenza a crear alertas!"
+  registration:
+    edit: "Editar"
+    username: "Usuario"
+    email: "Correo Electronico"
+    phone: "Numero de Teléfono:"
+    carrier: "Compañía"
+    current_password: "Contraseña Actual"
+    new_password: "Nueva Contraseña"
+    confirm_new_password: "Confirmar Nueva Contraseña"
+    language: "Idioma"
+    update: "Actualizar"
+    unhappy: "¿Infeliz?"
+    cancel: "Cancela mi Cuenta"
+    back: "Regresa"
+    placeholders:
+      current_password: "Necesario para el cambio"
+      new_password: "Deja vacío si no hay cambio"
+      confirm_new_password: "Deja vacío si no hay cambio"
+

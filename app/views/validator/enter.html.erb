@@ -9,8 +9,8 @@
 		<div class='error'><%=@message%></div>
 	<%end%>
 <%else%>
-	A Validation Code has been sent your phone number : <%=@phone%>, you should receive it shorty.</br>
-	Enter it below and start creating alerts!</br></br>
+	<%= I18n.translate('validator.text_1')%> <%=@phone%><%= I18n.translate('validator.text_2')%> </br>
+<%= I18n.translate('validator.text_3')%> </br></br>
 <%end%>
 
 <%= form_tag("val", :method => "get") do %>

@@ -88,6 +88,31 @@ en:
       step_4: "Enter this address into the text field on the home page."
       step_5: "If you wish to have us send you an alert before the cleaner comes choose whether you would like to be notified an hour before cleaning time or the night before from the drop down menu next to your cleaning time."
       step_6: "Next click on the pretty green button labeled 'Create txt Alert'."
+  contact_us: "Give us a holler!"
+  validator:
+    text_1: "A Validation Code has been sent to your phone number :"
+    text_2: ", you should receive it shortly."
+    text_3: "Enter it below and start creating alerts!"
+  registration:
+    edit: "Edit"
+    username: "Username"
+    email: "Email"
+    phone: "Phone Number:"
+    carrier: "Carrier"
+    current_password: "Current Password"
+    new_password: "New Password"
+    confirm_new_password: "Confirm New Password"
+    language: "Language"
+    update: "Update"
+    unhappy: "Unhappy?"
+    cancel: "Cancel my Account"
+    back: "Back"
+    placeholders:
+      current_password: "Needed for change"
+      new_password: "Leave blank if not changing"
+      confirm_new_password: "Leave blank if not changing"
+    
+    
   
   
           
