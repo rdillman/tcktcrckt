@@ -63,6 +63,8 @@ en:
   header:
     title: "Lose the Vowels, Lose the Tickets!"
     search: "Search address for cleaning times in San Francisco..."
+    signed_in_as: "Signed In as"
+    not_you: "Not you?"
     links:
       how_to: "How it Works"
       alerts: "My Alerts"
@@ -72,6 +74,20 @@ en:
       sign_up: "Sign Up"
       full_site: "FULL SITE"
       mobile: "Mobile Site"
+  how_to:
+    title: "How To Use TcktCrckt"
+    intro:
+      intro_1: "If you have never used"
+      intro_2: "before you should go to"
+      intro_3: "and register so that you can get the most out of our site."
+      intro_4: "Once you are Registered follow these simple steps and you will be evading those pesky 'meter maids' in no time!"
+    steps:
+      step_1: "Remember the address where you parked your car."
+      step_2: "To do this look up the address in front of your car."
+      step_3: "Jot down the number and street name."
+      step_4: "Enter this address into the text field on the home page."
+      step_5: "If you wish to have us send you an alert before the cleaner comes choose whether you would like to be notified an hour before cleaning time or the night before from the drop down menu next to your cleaning time."
+      step_6: "Next click on the pretty green button labeled 'Create txt Alert'."
   
   
           
