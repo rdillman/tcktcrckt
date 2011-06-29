@@ -9,7 +9,7 @@ Header/Navigation*/
 #user_nav{
 	color: #06275D;
 	background-color: black;
-	height:50px;
+	/*height:50px;*/
 	padding: 3px;
 	z-index:0;
 }
