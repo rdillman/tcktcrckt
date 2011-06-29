@@ -1,0 +1,33 @@
+Script started on Wed Jun 29 13:10:45 2011
+bash-3.2$ quit
+bash: quit: command not found
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ rails c
+^C/Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/vendor/html-scanner.rb:20: Interrupt
+	from /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller.rb:68:in `require'
+	from /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller.rb:68
+	from /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/railtie.rb:2:in `require'
+	from /Library/Ruby/Gems/1.8/gems/actionpack-3.0.7/lib/action_controller/railtie.rb:2
+	from /Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/railtie.rb:9:in `require'
+	from /Library/Ruby/Gems/1.8/gems/activerecord-3.0.7/lib/active_record/railtie.rb:9
+	from /Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/all.rb:11:in `require'
+	from /Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/all.rb:11
+	from /Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/all.rb:5:in `each'
+	from /Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/all.rb:5
+	from /Users/DianRosanti/Code/tcktcrckt/config/application.rb:3:in `require'
+	from /Users/DianRosanti/Code/tcktcrckt/config/application.rb:3
+	from /Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/commands.rb:21:in `require'
+	from /Library/Ruby/Gems/1.8/gems/railties-3.0.7/lib/rails/commands.rb:21
+	from script/rails:6:in `require'
+	from script/rails:6
+
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ exit;
+exit
+
+Script done on Wed Jun 29 13:44:48 2011
