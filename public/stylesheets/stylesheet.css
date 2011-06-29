@@ -1,11 +1,16 @@
+/*
+// "container"
+// styles the sandwhich
+// and the view
+*/
 .container{
 	margin-right: auto;
 	margin-left: auto;
 	width:75%;
 	text-align: center;
 	position: relative;
-	min-height: 100%;
-	height: auto !important;
+	/*min-height: 100%;
+		height: auto !important;*/
 	height: 100%;
 	margin: 0 auto 14em;
 }
@@ -14,16 +19,39 @@
 /*	color: white;*/
 }
 
+
+/*
+// "user_nav_basic"
+// styles the menu area
+// including logo and menu items
+// contained within "user_nav" <div>
+*/
+#user_nav_basic{
+	position:relative;
+	margin: auto;
+	float:left;
+	color: #FFFFFF;
+}
+
+
+/*
+// "user_nav"
+// applied to <header> tag
+// styles the <div> with id "user_nav_basic"
+*/
 #user_nav{
-	color: #06275D;
+	color: white;
+	text-align: left;
 	background-color: #06275d;
 	padding: 10px 10px 10px 10px;
 }
 
+
 #user_sign{
 	text-align: right;
-	float: right;
 	color: white;
+	width: 400px;
+	float: right;
 }
 
 #footer_nav ul{
@@ -31,18 +59,24 @@
 	display: inline;
 }
 
+
 #logo{
 	float: left;
 }
 
+/*redundant css block*/
+/*difference between "#body" and "body"??*/
 #body{
-	margin: 0px;
+	margin: auto;
 	background: url('/images/2.jpg');
 	font-size:14px;
 	display: block;
+	height: auto;
+	position: relative;
 	
 }
 
+/*redundant css block*/
 body{
 font-family:Futura, Helvetica, sans-serif; 
 font-size:12px;
@@ -50,25 +84,38 @@ color: white;
 
 }
 
+/* "alertmsg"
+// styles the alert message
+// that appears after either
+// a correct or wrong query
+// in address search bar
+*/
 #alertmsg{
-	position:relative;
+	position: relative;
 	top: 25px;
 	height:50px;
 }
 
+/* "lookup"
+// contains the styling
+// for the search bar
+// and search button
+*/
 .lookup{
 	background-color:white;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
-	position:relative;
-	top:100px;
+	margin: 100px auto auto auto;
 	height:55px;
-	margin: auto;
 	vertical-align:center;
 	line-height: 50px;
-	width:700px;
-	-moz-width:900px;
+	width:650px;
+	-moz-width:700px;
 
+}
+
+#how_to{
+	margin: 20px auto;
 }
 
 #cell{
@@ -77,31 +124,32 @@ color: white;
 	left:50px;
 }
 
-
+/*
+// styles the various
+// alert message types
+*/
 .info, .success, .warning, .error, .validation {
     margin-left:auto;
     margin-right:auto;
 	font-size:15px;
 	font-weight:bold;
 	text-align:center;
-	position:relative;
+	margin:auto;
 	border: 1px solid;
 	border-radius: 5px;
 	width:830px;
 	-moz-border-radius: 5px;
 	padding:15px 10px 15px 20px;
-	
-/*	background-repeat: no-repeat;
-	background-position: 10px center;*/
 }
+
 .info {
 	color: #00529B;
 	background-color: #BDE5F8;
 	vertical-align:center;
 	padding:0px;
 	height:50px;
-
 }
+
 .success {
 	color: #4F8A10;
 	background-color: #DFF2BF;
@@ -113,14 +161,16 @@ color: white;
 .error {
 	color: #D8000C;
 	background-color: #FFBABA;
-/*	background-image: url('error.png');
-*/}
+}
+
+/* styles the commented out logo <div> */
 #logo{
 	text-align: center;
 	font-size: 50px;
 	margin: 0px;
 }
 
+/* styles the "about_image" <div> in "about us"*/
 .about_image{
 	margin-left: auto;
 	margin-right: auto;
@@ -130,12 +180,14 @@ color: white;
 	
 }
 
+/* styles the <div> containing the %yield% command */
 #yield_page{
 	vertical-align:center;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
 }
+
 
 #login{
 	float: right;
@@ -245,7 +297,7 @@ label{
 	
 	
 	height:25px;
-	width: 50px;
+	width: 150px;
 	margin: 15px 15px 15px 15px;
 	padding: 5px 5px 5px 5px;
 	font-family: Helvetica;
@@ -263,7 +315,7 @@ label{
 
 .user_submit:hover {
 height:25px;
-width: 50px;
+width: 150px;
 margin: 15px 15px 15px 15px;
 padding: 5px 5px 5px 5px;
 font-family: Helvetica;
@@ -315,6 +367,10 @@ border-radius: 3px;
 -webkit-border-radius: 3px;
 }
 
+/* "tos"
+// styles the entirety
+// of the terms of service
+*/
 #tos{
 	margin-left: auto;
 	margin-right: auto;
@@ -337,6 +393,14 @@ border-radius: 3px;
 	padding-top: 20px;
 }
 
+#paypal{
+	text-align: center;
+}
+
+.how_to{
+	margin: 25px auto auto auto;
+}
+
 .how_para{
 	font-size: 15px;
 	margin-left: auto;
@@ -351,4 +415,8 @@ border-radius: 3px;
 	-moz-border-radius: 15px;
 	color: black;
 	text-align: center;
+}
+
+#how_to{
+	margin: 20px auto auto auto;
 }
