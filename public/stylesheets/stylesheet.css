@@ -15,15 +15,17 @@
 }
 
 #user_nav{
-	color: #06275D;
+	color: white;
+	text-align: left;
 	background-color: #06275d;
 	padding: 10px 10px 10px 10px;
 }
 
 #user_sign{
 	text-align: right;
-	float: right;
 	color: white;
+	width: 400px;
+	float: right;
 }
 
 #footer_nav ul{
@@ -336,6 +338,10 @@ border-radius: 3px;
 	color: black;
 	text-align: center;
 	padding-top: 20px;
+}
+
+#paypal{
+	text-align: center;
 }
 
 .how_para{
