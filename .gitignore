@@ -4,4 +4,4 @@ log/*.log
 tmp/
 Gemfile
 Gemfile.lock
-.DS*
+*.DS_Store
