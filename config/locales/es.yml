@@ -67,9 +67,14 @@ es:
   header:
     title: "¡Pierde las Vocales, Pierde las Multas!"
     search: "Entrega Dirección para buscar los tiempos de limpieza en San Francisco..."
+<<<<<<< HEAD
     m_search: "Busca tiempos de limpieza"
     signed_in_as: "Ingresado cómo"
     not_you: "¿Es usted?"
+=======
+    signed_in_as: "Ingresado cómo"
+    not_you: "¿No es usted?"
+>>>>>>> 5d0fe8124fe0a3680a5c238cfef18510add18515
     links:
       how_to: "Cómo Funciona"
       alerts: "Mis Alertas"
