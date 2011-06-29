@@ -8,7 +8,6 @@
 	  <script>
 	  $(document).ready(function() {
 	    $("#accordion").accordion();
-			$("#accordion").unbind("click")
 	  });
 	  </script>
 
@@ -113,7 +112,7 @@
 				<li><%=a.location%> <br/>
 				<%=a.clean_time%> <br/>
 				<%if a.nb4%>Night Before<%else%>One Hour Before<%end%> 
-				 <%= submit_tag("delete", :controller => "alert", :action => "kill", :q => a.id, :method => "get", :class => "user_delete") %> | <%= submit_tag("edit", :controller => "alert", :action => "edit", :alarm => a.id, :method => "get", :class => "user_delete" ) %></li>
+				 <%= link_to 'Delete', @alert, :q => "a.id", :method => :delete, "data-icon" => "delete", :class => "user_delete" %> | <%= submit_tag("edit", :controller => "alert", :action => "edit", :alarm => a.id, :method => "get", :class => "user_delete" ) %></li>
 			<%end%>
 		</ul>
 		<%else%>
