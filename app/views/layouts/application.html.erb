@@ -2,9 +2,10 @@
 <html>
 <head>
   <title><%= I18n.translate('header.title')%></title>
-  <!-- Grabs the stylesheets -->
+  <!-- Grabs the regular stylesheets -->
   <%= stylesheet_link_tag :all %>
 
+  <!-- grabs the mobile stylesheets if needed -->
   <%= stylesheet_link_tag 'mobile' if mobile_device?%>
 
 
@@ -50,6 +51,8 @@
 					<% else %>
 						<%= link_to I18n.translate('header.links.sign_up'), new_user_registration_path %>
 					<% end %> |
+					
+				<!-- checks mobile device -->
 					<% if mobile_device? %>
 				    	<%= link_to I18n.translate('header.links.full_site'), :mobile => 0 %>
 				  	<% else %>
