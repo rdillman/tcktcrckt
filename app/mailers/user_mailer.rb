@@ -8,8 +8,6 @@ class UserMailer < ActionMailer::Base
   end
   
   def send_val_code(usr,code)
-    debugger
-    @val_code = code.to_s
     mail(:to => usr.text_address,:subject => "Validation Code")
   end
   

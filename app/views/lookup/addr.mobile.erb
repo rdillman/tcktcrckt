@@ -9,9 +9,8 @@
 	  </script>
 </head>	
 
-<div id='container'>
-	
-	<!-- Page Declaratio -->
+<div id='container'>	
+	<!-- Page Declaration -->
 	<div data-role="page" id="main">  	  
 	 <!-- Header -->
 	  <div data-role="header" id='hdrMain' name='hdrMain' data-nobackbtn='true'>
@@ -34,7 +33,7 @@
 	
 	  <!-- Footer -->
 	  <div data-role="footer">
-		Smoke Weed!
+		Start Winning!
 	  </div>
     </div>   <!-- End MAIN PAGE -->
     
@@ -56,8 +55,8 @@
 		</div>
 			<!-- CLEANS FOOTER -->
 	   <div data-role="footer">
-	     Smoke Weed!
-	   </div>
+	   		Start Winning
+		</div>
 		
 	</div>   <!-- End Search For Cleans Page -->
 	<!-- Page Declaratioz -->
@@ -80,7 +79,7 @@
 		    	<li><%=a.location%> <br/>
 				<%=a.clean_time%> <br/>
 				<%if a.nb4%>Night Before<%else%>One Hour Before<%end%> 
-				<%= submit_tag("delete", :controller => "alert", :action => "kill", :q => a.id, :method => "get", :class => "user_delete") %> | <%= submit_tag("edit", :controller => "alert", :action => "edit", :alarm => a.id, :method => "get", :class => "user_delete" ) %></li>
+				 <%= link_to 'Delete', @alert, :q => "a.id", :method => :delete, "data-icon" => "delete", :class => "user_delete" %> | <%= submit_tag("edit", :controller => "alert", :action => "edit", :alarm => a.id, :method => "get", :class => "user_delete" ) %></li>
 			<%end%>
 			<%else%>
 				<li>You have no Alerts</li>
@@ -91,7 +90,7 @@
 	
 	  <!-- Footer -->
 	  <div data-role="footer">
-		Smoke Weed!
+		Start Winning!
 	  </div>
     </div>
 
