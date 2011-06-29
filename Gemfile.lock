@@ -74,6 +74,9 @@ GEM
       formtastic (>= 0.9.8)
       inherited_resources (>= 1.0.6)
       will_paginate (>= 2.3.12)
+    jquery-rails (1.0.12)
+      railties (~> 3.0)
+      thor (~> 0.14)
     linecache (0.46)
       rbx-require-relative (> 0.0.4)
     mail (2.2.19)
@@ -200,6 +203,7 @@ DEPENDENCIES
   fastercsv
   formtastic (~> 1.2.4)
   geokit
+  jquery-rails
   mocha
   nifty-generators (>= 0.4.0)
   oa-oauth

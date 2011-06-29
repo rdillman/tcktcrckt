@@ -5,179 +5,101 @@
 	  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 	  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
+
+	
+
+	<!-- JQUERY CODE -->
 	  <script>
 	  $(document).ready(function() {
 	    $("#accordion").accordion();
 	  });
 	  </script>
-
-	<script type="text/javascript">
-	/*accordion gloabal vars*/
-	var ContentHeight = 300;
-	var TimeToSlide = 250.0;
-
-	var openAccordion = '';
-
-	/*run accordion function for mobile accordion menu*/
-
-	function runAccordion(index) {
-	  var nID = "Accordion" + index + "Content";
-	  if(openAccordion == nID)
-	    nID = '';
-
-	  setTimeout("animate(" + new Date().getTime() + "," + TimeToSlide + ",'" 
-	      + openAccordion + "','" + nID + "')", 33);
-
-	  openAccordion = nID;
-	}
-
-	/*Accordion animate function that makes it slide*/
-	function animate(lastTick, timeLeft, closingId, openingId){  
-	  var curTick = new Date().getTime();
-	  var elapsedTicks = curTick - lastTick;
-
-	  var opening = (openingId == '') ? null : document.getElementById(openingId);
-	  var closing = (closingId == '') ? null : document.getElementById(closingId);
-
-	  if(timeLeft <= elapsedTicks){
-	    if(opening != null){
-	      opening.style.height = ContentHeight + 'px';
-        }
-	    if(closing != null){
-	      closing.style.display = 'none';
-	      closing.style.height = '0px';
-	    }
-	    return;
-	  }
-
-	  timeLeft -= elapsedTicks;
-	  var newClosedHeight = Math.round((timeLeft/TimeToSlide) * ContentHeight);
-
-	  if(opening != null){
-	    if(opening.style.display != 'block')
-	      opening.style.display = 'block';
-	    opening.style.height = (ContentHeight - newClosedHeight) + 'px';
-	  }
-
-	  if(closing != null){
-	    closing.style.height = newClosedHeight + 'px';
-
-	  setTimeout("animate(" + curTick + "," + timeLeft + ",'" 
-	      + closingId + "','" + openingId + "')", 33);
-	  }
-	}
-	</script>
 </head>	
 
+<div id='container'>	
+	<!-- Page Declaration -->
+	<div data-role="page" id="main">  	  
+	 <!-- Header -->
+	  <div data-role="header" id='hdrMain' name='hdrMain' data-nobackbtn='true'>
+	  	TCKTCRCKT
+	  </div>
+	
+	  <!-- Main Content-->
+	  <div data-role="content" id="mainContent" name="mainContent" >
+		
+		<!-- Search Bar -->
 
+		<!-- Show ALarms -->
+	    <ul data-role='listview' data-theme="g">
+			<li><a href="#searchForCleans">Search For Cleaning Times</a></li>
+			<li><a href="#alerts">Current Alerts</a></li>
+			<li><a href="acura.html">Recent Alarms</a></li>
+		</ul>	
+		
+	  </div> <!-- End main content div -->
+	
+	  <!-- Footer -->
+	  <div data-role="footer">
+		Start Winning!
+	  </div>
+    </div>   <!-- End MAIN PAGE -->
+    
 
-<div id='container'>
+    <div data-role="page" id="searchForCleans">
+			<!-- CLEANS HEADER  -->
+	  	<div data-role="header" id='sfcHdr' name='sfcHdr'>
+		  	Search for Cleaning Times
+		</div>
+		     <!-- CLEANS CONTENT -->
+ 	    <div data-role="content" id="searchForCleansContent" name="searchForCleansContent" >
+			<form_action='addr' method="get">
+				<div data-role="fieldcontain">
+						    <label for="search">Search Cleaning Times</label>
+						    <input type="search" name="streetclean" id="search" value="" />
+					        <button type="submit" name="submit" value="submit-value">Submit</button>
+				</div>
+			</form>
+		</div>
+			<!-- CLEANS FOOTER -->
+	   <div data-role="footer">
+	   		Start Winning
+		</div>
+		
+	</div>   <!-- End Search For Cleans Page -->
+	<!-- Page Declaratioz -->
+	<div data-role="page" id="alerts">  	  
+	 <!-- Header -->
+	  <div data-role="header" id='hdrAlerts' name='hdrAlerts' >
+	  	TCKTCRCKT
+	  </div>
+	
+	  <!-- Main Content-->
+	  <div data-role="content" id="alertsContent" name="alertsContent" >
+		
+		<!-- Search Bar -->
 
-<!-- ################### Search Bar ################### -->
-
-<!-- why are there 2 divs below, the search bar div and the input div? -->
-
-	<div class="search_bar">
-		<%= form_tag("/lookup/addr", :method => "get") do %>
-			<div id="input">
-	  		<%= text_field_tag(:q, nil, :placeholder => "Entr address, Srch Times", :size => 55,  :class => "input") -%>
-		    <%= submit_tag("Search", :class => "user_msubmit") %>
-			</div>
-		<% end %>
-	</div>
-
-<!-- ##################  Message Box ################## -->
-	<%if @message&&@box%>
-		<%if @box == "error"%>
-			<div class='error'><%=@message%></div>
-		<%elsif @box == "warn"%>
-			<div class='warning'><%=@message%></div>
-		<%elsif @box == 'info'%>
-			<div class='info'><%=@message%><%=image_tag 'alert.png' %></div>
-		<%elsif @box == 'error'%>
-			<div class='error'><%=@message%></div>
-		<%end%>
-	<%end%> 
-<!--- ################   Alerts ###################### -->
-
-    <!-- #######  Accordion Codez  ############ -->
-
-
-<div id="accordion">
-	<h3><a href="#">Current Alerts</a></h3>
-	<div>
-		<%if @alerts != [] && @alerts != nil-%>
-		<ul>
+		<!-- Show ALarms -->
+		
+	    <ul data-role='listview' data-theme="g">
+			<%if @alerts && alerts != []%>
 			<%@alerts.each do |a|-%>
-				<li><%=a.location%> <br/>
+		    	<li><%=a.location%> <br/>
 				<%=a.clean_time%> <br/>
 				<%if a.nb4%>Night Before<%else%>One Hour Before<%end%> 
 				 <%= link_to 'Delete', @alert, :q => "a.id", :method => :delete, "data-icon" => "delete", :class => "user_delete" %> | <%= submit_tag("edit", :controller => "alert", :action => "edit", :alarm => a.id, :method => "get", :class => "user_delete" ) %></li>
 			<%end%>
-		</ul>
-		<%else%>
-			<h2>You have no alerts right now</h2>
-		<%end%>
-	</div>
-	<h3><a href="#">Recent alerts</a></h3>
-	<div>
-		<%if @recs%>
-		<ul>
-			<li><%if @recs[0]%>
-					<%=@recs[0]%>
-				<%end%></li>
-			<li><%if @recs[1]%>
-					<%=@recs[1]%>
-				<%end%></li>
-			<li><%if @recs[2]%>
-					<%=@recs[2]%>
-				<%end%></li>
-		</ul>
-		<%else%>
-		no recent searches
-		<%end%>
-	</div>
-</div>
-
-
-<!-- <div id="AccordionContainer" class="AccordionContainer">
-
-  <div onclick="runAccordion(1);">
-     <div class="AccordionTitle" onselectstart="return false;">
-      My Alerts
-     </div>
-  </div>
-
-  <div id="Accordion1Content" class="AccordionContent">
-    <div class="alert_row">Alert 1</div>	
-	<div class="alert_row">Alert 2</div>
-	<div class="alert_row">Recent Alert 1</div>
-	<div class="alert_row">Recent Alert 2</div>
-	<div class="alert_row">Recent Alert 3</div>
-     </div>
-
-  <div onclick="runAccordion(2);">
-    <div class="AccordionTitle" onselectstart="return false;">
-      Use Map
+			<%else%>
+				<li>You have no Alerts</li>
+			<%end%>
+		</ul>	
+		
+	  </div> <!-- End main content div -->
+	
+	  <!-- Footer -->
+	  <div data-role="footer">
+		Start Winning!
+	  </div>
     </div>
-  </div>
-
-  <div id="Accordion2Content" class="AccordionContent">
-    This is where the map will live!!
-  </div>
- 
-</div> -->
-
-<!--<div class="alert">
-	<div id="alert_head">My Alerts</div>
-	<div class="alert_row">Alert 1</div>	
-	<div class="alert_row">Alert 2</div>
-	<div class="alert_row">Alert 3</div>
-	<div class="alert_row">Alert 4</div>
-	<div class="alert_row">Alert 5</div>
-	<div class="alert_row">Alert 6</div>
-	<div class="alert_row">Alert 7</div>
-</div> -->
-
-</div>
-</html>
+	
+	  
+</div> <!-- End Container -->
