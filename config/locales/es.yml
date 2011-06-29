@@ -60,4 +60,18 @@ es:
     fact_2: "En esos 89 barrios hay 238 tiempos de limpieza únicas."
     fact_3: "Con esos 238 únicas veces hay alrededor de 1425 calles que los utilizan."
     closing: "Eso es mucho para recordar. Así que tenemos Ticket Cricket. Sólo tienes que entregar la dirección donde estas estacionado y le enviaremos una alerta de texto cuando es hora de mudar su vehículo. ¡Es así de fácil!"
+  header:
+    title: "¡Pierde las Vocales, Pierde las Multas!"
+    search: "Entrega Dirección para buscar los tiempos de limpieza en San Francisco..."
+    signed_in_as: "Ingresado cómo"
+    not_you: "¿No es usted?"
+    links:
+      how_to: "Cómo Funciona"
+      alerts: "Mis Alertas"
+      about_us: "Sobre Nosotros"
+      contact: "Contáctenos"
+      sign_out: "Salir"
+      sign_up: "Regístrese"
+      full_site: "Sitio Lleno"
+      mobile: "Sitio Móvil"
 

@@ -60,7 +60,18 @@ en:
     fact_2: "In those 89 neighborhoods there are 238 unique cleaning times."
     fact_3: "With those 238 unique times there are around 1425 streets that use them."
     closing: "That is A LOT to remember. So we have Ticket Cricket. Just enter the address where you parked and we will send you a text alert when it is time for you to move your car. It's that easy!"
-
+  header:
+    title: "Lose the Vowels, Lose the Tickets!"
+    search: "Search address for cleaning times in San Francisco..."
+    links:
+      how_to: "How it Works"
+      alerts: "My Alerts"
+      about_us: "About Us"
+      contact: "Contact Us"
+      sign_out: "Sign Out"
+      sign_up: "Sign Up"
+      full_site: "FULL SITE"
+      mobile: "Mobile Site"
   
   
           
