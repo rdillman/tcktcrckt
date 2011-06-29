@@ -1,27 +1,27 @@
-<h2>Sign up</h2>
+<h2><%= I18n.translate('registration.sign_up')%></h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <p><%= f.label :email %><br />
+  <p><%= f.label :email, I18n.translate('registration.email') %><br />
   <%= f.email_field :email %></p>
 
-  <p><%= f.label :password %><br />
+  <p><%= f.label :password, I18n.translate('registration.password') %><br />
   <%= f.password_field :password %></p>
 
-  <p><%= f.label :password_confirmation %><br />
+  <p><%= f.label :password_confirmation, I18n.translate('registration.confirm_password') %><br />
   <%= f.password_field :password_confirmation %></p>
 
-	<p><%= f.label :phone_number, "PHONE NUMBER" %><br />
+	<p><%= f.label :phone_number, I18n.translate('registration.phone') %><br />
   <%= f.telephone_field :phone_number, :placeholder => "415 867 5309"%></p>
 
-  <p><%= f.label :carrier, "CARRIER" %><br />
+  <p><%= f.label :carrier, I18n.translate('registration.carrier') %><br />
 	<%= f.select :carrier, ["AT&T", "Verizon", "T-Mobile", "Sprint"] %>  </p>
 
-  <p><%= f.label :language, "language"%><br />
+  <p><%= f.label :language, I18n.translate('registration.language')%><br />
   <%= f.select :language, [['English', 'en'], ['Espanol', 'es']]%></p>
 
-  <p><%= f.submit "Sign up" %></p>
+  <p><%= f.submit I18n.translate('registration.sign_up') %></p>
 <% end %>
 
 <%= render :partial => "devise/shared/links" %>

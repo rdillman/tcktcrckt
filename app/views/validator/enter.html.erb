@@ -14,7 +14,7 @@
 <%end%>
 
 <%= form_tag("val", :method => "get") do %>
-<font size=5><%=label_tag "code", "Validation Code: "%>
+<font size=5><%=label_tag "code", I18n.translate('validator.text_4')%>
 <%= text_field_tag(:code, nil, :size => 27) -%></font>
 <%= submit_tag("Enter", :class => "user_submit") %>
 <%end%>
