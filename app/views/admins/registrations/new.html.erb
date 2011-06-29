@@ -12,6 +12,9 @@
   <p><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></p>
 
+  <p><%= f.label :language, "language"%><br />
+  <%= f.select :language, [['English', 'en'], ['Espanol', 'es']]%></p>
+
   <p><%= f.submit "Sign up" %></p>
 <% end %>
 

@@ -8,6 +8,7 @@ class LookupController < ApplicationController
     if @usr_qry
       @results = Block.next_ct_from_addr(@usr_qry)
     
+     #What does res mean?? Does uq mean user_query?
       res = @results
       uq  = @usr_qry 
 
@@ -74,16 +75,20 @@ class LookupController < ApplicationController
   end
     
   private
-  
+   # Joseles - all the strings for il8n are in these functions
   
   def do_empty
+
+    @alerts = Alarm.where("user_id = ?",current_user.id)
+    @message = I18n.translate('alert_controller.do_empty.message')
+
     @user = current_user
     if @user
       @alerts = Alarm.where("user_id =?",@user.id)
       @recs = []
+      # What does rec1, rec2, rec3 mean??? What does recs mean??
       @recs << @user.rec1 <<@user.rec2<<@user.rec3
     end
-    @message = "Please enter something"
     @box = "error"
     respond_to do |format|
       format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
@@ -97,8 +102,8 @@ class LookupController < ApplicationController
   end
   
   def do_invalid(res,uq)
+    @message = I18n.translate('alert_controller.create.res.invalid')
     @user  = current_user
-    @message = res
     @message<<" "<<uq
     @box = "error"
     if @user
@@ -117,7 +122,7 @@ class LookupController < ApplicationController
   end
   
   def do_no_entry(uq)
-    @message = @results
+    @message = I18n.translate('alert_controller.create.res.no_entry')
     @message<<" "<<uq
     @box = "warn"
     @user  = current_user
@@ -139,7 +144,7 @@ class LookupController < ApplicationController
   
   def do_multiple(res,uq)
     
-    @message = "We have mulitple streets with that name, try adding St or Ave to your search"
+    @message = I18n.translate('alert_controller.do_multiple.message')
     @box = "info"
     @user  = current_user
     if @user
@@ -148,7 +153,6 @@ class LookupController < ApplicationController
       @recs << @user.rec1 <<@user.rec2<<@user.rec3
     end
     respond_to do |format|
-    
       format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
       format.xml  {render :xml => @message}
       format.xml  {render :xml => @box}
@@ -158,6 +162,8 @@ class LookupController < ApplicationController
     end
   end
   
+  
+  #Should this function be gone??
   def do_empty
     @message = "Please enter something"
     @box = "error"
@@ -175,10 +181,4 @@ class LookupController < ApplicationController
       format.xml  { render :xml => @recs }
     end
   end
-  
-  # def text_message
-  #   @user = current_user
-  #   UserMailer.send_next_time(@user).deliver
-  # end
-
 end
