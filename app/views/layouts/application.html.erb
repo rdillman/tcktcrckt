@@ -33,7 +33,6 @@
 	</head>
 	<body id="body">
 		<div id="container">
-		<!-- <body id="body"> -->
 			<header id="user_nav">
 				<div id="user_nav_basic">
 				<%= link_to image_tag("tcktcrckt.png"), "/" %> |	
@@ -43,7 +42,6 @@
 				<%= link_to I18n.translate('header.links.about_us'), layouts_about_us_path%> |
 				<%= link_to I18n.translate('header.links.contact'), layouts_contact_us_path %> |	
 				
-				<!-- <div id="user_nav_sign"> -->
 					<% if user_signed_in? %>
 						<%=I18n.translate('header.signed_in_as')%> <%= link_to current_user.username.blank? ? current_user.email : current_user.username, edit_user_registration_path %>. <%= I18n.translate('header.not_you')%>
 						<%= link_to I18n.translate('header.links.sign_out'), destroy_user_session_path %>
@@ -55,7 +53,6 @@
 				  	<% else %>
 				    	<%= link_to I18n.translate('header.links.mobile'), :mobile => 1 %>
 				  	<% end %>
-				<!-- </div> -->
 				
 				</div>
 				
