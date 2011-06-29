@@ -66,10 +66,12 @@
 /*redundant css block*/
 /*difference between "#body" and "body"??*/
 #body{
-	margin: 0px;
+	margin: auto;
 	background: url('/images/2.jpg');
 	font-size:14px;
 	display: block;
+	height: auto;
+	position: relative;
 	
 }
 
@@ -88,7 +90,7 @@ color: white;
 // in address search bar
 */
 #alertmsg{
-	position:relative;
+	position: relative;
 	top: 25px;
 	height:50px;
 }
@@ -102,10 +104,8 @@ color: white;
 	background-color:white;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
-	/*position:relative;*/
-	/*top:100px;*/
+	margin: 100px auto auto auto;
 	height:55px;
-	margin: 100px auto 0px auto;
 	vertical-align:center;
 	line-height: 50px;
 	width:650px;
@@ -133,7 +133,7 @@ color: white;
 	font-size:15px;
 	font-weight:bold;
 	text-align:center;
-	position:relative;
+	margin:auto;
 	border: 1px solid;
 	border-radius: 5px;
 	width:830px;
@@ -410,4 +410,8 @@ border-radius: 3px;
 	-moz-border-radius: 15px;
 	color: black;
 	text-align: center;
+}
+
+#how_to{
+	margin: 20px auto auto auto;
 }
