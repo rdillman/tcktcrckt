@@ -31,7 +31,7 @@
 	    <ul data-role='listview' data-theme="g">
 			<li><a href="#searchForCleans">Search For Cleaning Times</a></li>
 			<li><a href="#alerts">Current Alerts</a></li>
-			<li><a href="acura.html">Recent Alarms</a></li>
+			<li><a href="#recent">Recent Alarms</a></li>
 		</ul>	
 		
 	  </div> <!-- End main content div -->
@@ -79,7 +79,7 @@
 		<!-- Show ALarms -->
 		
 	    <ul data-role='listview' data-theme="g">
-			<%if @alerts && alerts != []%>
+			<%if @alerts && @alerts != []%>
 			<%@alerts.each do |a|-%>
 		    	<li><%=a.location%> <br/>
 				<%=a.clean_time%> <br/>
@@ -88,6 +88,37 @@
 			<%end%>
 			<%else%>
 				<li>You have no Alerts</li>
+			<%end%>
+		</ul>	
+		
+	  </div> <!-- End main content div -->
+	
+	  <!-- Footer -->
+	  <div data-role="footer">
+		Smoke Weed!
+	  </div>
+    </div>
+
+	<div data-role="page" id="recent">  	  
+	 <!-- Header -->
+	  <div data-role="header" id='hdrRecent' name='hdrRecent' >
+	  	TCKTCRCKT
+	  </div>
+	
+	  <!-- Main Content-->
+	  <div data-role="content" id="recentContent" name="recentContent" >
+		
+		<!-- Search Bar -->
+
+		<!-- Show ALarms -->
+		
+	    <ul data-role='listview' data-theme="g">
+			<%if @recs && @recs != []%>
+			<%@recs.each do |r|-%>
+		    	<li><%=r%> <br/>
+			<%end%>
+			<%else%>
+				<li>You have no Recent Searches</li>
 			<%end%>
 		</ul>	
 		
