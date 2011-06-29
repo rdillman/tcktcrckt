@@ -21,10 +21,10 @@ gem 'sqlite3'
 group :development do
 	gem 'sqlite3-ruby', :require => 'sqlite3'
 end
-	
-group :production do
- 	gem 'mysql2', '~> 0.2.7'
-end
+
+ group :production do
+#	gem 'mysql2', '~> 0.2.7'
+ end
 
 # Use unicorn as the web server
 # gem 'unicorn'

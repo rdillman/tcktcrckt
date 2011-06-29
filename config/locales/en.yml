@@ -2,4 +2,121 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  alert_controller:
+    edit:
+      success: 'Your Alert has been changed!'
+      warn: 'Oh No! that alert was deleted earlier.'
+    update_phone:
+      success: 'Your phone number has been updated.'
+    create:
+      res:
+        invalid_address: 'Invalid Address - No Address or No Street'
+        no_record: "We don't have a record for that address for that street"
+        invalid: 'Invalid Address'
+        multiple: 'Which of these Streets?'
+        no_entry: "Oops We Don't Have a Cleaning Record for this Street"
+        empty: 'empty'
+      construct_alarm:
+        next_clean: 'Next Street Clean'
+        time: '%A %B %e at %I:%M%p.'
+        warn: 'Almost There! In order to send you alarms we need to know phone number and carrier'
+      kill:
+        delete: 'The Alarm has been deleted'
+    create_message:
+      alert_created: 'An alert has been created for the streetcleaning of '
+      begins: ' which begins on '
+    kill_message:
+      alert_for: 'Streetcleaning alert for '
+      deleted: 'has been deleted.'
+    do_alert_exists:
+      message:'An alert for this block already exists'
+    do_multiple:
+      message: 'We have multiple streets with that name, try adding St or Ave to your searches'
+    do_empty:
+      message: 'Please enter something'
+    alert_messages:
+      multiple: 'Which of these?'
+      new: 'New Search'
+      alarm_options: 'Alarm Options'
+      options:
+        night_before: 'Night Before'
+        1_hour: '1 Hour Before'
+        no_alarm: 'Do not Create an Alarm'
+      get_results: 'Get Results!'
+      titles:
+        current: 'Your Current Alerts!'
+        none: 'You have no Current Alerts'
+        location: 'Location'
+        cleantime: 'CleanTime'
+        alert:  'Alert Send'
+  sessions_controller:
+    welcome: "Welcome, "
+  validator_controller:
+    incorrect_code: "Incorrect Code, Please Try Again"
+  about_us:
+    intro: "Thanks for visiting Ticket Cricket. We created this site so that we could stop the onslaught of parking tickets. We're just a few people who wanted to help, so we worked many hours making this site what it is today - with no prior knowledge of how to do it."
+    facts_title: "A FEW FACTS:"
+    fact_1: "There are 89 neighborhoods that San Francisco recognizes for street cleaning."
+    fact_2: "In those 89 neighborhoods there are 238 unique cleaning times."
+    fact_3: "With those 238 unique times there are around 1425 streets that use them."
+    closing: "That is A LOT to remember. So we have Ticket Cricket. Just enter the address where you parked and we will send you a text alert when it is time for you to move your car. It's that easy!"
+  header:
+    title: "Lose the Vowels, Lose the Tickets!"
+    search: "Search address for cleaning times in San Francisco..."
+    signed_in_as: "Signed In as"
+    not_you: "Not you?"
+    links:
+      how_to: "How it Works"
+      alerts: "My Alerts"
+      about_us: "About Us"
+      contact: "Contact Us"
+      sign_out: "Sign Out"
+      sign_up: "Sign Up"
+      full_site: "FULL SITE"
+      mobile: "Mobile Site"
+  how_to:
+    title: "How To Use TcktCrckt"
+    intro:
+      intro_1: "If you have never used"
+      intro_2: "before you should go to"
+      intro_3: "and register so that you can get the most out of our site."
+      intro_4: "Once you are Registered follow these simple steps and you will be evading those pesky 'meter maids' in no time!"
+    steps:
+      step_1: "Remember the address where you parked your car."
+      step_2: "To do this look up the address in front of your car."
+      step_3: "Jot down the number and street name."
+      step_4: "Enter this address into the text field on the home page."
+      step_5: "If you wish to have us send you an alert before the cleaner comes choose whether you would like to be notified an hour before cleaning time or the night before from the drop down menu next to your cleaning time."
+      step_6: "Next click on the pretty green button labeled 'Create txt Alert'."
+  contact_us: "Give us a holler!"
+  validator:
+    text_1: "A Validation Code has been sent to your phone number :"
+    text_2: ", you should receive it shortly."
+    text_3: "Enter it below and start creating alerts!"
+    text_4: "Validation Code: "
+  registration:
+    sign_up: "Sign Up"
+    edit: "Edit"
+    username: "Username"
+    email: "Email"
+    phone: "Phone Number:"
+    carrier: "Carrier"
+    password: "Password"
+    confirm_password: "Confirm Password"
+    current_password: "Current Password"
+    new_password: "New Password"
+    confirm_new_password: "Confirm New Password"
+    language: "Language"
+    update: "Update"
+    unhappy: "Unhappy?"
+    cancel: "Cancel my Account"
+    back: "Back"
+    placeholders:
+      current_password: "Needed for change"
+      new_password: "Leave blank if not changing"
+      confirm_new_password: "Leave blank if not changing"
+    
+    
+  
+  
+          

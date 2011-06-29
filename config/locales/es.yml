@@ -1,3 +1,126 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 es:
-  hello: "Hola"
+  alert_controller:
+    edit:
+      success: 'Su alerta fue cambiado.'
+      warn: '¡Ay! Esa alerta fue eliminado anteriormente.'
+    update_phone:
+      success:  'Su numero ha sido actualizado.'
+    create:
+      res:
+        invalid_address: 'Dirección Invalido - Dirección o calle no existe'
+        no_record: "No tenemos un archivo para esa dirección para esa calle"
+        invalid: 'Dirección Invalido'
+        multiple: '¿Cuál de estas calles?'
+        no_entry: 'Uy, No tenemos un archivo de limpieza para esta calle.'
+        empty: 'Vacío'
+      construct_alarm:
+        next_clean: 'La próxima limpieza de calle'
+        time: '%A %B %e a las %I:%M%p.'
+        warn: '¡Casi Ya! Para enviarle alarmas necesitamos su número de teléfono y compañia.'
+      kill:
+        delete: 'La alarma ha sido eliminado'
+    create_message:
+      alert_created: 'Una alerta se ha creado para la limpieza de calle de '
+      begins: ' que comienza el '
+    kill_message:
+      alert_for: 'Alerta de limpieza de calle para '
+      deleted: 'ha sido eliminado.'
+    do_alert_exists:
+      message:'Ya existe una alerta para este bloque'
+    do_multiple:
+      message: 'Tenemos varios calles con ese nombre, trate de añadir St o Ave a su búsqueda.'
+    do_empty:
+      message: 'Por favor escriba algo'
+    alert_messages:
+      multiple: '¿Cuál de estos?'
+      new: 'Nueva Búsqueda'
+      alarm_options: 'Opciones de Alarma'
+      options:
+        night_before: 'Noche Antes'
+        1_hour: '1 Hora Antes'
+        no_alarm: 'No crear una Alarma'
+      get_results: '¡Conseguir resultados!'
+      titles:
+        current: 'Sus Alertas Actuales!'
+        none: 'No tienes Alertas Actuales'
+        location: 'Ubicación'
+        cleantime: 'Tiempo de Limpieza'
+        alert:  'Enviar Alerta'
+        
+  sessions_controller:
+    welcome: "Bienvenido, "
+    
+  validator_controller:
+    incorrect_code: "Código incorrecto, por favor, inténtalo de nuevo."
+  
+  about_us:
+    intro: "Gracias por visitar Ticket Cricket. Hemos creado este sitio para que podríamos detener el ataque de multas de estacionamiento. Somos unas pocas personas que querían ayudar, por lo que hemos trabajado muchas horas haciendo este sitio lo que es hoy, sin conocimiento anterior de cómo hacerlo."
+    facts_title: "ALGUNOS HECHOS:"
+    fact_1: "Hay 89 barrios que San Francisco reconoce para la limpieza de calles."
+    fact_2: "En esos 89 barrios hay 238 tiempos de limpieza únicas."
+    fact_3: "Con esos 238 únicas veces hay alrededor de 1425 calles que los utilizan."
+    closing: "Eso es mucho para recordar. Así que tenemos Ticket Cricket. Sólo tienes que entregar la dirección donde estas estacionado y le enviaremos una alerta de texto cuando es hora de mudar su vehículo. ¡Es así de fácil!"
+  
+  header:
+    title: "¡Pierde las Vocales, Pierde las Multas!"
+    search: "Entrega Dirección para buscar los tiempos de limpieza en San Francisco..."
+    signed_in_as: "Ingresado cómo"
+    not_you: "¿No es usted?"
+    links:
+      how_to: "Cómo Funciona"
+      alerts: "Mis Alertas"
+      about_us: "Sobre Nosotros"
+      contact: "Contáctenos"
+      sign_out: "Salir"
+      sign_up: "Regístrese"
+      full_site: "Sitio Lleno"
+      mobile: "Sitio Móvil"
+  
+  how_to:
+    title: "Cómo utilizar TcktCrckt"
+    intro:
+      intro_1: "Si nunca ha utilizado"
+      intro_2: "debes de ir a "
+      intro_3: "Y registrarse para que puedas sacar el mayor provecho de nuestro sitio."
+      intro_4: "Cuando has registrado, sigue estos sencillos pasos y evada 'los sirvientes del parquímetro' en poco tiempo."
+    steps:
+      step_1: "Acuerda la dirección en donde estacióno su vehículo."
+      step_2: "Para hacer esto busca la dirección delante de su vehículo."
+      step_3: "Anote el número y nombre de la calle."
+      step_4: "Entrega esta dirección en el cuadro de texto en la página principal."
+      step_5: "Si desea que nosotros le enviaremos una alerta antes de que el limpiador viene, elige si desea ser notificado una hora antes del tiempo de limpieza o de la noche anterior desde el menú desplegable que esta junto a su tiempo de limpieza."
+      step_6: "Ahora haga clic en el botón verde y bonito etiquetado como 'Create txt Alert.'"
+  
+  contact_us: "¡Da nos un grito!"
+  
+  validator:
+    text_1: "Se ha enviado un código de validación a tu numero de teléfono :"
+    text_2: ", debe recibirlo en poco tiempo."
+    text_3: "¡Entregalo a lo siguiente y comenza a crear alertas!"
+    text_4: "Código de Validación: "
+  
+  registration:
+    sign_up: "Regístrese"
+    edit: "Editar"
+    username: "Usuario"
+    email: "Correo Electronico"
+    phone: "Numero de Teléfono:"
+    carrier: "Compañía"
+    password: "Contraseña"
+    confirm_password: "Confirmar Contraseña"
+    current_password: "Contraseña Actual"
+    new_password: "Nueva Contraseña"
+    confirm_new_password: "Confirmar Nueva Contraseña"
+    language: "Idioma"
+    update: "Actualizar"
+    unhappy: "¿Infeliz?"
+    cancel: "Cancela mi Cuenta"
+    back: "Regresa"
+    placeholders:
+      current_password: "Necesario para el cambio"
+      new_password: "Deja vacío si no hay cambio"
+      confirm_new_password: "Deja vacío si no hay cambio"
+
