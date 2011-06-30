@@ -27,7 +27,7 @@ es:
       begins: ' que comienza el '
     kill_message:
       alert_for: 'Alerta de limpieza de calle para '
-      deleted: 'ha sido eliminado.'
+      deleted: ' ha sido eliminado.'
     do_alert_exists:
       message: 'Ya existe una alerta para este bloque'
     do_multiple:
@@ -68,6 +68,7 @@ es:
     title: "¡Pierde las Vocales, Pierde las Multas!"
     search: "Entrega Dirección para buscar los tiempos de limpieza en San Francisco..."
     search_button: 'Busca'
+    create_alert: "CREA UNA \n ALERTA"
     m_search: "Busca tiempos de limpieza"
     signed_in_as: "Ingresado cómo"
     not_you: "¿Es usted?"

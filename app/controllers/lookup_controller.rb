@@ -10,7 +10,7 @@ class LookupController < ApplicationController
       uq  = @usr_qry 
       @message =""
       if @results[0][0].class==Time
-        @message = @results[0][0].strftime("%A %B %e at %I:%M%p.")
+        @message = I18n.localize(@results[0][0])
       else
         @message = @results 
       end

@@ -27,13 +27,13 @@ en:
       begins: ' which begins on '
     kill_message:
       alert_for: 'Streetcleaning alert for '
-      deleted: 'has been deleted.'
+      deleted: ' has been deleted.'
     do_alert_exists:
       message: 'An alert for this block already exists'
     do_multiple:
       message: 'We have multiple streets with that name, try adding St or Ave to your searches'
     do_empty:
-      message: 'Please enter and address'
+      message: 'Please enter an address'
     alert_messages:
       multiple: 'Which of these?'
       new: 'New Search'
@@ -68,6 +68,7 @@ en:
     title: "Lose the Vowels, Lose the Tickets!"
     search: "Search address for cleaning times in San Francisco..."
     search_button: 'Search'
+    create: "CREATE \n ALERT"
     m_search: "Search For Cleaning Times"
     signed_in_as: "Signed In as"
     not_you: "Not you?"
