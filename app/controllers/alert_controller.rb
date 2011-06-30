@@ -150,7 +150,7 @@ class AlertController < ApplicationController
         if (night_before?(@st[0])) #Night Before Case
           @a = make_nb4_alarm(@usr_qry,@results,@user)
         elsif (no_alarm?(@st[0]))
-          @message = I18n.translate('alert_controller.create.construct_alarm.next_clean')<<@results[0][0].strftime(I18n.translate('alert_controller.create.construct_alarm.time'))
+          @message = I18n.translate('alert_controller.create.construct_alarm.next_clean')<<@results[0][0].strftime(I18n.translate('time.formats.default'))
           send = @results[0][0] - 1.hour
           @box = "info"
           @alerts = Alarm.where("user_id = ?",current_user.id)
@@ -241,12 +241,12 @@ class AlertController < ApplicationController
   def make_nb4_alarm(uq, res, usr)
      nb4_time = res[0][0]-1.day + (19 - res[0][0].hour).hour
      send = res[0][0] - 1.hour
-     @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime(I18n.translate('alert_controller.create.construct_alarm.time')), :send_time => nb4_time.strftime(I18n.translate('alert_controller.create.construct_alarm.time')), :cnn => res[1], :nb4 => true, :user_id => usr.id)
+     @a = Alarm.create!(:location => uq, :clean_time => @results[0][0].strftime(I18n.translate('time.formats.default')), :send_time => nb4_time.strftime(I18n.translate('time.formats.default')), :cnn => res[1], :nb4 => true, :user_id => usr.id)
   end
     
     def make_regular_alarm(uq,res,usr)
         send = res[0][0] - 1.hour
-        @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime(I18n.translate('alert_controller.create.construct_alarm.time')), :send_time => send.strftime(I18n.translate('alert_controller.create.construct_alarm.time')), :cnn => res[1], :nb4 => false, :user_id => usr.id)
+        @a = Alarm.create!(:location => uq, :clean_time => @results[0][0].strftime(I18n.translate('time.formats.default')), :send_time => send.strftime(I18n.translate('time.formats.default')), :cnn => res[1], :nb4 => false, :user_id => usr.id)
     end
   
   def night_before?(alarm_type)

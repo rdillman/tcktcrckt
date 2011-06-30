@@ -23,13 +23,13 @@ es:
       kill:
         delete: 'La alarma ha sido eliminado'
     create_message:
-      alert_created: 'Una alerta se ha creado para la limpieza de calle de '
+      alert_created: 'Una alerta se ha creado para la limpieza de, '
       begins: ' que comienza el '
     kill_message:
       alert_for: 'Alerta de limpieza de calle para '
       deleted: 'ha sido eliminado.'
     do_alert_exists:
-      message:'Ya existe una alerta para este bloque'
+      message: 'Ya existe una alerta para este bloque'
     do_multiple:
       message: 'Tenemos varios calles con ese nombre, trate de añadir St o Ave a su búsqueda.'
     do_empty:
