@@ -15,11 +15,13 @@
 				<div class='warning'><%=@message%></div>
 			<%elsif @box == 'info'%>
 				<div class='info'><%=@message%></div>
-				<%=submit_tag("CREATE\nALERT", :class => "user_submit", :id => "alert_submit", :controller=>"alert", :action=>"create", :method => "get")%>
 			<%elsif @box == 'error'%>
 				<div class='error'><%=@message%></div>
 			<%end%>
-		<%end%> 
+		<%= form_tag("../alert/create", :method => "get") do %>
+		<%=submit_tag("CREATE\nALERT", :class => "user_submit", :id => "alert_submit", :controller=>"alert", :action=>"create", :method => "get") %>
+		<%end%>
+	<% end %> 
 		</div>	
 	
 	
