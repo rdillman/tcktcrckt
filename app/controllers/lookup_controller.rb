@@ -3,7 +3,6 @@ class LookupController < ApplicationController
   def get_next_time
     @usr_qry = params[:q]
     @user = current_user
-    
     if @usr_qry
       @results = Block.next_ct_from_addr(@usr_qry)
     
@@ -16,14 +15,14 @@ class LookupController < ApplicationController
         @message = @results 
       end
       respond_to do |format|
-        format.xml  {render :text => @message}          
+        format.js         
       end
 
       
     else
       @message = "Please Enter Something"
       respond_to do |format|
-        format.xml  {render :xml => @message}          
+        format.js  
       end
     end
   end
