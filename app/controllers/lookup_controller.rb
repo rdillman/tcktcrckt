@@ -32,7 +32,7 @@ class LookupController < ApplicationController
           do_empty
       
       else 
-        @message = @results[0][0].strftime("%A %B %e at %I:%M%p.")
+        @message = I18n.localize(@results[0][0])
         @box = "info"
         if @user
           @alerts = Alarm.where("user_id =?",@user.id)
@@ -165,7 +165,7 @@ class LookupController < ApplicationController
   
   #Should this function be gone??
   def do_empty
-    @message = "Please enter something"
+    @message = I18n.translate('alert_controller.do_empty.message')
     @box = "error"
     @user  = current_user
     if @user
