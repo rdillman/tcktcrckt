@@ -21,7 +21,14 @@ function killAlert(){
 }
 
 function nextClean(){
+	jQuery.ajaxSetup({ 
+	  'beforeSend': function(xhr) {
+	    xhr.setRequestHeader("Accept", "text/javascript");
+	  }
+	})
 	var search = $("#searchinput").attr("value");
-	
-	$.getScript("lookup/get_next_time?q="+search);
+	$.getScript("addr?q="+search, function(){
+		alert("Hello Please!");
+	});
+	return false;
 }

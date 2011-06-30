@@ -15,6 +15,7 @@ class LookupController < ApplicationController
         @message = @results 
       end
       respond_to do |format|
+        format.html{ redirect_to "lookup/addr?mobile=1#searchForCleans"}
         format.js         
       end
 
@@ -22,7 +23,8 @@ class LookupController < ApplicationController
     else
       @message = "Please Enter Something"
       respond_to do |format|
-        format.js  
+        format.html{ redirect_to "lookup/addr?mobile=1#searchForCleans"}
+        format.js
       end
     end
   end
@@ -70,6 +72,7 @@ class LookupController < ApplicationController
         
         respond_to do |format|
           format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+          format.js
           format.xml  {render :xml => @message}
           format.xml  {render :xml => @box}
           format.xml  { render :xml => @alerts }
@@ -87,6 +90,7 @@ class LookupController < ApplicationController
       end
       respond_to do |format|
         format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+        format.js
         format.xml  { render :xml => @alerts }
         format.xml  { render :xml => @recs }
         
