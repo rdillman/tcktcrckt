@@ -4,9 +4,10 @@
 // and the view
 */
 .container{
+	background-color: #06275d;
 	margin-right: auto;
 	margin-left: auto;
-	width:75%;
+	/*width:75%;*/
 	text-align: center;
 	position: relative;
 	/*min-height: 100%;
@@ -20,6 +21,7 @@
 }
 
 
+
 /*
 // "user_nav_basic"
 // styles the menu area
@@ -27,12 +29,18 @@
 // contained within "user_nav" <div>
 */
 #user_nav_basic{
-	position:relative;
+	/*display:inline-block;*/
+	display:inline;
 	margin: auto;
-	float:left;
 	color: #FFFFFF;
+	position:absolute;
+	left:160px;
+	bottom:10px;
 }
 
+#user_nav_basic a{
+	padding-right:15px;
+}
 
 /*
 // "user_nav"
@@ -40,18 +48,45 @@
 // styles the <div> with id "user_nav_basic"
 */
 #user_nav{
-	color: white;
 	text-align: left;
+	vertical-align:middle;
 	background-color: #06275d;
 	padding: 10px 10px 10px 10px;
+	height:34px;
+	position:relative;
+	font-family:Futura, Helvetica, sans-serif; 
+	font-size:14px;	
 }
 
+#user_nav a{
+	color:white;
+}
+
+#user_nav a:hover{
+	color:#EEC015;
+}
+
+#logo{
+	width:32px;
+}
+
+#logo a{
+	display:inline-block;
+	float:left;
+}
 
 #user_sign{
 	text-align: right;
 	color: white;
 	width: 400px;
 	float: right;
+	position:absolute;
+	bottom:10px;
+	right:10px;
+}
+
+#user_sign a{
+	padding-left:15px;
 }
 
 #footer_nav ul{
@@ -60,28 +95,37 @@
 }
 
 
-#logo{
-	float: left;
-}
-
 /*redundant css block*/
 /*difference between "#body" and "body"??*/
 #body{
 	margin: auto;
 	background: url('/images/2.jpg');
-	font-size:14px;
 	display: block;
 	height: auto;
 	position: relative;
+	font-family:Helvetica, sans-serif; 
+	font-size:12px;
+	color: white;
 	
 }
 
 /*redundant css block*/
-body{
-font-family:Futura, Helvetica, sans-serif; 
+/*body{
+font-family:Helvetica, sans-serif; 
 font-size:12px;
 color: white;
 
+}
+*/
+
+#lookup{
+	padding-top:50px;
+	height:200px;
+}
+
+#lookup form{
+	margin:auto;
+	width:100%;
 }
 
 /* "alertmsg"
@@ -91,27 +135,11 @@ color: white;
 // in address search bar
 */
 #alertmsg{
-	position: relative;
-	top: 25px;
+	position: absolute;
+	top: 48%;
+	left:0;
 	height:50px;
-}
-
-/* "lookup"
-// contains the styling
-// for the search bar
-// and search button
-*/
-.lookup{
-	background-color:white;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	margin: 100px auto auto auto;
-	height:55px;
-	vertical-align:center;
-	line-height: 50px;
-	width:650px;
-	-moz-width:700px;
-
+	width:100%;
 }
 
 #how_to{
@@ -129,25 +157,23 @@ color: white;
 // alert message types
 */
 .info, .success, .warning, .error, .validation {
-    margin-left:auto;
-    margin-right:auto;
+    margin:auto;
 	font-size:15px;
 	font-weight:bold;
 	text-align:center;
 	margin:auto;
 	border: 1px solid;
 	border-radius: 5px;
-	width:830px;
 	-moz-border-radius: 5px;
-	padding:15px 10px 15px 20px;
+	padding:15px 14px;
+	width:650px;
+	position:absolute;
+	left:20%;
 }
 
 .info {
-	color: #00529B;
-	background-color: #BDE5F8;
-	vertical-align:center;
-	padding:0px;
-	height:50px;
+	color: #044D12;
+	background-color: #ABD1B3;
 }
 
 .success {
@@ -164,12 +190,12 @@ color: white;
 }
 
 /* styles the commented out logo <div> */
-#logo{
+/*#logo{
 	text-align: center;
 	font-size: 50px;
 	margin: 0px;
 }
-
+*/
 /* styles the "about_image" <div> in "about us"*/
 .about_image{
 	margin-left: auto;
@@ -186,6 +212,7 @@ color: white;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
+	margin-top: 100px;
 }
 
 
@@ -229,7 +256,7 @@ a:hover{
 	text-decoration: none;
 }
 
-.content_box{
+/*.content_box{
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 40px;
@@ -242,7 +269,7 @@ a:hover{
 	-moz-border-radius: 15px;
 	color: black;
 	
-}
+}*/
 
 .content_box p{
 	color: black;
@@ -266,13 +293,16 @@ a:hover{
 }
 
 .input1{
-	border-radius: 17px;
-	-moz-border-radius: 17px;
-	border: 0px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	border: 0;
+	/*margin: 0;*/
 	font-size: 15px;
-	height:50px;
-	width:400px;
-	vertical-align: center;
+	padding:15px;
+	width:650px;
+	margin: auto;
+	top:30%;
+	left:20%;
 }
 
 #footer_pay{
@@ -287,48 +317,61 @@ label{
 }
 
 .user_submit{
-/*	background-image: url('/images/eyeglass.png');
-	height:50px;
-	width:55px;
-	line-height:50px;
-	padding:0px;
-	margin: 0px;
-	border: 0px;*/
-	
-	
 	height:25px;
 	width: 150px;
-	margin: 15px 15px 15px 15px;
-	padding: 5px 5px 5px 5px;
-	font-family: Helvetica;
+	padding: 5px;
+	font-family: Futura,Helvetica,sans serif;
 	font-size: 12px;
 	text-decoration: none;
-	color: #EEC015;
-	text-shadow: -1px -1px 2px #618926;
-	background: -moz-linear-gradient(#2660ff, #06275d 35%, #3232a8);
-	background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #2660ff),color-stop(.35, #06275d),color-stop(1, #3232a8));
-	border: 1px solid #3232a8;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
+	color: #06275D;
+	background: -moz-linear-gradient(center bottom, #EEBF15 40%, #FFE631 100%);
+	background: -webkit-gradient(linear,left bottom,left top,color-stop(0.4, #EEBF15),color-stop(1, #FFE631));
+	border: 0;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 }
 
-.user_submit:hover {
-height:25px;
-width: 150px;
-margin: 15px 15px 15px 15px;
-padding: 5px 5px 5px 5px;
-font-family: Helvetica;
-font-size: 12px;
-text-decoration: none;
-color: #EEC015;
-text-shadow: -1px -1px 2px #465f97;
-background: -moz-linear-gradient(#3232a8, #06275d 75%, #2660ff);
-background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #3232a8),color-stop(.75, #06275d),color-stop(1, #2660ff));
-border: 1px solid #3232a8;
-border-radius: 3px;
--moz-border-radius: 3px;
--webkit-border-radius: 3px;
+.user_submit:hover{
+	background: -moz-linear-gradient(center bottom, #EEBF15 100%, #FFE631 10%);
+	background: -webkit-gradient(linear,left bottom,left top,color-stop(1, #EEBF15),color-stop(.1, #FFE631));
+}
+
+/*customized size for search button to align with search bar size*/
+#search_submit{
+	font-size:16px;
+	height:48px;
+	width: 100px;
+	padding:0;
+	position:absolute;
+	left:75%;
+	top:30%;
+}
+
+#alert_submit{
+	font-size:13px;
+	height:48px;
+	width: 100px;
+	padding:0;
+	position:absolute;
+	left:75%;
+	top:0;
+	color:white;;
+	background: -moz-linear-gradient(center bottom, #09912D 40%, #24AE48 100%);
+	background: -webkit-gradient(linear,left bottom,left top,color-stop(0.4, #09912D),color-stop(1, #24AE48));
+}
+
+#alert_submit:hover{
+	font-size:13px;
+	height:48px;
+	width: 100px;
+	padding:0;
+	position:absolute;
+	left:75%;
+	top:0;
+	color:white;;
+	background: -moz-linear-gradient(center bottom, #24AE48 40%, #09912D 100%);
+	background: -webkit-gradient(linear,left bottom,left top,color-stop(0.4, #24AE48),color-stop(1, #09912D));
 }
 
 .user_delete{
@@ -401,16 +444,18 @@ border-radius: 3px;
 	margin: 25px auto auto auto;
 }
 
-.how_para{
-	font-size: 15px;
+/*.how_para*/
+.content_box{
+	font-size: 12px;
+	font-weight: normal;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 40px;
     margin-bottom: 40px;
 	width: 500px;
-	padding:40 20 60 20;
-	background: white;
-	border: 12px solid black;
+	padding:20px;
+	background: #EDEEF0;
+	/*border: 0px solid black;*/
 	border-radius: 15px;
 	-moz-border-radius: 15px;
 	color: black;
