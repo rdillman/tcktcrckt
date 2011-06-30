@@ -27,16 +27,16 @@
 
 		<!-- Show ALarms -->
 	    <ul data-role='listview' data-theme="g">
-			<li><a href="#searchForCleans">Search For Cleaning Times</a></li>
-			<li><a href="#alerts">Current Alerts</a></li>
-			<li><a href="#recent">Recent Alarms</a></li>
+			<li><a href="#searchForCleans"><%= I18n.translate('mobile.search')%></a></li>
+			<li><a href="#alerts"><%= I18n.translate('mobile.current_alerts')%></a></li>
+			<li><a href="#recent"><%= I18n.translate('mobile.recent')%></a></li>
 		</ul>	
 		
 	  </div> <!-- End main content div -->
 	
 	  <!-- Footer -->
 	  <div data-role="footer">
-		Start Winning!
+		<%= I18n.translate('mobile.footer')%>
 	  </div>
     </div>   <!-- End MAIN PAGE -->
     
@@ -44,21 +44,21 @@
     <div data-role="page" id="searchForCleans">
 			<!-- CLEANS HEADER  -->
 	  	<div data-role="header" id='sfcHdr' name='sfcHdr'>
-		  	Search for Cleaning Times
+		  	<%= I18n.translate('mobile.search')%>
 		</div>
 		     <!-- CLEANS CONTENT -->
  	    <div data-role="content" id="searchForCleansContent" name="searchForCleansContent" >
 			<form_action='addr' method="get">
 				<div data-role="fieldcontain">
-						    <label for="search">Search Cleaning Times</label>
+						    <label for="search"><%= I18n.translate('mobile.search')%></label>
 						    <input type="search" name="streetclean" id="searchinput" value="" />
-					        <button type="submit" name="submit" id ="searchbutton" value="submit-value">Submit</button>
+					        <button type="submit" name="submit" id ="searchbutton" value="submit-value"><%= I18n.translate('mobile.submit')%></button>
 				</div>
 			</form>
 		</div>
 			<!-- CLEANS FOOTER -->
 	   <div data-role="footer">
-	   		Start Winning
+	   		<%= I18n.translate('mobile.footer')%>
 		</div>
 		
 	</div>   <!-- End Search For Cleans Page -->
@@ -81,11 +81,11 @@
 			<%@alerts.each do |a|-%>
 		    	<li><%=a.location%> <br/>
 				<%=a.clean_time%> <br/>
-				<%if a.nb4%>Night Before<%else%>One Hour Before<%end%> 
-				 <%= link_to 'Delete', @alert, :q => "a.id", :method => :delete, "data-icon" => "delete", :class => "user_delete" %> | <%= submit_tag("edit", :controller => "alert", :action => "edit", :alarm => a.id, :method => "get", :class => "user_delete" ) %></li>
+				<%if a.nb4%><%= I18n.translate('mobile.night_before')%><%else%><%= I18n.translate('mobile.one_hour')%><%end%> 
+				 <%= link_to 'Delete', @alert, :q => "a.id", :method => :delete, "data-icon" => "delete", :class => "user_delete" %> | <%= submit_tag(I18n.translate('mobile.edit'), :controller => "alert", :action => "edit", :alarm => a.id, :method => "get", :class => "user_delete" ) %></li>
 			<%end%>
 			<%else%>
-				<li>You have no Alerts</li>
+				<li><%= I18n.translate('mobile.no_alerts')%></li>
 			<%end%>
 		</ul>	
 		
@@ -93,7 +93,7 @@
 	
 	  <!-- Footer -->
 	  <div data-role="footer">
-		Start Winning!
+		<%= I18n.translate('mobile.footer')%>
 	  </div>
     </div>
 
@@ -116,7 +116,7 @@
 		    	<li><%=r%> <br/>
 			<%end%>
 			<%else%>
-				<li>You have no Recent Searches</li>
+				<li><%= I18n.translate('mobile.no_recent')%></li>
 			<%end%>
 		</ul>	
 		
@@ -124,7 +124,7 @@
 	
 	  <!-- Footer -->
 	  <div data-role="footer">
-		Start winning!
+		<%= I18n.translate('mobile.footer')%>
 	  </div>
     </div>
 

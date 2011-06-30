@@ -69,7 +69,6 @@ en:
     search: "Search address for cleaning times in San Francisco..."
     search_button: 'Search'
     create: "CREATE \n ALERT"
-    m_search: "Search For Cleaning Times"
     signed_in_as: "Signed In as"
     not_you: "Not you?"
     links:
@@ -194,4 +193,14 @@ en:
   
   mobile:
     current_alerts: "Current Alerts"
+    search: "Search For Cleaning Times"
+    recent: "Recent Alarms"
+    footer: "Start Winning!"
+    submit: "Submit"
+    night_before: "Night Before"
+    one_hour: "One Hour Before"
+    no_alerts: "You have no Alerts"
+    edit: "Edit"
+    no_recent: "You have no Recent Searches"
+    
  

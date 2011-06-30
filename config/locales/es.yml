@@ -69,7 +69,6 @@ es:
     search: "Entrega Dirección para buscar los tiempos de limpieza en San Francisco..."
     search_button: 'Busca'
     create_alert: "CREA UNA \n ALERTA"
-    m_search: "Busca tiempos de limpieza"
     signed_in_as: "Ingresado cómo"
     not_you: "¿Es usted?"
     links:
@@ -193,5 +192,14 @@ es:
     pm: "pm"
       
   mobile:
-    current_alerts: "Alertas Actual"
+    current_alerts: "Alertas Actuales"
+    search: "Busca tiempos de limpieza"
+    recent: "Alarmas Recientes"
+    footer: "¡Empiece a Ganar!"
+    submit: "Enviar"
+    night_before: "Noche Antes"
+    one_hour: "Una Hora Antes"
+    no_alerts: "No hay Alertas"
+    edit: "Editar"
+    no_recent: "No hay Busquedas Recientes"
 
