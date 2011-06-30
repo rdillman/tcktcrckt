@@ -1,4 +1,7 @@
 class LookupController < ApplicationController
+  layout nil
+  layout 'application', :except => :get_next_time
+  
   
   def get_next_time
     @usr_qry = params[:q]
@@ -14,17 +17,15 @@ class LookupController < ApplicationController
       else
         @message = @results 
       end
-      respond_to do |format|
-        format.html{ redirect_to "lookup/addr?mobile=1#searchForCleans"}
-        format.js         
+      respond_to do |format|      
+        format.html
+        format.xml {render :xml => @message}
       end
-
-      
     else
       @message = "Please Enter Something"
-      respond_to do |format|
-        format.html{ redirect_to "lookup/addr?mobile=1#searchForCleans"}
-        format.js
+      respond_to do |format|      
+        format.html
+        format.xml {render :xml => @message}
       end
     end
   end
@@ -69,16 +70,21 @@ class LookupController < ApplicationController
           @recs = []
           @recs << @user.rec1 <<@user.rec2<<@user.rec3
         end
-        
-        respond_to do |format|
-          format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
-          format.js
-          format.xml  {render :xml => @message}
-          format.xml  {render :xml => @box}
-          format.xml  { render :xml => @alerts }
-          format.xml  { render :xml => @recs }
-          format.xml {render :xml => @usr_qry}
+        if params[:type] == "js"
+             respond_to do |format|
+                format.js        
+              end
+        else
+          respond_to do |format|
+            format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+            format.js
+            format.xml  {render :xml => @message}
+            format.xml  {render :xml => @box}
+            format.xml  { render :xml => @alerts }
+            format.xml  { render :xml => @recs }
+            format.xml {render :xml => @usr_qry}
           
+          end
         end
       end
       
