@@ -5,7 +5,7 @@
 
   	<%= text_field_tag(:q, nil, :placeholder => I18n.translate('header.search'), :size => 55, :class => "input1") -%>	
 
-    <%= submit_tag(I18n.translate('header.search_button'), :class => "user_submit") %>
+    <%= submit_tag(I18n.translate('header.search_button'), :class => "user_submit", :id=> "search_submit") %>
 
 		<% end %>
 </div>

@@ -10,7 +10,7 @@ es:
       success:  'Su numero ha sido actualizado.'
     create:
       res:
-        invalid_address: 'Dirección Invalido - Dirección o calle no existe'
+        invalid_address: 'Dirección Invalido - Dirección o calle no existe - '
         no_record: "No tenemos un archivo para esa dirección para esa calle"
         invalid: 'Dirección Invalido'
         multiple: '¿Cuál de estas calles?'

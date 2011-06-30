@@ -10,7 +10,7 @@ en:
       success: 'Your phone number has been updated.'
     create:
       res:
-        invalid_address: 'Invalid Address - No Address or No Street'
+        invalid_address: 'Invalid Address - No Address or No Street - '
         no_record: "We don't have a record for that address for that street"
         invalid: 'Invalid Address'
         multiple: 'Which of these Streets?'
