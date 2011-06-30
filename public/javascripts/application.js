@@ -21,10 +21,7 @@ function killAlert(){
 }
 
 function nextClean(){
-  	alert("yes");
 	var search = $("#searchinput").attr("value");
-	alert(search);
-	$.get("lookup/get_next_time?q="+search,function(data){
-		alert(data);
-	});
+	
+	$.getScript("lookup/get_next_time?q="+search);
 }
