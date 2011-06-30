@@ -28,8 +28,7 @@ function nextClean(){
 	})
 	var search = $("#searchinput").attr("value");
 	$.getScript("lookup/addr?q="+search, function(data){
-		alert(data);
-		
+
 	});
 	return false;
 }

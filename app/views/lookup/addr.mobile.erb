@@ -5,6 +5,8 @@
 	  $(document).ready(function() {
 	    $("#searchbutton").click(function(){
 			nextClean();
+			$.mobile.changePage( "#results", { transition: "pop"} );	
+			
 		});
 		
 	  });
