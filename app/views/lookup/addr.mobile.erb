@@ -1,10 +1,12 @@
-<html>
 <head>	
 
 	<!-- JQUERY CODE -->
 	  <script>
 	  $(document).ready(function() {
-	    $("#accordion").accordion();
+	    $("#searchbutton").click(function(){
+			nextClean();
+		});
+		
 	  });
 	  </script>
 </head>	
@@ -48,8 +50,8 @@
 			<form_action='addr' method="get">
 				<div data-role="fieldcontain">
 						    <label for="search">Search Cleaning Times</label>
-						    <input type="search" name="streetclean" id="search" value="" />
-					        <button type="submit" name="submit" value="submit-value">Submit</button>
+						    <input type="search" name="streetclean" id="searchinput" value="" />
+					        <button type="submit" name="submit" id ="searchbutton" value="submit-value">Submit</button>
 				</div>
 			</form>
 		</div>

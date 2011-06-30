@@ -40,8 +40,8 @@
 // styles the <div> with id "user_nav_basic"
 */
 #user_nav{
-	height: 30px;
-	color: #06275D;
+	color: white;
+	text-align: left;
 	background-color: #06275d;
 	padding: 10px 10px 10px 10px;
 }
@@ -49,8 +49,9 @@
 
 #user_sign{
 	text-align: right;
-	float: left;
 	color: white;
+	width: 400px;
+	float: right;
 }
 
 #footer_nav ul{
@@ -296,7 +297,7 @@ label{
 	
 	
 	height:25px;
-	width: 50px;
+	width: 150px;
 	margin: 15px 15px 15px 15px;
 	padding: 5px 5px 5px 5px;
 	font-family: Helvetica;
@@ -314,7 +315,7 @@ label{
 
 .user_submit:hover {
 height:25px;
-width: 50px;
+width: 150px;
 margin: 15px 15px 15px 15px;
 padding: 5px 5px 5px 5px;
 font-family: Helvetica;
@@ -390,6 +391,10 @@ border-radius: 3px;
 	color: black;
 	text-align: center;
 	padding-top: 20px;
+}
+
+#paypal{
+	text-align: center;
 }
 
 .how_to{

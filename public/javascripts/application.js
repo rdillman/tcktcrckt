@@ -15,7 +15,16 @@ function createNewAlert() {
 }
 
 function killAlert(){
-  var alert_id = $('#article').attr('data-id');  
+  var alert_id = $('#alert').attr('data-id');  
   $.getScript('/alertKill.js?alert_id='+alert_id)
   setTimeout(updateAlerts, 10000);  
+}
+
+function nextClean(){
+  	alert("yes");
+	var search = $("#searchinput").attr("value");
+	alert(search);
+	$.get("lookup/get_next_time?q="+search,function(data){
+		alert(data);
+	});
 }

@@ -12,6 +12,8 @@ Tcktcrckt::Application.routes.draw do
   get "lookup/addr"
   
   get "lookup/home"
+  
+  get "lookup/get_next_time"
 
   get "lookup/map"
   

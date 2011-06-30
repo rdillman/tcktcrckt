@@ -29,7 +29,7 @@ en:
       alert_for: 'Streetcleaning alert for '
       deleted: 'has been deleted.'
     do_alert_exists:
-      message:'An alert for this block already exists'
+      message: 'An alert for this block already exists'
     do_multiple:
       message: 'We have multiple streets with that name, try adding St or Ave to your searches'
     do_empty:

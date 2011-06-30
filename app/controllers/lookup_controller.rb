@@ -1,5 +1,34 @@
 class LookupController < ApplicationController
   
+  def get_next_time
+    @usr_qry = params[:q]
+    @user = current_user
+    
+    if @usr_qry
+      @results = Block.next_ct_from_addr(@usr_qry)
+    
+     #What does res mean?? Does uq mean user_query?
+      uq  = @usr_qry 
+      @message =""
+      if @results[0][0].class==Time
+        @message = @results[0][0].strftime("%A %B %e at %I:%M%p.")
+      else
+        @message = @results 
+      end
+      respond_to do |format|
+        format.xml  {render :text => @message}          
+      end
+
+      
+    else
+      @message = "Please Enter Something"
+      respond_to do |format|
+        format.xml  {render :xml => @message}          
+      end
+    end
+  end
+  
+  
   
   def addr
     @usr_qry = params[:q]
