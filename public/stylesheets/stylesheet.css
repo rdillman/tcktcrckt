@@ -110,13 +110,12 @@
 }
 
 /*redundant css block*/
-/*body{
+body{
 font-family:Helvetica, sans-serif; 
 font-size:12px;
 color: white;
 
 }
-*/
 
 #lookup{
 	padding-top:50px;
@@ -212,7 +211,6 @@ color: white;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
-	margin-top: 100px;
 }
 
 
@@ -296,11 +294,23 @@ a:hover{
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	border: 0;
-	/*margin: 0;*/
+	margin: 0;
+	position: absolute;
 	font-size: 15px;
 	padding:15px;
 	width:650px;
-	margin: auto;
+	top:30%;
+	left:20%;
+}
+
+.input2{
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	border: 0;
+	margin: 50px auto 25px auto;
+	font-size: 15px;
+	padding:15px;
+	width:650px;
 	top:30%;
 	left:20%;
 }
