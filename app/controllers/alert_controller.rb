@@ -104,24 +104,24 @@ class AlertController < ApplicationController
     uq  = @usr_qry 
 
     
-    if res == I18n.translate('alert_controller.create.res.invalid_address')
+    if res == "Invalid Address - No Address or No Street"
       do_invalid(res,uq)
 
-    elsif res == I18n.translate('alert_controller.create.res.no_record')
+    elsif res == "We don't have a record for that address for that street"
       do_invalid(res,uq)
   
-    elsif res == I18n.translate('alert_controller.create.res.invalid')
+    elsif res == "Invalid Address"
       do_invalid(res,uq)
 
-    elsif res[1] == I18n.translate('alert_controller.create.res.multiple')
+    elsif res[1] == "Which of these Streets?"
       do_multiple(res,uq)
 
-    elsif res == I18n.translate('alert_controller.create.res.no_entry')
+    elsif res == "Oops We Don't Have a Cleaning Record for this Street"
       do_no_entry(uq)
   
     elsif alert_exists?(res[1],@user,@st)
        do_alert_exists
-    elsif res == I18n.translate('alert_controller.create.res.empty')
+    elsif res == "empty"
         do_empty
   #
   #End Problem Cases #########################################################    
@@ -150,7 +150,7 @@ class AlertController < ApplicationController
         if (night_before?(@st[0])) #Night Before Case
           @a = make_nb4_alarm(@usr_qry,@results,@user)
         elsif (no_alarm?(@st[0]))
-          @message = I18n.translate('alert_controller.create.construct_alarm.next_clean')<<@results[0][0].strftime(I18n.translate('alert_controller.create.construct_alarm.time'))
+          @message = I18n.translate('alert_controller.create.construct_alarm.next_clean')<<I18n.localize(@results[0][0])
           send = @results[0][0] - 1.hour
           @box = "info"
           @alerts = Alarm.where("user_id = ?",current_user.id)
@@ -241,12 +241,13 @@ class AlertController < ApplicationController
   def make_nb4_alarm(uq, res, usr)
      nb4_time = res[0][0]-1.day + (19 - res[0][0].hour).hour
      send = res[0][0] - 1.hour
-     @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime(I18n.translate('alert_controller.create.construct_alarm.time')), :send_time => nb4_time.strftime(I18n.translate('alert_controller.create.construct_alarm.time')), :cnn => res[1], :nb4 => true, :user_id => usr.id)
+     @a = Alarm.create!(:location => uq, :clean_time => I18n.localize(@results[0][0]), :send_time => I18n.localize(nb4_time), :cnn => res[1], :nb4 => true, :user_id => usr.id)
+
   end
     
     def make_regular_alarm(uq,res,usr)
         send = res[0][0] - 1.hour
-        @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime(I18n.translate('alert_controller.create.construct_alarm.time')), :send_time => send.strftime(I18n.translate('alert_controller.create.construct_alarm.time')), :cnn => res[1], :nb4 => false, :user_id => usr.id)
+        @a = Alarm.create!(:location => uq, :clean_time => I18n.localize(@results[0][0]), :send_time => I18n.localize(send), :cnn => res[1], :nb4 => false, :user_id => usr.id)
     end
   
   def night_before?(alarm_type)
@@ -301,7 +302,7 @@ class AlertController < ApplicationController
   
   
   def do_invalid(res,uq)
-    @message = res
+    @message = I18n.translate('alert_controller.create.res.invalid_address')
     @message<<" "<<uq
     @box = "error"
     @alerts = Alarm.where("user_id = ?",current_user.id)

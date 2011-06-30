@@ -4,9 +4,8 @@
 	  <script>
 	  $(document).ready(function() {
 	    $("#searchbutton").click(function(){
-			nextClean();
-			$.mobile.changePage( "#results", { transition: "pop"} );	
-			
+			nextClean();	
+			$.mobile.changePage( "#results", { transition: "pop"} );			
 		});
 		
 	  });
@@ -143,14 +142,15 @@
 		
 
 		A Motherfucking Ninja!
-	
+		<div id='searchform'>
+		</div>
 		
 	  </div>
 	  <!-- End main content div -->
 	
 	  <!-- Footer -->
 	  <div data-role="footer">
-		Start Winning
+		<%=@message%>
 	  </div>
 	  <!-- End Footer -->
     </div>

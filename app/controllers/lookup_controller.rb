@@ -1,4 +1,7 @@
 class LookupController < ApplicationController
+  layout nil
+  layout 'application', :except => :get_next_time
+  
   
   def get_next_time
     @usr_qry = params[:q]
@@ -10,21 +13,19 @@ class LookupController < ApplicationController
       uq  = @usr_qry 
       @message =""
       if @results[0][0].class==Time
-        @message = @results[0][0].strftime("%A %B %e at %I:%M%p.")
+        @message = I18n.localize(@results[0][0])
       else
         @message = @results 
       end
-      respond_to do |format|
-        format.html{ redirect_to "lookup/addr?mobile=1#searchForCleans"}
-        format.js         
+      respond_to do |format|      
+        format.html
+        format.xml {render :xml => @message}
       end
-
-      
     else
       @message = "Please Enter Something"
-      respond_to do |format|
-        format.html{ redirect_to "lookup/addr?mobile=1#searchForCleans"}
-        format.js
+      respond_to do |format|      
+        format.html
+        format.xml {render :xml => @message}
       end
     end
   end
@@ -62,23 +63,28 @@ class LookupController < ApplicationController
           do_empty
       
       else 
-        @message = @results[0][0].strftime("%A %B %e at %I:%M%p.")
+        @message = I18n.localize(@results[0][0])
         @box = "info"
         if @user
           @alerts = Alarm.where("user_id =?",@user.id)
           @recs = []
           @recs << @user.rec1 <<@user.rec2<<@user.rec3
         end
-        
-        respond_to do |format|
-          format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
-          format.js
-          format.xml  {render :xml => @message}
-          format.xml  {render :xml => @box}
-          format.xml  { render :xml => @alerts }
-          format.xml  { render :xml => @recs }
-          format.xml {render :xml => @usr_qry}
+        if params[:type] == "js"
+             respond_to do |format|
+                format.js        
+              end
+        else
+          respond_to do |format|
+            format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+            format.js
+            format.xml  {render :xml => @message}
+            format.xml  {render :xml => @box}
+            format.xml  { render :xml => @alerts }
+            format.xml  { render :xml => @recs }
+            format.xml {render :xml => @usr_qry}
           
+          end
         end
       end
       
@@ -197,7 +203,7 @@ class LookupController < ApplicationController
   
   #Should this function be gone??
   def do_empty
-    @message = "Please enter something"
+    @message = I18n.translate('alert_controller.do_empty.message')
     @box = "error"
     @user  = current_user
     if @user

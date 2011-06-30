@@ -27,8 +27,9 @@ function nextClean(){
 	  }
 	})
 	var search = $("#searchinput").attr("value");
-	$.getScript("lookup/addr?q="+search, function(data){
-
+	$.getScript("lookup/get_next_time?q="+search, function(data){
+		alert(data);
+		$('#searchform').append(data);  
 	});
 	return false;
 }
