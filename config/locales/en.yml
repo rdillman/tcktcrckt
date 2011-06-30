@@ -33,7 +33,7 @@ en:
     do_multiple:
       message: 'We have multiple streets with that name, try adding St or Ave to your searches'
     do_empty:
-      message: 'Please enter something'
+      message: 'Please enter and address'
     alert_messages:
       multiple: 'Which of these?'
       new: 'New Search'

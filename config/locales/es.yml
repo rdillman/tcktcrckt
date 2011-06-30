@@ -33,7 +33,7 @@ es:
     do_multiple:
       message: 'Tenemos varios calles con ese nombre, trate de añadir St o Ave a su búsqueda.'
     do_empty:
-      message: 'Por favor escriba algo'
+      message: 'Por favor escriba una dirección'
     alert_messages:
       multiple: '¿Cuál de estos?'
       new: 'Nueva Búsqueda'
