@@ -1,5 +1,35 @@
 class LookupController < ApplicationController
   
+  def get_next_time
+    @usr_qry = params[:q]
+    @user = current_user
+    if @usr_qry
+      @results = Block.next_ct_from_addr(@usr_qry)
+    
+     #What does res mean?? Does uq mean user_query?
+      uq  = @usr_qry 
+      @message =""
+      if @results[0][0].class==Time
+        @message = @results[0][0].strftime("%A %B %e at %I:%M%p.")
+      else
+        @message = @results 
+      end
+      respond_to do |format|
+        format.html{ redirect_to "lookup/addr?mobile=1#searchForCleans"}
+        format.js         
+      end
+
+      
+    else
+      @message = "Please Enter Something"
+      respond_to do |format|
+        format.html{ redirect_to "lookup/addr?mobile=1#searchForCleans"}
+        format.js
+      end
+    end
+  end
+  
+  
   
   def addr
     @usr_qry = params[:q]
@@ -32,7 +62,7 @@ class LookupController < ApplicationController
           do_empty
       
       else 
-        @message = 'Next Streetclean:'<<@results[0][0].strftime("%A %B %e at %I:%M%p.")
+        @message = @results[0][0].strftime("%A %B %e at %I:%M%p.")
         @box = "info"
         if @user
           @alerts = Alarm.where("user_id =?",@user.id)
@@ -42,11 +72,12 @@ class LookupController < ApplicationController
         
         respond_to do |format|
           format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+          format.js
           format.xml  {render :xml => @message}
           format.xml  {render :xml => @box}
           format.xml  { render :xml => @alerts }
           format.xml  { render :xml => @recs }
-          
+          format.xml {render :xml => @usr_qry}
           
         end
       end
@@ -59,6 +90,7 @@ class LookupController < ApplicationController
       end
       respond_to do |format|
         format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
+        format.js
         format.xml  { render :xml => @alerts }
         format.xml  { render :xml => @recs }
         
@@ -73,7 +105,7 @@ class LookupController < ApplicationController
 
   def map
   end
-  
+    
   private
    # Joseles - all the strings for il8n are in these functions
   

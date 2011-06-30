@@ -1,26 +1,26 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>How To Use TcktCrckt</title>
+	<title><%= I18n.translate('how_to.title')%></title>
 </head>
 
 <h1 id = "how_title">
-	How to Use TcktCrckt
+	<%= I18n.translate('how_to.title')%>
 <h1>
 	
 <article id = "how_body">
-	<section class = "how_para">
-		If you have never used <%= link_to "TcktCrckt", lookup_addr_path %> before you shoold go to <%= link_to "the Sign Up page", new_user_registration_path %> and register so that you can get the most out of our site.<br><hr>
-		Once you are Registered flilow these simple steps and you will be evading those pesky "meter maids" in now time!<hr>
+	<section class = "content_box" id = "how_para">
+		<%= I18n.translate('how_to.intro.intro_1')%><%= link_to "TcktCrckt", lookup_addr_path %> <%= I18n.translate('how_to.intro.intro_2')%> <%= link_to "the Sign Up page", new_user_registration_path %> <%= I18n.translate('how_to.intro.intro_3')%><br><hr>
+		<%= I18n.translate('how_to.intro.intro_4')%><hr>
 		
 		<ol>
-			<li>Remember the address where you parked your car.</li>
+			<li><%= I18n.translate('how_to.steps.step_1')%></li>
 				<ul>
-					<li>To do this look up at the house in front of your car.</li>
-					<li>Jot down the number and street name.</li>
+					<li><%= I18n.translate('how_to.steps.step_2')%></li>
+					<li><%= I18n.translate('how_to.steps.step_3')%></li>
 				</ul>
-			<li>Enter this address into the text field on the home page.</li>
-			<li>If you wish to have us send you an alert before the cleaner comesΩ chose weither you woold like to be notified an hour before cleaning time or the night before from the drop down menu next to your cleaning time.</li>
-			<li>Next click on the pretty green button labeled "Create txt Alert".</li>
+			<li><%= I18n.translate('how_to.steps.step_4')%></li>
+			<li><%= I18n.translate('how_to.steps.step_5')%></li>
+			<li><%= I18n.translate('how_to.steps.step_6')%></li>
 		</ol>
 	</section>
 </article>			

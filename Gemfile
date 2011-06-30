@@ -14,7 +14,7 @@ gem 'nifty-generators', '>= 0.4.0'
 gem 'geokit'
 gem 'chronic'
 gem 'formtastic', '~> 1.2.4'
-
+gem 'jquery-rails'
 gem 'sqlite3'
 
 
@@ -23,7 +23,7 @@ group :development do
 end
 
  group :production do
-#	gem 'mysql2', '~> 0.2.7'
+	gem 'mysql2', '~> 0.2.7'
  end
 
 # Use unicorn as the web server

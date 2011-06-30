@@ -2,10 +2,11 @@
 <html>
 <head>
   <title><%= I18n.translate('header.title')%></title>
-  <!-- Grabs the stylesheets -->
+  <!-- Grabs the regular stylesheets -->
   <%= stylesheet_link_tag :all %>
 
-  <%= stylesheet_link_tag 'mobile' if mobile_device?%>
+  <!-- grabs the mobile stylesheets if needed -->
+  
 
 
   <!-- Default JavaScript include files -->
@@ -30,34 +31,36 @@
 </head>
 <body>
 
-	</head>
 	<body id="body">
-		<div id="container">
-			<header id="user_nav">
+		<div id="container">			
+			<div id="user_nav">
+				<div id="logo">
+					<%= link_to image_tag("tcktcrckt.png"), "/" %>
+				</div>
 				<div id="user_nav_basic">
-				<%= link_to image_tag("tcktcrckt.png"), "/" %> |	
-		
-				<%= link_to I18n.translate('header.links.how_to'), lookup_how_to_path %> |
-				<%= link_to I18n.translate('header.links.alerts'), alert_show_path %> |
-				<%= link_to I18n.translate('header.links.about_us'), layouts_about_us_path%> |
-				<%= link_to I18n.translate('header.links.contact'), layouts_contact_us_path %> |	
-				
+					<%= link_to I18n.translate('header.links.how_to'), lookup_how_to_path %>
+					<%= link_to I18n.translate('header.links.alerts'), alert_show_path %>
+					<%= link_to I18n.translate('header.links.about_us'), layouts_about_us_path%>
+					<%= link_to I18n.translate('header.links.contact'), layouts_contact_us_path %>
+				</div>	
+				<div id="user_sign">
 					<% if user_signed_in? %>
 						<%=I18n.translate('header.signed_in_as')%> <%= link_to current_user.username.blank? ? current_user.email : current_user.username, edit_user_registration_path %>. <%= I18n.translate('header.not_you')%>
 						<%= link_to I18n.translate('header.links.sign_out'), destroy_user_session_path %>
 					<% else %>
 						<%= link_to I18n.translate('header.links.sign_up'), new_user_registration_path %>
-					<% end %> |
+					<% end %>
+			
 					<% if mobile_device? %>
 				    	<%= link_to I18n.translate('header.links.full_site'), :mobile => 0 %>
 				  	<% else %>
 				    	<%= link_to I18n.translate('header.links.mobile'), :mobile => 1 %>
 				  	<% end %>
-				
 				</div>
+			</div>
+		</div>
+					</div>
 				
-				
-			</header>
 			<!-- </header> -->
 	  
 	  <div id="yield_page">
@@ -65,17 +68,17 @@
 
 			<%= yield %>
 			
-		
-<div id="paypal">
-		<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-		<input type="hidden" name="cmd" value="_s-xclick">
-		<input type="hidden" name="hosted_button_id" value="K5ELFZECZQM66">
-		<input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110429-1/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-		<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-		</form>
-</div>
+			<div id="paypal">
+					<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+					<input type="hidden" name="cmd" value="_s-xclick">
+					<input type="hidden" name="hosted_button_id" value="K5ELFZECZQM66">
+					<input type="image" src="https://www.paypalobjects.com/WEBSCR-640-20110429-1/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+					<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+					</form>
+			</div>
 		
 		</div>
+
 
 </body>
 
