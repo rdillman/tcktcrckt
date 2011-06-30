@@ -23,7 +23,7 @@ es:
       kill:
         delete: 'La alarma ha sido eliminado'
     create_message:
-      alert_created: 'Una alerta se ha creado para la limpieza de, '
+      alert_created: 'Una alerta se ha creado para la limpieza de '
       begins: ' que comienza el '
     kill_message:
       alert_for: 'Alerta de limpieza de calle para '
@@ -86,7 +86,8 @@ es:
     intro:
       intro_1: "Si nunca ha utilizado"
       intro_2: "debes de ir a "
-      intro_3: "Y registrarse para que puedas sacar el mayor provecho de nuestro sitio."
+      sign_up_link: "la pagina de Registración "
+      intro_3: "y registrese para que puedas sacar lo mejor de nuestro sitio."
       intro_4: "Cuando has registrado, sigue estos sencillos pasos y evada 'los sirvientes del parquímetro' en poco tiempo."
     steps:
       step_1: "Acuerda la dirección en donde estacióno su vehículo."
