@@ -36,6 +36,8 @@ en:
     do_empty:
       message: 'Please enter an address'
     alert_messages:
+      delete: "delete"
+      change: "change"
       multiple: 'Which of these?'
       new: 'New Search'
       alarm_options: 'Alarm Options'

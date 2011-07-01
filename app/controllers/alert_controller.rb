@@ -232,12 +232,12 @@ class AlertController < ApplicationController
   def make_nb4_alarm(uq, res, usr)
      nb4_time = res[0][0]-1.day + (19 - res[0][0].hour).hour
      send = res[0][0] - 1.hour
-     @a = Alarm.create!(:location => uq, :clean_time => I18n.localize(res[0][0]), :send_time => I18n.localize(nb4_time), :cnn => res[1], :nb4 => true, :user_id => usr.id)
+     @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime(I18n.translate("time.formats.short")), :send_time => nb4_time.strftime(I18n.translate("time.formats.short")), :cnn => res[1], :nb4 => true, :user_id => usr.id)
   end
     
   def make_regular_alarm(uq,res,usr)
       send = res[0][0] - 1.hour
-      @a = Alarm.create!(:location => uq, :clean_time => I18n.localize(res[0][0]), :send_time => I18n.localize(send), :cnn => res[1], :nb4 => false, :user_id => usr.id)
+      @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime(I18n.translate("time.formats.short")), :send_time => send.strftime(I18n.translate("time.formats.short")), :cnn => res[1], :nb4 => false, :user_id => usr.id)
   end
   
   def night_before?(alarm_type)
