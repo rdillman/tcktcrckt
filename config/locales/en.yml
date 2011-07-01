@@ -66,8 +66,8 @@ en:
     closing: "That is A LOT to remember. So we have Ticket Cricket. Just enter the address where you parked and we will send you a text alert when it is time for you to move your car. It's that easy!"
   
   header:
-    title: "Lose the Vowels, Lose the Tickets!"
-    search: "Search address for cleaning times in San Francisco..."
+    title: "No more parking tickets!"
+    search: "Search address for street cleaning times in San Francisco..."
     search_button: 'Search'
     create: "CREATE \n ALERT"
     m_search: "Search For Cleaning Times"

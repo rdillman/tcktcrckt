@@ -103,23 +103,15 @@
 	display: block;
 	height: auto;
 	position: relative;
-	font-family:Helvetica, sans-serif; 
+	font-family:Futura,Helvetica, sans-serif; 
 	font-size:12px;
-	color: white;
+	color: #06275D;
 	
-}
-
-/*redundant css block*/
-body{
-font-family:Helvetica, sans-serif; 
-font-size:12px;
-color: white;
-
 }
 
 #lookup{
 	padding-top:50px;
-	height:200px;
+	height:80px;
 }
 
 #lookup form{
@@ -188,13 +180,6 @@ color: white;
 	background-color: #FFBABA;
 }
 
-/* styles the commented out logo <div> */
-/*#logo{
-	text-align: center;
-	font-size: 50px;
-	margin: 0px;
-}
-*/
 /* styles the "about_image" <div> in "about us"*/
 .about_image{
 	margin-left: auto;
@@ -241,16 +226,12 @@ p{
 }
 
 a{
-	color: #EEC015;
+	color: #06275D;
 	text-decoration: none;
 }
 
-a:visited{
-	color: #EEC015;
-}
-
 a:hover{
-	color: blue;
+	color: white;
 	text-decoration: none;
 }
 
@@ -315,6 +296,35 @@ a:hover{
 	left:20%;
 }
 
+.input3{
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	border: 0;
+	font-size: 12px;
+	width:165px;
+	padding:5px;
+	text-align:center;
+}
+
+.form_container p{
+	margin-bottom:10px;
+}
+
+#user_carrier, #user_language{
+	width:175px;
+	height:25px;
+	padding:5px;
+	margin-bottom:10px;
+	font-size:15px;
+	text-align:center;
+	vertical-align:middle;
+	background:white;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	border: 0;
+	font-size: 12px;
+}
+
 #homePageImage{
 	text-align: left;
 	padding-left: 196px;
@@ -333,7 +343,7 @@ label{
 
 .user_submit{
 	height:25px;
-	width: 150px;
+	width: 175px;
 	padding: 5px;
 	font-family: Futura,Helvetica,sans serif;
 	font-size: 12px;
@@ -452,6 +462,7 @@ border-radius: 3px;
 }
 
 #paypal{
+	margin-top:25px;
 	text-align: center;
 }
 
