@@ -1,0 +1,9 @@
+ <li>
+	<div class='alert' data-id=<%=@a.id%> >
+		<b><%=@a.location%></b><br/>
+		<%=@a.clean_time%> <br/>
+		<div class='sendTime'  data-id=<%=@a.id%> > <%if @a.nb4%>Night Before<%else%>One Hour Before<%end%> </div>
+		<button class='change' data-id=<%=@a.id%> >change time</button>
+		<button class='delete' data-id=<%=@a.id%> >delete</button>
+	</div>
+</li>

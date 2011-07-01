@@ -54,7 +54,6 @@ function nextClean(){
 		var time = data.substring(separator+2);
 		$('#searchresults').html(data);
 		$('#searchCreateAlert').attr('q',address);
-		$('#searchCreateAlert').attr('time',time);
 	});
 	return false;
 }
@@ -65,9 +64,10 @@ function makeAlert(){
 	    xhr.setRequestHeader("Accept", "text/javascript");
 	  }
 	})
-	var q = $(".changeAlert").attr("q");
+	var q = $("button#searchCreateAlert").attr("q");
 	$.getScript("lookup/make_alert?q="+q, function(data){
-		alert(data);
+		$.mobile.changePage( "#alertShow", { transition: "pop"} );	
+		$('#alertList').prepend(data);
 	});
 	return false;
 }

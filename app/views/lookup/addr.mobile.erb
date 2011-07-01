@@ -13,7 +13,6 @@
 			changeAlert();
 		});
 		$("#searchCreateAlert").click(function(){
-			alert("FUCK!")
 			makeAlert();
 		});	
 	  });
@@ -93,7 +92,7 @@
 
 		<!-- Show ALarms -->
 		
-	    <ul data-role='listview' data-theme="g">
+	    <ul data-role='listview' id="alertList" data-theme="g">
 			<%if @alerts && @alerts != []%>
 			<%@alerts.each do |a|%>
 	    	<li>

@@ -99,8 +99,9 @@
 /*difference between "#body" and "body"??*/
 #body{
 	margin: auto;
-	background: url('/images/2.jpg');
+	background: url('/images/parkclose.jpg');
 	display: block;
+	width: 100%;
 	height: auto;
 	position: relative;
 	font-family:Helvetica, sans-serif; 
