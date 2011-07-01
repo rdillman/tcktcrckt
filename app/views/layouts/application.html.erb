@@ -40,7 +40,21 @@
 				</div>
 				<div id="user_nav_basic">
 					<%= link_to I18n.translate('header.links.how_to'), lookup_how_to_path %>
+					
+					
+					<%if current_user == nil%>
+					<%= link_to I18n.translate('header.links.alerts'), "users/sign_in" %>
+					
+					<%elsif current_user.phone_number != current_user.valphone%>
+					<%= link_to I18n.translate('header.links.alerts'), validator_enter_path %>
+					
+					<%else %>
 					<%= link_to I18n.translate('header.links.alerts'), alert_show_path %>
+					
+					<%end%>
+					
+					
+					
 					<%= link_to I18n.translate('header.links.about_us'), layouts_about_us_path%>
 					<%= link_to I18n.translate('header.links.contact'), layouts_contact_us_path %>
 				</div>	

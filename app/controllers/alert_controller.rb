@@ -350,7 +350,6 @@ class AlertController < ApplicationController
         
   
   def validated?
-
     @user = current_user
     if @user.phone_number != @user.valphone
       redirect_to :controller => "validator", :action => "enter"

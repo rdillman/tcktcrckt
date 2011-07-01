@@ -28,14 +28,11 @@
 <div id="lookup_container">
 
 	<div id="lookup_form_container">
-	<%= form_tag("/lookup/addr", :method => "get") do %>
-
-  	<%= text_field_tag(:q, nil, :placeholder => I18n.translate('header.search'), :size => 55, :class => "input2") -%>	
-	
-		
-    <%= submit_tag(I18n.translate('header.search_button'), :class => "user_submit", :id => "search_submit") %>
-
+		<%= form_tag("/lookup/addr", :method => "get") do %>
+  		<%= text_field_tag(:q, nil, :placeholder => I18n.translate('header.search'), :size => 55, :class => "input2") -%>	
+    	<%= submit_tag(I18n.translate('header.search_button'), :class => "user_submit", :id => "search_submit") %>
 	<% end %>
+
 	</div>
 	<div id="alertmsg">
 	<%if @message&&@box%>
@@ -44,7 +41,18 @@
 		<%elsif @box == "warn"%>
 			<div class='warning'><%=@message%></div>
 		<%elsif @box == 'info'%>
-			<div class='info'><%=@message%>		<%=link_to(I18n.translate('header.create_alert'), :class => "user_submit", :id => "alert_submit", :controller=>"alert", :action=>"create", :method => "get", :q=>@usr_qry, :st => I18n.translate('alertcontroller.alertmessages.options.night_before')) %></div>
+			<div class='info'><%=@message%>		
+			
+			<%if validated? == 0%>
+			<%=link_to(I18n.translate('header.create_alert'),new_registration_path )%>
+			<%elsif validated? == 1%>
+			<%=link_to(I18n.translate('header.create_alert'),validator_enter_path )%>
+			<%else %>
+			<%=link_to(I18n.translate('header.create_alert'), :class => "user_submit", :id => "alert_submit", :controller=>"alert", :action=>"create", :method => "get", :q=>@usr_qry, :st => I18n.translate('alert_controller.alertmessages.options.night_before')) %>
+			<%end%></div>
+			
+		
+			
 		<%elsif @box == 'error'%>
 			<div class='error'><%=@message%></div>
 		<%end%>
