@@ -50,19 +50,12 @@
 		<hr>
 		<!-- Show ALarms -->
 	    <ul data-role='listview' data-theme="g">
-<<<<<<< HEAD
 		<%if signed_in?%>
-			<li><a href="#alertShow">Current Alerts</a></li>
-			<li><a href="#recent">Recent Alarms</a></li>
+			<li><a href="#alertShow"><%= I18n.translate('mobile.current_alerts')%></a></li>
+			<li><a href="#recent"><%= I18n.translate('mobile.recent')%>></a></li>
 		<%else%>
 			<li><a rel='external' href="/users/sign_in?mobile=1">Sign In/ Sign Up to Create Alarms</a></li>
 		<%end%>
-		
-=======
-			<li><a href="#searchForCleans"><%= I18n.translate('mobile.search')%></a></li>
-			<li><a href="#alerts"><%= I18n.translate('mobile.current_alerts')%></a></li>
-			<li><a href="#recent"><%= I18n.translate('mobile.recent')%></a></li>
->>>>>>> a0ef8660e3df977b20a5596d38de20cb8493d93d
 		</ul>	
 		
 	  </div> <!-- End main content div -->
