@@ -36,6 +36,8 @@ en:
     do_empty:
       message: 'Please enter an address'
     alert_messages:
+      delete: "delete"
+      change: "change"
       multiple: 'Which of these?'
       new: 'New Search'
       alarm_options: 'Alarm Options'
@@ -43,7 +45,7 @@ en:
         night_before: 'Night Before'
         1_hour: '1 Hour Before'
         no_alarm: 'Do not Create an Alarm'
-      get_results: 'Get Results!'
+      get_results: 'GET RESULTS'
       titles:
         current: 'Your Current Alerts!'
         none: 'You have no Current Alerts'
@@ -68,8 +70,9 @@ en:
   header:
     title: "No more parking tickets!"
     search: "Search address for street cleaning times in San Francisco..."
-    search_button: 'Search'
-    create_alert: "CREATE \n ALERT"
+
+    search_button: 'SEARCH'
+    create: "CREATE \n ALERT"
     m_search: "Search For Cleaning Times"
     signed_in_as: "signed in as"
     not_you: "not you?"
@@ -104,7 +107,7 @@ en:
   validator:
     text_1: "A Validation Code has been sent to your phone number :"
     text_2: ", you should receive it shortly."
-    text_3: "Enter it below and start creating alerts!"
+    text_3: "Enter it and start creating alerts!"
     text_4: "Validation Code: "
     
   registration:

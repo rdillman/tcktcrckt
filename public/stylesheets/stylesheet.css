@@ -7,11 +7,8 @@
 	background-color: #06275d;
 	margin-right: auto;
 	margin-left: auto;
-	/*width:75%;*/
 	text-align: center;
 	position: relative;
-	/*min-height: 100%;
-		height: auto !important;*/
 	height: 100%;
 	margin: 0 auto 14em;
 }
@@ -58,7 +55,6 @@
 	font-size:14px;	
 }
 
-
 #user_nav a{
 	color:white;
 }
@@ -97,8 +93,8 @@
 
 #body{
 	margin: auto;
-	background: url('/images/parkclose.jpg');
-	display: block;
+/*	background: url('/images/parkclose.jpg');
+*/	display: block;
 	width: 100%;
 	height: auto;
 	position: relative;
@@ -113,18 +109,23 @@ position: fixed;
 left: 0px; 
 top: 0px; 
 width: 100%; 
-height: 100%; 
+height: auto; 
 z-index: -1; 
 }
 
-#lookup{
+/*#lookup{
 	padding-top:50px;
 	height:80px;
+}*/
+
+#lookup_container{
+	margin:auto;
+	width:795px;
 }
 
-#lookup form{
+#lookup_form_container {
 	margin:auto;
-	width:100%;
+	width:795px;
 }
 
 /* "alertmsg"
@@ -134,12 +135,14 @@ z-index: -1;
 // in address search bar
 */
 #alertmsg{
-	position: absolute;
+	position: relative;
 	top: 48%;
 	left:0;
 	height:50px;
-	width:100%;
+	width:650px;
 }
+
+
 
 #how_to{
 	margin: 20px auto;
@@ -158,7 +161,6 @@ z-index: -1;
 .info, .success, .warning, .error, .validation {
     margin:auto;
 	font-size:15px;
-	font-weight:bold;
 	text-align:center;
 	margin:auto;
 	border: 1px solid;
@@ -166,8 +168,8 @@ z-index: -1;
 	-moz-border-radius: 5px;
 	padding:15px 14px;
 	width:650px;
-	position:absolute;
-	left:20%;
+	position:relative;
+	
 }
 
 .info {
@@ -188,6 +190,7 @@ z-index: -1;
 	background-color: #FFBABA;
 }
 
+
 /* styles the "about_image" <div> in "about us"*/
 .about_image{
 	margin-left: auto;
@@ -204,8 +207,16 @@ z-index: -1;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
+	position: absolute; 
+	top: 120%; 
+	left: 0; 
+	width: 100%; 
+	height: 100%;
 }
 
+#yield_page a{
+	color:#EEC015;
+}
 
 #login{
 	float: right;
@@ -317,7 +328,7 @@ input{
 	margin-bottom:10px;
 }
 
-#user_carrier, #user_language{
+select{
 	width:175px;
 	height:25px;
 	padding:5px;
@@ -378,9 +389,8 @@ label{
 	height:48px;
 	width: 100px;
 	padding:0;
-	position:absolute;
-	left:75%;
-	top:30%;
+	position:relative;
+	margin:5px;
 }
 
 #alert_submit{
@@ -422,8 +432,10 @@ label{
 	top:10;
 }
 
+
 #validation_message{
 	padding:15px;
+	height:60px;
 }
 
 .user_delete{
@@ -486,6 +498,37 @@ border-radius: 3px;
 	color: black;
 	text-align: center;
 	padding-top: 20px;
+}
+
+label#alert_options  {
+	font-size:14px;
+}
+
+#alerts_table_container{
+	margin:auto;	
+	width:650px;
+	height:auto;
+	padding:20px;
+	background-color:white;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+#alerts_table{
+	margin:auto;
+	width:650px;
+	border-collapse:separate;
+	border-spacing:10px;
+	background-color:white;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+/*	align:"center"; 
+	cellspacing="10"*/
+}
+
+/* extremely hacky solution to alert/show misalignment between dropdown menu and submit button */
+select#st{
+	margin-bottom:7px;
 }
 
 #paypal{
