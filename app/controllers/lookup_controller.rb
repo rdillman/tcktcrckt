@@ -123,7 +123,6 @@ class LookupController < ApplicationController
      #What does res mean?? Does uq mean user_query?
       res = @results
       uq  = @usr_qry 
-
     
       if res == "Invalid Address - No Address or No Street"
         do_invalid(res,uq)
@@ -162,9 +161,9 @@ class LookupController < ApplicationController
             format.xml  {render :xml => @message}
             format.xml  {render :xml => @box}
             format.xml  { render :xml => @alerts }
-            format.xml  { render :xml => @recs }
             format.xml {render :xml => @usr_qry}
-          
+            format.xml  { render :xml => @recs }
+            
           end
         end
       end

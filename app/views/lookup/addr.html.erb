@@ -30,7 +30,7 @@
 
     <%= submit_tag(I18n.translate('header.search_button'), :class => "user_submit", :id=> "search_submit") %>
 
-		<% end %>
+	<% end %>
 </div>
 		
 		<div id="alertmsg">
@@ -40,14 +40,13 @@
 			<%elsif @box == "warn"%>
 				<div class='warning'><%=@message%></div>
 			<%elsif @box == 'info'%>
-				<div class='info'><%=@message%></div>
+				<div class='info'><%=@message%>		<%=link_to(I18n.translate('header.create_alert'), :class => "user_submit", :id => "alert_submit", :controller=>"alert", :action=>"create", :method => "get", :q=>@usr_qry) %></div>
+
+
 			<%elsif @box == 'error'%>
 				<div class='error'><%=@message%></div>
 			<%end%>
-		<%= form_tag("../alert/create", :method => "get") do %>
-		<%=submit_tag(I18n.translate('header.create_alert'), :class => "user_submit", :id => "alert_submit", :controller=>"alert", :action=>"create", :method => "get") %>
 		<%end%>
-	<% end %> 
 		</div>	
 	
 	
