@@ -40,11 +40,11 @@ class AlertController < ApplicationController
       ct = Chronic.parse(alert.clean_time)
       if alert.nb4
         send = ct - 1.hour
-        alert.update_attribute(:send_time, send.stfrtime(I18n.translate('time.formats.short')))
+        alert.update_attribute(:send_time, send.strftime(I18n.translate('time.formats.short')))
         alert.update_attribute(:nb4, false)
       else
         nb4_time = ct-1.day + (19 - ct.hour).hour
-        alert.update_attribute(:send_time, nb4_time.stfrtime(I18n.translate('time.formats.short')))
+        alert.update_attribute(:send_time, nb4_time.strftime(I18n.translate('time.formats.short')))
         alert.update_attribute(:nb4, true)
       end
       @message = I18n.translate('alert_controller.edit.success')
