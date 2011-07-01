@@ -68,7 +68,7 @@ en:
     title: "Lose the Vowels, Lose the Tickets!"
     search: "Search address for cleaning times in San Francisco..."
     search_button: 'Search'
-    create: "CREATE \n ALERT"
+    create_alert: "CREATE \n ALERT"
     signed_in_as: "Signed In as"
     not_you: "Not you?"
     links:
