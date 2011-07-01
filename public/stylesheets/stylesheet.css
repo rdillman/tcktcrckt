@@ -39,7 +39,7 @@
 }
 
 #user_nav_basic a{
-	padding-right:15px;
+	padding: 0 6px;
 }
 
 /*
@@ -48,7 +48,7 @@
 // styles the <div> with id "user_nav_basic"
 */
 #user_nav{
-	text-align: left;
+	text-align: center;
 	vertical-align:middle;
 	background-color: #06275d;
 	padding: 10px 10px 10px 10px;
@@ -57,6 +57,7 @@
 	font-family:Futura, Helvetica, sans-serif; 
 	font-size:14px;	
 }
+
 
 #user_nav a{
 	color:white;
@@ -77,8 +78,8 @@
 
 #user_sign{
 	text-align: right;
-	color: white;
-	width: 400px;
+	color: #EEC015;
+	width: 600px;
 	float: right;
 	position:absolute;
 	bottom:10px;
@@ -86,7 +87,7 @@
 }
 
 #user_sign a{
-	padding-left:15px;
+	padding: 0 8px;
 }
 
 #footer_nav ul{
@@ -94,9 +95,6 @@
 	display: inline;
 }
 
-
-/*redundant css block*/
-/*difference between "#body" and "body"??*/
 #body{
 	margin: auto;
 	background: url('/images/parkclose.jpg');
@@ -104,23 +102,24 @@
 	width: 100%;
 	height: auto;
 	position: relative;
-	font-family:Helvetica, sans-serif; 
+	font-family:Futura,Helvetica, sans-serif; 
 	font-size:12px;
-	color: white;
-	
+	color: #06275D;	
 }
 
-/*redundant css block*/
-body{
-font-family:Helvetica, sans-serif; 
-font-size:12px;
-color: white;
-
+img#bg 
+{ 
+position: fixed; 
+left: 0px; 
+top: 0px; 
+width: 100%; 
+height: 100%; 
+z-index: -1; 
 }
 
 #lookup{
 	padding-top:50px;
-	height:200px;
+	height:80px;
 }
 
 #lookup form{
@@ -189,13 +188,6 @@ color: white;
 	background-color: #FFBABA;
 }
 
-/* styles the commented out logo <div> */
-/*#logo{
-	text-align: center;
-	font-size: 50px;
-	margin: 0px;
-}
-*/
 /* styles the "about_image" <div> in "about us"*/
 .about_image{
 	margin-left: auto;
@@ -242,33 +234,14 @@ p{
 }
 
 a{
-	color: #EEC015;
+	color: #06275D;
 	text-decoration: none;
-}
-
-a:visited{
-	color: #EEC015;
 }
 
 a:hover{
-	color: blue;
+	color: white;
 	text-decoration: none;
 }
-
-/*.content_box{
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 40px;
-    margin-bottom: 40px;
-	width: 300px;
-	padding:40 20 60 20;
-	background: white;
-	border: 12px solid black;
-	border-radius: 15px;
-	-moz-border-radius: 15px;
-	color: black;
-	
-}*/
 
 .content_box p{
 	color: black;
@@ -276,7 +249,11 @@ a:hover{
 }
 
 .content_box h2, h3, h4{
-	color: black;
+	color: #06275D;
+}
+
+.content_box a{
+	color: #EEC015;
 }
 
 #about_box{
@@ -289,6 +266,13 @@ a:hover{
 	border-radius: 15px;
 	-moz-border-radius: 15px;
 	filter:alpha(opacity=50); opacity: 0.5; -moz-opacity:0.5;
+}
+
+input{
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	border: 0;
+	margin: 0;
 }
 
 .input1{
@@ -316,6 +300,40 @@ a:hover{
 	left:20%;
 }
 
+.input3{
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	border: 0;
+	font-size: 12px;
+	width:165px;
+	height:15px;
+	padding:5px;
+	margin-top:2px;
+	text-align:center;
+	vertical-align:middle;
+}
+
+.form_container p{
+	margin-bottom:10px;
+}
+
+#user_carrier, #user_language{
+	width:175px;
+	height:25px;
+	padding:5px;
+	margin-top:2px;
+	font-size:15px;
+	text-align:center;
+	vertical-align:middle;
+	background:white;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	border: 0;
+	font-size: 12px;
+}
+
+
+
 #homePageImage{
 	text-align: left;
 	padding-left: 169px;
@@ -335,7 +353,7 @@ label{
 
 .user_submit{
 	height:25px;
-	width: 150px;
+	width: 175px;
 	padding: 5px;
 	font-family: Futura,Helvetica,sans serif;
 	font-size: 12px;
@@ -389,6 +407,23 @@ label{
 	color:white;;
 	background: -moz-linear-gradient(center bottom, #24AE48 40%, #09912D 100%);
 	background: -webkit-gradient(linear,left bottom,left top,color-stop(0.4, #24AE48),color-stop(1, #09912D));
+}
+
+#validation_submit{
+	position:relative;
+	top:40%;
+}
+
+#code {
+	height:15px;
+	padding:5px;
+	text-align:center;
+	position:relative;
+	top:10;
+}
+
+#validation_message{
+	padding:15px;
 }
 
 .user_delete{
@@ -454,6 +489,7 @@ border-radius: 3px;
 }
 
 #paypal{
+	margin-top:25px;
 	text-align: center;
 }
 
@@ -461,7 +497,10 @@ border-radius: 3px;
 	margin: 25px auto auto auto;
 }
 
-/*.how_para*/
+#how_para{
+	text-align:justify;
+}
+
 .content_box{
 	font-size: 12px;
 	font-weight: normal;

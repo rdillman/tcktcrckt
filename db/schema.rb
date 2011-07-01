@@ -159,10 +159,10 @@ ActiveRecord::Schema.define(:version => 20110627191837) do
     t.string   "tmpqry"
     t.string   "valphone"
     t.integer  "valcode"
-    t.string   "language"
     t.string   "rec1"
     t.string   "rec2"
     t.string   "rec3"
+    t.string   "language"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

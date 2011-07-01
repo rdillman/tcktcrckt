@@ -40,11 +40,11 @@ class AlertController < ApplicationController
       ct = Chronic.parse(alert.clean_time)
       if alert.nb4
         send = ct - 1.hour
-        alert.update_attribute(:send_time, send.strftime("alert_controller.create.construct_alarm.construct_time"))
+        alert.update_attribute(:send_time, send.strftime(I18n.translate('time.formats.short')))
         alert.update_attribute(:nb4, false)
       else
         nb4_time = ct-1.day + (19 - ct.hour).hour
-        alert.update_attribute(:send_time, nb4_time.strftime("alert_controller.create.construct_alarm.construct_time"))
+        alert.update_attribute(:send_time, nb4_time.strftime(I18n.translate('time.formats.short')))
         alert.update_attribute(:nb4, true)
       end
       @message = I18n.translate('alert_controller.edit.success')
@@ -232,12 +232,12 @@ class AlertController < ApplicationController
   def make_nb4_alarm(uq, res, usr)
      nb4_time = res[0][0]-1.day + (19 - res[0][0].hour).hour
      send = res[0][0] - 1.hour
-     @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime(I18n.translate('alert_controller.create.construct_alarm.construct_time')), :send_time => nb4_time.strftime(I18n.translate('alert_controller.create.construct_alarm.construct_time')), :cnn => res[1], :nb4 => true, :user_id => usr.id)
+     @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime(I18n.translate("time.formats.short")), :send_time => nb4_time.strftime(I18n.translate("time.formats.short")), :cnn => res[1], :nb4 => true, :user_id => usr.id)
   end
     
   def make_regular_alarm(uq,res,usr)
       send = res[0][0] - 1.hour
-      @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime(I18n.translate('alert_controller.create.construct_alarm.construct_time')), :send_time => send.strftime(I18n.translate('alert_controller.create.construct_alarm.construct_time')), :cnn => res[1], :nb4 => false, :user_id => usr.id)
+      @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime(I18n.translate("time.formats.short")), :send_time => send.strftime(I18n.translate("time.formats.short")), :cnn => res[1], :nb4 => false, :user_id => usr.id)
   end
   
   def night_before?(alarm_type)
