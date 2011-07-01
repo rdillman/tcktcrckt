@@ -92,7 +92,6 @@ class AlertController < ApplicationController
     @user = current_user
     @usr_qry = params[:q]
     @st = params[:st]
-    
     @results = Block.next_ct_from_addr(@usr_qry)
 
 

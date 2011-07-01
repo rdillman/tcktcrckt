@@ -48,13 +48,12 @@ function nextClean(){
 	})
 	var search = $("#searchinput").attr("value");
 	$.getScript("lookup/get_next_time?q="+search, function(data){
-		var array_separator = data.indexOf("~")
-		var address = data.substring(0,array_separator)
-		var cleantime = data.substring(array_separator+1)		
-		$('#searchresults').html("<b>"+address+"</b>:"+time);
-		$('#fullResultContent').show();
-		$('#searchCreateAlert').attr('q', address);
-		$('#searchCreateAlert').attr('time', cleantime);
+		$.mobile.changePage( "#results", { transition: "pop"} );	
+		var separator = data.indexOf(':');
+		var address = data.substring(0,separator-1);
+		var time = data.substring(separator+2);
+		$('#searchresults').html(data);
+		$('#searchCreateAlert').attr('q',address);
 	});
 	return false;
 }
@@ -65,9 +64,10 @@ function makeAlert(){
 	    xhr.setRequestHeader("Accept", "text/javascript");
 	  }
 	})
-	var q = $(".changeAlert").attr("q");
+	var q = $("button#searchCreateAlert").attr("q");
 	$.getScript("lookup/make_alert?q="+q, function(data){
-		alert(data);
+		$.mobile.changePage( "#alertShow", { transition: "pop"} );	
+		$('#alertList').prepend(data);
 	});
 	return false;
 }

@@ -100,8 +100,9 @@
 /*difference between "#body" and "body"??*/
 #body{
 	margin: auto;
-	background: url('/images/2.jpg');
+	background: url('/images/parkclose.jpg');
 	display: block;
+	width: 100%;
 	height: auto;
 	position: relative;
 	font-family:Futura,Helvetica, sans-serif; 
@@ -329,7 +330,8 @@ input{
 
 #homePageImage{
 	text-align: left;
-	padding-left: 196px;
+	padding-left: 169px;
+	padding-top:10px;
 }
 
 #footer_pay{

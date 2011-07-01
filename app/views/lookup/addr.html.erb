@@ -1,26 +1,20 @@
 <script>
-	// $("#homePageImage").click(function () {
-	//            $('#homePageImage').stop()
-	// 							animate(
-	//             {
-	//                  height: '370px'
-	//             },
-	//             {    queue: false,
-	//                  duration: 1000,
-	//                  easing: 'easeOutBounce'});
-	//              });
-	// });
 
-	$('#clickme').click(function() {
-	  $('#homePageImage').animate({
-	    opacity: 0.25,
-	    left: '+=50',
-	    height: 'toggle'
-	  }, 5000, function() {
-	    // Animation complete.
-	  });
+	$.fn.exBounce = function(){
+	    var self = this;
+	    (function runEffect(){
+	        self.effect("bounce", { times:3 }, 1000);
+					setTimeout(function(){ $("#homePageImage").fadeIn();
+				 	console.log("hi");
+					setTimeout(function(){ $("#homePageImage").fadeOut();}, 3000) }, 0);
+		 })();
+	   return this;
+
+	};
+	$(document).ready(function(){
+	    	 	console.log("document ready");
+	$("#homePageImage").exBounce();
 	});
-
 	
 </script>
 
@@ -38,7 +32,7 @@
 
     <%= submit_tag(I18n.translate('header.search_button'), :class => "user_submit", :id => "search_submit") %>
 
-		<% end %>
+	<% end %>
 </div>
 		
 		<div id="alertmsg">
@@ -48,18 +42,11 @@
 			<%elsif @box == "warn"%>
 				<div class='warning'><%=@message%></div>
 			<%elsif @box == 'info'%>
-				<div class='info'><%=@message%></div>
-<<<<<<< HEAD
-=======
-				<%=submit_tag(I18n.translate('header.create_alert'), :class => "user_submit", :id => "alert_submit", :controller=>"alert", :action=>"create", :method => "get")%>
->>>>>>> 6d0aa457592eab453bd7585c900a93dd970ae806
+				<div class='info'><%=@message%>		<%=link_to("CREATE\nALERT", :class => "user_submit", :id => "alert_submit", :controller=>"alert", :action=>"create", :method => "get", :q=>@usr_qry, :st => "I18n.translate('alertcontroller.alertmessages.options.night_before')") %></div>
 			<%elsif @box == 'error'%>
 				<div class='error'><%=@message%></div>
 			<%end%>
-		<%= form_tag("../alert/create", :method => "get") do %>
-		<%=submit_tag("CREATE\nALERT", :class => "user_submit", :id => "alert_submit", :controller=>"alert", :action=>"create", :method => "get") %>
 		<%end%>
-	<% end %> 
 		</div>	
 	
 	

@@ -5,7 +5,6 @@
 	  $(document).ready(function() {
 	    $("#searchbutton").click(function(){
 			nextClean();	
-			$.mobile.changePage( "#results", { transition: "pop"} );			
 		});
 		$(".delete").click(function(){
 			killAlert();
@@ -13,10 +12,9 @@
 		$(".change").click(function(){
 			changeAlert();
 		});
-		$(".createAlert").click(function(){
+		$("#searchCreateAlert").click(function(){
 			makeAlert();
-		});
-		
+		});	
 	  });
 	  </script>
 </head>	
@@ -93,7 +91,7 @@
 
 		<!-- Show ALarms -->
 		
-	    <ul data-role='listview' data-theme="g">
+	    <ul data-role='listview' id="alertList" data-theme="g">
 			<%if @alerts && @alerts != []%>
 			<%@alerts.each do |a|%>
 	    	<li>
@@ -161,10 +159,8 @@
 	
 	  <!-- Main Content-->
 	  <div data-role="content" id="resultsContent" name="resultsContent" >
-		<div id='fullResultContent'>
-			<div id='searchresults'><div>
-			<button id='searchCreateAlert' q=''time =''>Create Alert</button>
-		</div>
+		<div id='searchresults'></div>
+		<button id='searchCreateAlert' q="fillmein" time="fillmein" >Create Alert</button>
 		
 	  </div>
 	  <!-- End main content div -->

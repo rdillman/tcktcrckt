@@ -5,11 +5,10 @@ class LookupController < ApplicationController
   def make_alert
     @user = current_user
     @usr_qry = params[:q]
-    @time = params[:time]
-    
-    nb4_time = res[0][0]-1.day + (19 - res[0][0].hour).hour
-    send = res[0][0] - 1.hour
-    @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime(I18n.translate('alert_controller.create.construct_alarm.construct_time')), :send_time => nb4_time.strftime(I18n.translate('alert_controller.create.construct_alarm.construct_time')), :cnn => res[1], :nb4 => true, :user_id => usr.id)
+    @results = Block.next_ct_from_addr(@usr_qry)
+    nb4_time = @results[0][0]-1.day + (19 - @results[0][0].hour).hour
+    send = @results[0][0] - 1.hour
+    @a = Alarm.create!(:location => @usr_qry, :clean_time => @results[0][0].strftime(I18n.translate('alert_controller.create.construct_alarm.construct_time')), :send_time => nb4_time.strftime(I18n.translate('alert_controller.create.construct_alarm.construct_time')), :cnn => @results[1], :nb4 => true, :user_id => @user.id)
     respond_to do |format|      
       format.html
       format.xml {render :xml => @a}
@@ -25,21 +24,25 @@ class LookupController < ApplicationController
     
      #What does res mean?? Does uq mean user_query?
       uq  = @usr_qry 
-      @message = @usr_qry <<"~"
+      @message = Array.new
+      @address = @usr_qry
       if @results[0][0].class==Time
         @message = I18n.localize(@results[0][0])
       else
-        @message << @results 
+        @message = @results 
       end
       respond_to do |format|      
         format.html
         format.xml {render :xml => @message}
+        format.xml {render :xml => @address}
+        
       end
     else
-      @message = "~Please Enter Something"
+      @message = "Please Enter Something"
       respond_to do |format|      
         format.html
         format.xml {render :xml => @message}
+        format.xml {render :xml => @address}
       end
     end
   end
@@ -120,7 +123,6 @@ class LookupController < ApplicationController
      #What does res mean?? Does uq mean user_query?
       res = @results
       uq  = @usr_qry 
-
     
       if res == "Invalid Address - No Address or No Street"
         do_invalid(res,uq)
@@ -159,9 +161,9 @@ class LookupController < ApplicationController
             format.xml  {render :xml => @message}
             format.xml  {render :xml => @box}
             format.xml  { render :xml => @alerts }
-            format.xml  { render :xml => @recs }
             format.xml {render :xml => @usr_qry}
-          
+            format.xml  { render :xml => @recs }
+            
           end
         end
       end

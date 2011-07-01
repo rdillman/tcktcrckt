@@ -1,0 +1,10 @@
+<li class="ui-li ui-li-static ui-body-g">
+	<div class='alert' data-id=<%=@a.id%> >
+		<b><%=@a.location%></b><br/>
+		<%=@a.clean_time%> <br/>
+		<div class='sendTime'  data-id=<%=@a.id%> > <%if @a.nb4%>Night Before<%else%>One Hour Before<%end%> </div>
+		<div data-theme="c" class="ui-btn ui-btn-corner-all ui-shadow ui-btn-up-c" aria-disabled="false"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">change time</span></span><button class="change ui-btn-hidden" data-id="<%=@a.id%>" aria-disabled="false">change time</button></div>
+		<div data-theme="c" class="ui-btn ui-btn-corner-all ui-shadow ui-btn-up-c" aria-disabled="false"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">delete</span></span><button class="delete ui-btn-hidden" data-id="<%=@a.id%>" aria-disabled="false">delete</button></div>
+
+	</div>
+</li>
