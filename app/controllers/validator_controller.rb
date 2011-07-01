@@ -23,7 +23,7 @@ class ValidatorController < ApplicationController
   def enter
     @user = current_user
     @validation_code = @user.valcode
-    @request_2 = params[:new]
+    @request_2 = params[:request_2]
     if !@validation_code or @request_2
       #Create Validation Code
       new_val_code = rand(10000)
@@ -34,9 +34,17 @@ class ValidatorController < ApplicationController
       UserMailer.send_val_code(@user,new_val_code)
     end
     @phone = @user.phone_number
+    if @request_2
+      @message = "Another validation code has been sent to your mobile: "<< @user.phone_number
+      @box  = "info"
+    end
     respond_to do |format|
       format.html
       format.xml {render :xml => @phone}
+      format.xml {render :xml => @message}
+      format.xml {render :xml => @box}
+      
+      
     end
     
   end

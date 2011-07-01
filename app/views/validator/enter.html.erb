@@ -6,8 +6,8 @@
 	<%= text_field_tag(:code, nil, :size => 27) -%></font>
 	<%= submit_tag("Enter", :class => "user_submit", :id=>"validation_submit") %>
 	<%end%>
-	
-	<%= link_to "Get new Validation code", :request_2 %>
+	<br>
+	<%= link_to "Get new Validation code",:controller => "validator", :action => "enter", :method => "get", :request_2 => true %>
 	</div>
 
 	<div id="validation_message">
