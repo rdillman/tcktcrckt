@@ -18,7 +18,8 @@ en:
         empty: 'empty'
       construct_alarm:
         next_clean: 'Next Street Clean'
-        time: '%A %B %e at %I:%M%p.'
+        time: '%A %B %e at %I:%M%p'
+        construct_time: '%H:00 %B %d'
         warn: 'Almost There! In order to send you alarms we need to know phone number and carrier'
       kill:
         delete: 'The Alarm has been deleted'

@@ -1,6 +1,20 @@
 class LookupController < ApplicationController
   layout nil
-  layout 'application', :except => :get_next_time
+  layout 'application', :except => [:get_next_time, :delete_alert, :change_alert, :make_alert]
+  
+  def make_alert
+    @user = current_user
+    @usr_qry = params[:q]
+    @time = params[:time]
+    
+    nb4_time = res[0][0]-1.day + (19 - res[0][0].hour).hour
+    send = res[0][0] - 1.hour
+    @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime(I18n.translate('alert_controller.create.construct_alarm.construct_time')), :send_time => nb4_time.strftime(I18n.translate('alert_controller.create.construct_alarm.construct_time')), :cnn => res[1], :nb4 => true, :user_id => usr.id)
+    respond_to do |format|      
+      format.html
+      format.xml {render :xml => @a}
+    end
+  end
   
   
   def get_next_time
@@ -11,18 +25,18 @@ class LookupController < ApplicationController
     
      #What does res mean?? Does uq mean user_query?
       uq  = @usr_qry 
-      @message =""
+      @message = @usr_qry <<"~"
       if @results[0][0].class==Time
-        @message = @results[0][0].strftime("%A %B %e at %I:%M%p.")
+        @message << @results[0][0].strftime("%A %B %e at %I:%M%p.")
       else
-        @message = @results 
+        @message << @results 
       end
       respond_to do |format|      
         format.html
         format.xml {render :xml => @message}
       end
     else
-      @message = "Please Enter Something"
+      @message = "~Please Enter Something"
       respond_to do |format|      
         format.html
         format.xml {render :xml => @message}
@@ -30,11 +44,75 @@ class LookupController < ApplicationController
     end
   end
   
+  def delete_alert
+    kill_id = params[:q]
+    if Alarm.exists?(kill_id)
+      to_delete = Alarm.find(kill_id)
+        if current_user.id == to_delete.user_id
+          @message = "alert has been delete"
+          if to_delete.destroy
+            respond_to do |format|
+              format.html 
+              format.xml  { render :xml => @message }
+            end
+          end
+        else
+          respond_to do |format|
+            format.html 
+          end
+        end
+    else
+      @message = "Alert Not Found"
+      @alerts = Alarm.where("user_id = ?",current_user.id)
+      @box = "success"
+      respond_to do |format|
+        format.html 
+        format.xml  { render :xml => @message }
+      end
+    end
+  end
   
+  def change_alert
+    @user = current_user
+    @alarm = params[:q].to_i
+    @message=''
+    if Alarm.exists?(@alarm)
+      
+      alert = Alarm.find(@alarm)
+      ct = Chronic.parse(alert.clean_time)
+       if alert.nb4
+        send = ct - 1.hour
+        alert.update_attribute(:send_time, send.strftime("%B %e %Y at %H:%M"))
+        alert.update_attribute(:nb4, false)
+        @message ="One Hour Before"
+      else
+        nb4_time = ct-1.day + (19 - ct.hour).hour
+        alert.update_attribute(:send_time, nb4_time.strftime("%B %e %Y at %H:%M"))
+        alert.update_attribute(:nb4, true)
+        @message ="Night Before"
+      end
+      respond_to do |format|
+        format.html 
+        format.xml  { render :xml => @message }
+        end
+    else
+      @message = I18n.translate('alert_controller.edit.warn')
+      respond_to do |format|
+        format.html 
+        format.xml  { render :xml => @message }
+      end
+    end
+  end
   
   def addr
     @usr_qry = params[:q]
-    @user = current_user
+    if @user = current_user
+      @signedin = true
+    else
+      @signedin = false
+    end
+    
+
     
     if @usr_qry
       @results = Block.next_ct_from_addr(@usr_qry)
@@ -77,7 +155,7 @@ class LookupController < ApplicationController
         else
           respond_to do |format|
             format.html { render :file => "#{Rails.root}/app/views/lookup/addr.html.erb"}
-            format.js
+            format.xml {render :xml => @signedin}
             format.xml  {render :xml => @message}
             format.xml  {render :xml => @box}
             format.xml  { render :xml => @alerts }

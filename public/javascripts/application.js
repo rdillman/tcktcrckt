@@ -15,9 +15,29 @@ function createNewAlert() {
 }
 
 function killAlert(){
-  var alert_id = $('#alert').attr('data-id');  
-  $.getScript('/alertKill.js?alert_id='+alert_id)
-  setTimeout(updateAlerts, 10000);  
+	jQuery.ajaxSetup({ 
+	  'beforeSend': function(xhr) {
+	    xhr.setRequestHeader("Accept", "text/javascript");
+	  }
+	})
+	var id = $(".delete").attr("data-id");
+	$.getScript("lookup/delete_alert?q="+id, function(data){
+		$('.alert[data-id='+id+']').html("<b>"+data+"</b>");  
+	});
+	return false;
+}
+
+function changeAlert(){
+	jQuery.ajaxSetup({ 
+	  'beforeSend': function(xhr) {
+	    xhr.setRequestHeader("Accept", "text/javascript");
+	  }
+	})
+	var id = $(".change").attr("data-id");
+	$.getScript("lookup/change_alert?q="+id, function(data){
+		$('.sendTime[data-id='+id+']').html(data);  
+	});
+	return false;
 }
 
 function nextClean(){
@@ -28,8 +48,26 @@ function nextClean(){
 	})
 	var search = $("#searchinput").attr("value");
 	$.getScript("lookup/get_next_time?q="+search, function(data){
+		var array_separator = data.indexOf("~")
+		var address = data.substring(0,array_separator)
+		var cleantime = data.substring(array_separator+1)		
+		$('#searchresults').html("<b>"+address+"</b>:"+time);
+		$('#fullResultContent').show();
+		$('#searchCreateAlert').attr('q', address);
+		$('#searchCreateAlert').attr('time', cleantime);
+	});
+	return false;
+}
+
+function makeAlert(){
+	jQuery.ajaxSetup({ 
+	  'beforeSend': function(xhr) {
+	    xhr.setRequestHeader("Accept", "text/javascript");
+	  }
+	})
+	var q = $(".changeAlert").attr("q");
+	$.getScript("lookup/make_alert?q="+q, function(data){
 		alert(data);
-		$('#searchform').append(data);  
 	});
 	return false;
 }

@@ -7,28 +7,43 @@
 			nextClean();	
 			$.mobile.changePage( "#results", { transition: "pop"} );			
 		});
+		$(".delete").click(function(){
+			killAlert();
+		});
+		$(".change").click(function(){
+			changeAlert();
+		});
+		$(".createAlert").click(function(){
+			makeAlert();
+		});
 		
 	  });
 	  </script>
 </head>	
 
 <div id='container'>	
-	<!-- Page Declaration -->
+																							<!-- Main Page-->
 	<div data-role="page" id="main">  	  
 	 <!-- Header -->
 	  <div data-role="header" id='hdrMain' name='hdrMain' data-nobackbtn='true'>
-	  	TCKTCRCKT
+	  	TCKTCRCKT Lose the Vowels, Lose the Tickets
 	  </div>
 	
 	  <!-- Main Content-->
 	  <div data-role="content" id="mainContent" name="mainContent" >
 		
 		<!-- Search Bar -->
+		<form_action='addr' method="get">
+			<div data-role="fieldcontain">
+					    <label for="search"><b>Find Street Cleaning Times by Address</b></label><br/>
+					    <input type="search" name="streetclean" id="searchinput" value="" />
+				        <button type="submit" name="submit" id ="searchbutton" value="submit-value">Submit</button>
+			</div>
+		</form>
 
 		<!-- Show ALarms -->
 	    <ul data-role='listview' data-theme="g">
-			<li><a href="#searchForCleans">Search For Cleaning Times</a></li>
-			<li><a href="#alerts">Current Alerts</a></li>
+			<li><a href="#alertShow">Current Alerts</a></li>
 			<li><a href="#recent">Recent Alarms</a></li>
 		</ul>	
 		
@@ -58,12 +73,14 @@
 		</div>
 			<!-- CLEANS FOOTER -->
 	   <div data-role="footer">
-	   		Start Winning
+		 Lose the Vowels, Lose the Tickets
 		</div>
 		
 	</div>   <!-- End Search For Cleans Page -->
-	<!-- Page Declaratioz -->
-	<div data-role="page" id="alerts">  	  
+	
+	
+																				<!-- Show Alerts Page -->
+	<div data-role="page" id="alertShow">  	  
 	 <!-- Header -->
 	  <div data-role="header" id='hdrAlerts' name='hdrAlerts' >
 	  	TCKTCRCKT
@@ -78,11 +95,16 @@
 		
 	    <ul data-role='listview' data-theme="g">
 			<%if @alerts && @alerts != []%>
-			<%@alerts.each do |a|-%>
-		    	<li><%=a.location%> <br/>
-				<%=a.clean_time%> <br/>
-				<%if a.nb4%>Night Before<%else%>One Hour Before<%end%> 
-				 <%= link_to 'Delete', @alert, :q => "a.id", :method => :delete, "data-icon" => "delete", :class => "user_delete" %> | <%= submit_tag("edit", :controller => "alert", :action => "edit", :alarm => a.id, :method => "get", :class => "user_delete" ) %></li>
+			<%@alerts.each do |a|%>
+	    	<li>
+				<div class='alert' data-id=<%=a.id%> >
+					<b><%=a.location%> <br/></b>
+					<%=a.clean_time%> <br/>
+					<div class='sendTime'  data-id=<%=a.id%> > <%if a.nb4%>Night Before<%else%>One Hour Before<%end%> </div>
+					<button class='change' data-id=<%=a.id%> >change time</button>
+					<button class='delete' data-id=<%=a.id%> >delete</button>
+				</div>
+			</li>
 			<%end%>
 			<%else%>
 				<li>You have no Alerts</li>
@@ -97,16 +119,16 @@
 	  </div>
     </div>
 
+
 	<div data-role="page" id="recent">  	  
 	 <!-- Header -->
 	  <div data-role="header" id='hdrRecent' name='hdrRecent' >
 	  	TCKTCRCKT
 	  </div>
-	
+																				<!-- Recent Alarms -->
 	  <!-- Main Content-->
 	  <div data-role="content" id="recentContent" name="recentContent" >
 		
-		<!-- Search Bar -->
 
 		<!-- Show ALarms -->
 		
@@ -128,7 +150,7 @@
 	  </div>
     </div>
 
-     <!-- ####### THIS IS THE SEARCH RESULTS PAGE ######### -->
+     																			<!-- Search Results-->
 
 	<div data-role="page" id="results">  	  
 	  <!-- Header -->
@@ -139,10 +161,9 @@
 	
 	  <!-- Main Content-->
 	  <div data-role="content" id="resultsContent" name="resultsContent" >
-		
-
-		A Motherfucking Ninja!
-		<div id='searchform'>
+		<div id='fullResultContent'>
+			<div id='searchresults'><div>
+			<button id='searchCreateAlert' q=''time =''>Create Alert</button>
 		</div>
 		
 	  </div>
@@ -150,7 +171,7 @@
 	
 	  <!-- Footer -->
 	  <div data-role="footer">
-		<%=@message%>
+		Lose the Vowels, Lose the Tickets
 	  </div>
 	  <!-- End Footer -->
     </div>
