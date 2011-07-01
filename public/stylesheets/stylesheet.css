@@ -97,8 +97,8 @@
 
 #body{
 	margin: auto;
-/*	background: url('/images/parkclose.jpg');
-*/	display: block;
+	background: url('/images/parkclose.jpg');
+	display: block;
 	width: 100%;
 	height: auto;
 	position: relative;

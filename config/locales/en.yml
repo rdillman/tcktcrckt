@@ -10,14 +10,14 @@ en:
       success: 'Your phone number has been updated.'
     create:
       res:
-        invalid_address: 'Invalid Address - No Address or No Street'
+        invalid_address: 'Invalid Address - No Address or No Street - '
         no_record: "We don't have a record for that address for that street"
         invalid: 'Invalid Address'
         multiple: 'Which of these Streets?'
         no_entry: "Oops We Don't Have a Cleaning Record for this Street"
         empty: 'empty'
       construct_alarm:
-        next_clean: 'Next Street Clean'
+        next_clean: 'Next Street Clean '
         time: '%A %B %e at %I:%M%p'
         construct_time: '%H:00 %B %d'
         warn: 'Almost There! In order to send you alarms we need to know phone number and carrier'
@@ -25,7 +25,7 @@ en:
         delete: 'The Alarm has been deleted'
     create_message:
       alert_created: 'An alert has been created for the streetcleaning of '
-      begins: ' which begins on '
+      begins: ' which begins at '
     kill_message:
       alert_for: 'Streetcleaning alert for '
       deleted: ' has been deleted.'
@@ -187,12 +187,26 @@ en:
 
   time:
     formats:
-      default: "%A, %d of %B at %I:%M%p."
-      short: "%d %b %H:%M"
+      default: "%H:%M, on %B %d"
+      short: "%H:%M %B %d"
       long: "%B %d, %Y %H:%M"
     am: "am"
     pm: "pm"
   
   mobile:
     current_alerts: "Current Alerts"
+    search: "Search For Cleaning Times"
+    search_title: "Find Street Cleaning Times by Address"
+    recent: "Recent Alarms"
+    footer: "Lose the Vowels, Lose the Tickets!"
+    submit: "Submit"
+    night_before: "Night Before"
+    one_hour: "One Hour Before"
+    no_alerts: "You have no Alerts"
+    edit: "Edit"
+    no_recent: "You have no Recent Searches"
+    change_time: "Change Time"
+    delete: "Delete"
+    create_alert: "Create Alert"
+    
  

@@ -42,7 +42,7 @@
 			<%elsif @box == "warn"%>
 				<div class='warning'><%=@message%></div>
 			<%elsif @box == 'info'%>
-				<div class='info'><%=@message%>		<%=link_to("CREATE\nALERT", :class => "user_submit", :id => "alert_submit", :controller=>"alert", :action=>"create", :method => "get", :q=>@usr_qry, :st => "I18n.translate('alertcontroller.alertmessages.options.night_before')") %></div>
+				<div class='info'><%=@message%>		<%=link_to(I18n.translate('header.create_alert'), :class => "user_submit", :id => "alert_submit", :controller=>"alert", :action=>"create", :method => "get", :q=>@usr_qry, :st => I18n.translate('alertcontroller.alertmessages.options.night_before')) %></div>
 			<%elsif @box == 'error'%>
 				<div class='error'><%=@message%></div>
 			<%end%>

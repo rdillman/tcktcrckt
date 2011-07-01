@@ -24,7 +24,7 @@
 	<div data-role="page" id="main">  	  
 	 <!-- Header -->
 	  <div data-role="header" id='hdrMain' name='hdrMain' data-nobackbtn='true'>
-	  	TCKTCRCKT Lose the Vowels, Lose the Tickets
+	  	TCKTCRCKT 
 	  </div>
 	
 	  <!-- Main Content-->
@@ -33,23 +33,24 @@
 		<!-- Search Bar -->
 		<form_action='addr' method="get">
 			<div data-role="fieldcontain">
-					    <label for="search"><b>Find Street Cleaning Times by Address</b></label><br/>
+					    <label for="search"><b><%= I18n.translate('mobile.search_title')%></b></label><br/>
 					    <input type="search" name="streetclean" id="searchinput" value="" />
-				        <button type="submit" name="submit" id ="searchbutton" value="submit-value">Submit</button>
+				        <button type="submit" name="submit" id ="searchbutton" value="submit-value"><%= I18n.translate('mobile.submit')%></button>
 			</div>
 		</form>
 
 		<!-- Show ALarms -->
 	    <ul data-role='listview' data-theme="g">
-			<li><a href="#alertShow">Current Alerts</a></li>
-			<li><a href="#recent">Recent Alarms</a></li>
+			<li><a href="#searchForCleans"><%= I18n.translate('mobile.search')%></a></li>
+			<li><a href="#alerts"><%= I18n.translate('mobile.current_alerts')%></a></li>
+			<li><a href="#recent"><%= I18n.translate('mobile.recent')%></a></li>
 		</ul>	
 		
 	  </div> <!-- End main content div -->
 	
 	  <!-- Footer -->
 	  <div data-role="footer">
-		Start Winning!
+		<%= I18n.translate('mobile.footer')%>
 	  </div>
     </div>   <!-- End MAIN PAGE -->
     
@@ -57,28 +58,28 @@
     <div data-role="page" id="searchForCleans">
 			<!-- CLEANS HEADER  -->
 	  	<div data-role="header" id='sfcHdr' name='sfcHdr'>
-		  	Search for Cleaning Times
+		  	<%= I18n.translate('mobile.search')%>
 		</div>
 		     <!-- CLEANS CONTENT -->
  	    <div data-role="content" id="searchForCleansContent" name="searchForCleansContent" >
 			<form_action='addr' method="get">
 				<div data-role="fieldcontain">
-						    <label for="search">Search Cleaning Times</label>
+						    <label for="search"><%= I18n.translate('mobile.search')%></label>
 						    <input type="search" name="streetclean" id="searchinput" value="" />
-					        <button type="submit" name="submit" id ="searchbutton" value="submit-value">Submit</button>
+					        <button type="submit" name="submit" id ="searchbutton" value="submit-value"><%= I18n.translate('mobile.submit')%></button>
 				</div>
 			</form>
 		</div>
 			<!-- CLEANS FOOTER -->
 	   <div data-role="footer">
-		 Lose the Vowels, Lose the Tickets
+	   		<%= I18n.translate('mobile.footer')%>
 		</div>
 		
 	</div>   <!-- End Search For Cleans Page -->
 	
 	
 																				<!-- Show Alerts Page -->
-	<div data-role="page" id="alertShow">  	  
+	<div data-role="page" id="alerts">  	  
 	 <!-- Header -->
 	  <div data-role="header" id='hdrAlerts' name='hdrAlerts' >
 	  	TCKTCRCKT
@@ -98,14 +99,14 @@
 				<div class='alert' data-id=<%=a.id%> >
 					<b><%=a.location%> <br/></b>
 					<%=a.clean_time%> <br/>
-					<div class='sendTime'  data-id=<%=a.id%> > <%if a.nb4%>Night Before<%else%>One Hour Before<%end%> </div>
-					<button class='change' data-id=<%=a.id%> >change time</button>
-					<button class='delete' data-id=<%=a.id%> >delete</button>
+					<div class='sendTime'  data-id=<%=a.id%> > <%if a.nb4%><%= I18n.translate('mobile.night_before')%><%else%><%= I18n.translate('mobile.one_hour')%><%end%> </div>
+					<button class='change' data-id=<%=a.id%> ><%= I18n.translate('mobile.change_time')%></button>
+					<button class='delete' data-id=<%=a.id%> ><%= I18n.translate('mobile.delete')%></button>
 				</div>
 			</li>
 			<%end%>
 			<%else%>
-				<li>You have no Alerts</li>
+				<li><%= I18n.translate('mobile.no_alerts')%></li>
 			<%end%>
 		</ul>	
 		
@@ -113,7 +114,7 @@
 	
 	  <!-- Footer -->
 	  <div data-role="footer">
-		Start Winning!
+		<%= I18n.translate('mobile.footer')%>
 	  </div>
     </div>
 
@@ -136,7 +137,7 @@
 		    	<li><%=r%> <br/>
 			<%end%>
 			<%else%>
-				<li>You have no Recent Searches</li>
+				<li><%= I18n.translate('mobile.no_recent')%></li>
 			<%end%>
 		</ul>	
 		
@@ -144,7 +145,7 @@
 	
 	  <!-- Footer -->
 	  <div data-role="footer">
-		Start winning!
+		<%= I18n.translate('mobile.footer')%>
 	  </div>
     </div>
 
@@ -160,14 +161,14 @@
 	  <!-- Main Content-->
 	  <div data-role="content" id="resultsContent" name="resultsContent" >
 		<div id='searchresults'></div>
-		<button id='searchCreateAlert' q="fillmein" time="fillmein" >Create Alert</button>
+		<button id='searchCreateAlert' q="fillmein" time="fillmein" ><%= I18n.translate('mobile.create_alert')%></button>
 		
 	  </div>
 	  <!-- End main content div -->
 	
 	  <!-- Footer -->
 	  <div data-role="footer">
-		Lose the Vowels, Lose the Tickets
+		<%= I18n.translate('mobile.footer')%>
 	  </div>
 	  <!-- End Footer -->
     </div>

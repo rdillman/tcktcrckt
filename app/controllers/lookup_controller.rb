@@ -8,7 +8,7 @@ class LookupController < ApplicationController
     @results = Block.next_ct_from_addr(@usr_qry)
     nb4_time = @results[0][0]-1.day + (19 - @results[0][0].hour).hour
     send = @results[0][0] - 1.hour
-    @a = Alarm.create!(:location => @usr_qry, :clean_time => @results[0][0].strftime(I18n.translate('alert_controller.create.construct_alarm.construct_time')), :send_time => nb4_time.strftime(I18n.translate('alert_controller.create.construct_alarm.construct_time')), :cnn => @results[1], :nb4 => true, :user_id => @user.id)
+    @a = Alarm.create!(:location => @usr_qry, :clean_time => @results[0][0].strftime(I18n.translate('time.formats.short')), :send_time => nb4_time.strftime(I18n.translate('time.formats.short')), :cnn => @results[1], :nb4 => true, :user_id => @user.id)
     respond_to do |format|      
       format.html
       format.xml {render :xml => @a}
@@ -87,12 +87,12 @@ class LookupController < ApplicationController
         send = ct - 1.hour
         alert.update_attribute(:send_time, send.strftime("%B %e %Y at %H:%M"))
         alert.update_attribute(:nb4, false)
-        @message ="One Hour Before"
+        @message =I18n.translate('alert_controller.alert_messages.options.1_hour')
       else
         nb4_time = ct-1.day + (19 - ct.hour).hour
         alert.update_attribute(:send_time, nb4_time.strftime("%B %e %Y at %H:%M"))
         alert.update_attribute(:nb4, true)
-        @message ="Night Before"
+        @message =I18n.translate('alert_controller.alert_messages.options.night_before')
       end
       respond_to do |format|
         format.html 
