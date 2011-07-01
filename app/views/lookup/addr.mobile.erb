@@ -52,7 +52,7 @@
 	    <ul data-role='listview' data-theme="g">
 		<%if signed_in?%>
 			<li><a href="#alertShow"><%= I18n.translate('mobile.current_alerts')%></a></li>
-			<li><a href="#recent"><%= I18n.translate('mobile.recent')%>></a></li>
+			<li><a href="#recent"><%= I18n.translate('mobile.recent')%></a></li>
 		<%else%>
 			<li><a rel='external' href="/users/sign_in?mobile=1">Sign In/ Sign Up to Create Alarms</a></li>
 		<%end%>
@@ -146,7 +146,7 @@
 	    <ul data-role='listview' data-theme="g">
 			<%if @recs && @recs != []%>
 			<%@recs.each do |r|-%>
-		    	<li><%=r%><button id='recentCreateAlert' q="<%=r%>" >Create Alert!</button> <br/></li>
+		    	<li><%=r%><button id='recentCreateAlert' q="<%=r%>" ><%= I18n.translate('mobile.create_alert')%></button> <br/></li>
 			<%end%>
 			<%else%>
 				<li><%= I18n.translate('mobile.no_recent')%></li>
@@ -176,7 +176,7 @@
 		<%if signed_in?%>
 		<button id='searchCreateAlert' q="fillmein" time="fillmein" ><%= I18n.translate('mobile.create_alert')%></button>
 		<%else%>
-		<li><a rel='external' href="/users/sign_in?mobile=1">Sign In/ Sign Up to Create Alarms</a></li>
+		<li><a rel='external' href="/users/sign_in?mobile=1"><%= I18n.translate('sign_in_up')%></a></li>
 		<%end%>
 
 		

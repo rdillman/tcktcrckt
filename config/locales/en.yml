@@ -106,7 +106,7 @@ en:
   validator:
     text_1: "A Validation Code has been sent to your phone number :"
     text_2: ", you should receive it shortly."
-    text_3: "Enter it below and start creating alerts!"
+    text_3: "Enter it and start creating alerts!"
     text_4: "Validation Code: "
     
   registration:
@@ -209,6 +209,7 @@ en:
     no_recent: "You have no Recent Searches"
     change_time: "Change Time"
     delete: "Delete"
-    create_alert: "Create Alert"
+    create_alert: "Create Alert!"
+    sign_in_up: "Sign In / Sign Up to create Alarms"
     
  
