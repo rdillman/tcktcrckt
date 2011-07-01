@@ -69,7 +69,7 @@ en:
     title: "No more parking tickets!"
     search: "Search address for street cleaning times in San Francisco..."
     search_button: 'Search'
-    create: "CREATE \n ALERT"
+    create_alert: "CREATE \n ALERT"
     m_search: "Search For Cleaning Times"
     signed_in_as: "signed in as"
     not_you: "not you?"
