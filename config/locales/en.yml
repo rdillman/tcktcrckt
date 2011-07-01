@@ -114,6 +114,7 @@ en:
     sign_in: "Sign In"
     sign_up: "Sign Up"
     forgot: "Forgot your password?"
+    facebook_sign_in: "Sign In with "
     edit: "Edit"
     username: "Username"
     email: "Email"
