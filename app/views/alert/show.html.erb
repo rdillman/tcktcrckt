@@ -53,7 +53,16 @@
 		</tr>
 		<%end%>
 	</table>
-	
-	<%else%>
-		<h2><% I18n.translate('alert_controller.alert_messages.titles.none')%></h2>
+
+	<%@alerts.each do |a|%>
+	<tr>
+		<td><%=a.location%>  </td>
+		<td><%=localize_time_strings(a.clean_time) %>  </td>
+		<td> <%if a.nb4%><% I18n.translate('alert_controller.alert_messages.options.night_before')%><%else%><% I18n.translate('alert_controller.alert_messages.options.1_hour')%><%end%> </td>
+		<td> <%= link_to(I18n.translate('alert_controller.alert_messages.delete'), :controller => "alert", :action => "kill", :q => a.id, :method => "get", :class => "user_delete") %> | <%= link_to(I18n.translate('alert_controller.alert_messages.change'), :controller => "alert", :action => "edit", :alarm => a.id, :method => "get", :class => "user_delete" ) %></td>
+	</tr>
+	<%end%>
+</table>
+<%else%>
+	<h2><% I18n.translate('alert_controller.alert_messages.titles.none')%></h2>
 <%end%>

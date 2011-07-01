@@ -35,6 +35,8 @@ es:
     do_empty:
       message: 'Por favor escriba una dirección'
     alert_messages:
+      delete: "borrar"
+      change: "cambiar"
       multiple: '¿Cuál de estos?'
       new: 'Nueva Búsqueda'
       alarm_options: 'Opciones de Alarma'

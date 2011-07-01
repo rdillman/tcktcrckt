@@ -1,7 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :prepare_for_mobile, :set_user_language
-  
+  # def localize_time_strings(time)
+  #   locale_time = I18n.localize(Chronic.parse(time)) 
+  #   locale_time.strftime(I18n.translate('time.formats.default'))
+  # end
   private
   def set_user_language
     I18n.locale = current_user.language if user_signed_in?
@@ -19,4 +22,7 @@ class ApplicationController < ActionController::Base
     session[:mobile_param] = params[:mobile] if params[:mobile]
     request.format = :mobile if mobile_device?
   end
+  
+  
+    
 end
