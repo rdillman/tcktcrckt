@@ -111,6 +111,7 @@ es:
     sign_in: "Acceder"
     sign_up: "Regístrese"
     forgot: "¿Se olvido tu contraseña?"
+    facebook_sign_in: "Acceder con "
     edit: "Editar"
     username: "Usuario"
     email: "Correo Electronico"
