@@ -9,7 +9,7 @@ class LookupController < ApplicationController
     
     nb4_time = res[0][0]-1.day + (19 - res[0][0].hour).hour
     send = res[0][0] - 1.hour
-    @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime(I18n.translate('alert_controller.create.construct_alarm.construct_time')), :send_time => nb4_time.strftime(I18n.translate('alert_controller.create.construct_alarm.construct_time')), :cnn => res[1], :nb4 => true, :user_id => usr.id)
+    @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime(I18n.translate('time.formats.short')), :send_time => nb4_time.strftime(I18n.translate('time.formats.short')), :cnn => res[1], :nb4 => true, :user_id => usr.id)
     respond_to do |format|      
       format.html
       format.xml {render :xml => @a}
