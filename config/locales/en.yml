@@ -108,7 +108,9 @@ en:
     text_4: "Validation Code: "
     
   registration:
+    sign_in: "Sign In"
     sign_up: "Sign Up"
+    forgot: "Forgot your password?"
     edit: "Edit"
     username: "Username"
     email: "Email"

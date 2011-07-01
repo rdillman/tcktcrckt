@@ -106,7 +106,9 @@ es:
     text_4: "Código de Validación: "
   
   registration:
+    sign_in: "Acceder"
     sign_up: "Regístrese"
+    forgot: "¿Se olvido tu contraseña?"
     edit: "Editar"
     username: "Usuario"
     email: "Correo Electronico"
