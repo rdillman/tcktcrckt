@@ -71,3 +71,17 @@ function makeAlert(){
 	});
 	return false;
 }
+
+function makeRecentAlert(){
+	jQuery.ajaxSetup({ 
+	  'beforeSend': function(xhr) {
+	    xhr.setRequestHeader("Accept", "text/javascript");
+	  }
+	})
+	var q = $("button#recentCreateAlert").attr("q");
+	$.getScript("lookup/make_alert?q="+q, function(data){
+		$.mobile.changePage( "#alertShow", { transition: "pop"} );	
+		$('#alertList').prepend(data);
+	});
+	return false;
+}

@@ -1,6 +1,71 @@
+
+
+
+
+
+
+
+/*WARNING! WARNING! WARNING*/
+
+
+
+
+
+/*THIS FILE WILL NOT AFFECT THE MOBILE APP
+
+IT ONLY AFFECTS THE MOBILE DEVISE PAGES
+
+UNLESS YOU ARE STYLING THOSE PAGES
+
+DO NOT MESS WITH THIS*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .container{
 	margin-right: auto;
 	margin-left: auto;
 	width:100%;
 	text-align: center;
+}
+
+#body{
+	margin: auto;
+/*	background: url('/images/parkclose.jpg');
+*/	display: block;
+	width: 100%;
+	height: auto;
+	position: relative;
+	font-family:Helvetica, sans-serif; 
+	font-size:12px;
+	color: blue;
+	z-index:1;	
+}
+
+#yield_page{
+	vertical-align:center;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	z-index=:-1;
+	visibility:visible;
 }
