@@ -1,4 +1,35 @@
+<script>
+	// $("#homePageImage").click(function () {
+	//            $('#homePageImage').stop()
+	// 							animate(
+	//             {
+	//                  height: '370px'
+	//             },
+	//             {    queue: false,
+	//                  duration: 1000,
+	//                  easing: 'easeOutBounce'});
+	//              });
+	// });
+
+	$('#clickme').click(function() {
+	  $('#homePageImage').animate({
+	    opacity: 0.25,
+	    left: '+=50',
+	    height: 'toggle'
+	  }, 5000, function() {
+	    // Animation complete.
+	  });
+	});
+
+	
+</script>
+
+<div id="homePageImage">
+	<%= image_tag("arrow.png") %>
+</div>
+
 <div id="lookup">
+	
 
 <div class="lookup_container">
 	<%= form_tag("/lookup/addr", :method => "get") do %>

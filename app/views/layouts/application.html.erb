@@ -54,7 +54,7 @@
 					<% if mobile_device? %>
 				    	<%= link_to I18n.translate('header.links.full_site'), :mobile => 0 %>
 				  	<% else %>
-				    	<%= link_to I18n.translate('header.links.mobile'), :mobile => 1 %>
+				    	<%= link_to I18n.translate('header.links.mobile'), "/?mobile=1" %>
 				  	<% end %>
 				</div>
 			</div>

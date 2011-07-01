@@ -315,6 +315,11 @@ a:hover{
 	left:20%;
 }
 
+#homePageImage{
+	text-align: left;
+	padding-left: 196px;
+}
+
 #footer_pay{
 	text-align: right;
 	bottom: 0
