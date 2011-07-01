@@ -25,21 +25,25 @@ class LookupController < ApplicationController
     
      #What does res mean?? Does uq mean user_query?
       uq  = @usr_qry 
-      @message = @usr_qry <<"~"
+      @message = Array.new
+      @address = @usr_qry
       if @results[0][0].class==Time
         @message = I18n.localize(@results[0][0])
       else
-        @message << @results 
+        @message = @results 
       end
       respond_to do |format|      
         format.html
         format.xml {render :xml => @message}
+        format.xml {render :xml => @address}
+        
       end
     else
-      @message = "~Please Enter Something"
+      @message = "Please Enter Something"
       respond_to do |format|      
         format.html
         format.xml {render :xml => @message}
+        format.xml {render :xml => @address}
       end
     end
   end
