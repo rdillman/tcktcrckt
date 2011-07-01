@@ -17,6 +17,10 @@
 /*	color: white;*/
 }
 
+.val_request{
+	size: 2em;
+}
+
 
 
 /*
@@ -246,6 +250,7 @@ p{
 
 a{
 	color: #06275D;
+	font-size:1.5em;
 	text-decoration: none;
 }
 
