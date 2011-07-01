@@ -4,11 +4,8 @@
 	
 </div>
 
-
-
-
-	  
-	<font size=5><b><%= label_tag "st", I18n.translate('alert_controller.alert_messages.alarm_options')-%></b></font>
+<div class="form_container">	  
+	<%= label_tag "st", I18n.translate('alert_controller.alert_messages.alarm_options'), :id => "alert_options"%>
 	
 	<%= select_tag "st", options_for_select([ 
 		I18n.translate('alert_controller.alert_messages.options.night_before'),
@@ -18,8 +15,7 @@
 		
   <%= submit_tag(I18n.translate('alert_controller.alert_messages.get_results'), :class => "user_submit") %>
 <% end %>
-
-<hr>
+</div>
 
 <%if @message&&@box%>
 	<%if @box == "error"%>
@@ -37,24 +33,27 @@
 
 <%if @alerts != [] && @alerts != nil%>
 <br>
-<font size=5><b><%= I18n.translate('alert_controller.alert_messages.titles.current') %></b></font>
-<table align="center" cellspacing="10">
-  <tr>	
-	<th><u><% I18n.translate('alert_controller.alert_messages.titles.location')%></u></th>
-	<th><u><% I18n.translate('alert_controller.alert_messages.titles.cleantime')%></u></th>
-	<th><u><% I18n.translate('alert_controller.alert_messages.titles.alert')%></u></th>
-	<th><th>
-  </tr>
+<div id="alerts_table_container">
+	<font size=5><b><%= I18n.translate('alert_controller.alert_messages.titles.current') %></b></font>
+
+	<table id="alerts_table">
+	  <tr>	
+		<th><u><% I18n.translate('alert_controller.alert_messages.titles.location')%></u></th>
+		<th><u><% I18n.translate('alert_controller.alert_messages.titles.cleantime')%></u></th>
+		<th><u><% I18n.translate('alert_controller.alert_messages.titles.alert')%></u></th>
+		<th><th>
+	  </tr>
+	</div>	
+		<%@alerts.each do |a|%>
+		<tr>
+			<td><%=a.location%>  </td>
+			<td><%=a.clean_time%>  </td>
+			<td> <%if a.nb4%><% I18n.translate('alert_controller.alert_messages.options.night_before')%><%else%><% I18n.translate('alert_controller.alert_messages.options.1_hour')%><%end%> </td>
+			<td> <%= link_to("delete", :controller => "alert", :action => "kill", :q => a.id, :method => "get", :class => "user_delete") %> | <%= link_to("edit", :controller => "alert", :action => "edit", :alarm => a.id, :method => "get", :class => "user_delete" ) %></td>
+		</tr>
+		<%end%>
+	</table>
 	
-	<%@alerts.each do |a|%>
-	<tr>
-		<td><%=a.location%>  </td>
-		<td><%=a.clean_time%>  </td>
-		<td> <%if a.nb4%><% I18n.translate('alert_controller.alert_messages.options.night_before')%><%else%><% I18n.translate('alert_controller.alert_messages.options.1_hour')%><%end%> </td>
-		<td> <%= link_to("delete", :controller => "alert", :action => "kill", :q => a.id, :method => "get", :class => "user_delete") %> | <%= link_to("edit", :controller => "alert", :action => "edit", :alarm => a.id, :method => "get", :class => "user_delete" ) %></td>
-	</tr>
-	<%end%>
-</table>
-<%else%>
-	<h2><% I18n.translate('alert_controller.alert_messages.titles.none')%></h2>
+	<%else%>
+		<h2><% I18n.translate('alert_controller.alert_messages.titles.none')%></h2>
 <%end%>
