@@ -28,13 +28,13 @@ en:
       begins: ' which begins on '
     kill_message:
       alert_for: 'Streetcleaning alert for '
-      deleted: 'has been deleted.'
+      deleted: ' has been deleted.'
     do_alert_exists:
       message: 'An alert for this block already exists'
     do_multiple:
       message: 'We have multiple streets with that name, try adding St or Ave to your searches'
     do_empty:
-      message: 'Please enter and address'
+      message: 'Please enter an address'
     alert_messages:
       multiple: 'Which of these?'
       new: 'New Search'
@@ -68,6 +68,8 @@ en:
   header:
     title: "Lose the Vowels, Lose the Tickets!"
     search: "Search address for cleaning times in San Francisco..."
+    search_button: 'Search'
+    create: "CREATE \n ALERT"
     m_search: "Search For Cleaning Times"
     signed_in_as: "Signed In as"
     not_you: "Not you?"
@@ -86,6 +88,7 @@ en:
     intro:
       intro_1: "If you have never used"
       intro_2: "before you should go to"
+      sign_up_link: "the Sign Up page "
       intro_3: "and register so that you can get the most out of our site."
       intro_4: "Once you are Registered follow these simple steps and you will be evading those pesky 'meter maids' in no time!"
     steps:
@@ -126,11 +129,70 @@ en:
       new_password: "Leave blank if not changing"
       confirm_new_password: "Leave blank if not changing"
       
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%b %d"
+      long: "%B %d, %Y"
+
+    day_names:
+      - Sunday
+      - Monday
+      - Tuesday
+      - Wednesday
+      - Thursday
+      - Friday
+      - Saturday
+    abbr_day_names:
+      - Sun
+      - Mon
+      - Tue
+      - Wed
+      - Thu
+      - Fri
+      - Sat
+
+    month_names:
+      - ~
+      - January
+      - February
+      - March
+      - April
+      - May
+      - June
+      - July
+      - August
+      - September
+      - October
+      - November
+      - December
+    abbr_month_names:
+      - ~
+      - Jan
+      - Feb
+      - Mar
+      - Apr
+      - May
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Oct
+      - Nov
+      - Dec
+    order:
+      - :year
+      - :month
+      - :day
+
+  time:
+    formats:
+      default: "%A, %d of %B at %I:%M%p."
+      short: "%d %b %H:%M"
+      long: "%B %d, %Y %H:%M"
+    am: "am"
+    pm: "pm"
+  
   mobile:
     current_alerts: "Current Alerts"
-    
-
-    
-  
-  
-          
+ 

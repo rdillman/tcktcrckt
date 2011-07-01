@@ -2,8 +2,11 @@
 
 <div class="lookup_container">
 	<%= form_tag("/lookup/addr", :method => "get") do %>
-	 	<%= text_field_tag(:q, nil, :placeholder => I18n.translate('header.search'), :size => 55, :class => "input1") -%>	
-	   <%= submit_tag("SEARCH", :class => "user_submit", :id => "search_submit") %>
+
+  	<%= text_field_tag(:q, nil, :placeholder => I18n.translate('header.search'), :size => 55, :class => "input1") -%>	
+
+    <%= submit_tag(I18n.translate('header.search_button'), :class => "user_submit") %>
+
 		<% end %>
 </div>
 		
@@ -15,11 +18,17 @@
 				<div class='warning'><%=@message%></div>
 			<%elsif @box == 'info'%>
 				<div class='info'><%=@message%></div>
-				<%=submit_tag("CREATE\nALERT", :class => "user_submit", :id => "alert_submit", :controller=>"alert", :action=>"create", :method => "get")%>
+<<<<<<< HEAD
+=======
+				<%=submit_tag(I18n.translate('header.create_alert'), :class => "user_submit", :id => "alert_submit", :controller=>"alert", :action=>"create", :method => "get")%>
+>>>>>>> 6d0aa457592eab453bd7585c900a93dd970ae806
 			<%elsif @box == 'error'%>
 				<div class='error'><%=@message%></div>
 			<%end%>
-		<%end%> 
+		<%= form_tag("../alert/create", :method => "get") do %>
+		<%=submit_tag("CREATE\nALERT", :class => "user_submit", :id => "alert_submit", :controller=>"alert", :action=>"create", :method => "get") %>
+		<%end%>
+	<% end %> 
 		</div>	
 	
 	
