@@ -23,7 +23,8 @@ class ValidatorController < ApplicationController
   def enter
     @user = current_user
     @validation_code = @user.valcode
-    if !@validation_code
+    @request_2 = params[:new]
+    if !@validation_code or @request_2
       #Create Validation Code
       new_val_code = rand(10000)
       if new_val_code < 1000
