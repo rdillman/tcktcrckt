@@ -1,25 +1,42 @@
-<div id='container'>
+<!-- jQuery structure for the mobile page, doctype html-->
 
-<div data-role="page" id="main">  	  
- <!-- Header -->
-  <div data-role="header" id='hdrMain' name='hdrMain' data-nobackbtn='true'>
-  	TCKTCRCKT 
-  </div>
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>Page Title</title> 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.js"></script>
+    </head> 
+
+        <body>
+
+			<div id='container'>
+
+				<div data-role="page" id="main">  	  
+ 					<!-- Header -->
+  					<div data-role="header" id='hdrMain' name='hdrMain' data-nobackbtn='true'>
+  						tcktcrckt 
+  					</div>
 
 
-Our mobile site is currently under construction.
-<br>
-Sorry!
-<br>
-<a href="/?mobile=0">Full Site</a>
+					Our mobile site is currently under construction.
+					<br>
+					Sorry!
+					<br>
+					<a href="/?mobile=0">Full Site</a>
 
 
 
 
-  <!-- Footer -->
-  <div data-role="footer">
-	<%= I18n.translate('mobile.footer')%>
-  </div>
-  <!-- End Footer -->
+  					<!-- Footer -->
+  					<div data-role="footer">
+					<%= I18n.translate('mobile.footer')%>
+  					</div>
+  					<!-- End Footer -->
 
-</div>
+				</div>
+			</div>
+			
+		</body>
+</html>
