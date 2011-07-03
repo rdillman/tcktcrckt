@@ -32,23 +32,40 @@
 <body>
 
 	<body id="body">
+		<img id="bg" src="/images/parkclose.jpg" />
 		<div id="container">			
 			<div id="user_nav">
 				<div id="logo">
-					<%= link_to image_tag("tcktcrckt.png"), "/" %>
+					<%= link_to image_tag("tcktcrckt.png",:border =>0), "/"%>
 				</div>
 				<div id="user_nav_basic">
 					<%= link_to I18n.translate('header.links.how_to'), lookup_how_to_path %>
+					
+					
+					<%if current_user == nil%> 
+					
+					<%= link_to I18n.translate('header.links.alerts'), "../users/sign_up" %>
+					
+					<%elsif current_user.phone_number != current_user.valphone%>
+					<%= link_to I18n.translate('header.links.alerts'), validator_enter_path %>
+					
+					<%else %>
 					<%= link_to I18n.translate('header.links.alerts'), alert_show_path %>
+					
+					<%end%>
+					
+					
+					
 					<%= link_to I18n.translate('header.links.about_us'), layouts_about_us_path%>
 					<%= link_to I18n.translate('header.links.contact'), layouts_contact_us_path %>
 				</div>	
 				<div id="user_sign">
 					<% if user_signed_in? %>
-						<%=I18n.translate('header.signed_in_as')%> <%= link_to current_user.username.blank? ? current_user.email : current_user.username, edit_user_registration_path %>. <%= I18n.translate('header.not_you')%>
+						<%=I18n.translate('header.signed_in_as')%> <%= link_to current_user.username.blank? ? current_user.email : current_user.username, edit_user_registration_path %> <%= I18n.translate('header.not_you')%>
 						<%= link_to I18n.translate('header.links.sign_out'), destroy_user_session_path %>
 					<% else %>
-						<%= link_to I18n.translate('header.links.sign_up'), new_user_registration_path %>
+						<%= link_to I18n.translate('header.links.sign_up'), new_user_registration_path %> OR 
+						<%= link_to "sign in", "/users/sign_in" %>
 					<% end %>
 			
 					<% if mobile_device? %>
@@ -76,6 +93,7 @@
 					<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 					</form>
 			</div>
+			<%= link_to "TOS!", "/layouts/tos" %>
 		
 		</div>
 

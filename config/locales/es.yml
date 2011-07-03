@@ -10,7 +10,7 @@ es:
       success:  'Su numero ha sido actualizado.'
     create:
       res:
-        invalid_address: 'Dirección Invalido - Dirección o calle no existe'
+        invalid_address: 'Dirección Invalido - Dirección o calle no existe - '
         no_record: "No tenemos un archivo para esa dirección para esa calle"
         invalid: 'Dirección Invalido'
         multiple: '¿Cuál de estas calles?'
@@ -24,7 +24,7 @@ es:
         delete: 'La alarma ha sido eliminado'
     create_message:
       alert_created: 'Una alerta se ha creado para la limpieza de '
-      begins: ' que comienza el '
+      begins: ' que comienza a las '
     kill_message:
       alert_for: 'Alerta de limpieza de calle para '
       deleted: ' ha sido eliminado.'
@@ -35,6 +35,8 @@ es:
     do_empty:
       message: 'Por favor escriba una dirección'
     alert_messages:
+      delete: "borrar"
+      change: "cambiar"
       multiple: '¿Cuál de estos?'
       new: 'Nueva Búsqueda'
       alarm_options: 'Opciones de Alarma'
@@ -65,11 +67,10 @@ es:
     closing: "Eso es mucho para recordar. Así que tenemos Ticket Cricket. Sólo tienes que entregar la dirección donde estas estacionado y le enviaremos una alerta de texto cuando es hora de mudar su vehículo. ¡Es así de fácil!"
   
   header:
-    title: "¡Pierde las Vocales, Pierde las Multas!"
+    title: "¡Pierde las Vocales, Pierda las Multas!"
     search: "Entrega Dirección para buscar los tiempos de limpieza en San Francisco..."
     search_button: 'Busca'
     create_alert: "CREA UNA \n ALERTA"
-    m_search: "Busca tiempos de limpieza"
     signed_in_as: "Ingresado cómo"
     not_you: "¿Es usted?"
     links:
@@ -107,11 +108,14 @@ es:
     text_4: "Código de Validación: "
   
   registration:
+    sign_in: "Acceder"
     sign_up: "Regístrese"
+    forgot: "¿Se olvido tu contraseña?"
+    facebook_sign_in: "Acceder con "
     edit: "Editar"
     username: "Usuario"
     email: "Correo Electronico"
-    phone: "Numero de Teléfono:"
+    phone: "Número de Teléfono:"
     carrier: "Compañía"
     password: "Contraseña"
     confirm_password: "Confirmar Contraseña"
@@ -186,12 +190,25 @@ es:
 
   time:
     formats:
-      default: "%A, %d de %B a las %I:%M%p."
-      short: "%d de %b %H:%M"
+      default: "%H:%M, el %d de %B"
+      short: "%H:%M %B %d"
       long: "%d de %B de %Y %H:%M"
     am: "am"
     pm: "pm"
       
   mobile:
-    current_alerts: "Alertas Actual"
+    current_alerts: "Alertas Actuales"
+    search: "Busca tiempos de limpieza"
+    search_title: "Busca para tiempos de limpieza por Dirección"
+    recent: "Alarmas Recientes"
+    footer: "¡Pierde las Vocales, Pierda las Multas!"
+    submit: "Enviar"
+    night_before: "Noche Antes"
+    one_hour: "Una Hora Antes"
+    no_alerts: "No hay Alertas"
+    edit: "Editar"
+    no_recent: "No hay Busquedas Recientes"
+    change_time: "Cambia Tiempo"
+    delete: "Borrar"
+    create_alert: "Crea Una Alerta"
 
