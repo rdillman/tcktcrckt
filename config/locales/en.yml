@@ -80,6 +80,8 @@ en:
       alerts: "my alerts"
       about_us: "about us"
       contact: "contact us"
+      or: "OR"
+      sign_in: "sign in"
       sign_out: "sign out"
       sign_up: "sign up"
       full_site: "FULL SITE"

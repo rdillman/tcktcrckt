@@ -43,9 +43,9 @@
 		<%elsif @box == 'info'%>
 			<div class='info'><%=@message%>		
 			
-			<%if validated? == 0%>
-			<%=link_to(I18n.translate('header.create_alert'),new_registration_path )%>
-			<%elsif validated? == 1%>
+			<%if current_user == nil%> 
+			<%=link_to(I18n.translate('header.create_alert'),"../users/sign_up" )%>
+			<%elsif current_user.phone_number != current_user.valphone%>
 			<%=link_to(I18n.translate('header.create_alert'),validator_enter_path )%>
 			<%else %>
 			<%=link_to(I18n.translate('header.create_alert'), :class => "user_submit", :id => "alert_submit", :controller=>"alert", :action=>"create", :method => "get", :q=>@usr_qry, :st => I18n.translate('alert_controller.alertmessages.options.night_before')) %>

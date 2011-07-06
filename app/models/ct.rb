@@ -144,7 +144,7 @@ class Ct < ActiveRecord::Base
     end
     if self.non_weekly? == false
       #TBD - Add Warning Flag
-      if start.wday == now.wday && ((stop-1.week) > now)
+      if start.wday == now.wday && ((start-1.week) > now)
         start -= 1.week
         stop -= 1.week
       end

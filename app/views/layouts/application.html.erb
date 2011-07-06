@@ -42,8 +42,9 @@
 					<%= link_to I18n.translate('header.links.how_to'), lookup_how_to_path %>
 					
 					
-					<%if current_user == nil%>
-					<%= link_to I18n.translate('header.links.alerts'), "users/sign_in" %>
+					<%if current_user == nil%> 
+					
+					<%= link_to I18n.translate('header.links.alerts'), "../users/sign_up" %>
 					
 					<%elsif current_user.phone_number != current_user.valphone%>
 					<%= link_to I18n.translate('header.links.alerts'), validator_enter_path %>
@@ -63,8 +64,8 @@
 						<%=I18n.translate('header.signed_in_as')%> <%= link_to current_user.username.blank? ? current_user.email : current_user.username, edit_user_registration_path %> <%= I18n.translate('header.not_you')%>
 						<%= link_to I18n.translate('header.links.sign_out'), destroy_user_session_path %>
 					<% else %>
-						<%= link_to I18n.translate('header.links.sign_up'), new_user_registration_path %> OR 
-						<%= link_to "sign in", "/users/sign_in" %>
+						<%= link_to I18n.translate('header.links.sign_up'), new_user_registration_path %> <%= I18n.translate('header.links.or')%> 
+						<%= link_to I18n.translate('header.links.sign_in'), "/users/sign_in" %>
 					<% end %>
 			
 					<% if mobile_device? %>
