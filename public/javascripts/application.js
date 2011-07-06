@@ -1,6 +1,36 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+function htmlMakeAlert() {
+	
+	jQuery.ajaxSetup({ 
+	  'beforeSend': function(xhr) {
+	    xhr.setRequestHeader("Accept", "text/html");
+	  }
+	})
+	var search = $('.htmlSearchBox').attr("value");
+	var alertSendOptions = $('#alarmOptions').attr('value');
+	alert(search+" : "+alertSendOptions);
+	return false;
+}
+
+
+function htmlGetNextCleanTime() {
+
+	var nextTime = null;
+	
+	jQuery.ajaxSetup({ 
+	  'beforeSend': function(xhr) {
+	    xhr.setRequestHeader("Accept", "text/html");
+	  }
+	})
+	var search = $('.htmlSearchBox').attr("value");
+	$.get("lookup/get_next_time?q="+search, function(data){
+		$('.info').html(data);
+	});
+	
+	return false;
+}
 
 function updateAlerts() {  
   var user_id = $('#alerts').attr('data-user')

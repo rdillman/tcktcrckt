@@ -2,6 +2,12 @@ class AlertController < ApplicationController
   before_filter :authenticate_user!
   before_filter :validated?
   
+  def make_new_alert
+    @q = params[:q]
+    @st = params[:st]
+    
+  end
+
   def show
     @user = current_user
     @alerts = Alarm.where("user_id=?",@user.id)
@@ -32,9 +38,7 @@ class AlertController < ApplicationController
   end 
   
   def edit
-    user = current_user
-    @alerts = Alarm.where("user_id=?",user.id)
-    @alarm = params[:alarm]
+ 
     if Alarm.exists?(@alarm)
       alert = Alarm.find(@alarm)
       ct = Chronic.parse(alert.clean_time)

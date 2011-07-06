@@ -1,59 +1,28 @@
+<script>
+$(document).ready(function(){
+	$(".user_submit").click(function(){
+		htmlMakeAlert();
+	});
+	
+	$(".htmlSearchBox").keypress(function(){
+		if ( event.which == 13 ) {
+			htmlMakeAlert();
+		}
+	});
+});
+</script>
+
+<div class='info'><%=@message%></div>
+<br/><br/>
 <div class="lookup">
-	<%= form_tag("/alert/create", :method => "get") do %>
-	<%= text_field_tag(:q, nil, :placeholder => "101 Larkin St", :size => 55, :class => "input2") %>
-	
+	<div id="lookup_form_container">
+		<input class='htmlSearchBox' name ='q' placeholder='sex' type="text" value=" " />
+		<select id='alarmOptions'>
+		  <option value="1">Night Before</option>
+		  <option value="2">1 Hour Before</option>
+		  <option value="3">Don't Create Alarm</option>
+		</select>
+		<input class='user_submit' type="submit" value="Go" />
+	</div>
 </div>
 
-<div class="form_container">	  
-	<%= label_tag "st", I18n.translate('alert_controller.alert_messages.alarm_options'), :id => "alert_options"%>
-	
-	<%= select_tag "st", options_for_select([ 
-		I18n.translate('alert_controller.alert_messages.options.night_before'),
-		I18n.translate('alert_controller.alert_messages.options.1_hour'), 
-		I18n.translate('alert_controller.alert_messages.options.no_alarm') ], 
-		I18n.translate('alert_controller.alert_messages.options.night_before')) %>
-		
-  <%= submit_tag(I18n.translate('alert_controller.alert_messages.get_results'), :class => "user_submit") %>
-<% end %>
-</div>
-
-<%if @message&&@box%>
-	<%if @box == "error"%>
-		<div class='error'><%=@message%></div>
-	<%elsif @box == "warn"%>
-		<div class='warning'><%=@message%></div>
-	<%elsif @box == 'info'%>
-		<div class='info'><%=@message%></div>
-	<%elsif @box == 'success'%>
-		<div class='success'><%=@message%></div>
-	<%end%>
-<%end%>
-
-
-
-<%if @alerts != [] && @alerts != nil%>
-<br>
-<div id="alerts_table_container">
-	<font size=5><b><%= I18n.translate('alert_controller.alert_messages.titles.current') %></b></font>
-
-	<table id="alerts_table">
-	  <tr>	
-		<th><u><% I18n.translate('alert_controller.alert_messages.titles.location')%></u></th>
-		<th><u><% I18n.translate('alert_controller.alert_messages.titles.cleantime')%></u></th>
-		<th><u><% I18n.translate('alert_controller.alert_messages.titles.alert')%></u></th>
-		<th><th>
-	  </tr>
-	</div>	
-
-	<%@alerts.each do |a|%>
-	<tr>
-		<td><%=a.location%>  </td>
-		<td><%=localize_time_strings(a.clean_time) %>  </td>
-		<td> <%if a.nb4%><% I18n.translate('alert_controller.alert_messages.options.night_before')%><%else%><% I18n.translate('alert_controller.alert_messages.options.1_hour')%><%end%> </td>
-		<td> <%= link_to(I18n.translate('alert_controller.alert_messages.delete'), :controller => "alert", :action => "kill", :q => a.id, :method => "get", :class => "user_delete") %> | <%= link_to(I18n.translate('alert_controller.alert_messages.change'), :controller => "alert", :action => "edit", :alarm => a.id, :method => "get", :class => "user_delete" ) %></td>
-	</tr>
-	<%end%>
-</table>
-<%else%>
-	<h2><% I18n.translate('alert_controller.alert_messages.titles.none')%></h2>
-<%end%>

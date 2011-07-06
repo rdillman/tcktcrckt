@@ -139,11 +139,9 @@ z-index: -1;
 // in address search bar
 */
 #alertmsg{
-	position: relative;
-	top: 48%;
-	left:0;
 	height:50px;
 	width:650px;
+    
 }
 
 
@@ -166,13 +164,10 @@ z-index: -1;
     margin:auto;
 	font-size:15px;
 	text-align:center;
-	margin:auto;
 	border: 1px solid;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
-	padding:15px 14px;
 	width:650px;
-	position:relative;
 	
 }
 
