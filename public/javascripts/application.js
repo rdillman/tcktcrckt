@@ -2,18 +2,10 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 
-function loadAlerts(){
-	jQuery.ajaxSetup({ 
-	  'beforeSend': function(xhr) {
-	    xhr.setRequestHeader("Accept", "text/javascript");
-	  }
-	})
-	return false;
-}
+
 
 
 function htmlMakeAlert() {
-	
 	jQuery.ajaxSetup({ 
 	  'beforeSend': function(xhr) {
 	    xhr.setRequestHeader("Accept", "text/html");
@@ -29,7 +21,6 @@ function htmlMakeAlert() {
 function htmlGetNextCleanTime() {
 
 	var nextTime = null;
-	
 	jQuery.ajaxSetup({ 
 	  'beforeSend': function(xhr) {
 	    xhr.setRequestHeader("Accept", "text/html");
@@ -88,13 +79,12 @@ function nextClean(){
 	  }
 	})
 	var search = $("#searchinput").attr("value");
-	$.getScript("lookup/get_next_time?q="+search, function(data){
-		$.mobile.changePage( "#results", { transition: "pop"} );	
+	$.get("lookup/get_next_time?q="+search, function(data){
 		var separator = data.indexOf(':');
 		var address = data.substring(0,separator-1);
 		var time = data.substring(separator+2);
-		$('#searchresults').html(data);
-		$('#searchCreateAlert').attr('q',address);
+		alert(data);
+		$('#searchResults').html(data);
 	});
 	return false;
 }

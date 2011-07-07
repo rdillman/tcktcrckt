@@ -12,7 +12,7 @@
     <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
   <% end -%>
 
-  <p><%= f.submit "Sign in", :class => "user_submit" %></p>
+  <p><%= f.submit "Sign in", :class => "user_submit" , :rel => 'external'%></p>
 <% end %>
 
 <%= render :partial => "devise/shared/links" %>

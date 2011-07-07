@@ -1,1 +1,1 @@
-<%=@address%> : <%=@message%>
+<%=@address%> : <%=@message%> <%if signed_in?%><div id='searchResults'></div><button id='searchCreateAlert' q=<%=@address%> >Create An Alert</button><br/><%else%><br><a rel='external' href="/users/sign_in?mobile=1">Sign In/Up to Create Alarms</a> <%end%>
