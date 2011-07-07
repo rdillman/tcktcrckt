@@ -1,11 +1,5 @@
 <head>	
-	<%= stylesheet_link_tag :all %>
-	<%= javascript_include_tag :defaults %>
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.css" />
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.js"></script>
+
 	<!-- JQUERY CODE -->
 	  <script>
 	  $(document).ready(function() {
@@ -38,7 +32,7 @@
 					<!-- TODO: Need to put in actual links/Icons here -->
 					<li><a href="/" class="ui-btn-active">Logo</a></li>
 					<%if signed_in?%>
-						<li><a href="/users/edit">Profile</a></li>
+						<li><a rel='extrenal' href="/users/edit">Profile</a></li>
 					<%else%>
 						<li><a rel='external' href="/users/sign_in?mobile=1">Sign In/Up to Create Alarms</a></li>
 					<%end%>
@@ -280,6 +274,30 @@
 
 		
 	  </div>
+	  <!-- End main content div -->
+	
+	  <!-- Footer -->
+	  <div data-role="footer">
+
+		<div data-role="navbar"><!-- footer navbar -->
+				<ul>
+					<!-- TODO: Need to put in actual links/Icons here -->
+					<li><a href="" class="ui-btn-active">Donate</a></li>
+					<li><a href="">About Us</a></li>
+					<li><a href="">Contact Us</a></li>
+					<li><a href="">TOS</a></li>
+				</ul>
+		</div><!-- /navbar -->
+		<!-- <h1><%= I18n.translate('mobile.footer')%></h1> -->
+	  </div>
+	  <!-- End Footer -->
+    </div>
+
+
+	<div data-role="page" id="howItWorks">  	  
+	  <!-- Header -->
+	  <div data-role="header" id='hdrHowItWorks' name='hdrHowItWorks' data-nobackbtn='false'>
+9
 	  <!-- End main content div -->
 	
 	  <!-- Footer -->
