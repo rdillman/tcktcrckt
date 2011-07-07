@@ -12,6 +12,7 @@ class LookupController < ApplicationController
     @user.update_rec(@usr_qry)
     respond_to do |format|      
       format.html
+      format.js
       format.xml {render :xml => @a}
     end
   end

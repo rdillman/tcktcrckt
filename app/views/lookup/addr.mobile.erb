@@ -24,10 +24,11 @@
 		$(".change").click(function(){
 			changeAlert();
 		});
-		$("#searchCreateAlert").click(function(){
+		$("button#searchCreateAlert").click(function(){
+			alert('sexy');
 			makeAlert();
 		});	
-		$("#recentCreateAlert").click(function(){
+		$(".recentCreateAlert").click(function(){
 			makeRecentAlert();
 		});
 	  });
@@ -55,7 +56,7 @@
 	  <!-- Main Content-->
 	  <div data-role="content" id="mainContent" name="mainContent" >
 		<!-- Search Bar -->
-			<div id='searchResults'></div>
+			<div id='searchResults'></div><button>This will do something</button>
 			<div data-role="fieldcontain">
 					    <label for="search"><b><%= I18n.translate('mobile.search_title')%></b></label><br/>
 					    <input type="search" name="streetclean" id="searchinput" value="" />
@@ -183,7 +184,7 @@
 	    <ul data-role='listview' data-theme="g">
 			<%if @recs && @recs != []%>
 			<%@recs.each do |r|-%>
-		    	<li><%=r%><button id='recentCreateAlert' q="<%=r%>" >Create Alert!</button> <br/></li>
+		    	<li><%=r%><button class='recentCreateAlert' q="<%=r%>" >Create Alert!</button> <br/></li>
 			<%end%>
 			<%else%>
 				<li><%= I18n.translate('mobile.no_recent')%></li>
