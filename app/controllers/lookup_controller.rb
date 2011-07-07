@@ -8,7 +8,6 @@ class LookupController < ApplicationController
     @results = Block.next_ct_from_addr(@usr_qry)
     nb4_time = @results[0][0]-1.day + (19 - @results[0][0].hour).hour
     send = @results[0][0] - 1.hour
-    debugger
     @a = Alarm.create!(:location => @usr_qry, :clean_time => @results[0][0].strftime(I18n.translate('alert_controller.create.construct_alarm.construct_time')), :send_time => nb4_time.strftime(I18n.translate('alert_controller.create.construct_alarm.construct_time')), :cnn => @results[1], :nb4 => true, :user_id => @user.id)
     @user.update_rec(@usr_qry)
     respond_to do |format|      
@@ -30,19 +29,23 @@ class LookupController < ApplicationController
       @address = @usr_qry
       if @results[0][0].class==Time
         @message = I18n.localize(@results[0][0])
+        @image = "<<create alert link>>"
       else
         @message = @results 
       end
       respond_to do |format|      
         format.html
+        format.js
         format.xml {render :xml => @message}
         format.xml {render :xml => @address}
+        format.xml {render :xml => @image}
         
       end
     else
       @message = "Please Enter Something"
       respond_to do |format|      
         format.html
+        format.js
         format.xml {render :xml => @message}
         format.xml {render :xml => @address}
       end

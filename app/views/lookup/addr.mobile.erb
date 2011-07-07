@@ -10,16 +10,13 @@
 -->
 
 <head>	
-	<%= stylesheet_link_tag :all %>
-	<%= javascript_include_tag :defaults %>
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.css" />
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.0b1/jquery.mobile-1.0b1.min.js"></script>
+
 	<!-- JQUERY CODE -->
 	  <script>
 	  $(document).ready(function() {
+		
+		// Load Current Alerts and Recent Alerts, before those functions are callled
+		
 	    $("#searchbutton").click(function(){
 			nextClean();	
 		});
@@ -40,7 +37,7 @@
 </head>	
 
 <div id='container'>	
-                     														<!-- Main Page-->
+  														<!-- Main Page-->
 	<div data-role="page" id="main">  	  
 	 <!-- Main Header -->
 	  <div data-role="header" id='hdrMain' name='hdrMain' data-nobackbtn='true'>
@@ -103,10 +100,11 @@
 																
 																<!-- Search For Cleans Page -->
     
-
+														<!-- Landing Page for Search -->
     <div data-role="page" id="searchForCleans">
 			<!-- CLEANS HEADER  -->
-	  	<div data-role="header" id='sfcHdr' name='sfcHdr'>
+	  	<div data-role="header" id='sfcHdr' name='sfcHdr' data-nobackbtn='false'>
+
 		  	<div data-role="navbar"><!-- header navbar -->
 					<ul>
 						<!-- TODO: Need to put in Icons here -->
@@ -147,7 +145,7 @@
 	</div>   																<!-- End Search For Cleans Page -->
 	
 	
-																				<!-- Show Alerts Page -->
+														<!-- Show Alerts Page -->
 	<div data-role="page" id="alertShow">  	  
 	 <!-- Alerts Header -->
 	  <div data-role="header" id='hdrAlerts' name='hdrAlerts' >
@@ -191,7 +189,7 @@
 		</ul>	
 		
 	  </div> <!-- End main content div -->
-	
+
 	  <!-- Alerts Footer -->
 	  <div data-role="footer" id='ftrAlerts' name='ftrAlerts' data-nobackbtn='true'>
 		<div data-role="navbar"><!-- footer navbar -->
@@ -261,7 +259,7 @@
     </div>
 																				<!-- End Recent Alarms -->
 
-     																			<!-- Search Results-->
+     													<!-- Search Results-->
 
 	<div data-role="page" id="results">  	  
 	  <!-- Search Results Header -->
@@ -296,6 +294,7 @@
 	
 	  <!-- Search Results Footer -->
 	  <div data-role="footer" id='ftrResults' name='ftrResults' data-nobackbtn='true'>
+
 		<div data-role="navbar"><!-- footer navbar -->
 				<ul>
 					<!-- TODO: Need to put in Icons here -->
