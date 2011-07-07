@@ -44,6 +44,7 @@ Tcktcrckt::Application.routes.draw do
   get "layouts/about_us"
   get "layouts/contact_us"
   get "layouts/tos"
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
