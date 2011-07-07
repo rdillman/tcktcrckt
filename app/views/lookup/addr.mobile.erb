@@ -3,6 +3,9 @@
 	<!-- JQUERY CODE -->
 	  <script>
 	  $(document).ready(function() {
+		
+		// Load Current Alerts and Recent Alerts, before those functions are callled
+		
 	    $("#searchbutton").click(function(){
 			nextClean();	
 		});
@@ -83,7 +86,7 @@
 	  </div>
     </div>   <!-- End MAIN PAGE -->
     
-
+														<!-- Landing Page for Search -->
     <div data-role="page" id="searchForCleans">
 			<!-- CLEANS HEADER  -->
 	  	<div data-role="header" id='sfcHdr' name='sfcHdr' data-nobackbtn='false'>
@@ -128,7 +131,7 @@
 	</div>   <!-- End Search For Cleans Page -->
 	
 	
-																				<!-- Show Alerts Page -->
+														<!-- Show Alerts Page -->
 	<div data-role="page" id="alertShow">  	  
 	 <!-- Header -->
 	  <div data-role="header" id='hdrAlerts' name='hdrAlerts' data-nobackbtn='false' >
@@ -189,7 +192,7 @@
 	  </div>
     </div>
 
-
+														<!-- Recent Alerts -->
 	<div data-role="page" id="recent">  	  
 	 <!-- Header -->
 	  <div data-role="header" id='hdrRecent' name='hdrRecent' data-nobackbtn='false'>
@@ -242,7 +245,7 @@
 	  </div>
     </div>
 
-     																			<!-- Search Results-->
+     													<!-- Search Results-->
 
 	<div data-role="page" id="results">  	  
 	  <!-- Header -->
@@ -293,7 +296,7 @@
 	  <!-- End Footer -->
     </div>
 
-
+														<!-- How it Wroks -->
 	<div data-role="page" id="howItWorks">  	  
 	  <!-- Header -->
 	  <div data-role="header" id='hdrHowItWorks' name='hdrHowItWorks' data-nobackbtn='false'>
