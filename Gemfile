@@ -16,6 +16,7 @@ gem 'chronic'
 gem 'formtastic', '~> 1.2.4'
 gem 'jquery-rails'
 gem 'sqlite3'
+gem 'GeoRuby'
 
 
 group :development do
