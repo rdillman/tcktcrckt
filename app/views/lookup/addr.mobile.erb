@@ -29,11 +29,22 @@
 </head>	
 
 <div id='container'>	
-																							<!-- Main Page-->
+                     														<!-- Main Page-->
 	<div data-role="page" id="main">  	  
 	 <!-- Header -->
 	  <div data-role="header" id='hdrMain' name='hdrMain' data-nobackbtn='true'>
-	  	TCKTCRCKT 
+	  	<div data-role="navbar"><!-- header navbar -->
+				<ul>
+					<!-- TODO: Need to put in actual links/Icons here -->
+					<li><a href="#" class="ui-btn-active">Logo</a></li>
+					<%if signed_in?%>
+						<li><a href="/users/edit">Profile</a></li>
+					<%else%>
+						<li><a rel='external' href="/users/sign_in?mobile=1">Sign In/ Sign Up to Create Alarms</a></li>
+					<%end%>
+					<li><a href="">How It Works</a></li>
+				</ul>
+		</div><!-- /navbar -->
 	  </div>
 	
 	  <!-- Main Content-->
@@ -49,20 +60,31 @@
 		</form>
 		<hr>
 		<!-- Show ALarms -->
-	    <ul data-role='listview' data-theme="g">
+	    
 		<%if signed_in?%>
-			<li><a href="#alertShow"><%= I18n.translate('mobile.current_alerts')%></a></li>
-			<li><a href="#recent"><%= I18n.translate('mobile.recent')%></a></li>
+			<ul data-role='listview' data-theme="g">
+				<li><a href="#alertShow"><%= I18n.translate('mobile.current_alerts')%></a></li>
+				<li><a href="#recent"><%= I18n.translate('mobile.recent')%></a></li>
+			</ul>
 		<%else%>
-			<li><a rel='external' href="/users/sign_in?mobile=1">Sign In/ Sign Up to Create Alarms</a></li>
+			<!-- <li><a rel='external' href="/users/sign_in?mobile=1">Sign In/ Sign Up to Create Alarms</a></li> -->
 		<%end%>
-		</ul>	
+			
 		
 	  </div> <!-- End main content div -->
 	
 	  <!-- Footer -->
 	  <div data-role="footer">
-		<%= I18n.translate('mobile.footer')%>
+		<div data-role="navbar"><!-- footer navbar -->
+				<ul>
+					<!-- TODO: Need to put in actual links/Icons here -->
+					<li><a href="" class="ui-btn-active">Donate</a></li>
+					<li><a href="">About Us</a></li>
+					<li><a href="">Contact Us</a></li>
+					<li><a href="">TOS</a></li>
+				</ul>
+		</div><!-- /navbar -->
+		<!-- <h1><%= I18n.translate('mobile.footer')%></h1> -->
 	  </div>
     </div>   <!-- End MAIN PAGE -->
     
@@ -84,7 +106,16 @@
 		</div>
 			<!-- CLEANS FOOTER -->
 	   <div data-role="footer">
-	   		<%= I18n.translate('mobile.footer')%>
+	   		<div data-role="navbar"><!-- footer navbar -->
+					<ul>
+						<!-- TODO: Need to put in actual links/Icons here -->
+						<li><a href="" class="ui-btn-active">Donate</a></li>
+						<li><a href="">About Us</a></li>
+						<li><a href="">Contact Us</a></li>
+						<li><a href="">TOS</a></li>
+					</ul>
+			</div><!-- /navbar -->
+			<!-- <h1><%= I18n.translate('mobile.footer')%></h1> -->
 		</div>
 		
 	</div>   <!-- End Search For Cleans Page -->
@@ -126,7 +157,16 @@
 	
 	  <!-- Footer -->
 	  <div data-role="footer">
-		<%= I18n.translate('mobile.footer')%>
+		<div data-role="navbar"><!-- footer navbar -->
+				<ul>
+					<!-- TODO: Need to put in actual links/Icons here -->
+					<li><a href="" class="ui-btn-active">Donate</a></li>
+					<li><a href="">About Us</a></li>
+					<li><a href="">Contact Us</a></li>
+					<li><a href="">TOS</a></li>
+				</ul>
+		</div><!-- /navbar -->
+		<!-- <h1><%= I18n.translate('mobile.footer')%></h1> -->
 	  </div>
     </div>
 
@@ -157,7 +197,16 @@
 	
 	  <!-- Footer -->
 	  <div data-role="footer">
-		<%= I18n.translate('mobile.footer')%>
+		<div data-role="navbar"><!-- footer navbar -->
+				<ul>
+					<!-- TODO: Need to put in actual links/Icons here -->
+					<li><a href="" class="ui-btn-active">Donate</a></li>
+					<li><a href="">About Us</a></li>
+					<li><a href="">Contact Us</a></li>
+					<li><a href="">TOS</a></li>
+				</ul>
+		</div><!-- /navbar -->
+		<!-- <h1><%= I18n.translate('mobile.footer')%></h1> -->
 	  </div>
     </div>
 
@@ -185,7 +234,16 @@
 	
 	  <!-- Footer -->
 	  <div data-role="footer">
-		<%= I18n.translate('mobile.footer')%>
+		<div data-role="navbar"><!-- footer navbar -->
+				<ul>
+					<!-- TODO: Need to put in actual links/Icons here -->
+					<li><a href="" class="ui-btn-active">Donate</a></li>
+					<li><a href="">About Us</a></li>
+					<li><a href="">Contact Us</a></li>
+					<li><a href="">TOS</a></li>
+				</ul>
+		</div><!-- /navbar -->
+		<!-- <h1><%= I18n.translate('mobile.footer')%></h1> -->
 	  </div>
 	  <!-- End Footer -->
     </div>
