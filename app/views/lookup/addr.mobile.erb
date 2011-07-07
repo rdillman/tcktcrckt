@@ -40,7 +40,7 @@
 					<%if signed_in?%>
 						<li><a href="/users/edit">Profile</a></li>
 					<%else%>
-						<li><a rel='external' href="/users/sign_in?mobile=1">Sign In/ Sign Up to Create Alarms</a></li>
+						<li><a rel='external' href="/users/sign_in?mobile=1">Sign In/Up to Create Alarms</a></li>
 					<%end%>
 					<li><a href="">How It Works</a></li>
 				</ul>
@@ -92,7 +92,18 @@
     <div data-role="page" id="searchForCleans">
 			<!-- CLEANS HEADER  -->
 	  	<div data-role="header" id='sfcHdr' name='sfcHdr'>
-		  	<%= I18n.translate('mobile.search')%>
+		  	<div data-role="navbar"><!-- header navbar -->
+					<ul>
+						<!-- TODO: Need to put in actual links/Icons here -->
+						<li><a href="#" class="ui-btn-active">Logo</a></li>
+						<%if signed_in?%>
+							<li><a href="/users/edit">Profile</a></li>
+						<%else%>
+							<li><a rel='external' href="/users/sign_in?mobile=1">Sign In/Up to Create Alarms</a></li>
+						<%end%>
+						<li><a href="">How It Works</a></li>
+					</ul>
+			</div><!-- /navbar -->
 		</div>
 		     <!-- CLEANS CONTENT -->
  	    <div data-role="content" id="searchForCleansContent" name="searchForCleansContent" >
@@ -122,10 +133,21 @@
 	
 	
 																				<!-- Show Alerts Page -->
-	<div data-role="page" id="alerts">  	  
+	<div data-role="page" id="alertShow">  	  
 	 <!-- Header -->
 	  <div data-role="header" id='hdrAlerts' name='hdrAlerts' >
-	  	TCKTCRCKT
+	  	<div data-role="navbar"><!-- header navbar -->
+				<ul>
+					<!-- TODO: Need to put in actual links/Icons here -->
+					<li><a href="#" class="ui-btn-active">Logo</a></li>
+					<%if signed_in?%>
+						<li><a href="/users/edit">Profile</a></li>
+					<%else%>
+						<li><a rel='external' href="/users/sign_in?mobile=1">Sign In/Up to Create Alarms</a></li>
+					<%end%>
+					<li><a href="">How It Works</a></li>
+				</ul>
+		</div><!-- /navbar -->
 	  </div>
 	
 	  <!-- Main Content-->
@@ -174,7 +196,18 @@
 	<div data-role="page" id="recent">  	  
 	 <!-- Header -->
 	  <div data-role="header" id='hdrRecent' name='hdrRecent' >
-	  	TCKTCRCKT
+	  	<div data-role="navbar"><!-- header navbar -->
+				<ul>
+					<!-- TODO: Need to put in actual links/Icons here -->
+					<li><a href="#" class="ui-btn-active">Logo</a></li>
+					<%if signed_in?%>
+						<li><a href="/users/edit">Profile</a></li>
+					<%else%>
+						<li><a rel='external' href="/users/sign_in?mobile=1">Sign In/Up to Create Alarms</a></li>
+					<%end%>
+					<li><a href="">How It Works</a></li>
+				</ul>
+		</div><!-- /navbar -->
 	  </div>
 																				<!-- Recent Alarms -->
 	  <!-- Main Content-->
@@ -215,7 +248,18 @@
 	<div data-role="page" id="results">  	  
 	  <!-- Header -->
 	  <div data-role="header" id='hdrResults' name='hdrResults' >
-	  	TCKTCRCKT
+	  	<div data-role="navbar"><!-- header navbar -->
+				<ul>
+					<!-- TODO: Need to put in actual links/Icons here -->
+					<li><a href="#" class="ui-btn-active">Logo</a></li>
+					<%if signed_in?%>
+						<li><a href="/users/edit">Profile</a></li>
+					<%else%>
+						<li><a rel='external' href="/users/sign_in?mobile=1">Sign In/Up to Create Alarms</a></li>
+					<%end%>
+					<li><a href="">How It Works</a></li>
+				</ul>
+		</div><!-- /navbar -->
 	  </div>
 	  <!--End Header -->
 	
@@ -225,7 +269,7 @@
 		<%if signed_in?%>
 		<button id='searchCreateAlert' q="fillmein" time="fillmein" ><%= I18n.translate('mobile.create_alert')%></button>
 		<%else%>
-		<li><a rel='external' href="/users/sign_in?mobile=1">Sign In/ Sign Up to Create Alarms</a></li>
+		<li><a rel='external' href="/users/sign_in?mobile=1">Sign In/Up to Create Alarms</a></li>
 		<%end%>
 
 		
