@@ -109,12 +109,14 @@
 
 img#bg 
 { 
-position: fixed; 
-left: 0px; 
-top: 0px; 
-width: 100%; 
-height: auto; 
-z-index: -1; 
+	min-height: 100%;
+	min-width: 1200px;
+	position: fixed; 
+	left: 0px; 
+	top: 0px; 
+	width: 100%; 
+	height: auto; 
+	z-index: -1; 
 }
 
 /*#lookup{
