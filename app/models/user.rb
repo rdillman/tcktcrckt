@@ -27,9 +27,11 @@ class User < ActiveRecord::Base
   end
   
   def update_rec(qry)
-    self.update_attribute(:rec3,self.rec2)
-    self.update_attribute(:rec2,self.rec1)
-    self.update_attribute(:rec1,qry)
+    if qry != self.rec1 and qry != self.rec2 and qry != self.rec3
+      self.update_attribute(:rec3,self.rec2)
+      self.update_attribute(:rec2,self.rec1)
+      self.update_attribute(:rec1,qry)
+    end
   end
   
   def text_address
