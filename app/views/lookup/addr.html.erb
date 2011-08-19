@@ -1,28 +1,64 @@
 <script>
-$(document).ready(function(){
-	$(".user_submit").click(function(){
-		htmlGetNextCleanTime();
+
+	$.fn.exBounce = function(){
+	    var self = this;
+	    (function runEffect(){
+	        self.effect("bounce", { times:3 }, 1000);
+					setTimeout(function(){ $("#homePageImage").fadeIn();
+				 	console.log("hi");
+					setTimeout(function(){ $("#homePageImage").fadeOut();}, 3000) }, 0);
+		 })();
+	   return this;
+
+	};
+	$(document).ready(function(){
+	    	 	console.log("document ready");
+	$("#homePageImage").exBounce();
 	});
 	
-	$(".htmlSearchBox").keypress(function(){
-		if ( event.which == 13 ) {
-			htmlGetNextCleanTime();
-		}
-	});
-});
 </script>
 
-<div id="alertmsg">
-	<div class='info'>Welcome to TCKTCRCKT</div>	
+<div id="homePageImage">
+	<%= image_tag("arrow.png") %>
 </div>
 
+<!-- <div id="lookup"> -->
+	
 
 <div id="lookup_container">
 
 	<div id="lookup_form_container">
-		  <input class='htmlSearchBox' name ='q' placeholder='sex' type="text" value=" " />
-		  <input class='user_submit' type="submit" value="Go" />
+		<%= form_tag("/lookup/addr", :method => "get") do %>
+  		<%= text_field_tag(:q, nil, :placeholder => I18n.translate('header.search'), :size => 55, :class => "input2") -%>	
+    	<%= submit_tag(I18n.translate('header.search_button'), :class => "user_submit", :id => "search_submit") %>
+	<% end %>
+
 	</div>
-
+	<div id="alertmsg">
+	<%if @message&&@box%>
+		<%if @box == "error"%>
+			<div class='error'><%=@message%></div>
+		<%elsif @box == "warn"%>
+			<div class='warning'><%=@message%></div>
+		<%elsif @box == 'info'%>
+			<div class='info'><%=@message%>		
+			
+			<%if current_user == nil%> 
+			<%=link_to(I18n.translate('header.create_alert'),"../users/sign_up" )%>
+			<%elsif current_user.phone_number != current_user.valphone%>
+			<%=link_to(I18n.translate('header.create_alert'),validator_enter_path )%>
+			<%else %>
+			<%=link_to(I18n.translate('header.create_alert'), :class => "user_submit", :id => "alert_submit", :controller=>"alert", :action=>"create", :method => "get", :q=>@usr_qry, :st => I18n.translate('alert_controller.alertmessages.options.night_before')) %>
+			<%end%></div>
+			
+		
+			
+		<%elsif @box == 'error'%>
+			<div class='error'><%=@message%></div>
+		<%end%>
+	<%end%>
+	</div>
+	
+	
+	
 </div>
-
