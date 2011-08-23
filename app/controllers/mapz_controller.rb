@@ -4,24 +4,14 @@ class MapzController < ApplicationController
   def timecnn
      @usr_qry = params[:q]
       if @usr_qry
-        @st,@sf,@br,@tr,@rside,@rnct,@right_times,@rhol,@bl,@tl,@lside,@lnct,@left_times,@lhol = Block.get_map_req_from_cnn(@usr_qry)
+        @results = Block.block_data(@usr_qry,nil)
+        @recenter = 0
         respond_to do |format|  
           format.html    
           format.js
-          format.xml {render :xml => @st}
-          format.xml {render :xml => @sf}
-          format.xml {render :xml => @br}
-          format.xml {render :xml => @tr}
-          format.xml {render :xml => @rside}
-          format.xml {render :xml => @rnct}
-          format.xml {render :xml => @right_times}
-          format.xml {render :xml => @rhol}
-          format.xml {render :xml => @bl}
-          format.xml {render :xml => @tl}
-          format.xml {render :xml => @lside}
-          format.xml {render :xml => @lnct}
-          format.xml {render :xml => @left_times}
-          format.xml {render :xml => @lhol}
+          format.xml {render :xml => @results}
+          format.xml {render :xml => @recenter}
+          
         end
       else
         @message = "Please Enter Something"
@@ -38,24 +28,31 @@ class MapzController < ApplicationController
       @user = current_user
       if @usr_qry
         standard_regex = /\d+(\s)*((\d*)[a-zA-Z]*(\s)*)+/
-        and_regex = /((\d*)[a-zA-Z]+(\s)+)+([aA][nN][[dD]|&+)(\s)+((\d*)[a-zA-Z]+(\s)*)+/
-        between_regex =/((\d*)[a-zA-Z]+(\s)+)+[bB][eE][tT][wW][eE]+[nN](\s)+((\d*)[a-zA-Z]+(\s)+)+([aA][nN][[dD]|&+)(\s)+((\d*)[a-zA-Z]+(\s)*)+/
-        
+        and_regex = /((\d*)[a-zA-Z]+(\s)+)+([aA][nN][dD]|&+)(\s)+((\d*)[a-zA-Z]+(\s)*)+/
+        between_regex =/((\d*)[a-zA-Z]+(\s)+)+[bB][eE][tT][wW][eE]+[nN](\s)+((\d*)[a-zA-Z]+(\s)+)+([aA][nN][dD]|&+)(\s)+((\d*)[a-zA-Z]+(\s)*)+/
+        @results = nil
+        @recenter = nil
         if between_regex === @usr_qry
-          @results = Block.block_from_between(@usr_qry)
+          @results, @recenter = Block.block_from_between(@usr_qry)
         elsif and_regex === @usr_qry
-          @results = Block.block_from_intersection(@usr_qry)
+          @results, @recenter = Block.block_from_intersection(@usr_qry)
         else
-          @results = Block.next_ct_from_addr(@usr_qry)
+          @cnn, @side = Block.lookup_cnn(@usr_qry)
+          if @side != -1
+            @results = Block.block_data(@cnn[0].cnn,@side)
+            @recenter = 1
+          else
+            @results = nil
+            @recenter = nil
+          end
         end
-        debugger
        #What does res mean?? Does uq mean user_query?
-
-
+       
         respond_to do |format|      
-          format.html
+          format.html {render :html => "#{Rails.root}/app/views/mapz/timecnn.html.erb"}
           format.js
           format.xml {render :xml => @results}
+          format.xml {render :xml => @recenter}
         end
       else
         @message = "Please Enter Something"
