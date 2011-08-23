@@ -1,0 +1,20 @@
+<%if @br != nil%>
+<b><%=@br %> - <%=@tr %> <%=@st %> <%=@sf %>, <%=@rside %></b><br>
+<ul>
+<li><%=@rnct %></li>
+<li>Rollover to See Schedule</li>
+<li>Make Street Cleaning Alert for this Block</li>
+</ul>
+<%end%>
+
+<%if @bl != nil%>
+<%if @br != nil%>
+<hr>
+<%end%>
+<b><%=@bl %> - <%=@tl %> <%=@st %> <%=@sf %>, <%=@lside %></b><br>
+<ul>
+<li><%=@lnct %></li>
+<li>Rollover to See Schedule</li>
+<li>Make Street Cleaning Alert for this Block</li>
+</ul>
+<%end%>

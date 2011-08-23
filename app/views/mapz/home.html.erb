@@ -1,0 +1,38 @@
+<html>
+	<head>
+	<title>evilBoy4Life</title>
+	<link rel="stylesheet" href="/stylesheets/mapz.css"/>
+	<script type="text/javascript" src="/javascripts/polymaps.js"></script>
+	<script type="text/javascript" src="/javascripts/protovis.min.js"></script>
+	<script type="text/javascript" src="/javascripts/mapplication.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<script type="text/javascript" src="/javascripts/jquery.js"></script>
+			<script type="text/javascript" src="/javascripts/jq.js"></script>
+			<div id='searchElements'>
+				<input id="searchBar"/> <button id="search-submit">Search</button> <button id="gps">GPS</button>
+			</div>
+			<div id='infoElements'>
+				
+				<!-- <div id="topInfoBox"><div id='tblockInfo'>crap</div><div id='tnct'></div><div id='tschedule'></div><div id='talert'></div></div>
+				<div id="bottomInfoBox"><div id='bblockInfo'></div><div id='bnct'></div><div id='bschedule'></div><div id='balert'></div></div>
+			-->
+			</div>
+			
+			<div id="mapElements">
+				<div id='map'>
+					<script type="text/javascript" src="/javascripts/map.js"></script>
+				</div>
+			</div>
+		</div>
+		<script>
+		$(document).ready(function() {
+			$("#search-submit").click(function(){
+				var query = $('#searchBar').attr('value');
+				nextTimeQuery(query);	
+			});
+		});
+		</script>
+	</body>
+</html>
