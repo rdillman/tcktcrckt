@@ -4,16 +4,18 @@ Tcktcrckt::Application.routes.draw do
   get "validator/enter"
 
   get "alert/show"
-
+  # match "/show" => "alert/show", :as => :alert
   get "alert/create"
 
   get "alert/kill"
 
   get "lookup/addr"
+  # match "/lookup" => "lookup#addr", :as => :lookup
   
   get "lookup/home"
   
   get "lookup/get_next_time"
+  # match "/time" => "lookup#get_next_time", :as => :lookup
   
   get "lookup/delete_alert"
   
