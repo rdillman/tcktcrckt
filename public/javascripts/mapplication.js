@@ -72,21 +72,33 @@ function readData(data){
 	alert(data);
 }
 
-function getGPSCoords(){
-
-
-	return map.center({lat: 37.7793+Math.random()/30, lon: -122.4192-Math.random()/30})
-// Un Comment for in San Francisco Testing
-	// if(navigator.geolocation){
-	//       // timeout at 60000 milliseconds (60 seconds)
-	//       var options = {timeout:60000};
-	//       navigator.geolocation.getCurrentPosition(showLocation, 
-	//                                                errorHandler,
-	//                                                {enableHighAccuracy: true});
-	// 	  return map.center({lat: position.coords.latitude,lon: position.coords.longitude});
-	//    }else{
-	//       alert("Sorry, browser does not support geolocation!");
-	// 	  return false;
-	//    }
+function showLocation(position) {
+  var latitude = position.coords.latitude;
+  var longitude = position.coords.longitude;
+  map.center({lat: latitude, lon: longituder})
 
 }
+
+function errorHandler(err) {
+  if(err.code == 1) {
+    alert("Error: Access is denied!");
+  }else if( err.code == 2) {
+    alert("Error: Position is unavailable!");
+  }
+}
+
+
+function getGPSCoords(){
+	//return map.center({lat: 37.7793+Math.random()/30, lon: -122.4192-Math.random()/30})
+// Un Comment for in San Francisco Testing
+   if(navigator.geolocation){
+      // timeout at 60000 milliseconds (60 seconds)
+      var options = {timeout:60000};
+      navigator.geolocation.getCurrentPosition(showLocation, 
+                                               errorHandler,
+                                               {enableHighAccuracy: true});
+   }else{
+      alert("Sorry, browser does not support geolocation!");
+   }
+}
+
