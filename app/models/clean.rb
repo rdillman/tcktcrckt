@@ -5,6 +5,7 @@ class Clean < ActiveRecord::Base
     times = Array.new
     times << Chronic.parse(nct_str[0])
     times << Chronic.parse(nct_str[1])
+    puts(times)
     return times
   end
   

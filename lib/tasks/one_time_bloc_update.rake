@@ -6,7 +6,7 @@ task :one_time_bloc_update => :environment do
   puts("Starting block reset")
   Block.delete_all
   FasterCSV.foreach("db/map.csv") do |row|
-    Block.create!(:cnn => row[0], :streetname=> row[1],:suff=>row[2],:botl =>row[3],:topl =>row[4],:botr =>row[5],:topr =>row[6],:int1 =>row[7],:int2 =>row[8],:cleaned => false,:nhood =>row[9])
+    Block.create!(:cnn => row[0], :streetname=> row[1],:suff=>row[2],:botl =>row[3],:topl =>row[4],:botr =>row[5],:topr =>row[6],:tint =>row[7],:bint =>row[8],:cleaned => false,:nhood =>row[9])
   end
   last = Time.now
   

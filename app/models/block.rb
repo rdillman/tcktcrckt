@@ -8,13 +8,13 @@ class Block < ActiveRecord::Base
       return nil,nil
     end
     @recenter = 2
-    @target_block = Block.where("streetname=? AND int1=?",@streets[0],@streets[1])
+    @target_block = Block.where("streetname=? AND tint=?",@streets[0],@streets[1])
     if @target_block == []
-      @target_block = Block.where("streetname=? AND int2=?",@streets[0],@streets[1])
+      @target_block = Block.where("streetname=? AND bint=?",@streets[0],@streets[1])
       if @target_block == []
-        @target_block = Block.where("streetname=? AND int1=?",@streets[1],@streets[0])
+        @target_block = Block.where("streetname=? AND tint=?",@streets[1],@streets[0])
         if @target_block == []
-          @target_block = Block.where("streetname=? AND int1=?",@streets[1],@streets[0])
+          @target_block = Block.where("streetname=? AND bint=?",@streets[1],@streets[0])
           if @target_block == []
             return nil,nil
           end
@@ -29,9 +29,9 @@ class Block < ActiveRecord::Base
   
   def self.block_from_between(query)
     @streets = query.upcase.split(%r{ BETWEEN | AND | & }).each{|x|x.strip}
-    @results = Block.where("streetname=? AND int1=? AND int2=?",@streets[0],@streets[1],@streets[2])
+    @results = Block.where("streetname=? AND tint=? AND bint=?",@streets[0],@streets[1],@streets[2])
     if @results == []
-      @results = Block.where("streetname=? AND int1=? AND int2=?",@streets[0],@streets[2],@streets[1])
+      @results = Block.where("streetname=? AND tint=? AND bint=?",@streets[0],@streets[2],@streets[1])
       if @results == []
         @st1 = @streets[0]
         @st2 = @streets[1]
@@ -78,6 +78,7 @@ class Block < ActiveRecord::Base
       
       @nts = Array.new
       @clean_stuff.each {|x| @nts << x.nct_to_times}
+      puts(@clean_stuff)
       @rnct = @nts.min
       
       @rnct,@rcur = Block.making_cleaning_times(@rnct.split(','))
