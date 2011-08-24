@@ -27,6 +27,12 @@ Tcktcrckt::Application.routes.draw do
   
   get "lookup/how_to"
   
+  get "mapz/home"
+  
+  get "mapz/timecnn"
+  
+  get "mapz/timequery"
+  
   get "alert/beef"
   
   get "alert/edit"

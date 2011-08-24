@@ -2,6 +2,7 @@ class Clean < ActiveRecord::Base
   def nct_to_times
     nct_str = self.nct
     nct_str = nct_str.split('|')
+    debugger
     times = Array.new
     times << Chronic.parse(nct_str[0])
     times << Chronic.parse(nct_str[1])
