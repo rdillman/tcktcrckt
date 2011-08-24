@@ -7,7 +7,8 @@ task :intersections => :environment do
     a.update_attribute(:bint,row[8])
     a.save!
     if block_counter%1000 == 0
-      put(a)
+      puts(a)
     end
+    block_counter = block_counter+1
   end
   end
