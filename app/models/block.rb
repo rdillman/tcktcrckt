@@ -8,13 +8,14 @@ class Block < ActiveRecord::Base
       return nil,nil
     end
     @recenter = 2
-    @target_block = Block.where("streetname=? AND bx=?",@streets[0],@streets[1])
+
+    @target_block = Block.where("streetname=? AND tint=?",@streets[0],@streets[1])
     if @target_block == []
-      @target_block = Block.where("streetname=? AND tx=?",@streets[0],@streets[1])
+      @target_block = Block.where("streetname=? AND bint=?",@streets[0],@streets[1])
       if @target_block == []
-        @target_block = Block.where("streetname=? AND bx=?",@streets[1],@streets[0])
+        @target_block = Block.where("streetname=? AND tint=?",@streets[1],@streets[0])
         if @target_block == []
-          @target_block = Block.where("streetname=? AND tx=?",@streets[1],@streets[0])
+          @target_block = Block.where("streetname=? AND bint=?",@streets[1],@streets[0])
           if @target_block == []
             return nil,nil
           end
@@ -29,9 +30,9 @@ class Block < ActiveRecord::Base
   
   def self.block_from_between(query)
     @streets = query.upcase.split(%r{ BETWEEN | AND | & }).each{|x|x.strip}
-    @results = Block.where("streetname=? AND bx=? AND tx=?",@streets[0],@streets[1],@streets[2])
+    @results = Block.where("streetname=? AND tint=? AND bint=?",@streets[0],@streets[1],@streets[2])
     if @results == []
-      @results = Block.where("streetname=? AND bx=? AND tx=?",@streets[0],@streets[2],@streets[1])
+      @results = Block.where("streetname=? AND tint=? AND bint=?",@streets[0],@streets[2],@streets[1])
       if @results == []
         @st1 = @streets[0]
         @st2 = @streets[1]
@@ -67,7 +68,7 @@ class Block < ActiveRecord::Base
     @rcur = nil
     @lcur = nil
     @block_stuff = Block.find_by_cnn(cnn)
-    
+
     @st = @block_stuff.streetname
     @sf = @block_stuff.suff
     if side == 'R' || !side
@@ -91,21 +92,13 @@ class Block < ActiveRecord::Base
       @ldir = @clean_stuff[0].dir
       
       @nts = Array.new
-      debugger
       @clean_stuff.each {|x| @nts << x.nct_to_times}
-      debugger
       @lnct = @nts.min
-      debugger
+      
       @lnct,@lcur = Block.making_cleaning_times(@lnct.split(','))
       @lsched = ""
       @clean_stuff.each{|x|@lsched<<x.wday<<x.start}
     end
-      
-      
-      
- 
-      
-    
     return @st,@sf,@rb,@rt,@rdir,@rnct,@rsched,@rcur,@lb,@lt,@ldir,@lnct,@lsched,@lcur,cnn
     
   end
