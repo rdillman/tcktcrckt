@@ -2,10 +2,9 @@ class Clean < ActiveRecord::Base
   def nct_to_times
     nct_str = self.nct
     nct_str = nct_str.split('|')
-    times = Array.new
-    times << Chronic.parse(nct_str[0])
-    times << Chronic.parse(nct_str[1])
-    puts(times)
+    times = Array.new        
+    times << Chronic.parse(nct_str[0].sub("Thu","Thursday"))
+    times << Chronic.parse(nct_str[1].sub("Thu","Thursday"))
     return times
   end
   

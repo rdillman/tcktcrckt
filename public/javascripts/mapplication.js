@@ -75,7 +75,7 @@ function readData(data){
 function showLocation(position) {
   var latitude = position.coords.latitude;
   var longitude = position.coords.longitude;
-  map.center({lat: latitude, lon: longituder})
+  map.center({lat: latitude, lon: longitude})
 
 }
 

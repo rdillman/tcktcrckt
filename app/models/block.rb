@@ -67,18 +67,19 @@ class Block < ActiveRecord::Base
     @rcur = nil
     @lcur = nil
     @block_stuff = Block.find_by_cnn(cnn)
-    
     @st = @block_stuff.streetname
     @sf = @block_stuff.suff
     if side == 'R' || !side
       @clean_stuff = Clean.where("cnn=? AND side=?",cnn,'R')
       @rb = @block_stuff.botr
       @rt = @block_stuff.topr
+      if@clean_stuff == nil
+        debugger
+      end
       @rdir = @clean_stuff[0].dir
       
       @nts = Array.new
       @clean_stuff.each {|x| @nts << x.nct_to_times}
-      puts(@clean_stuff)
       @rnct = @nts.min
       
       @rnct,@rcur = Block.making_cleaning_times(@rnct.split(','))
@@ -87,11 +88,15 @@ class Block < ActiveRecord::Base
     end
     if side == 'L' || !side
       @clean_stuff = Clean.where("cnn=? AND side=?",cnn,'L')
+      if@clean_stuff == nil
+        debugger
+      end
       @lb = @block_stuff.botl
       @lt = @block_stuff.topl
       @ldir = @clean_stuff[0].dir
       
       @nts = Array.new
+      
       @clean_stuff.each {|x| @nts << x.nct_to_times}
       @lnct = @nts.min
       

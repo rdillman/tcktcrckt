@@ -58,6 +58,7 @@ class Ct < ActiveRecord::Base
   def start_time
     @start_time = nil
     if self.wday == "Thu"
+      debugger
       @start_time = Chronic.parse(self.wday+"rsday at "<<self.start)
     elsif self.wday == "Tue"
       @start_time = Chronic.parse(self.wday+"sday at "<<self.start)
@@ -202,8 +203,7 @@ class Ct < ActiveRecord::Base
     else
         start,stop = self.non_weekly_times(now)
     end
-              
     start, stop = self.class.set_warning(start,stop,now)
-    return start
+    return start,stop
   end
 end
