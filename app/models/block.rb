@@ -73,31 +73,38 @@ class Block < ActiveRecord::Base
     @sf = @block_stuff.suff
     if side == 'R' || !side
       @clean_stuff = Clean.where("cnn=? AND side=?",cnn,'R')
-      @rb = @block_stuff.botr
-      @rt = @block_stuff.topr
-      @rdir = @clean_stuff[0].dir
       
-      @nts = Array.new
-      @clean_stuff.each {|x| @nts << x.nct_to_times}
-      @rnct = @nts.min
+      if @clean_stuff[0].dir != nil
+        @rb = @block_stuff.botr
+        @rt = @block_stuff.topr
+
+        @rdir = @clean_stuff[0].dir
       
-      @rnct,@rcur = Block.making_cleaning_times(@rnct.split(','))
-      @rsched = String.new
-      @clean_stuff.each{|x|@rsched<<x.wday<<x.start}
+        @nts = Array.new
+        @clean_stuff.each {|x| @nts << x.nct_to_times}
+        @rnct = @nts.min
+      
+        @rnct,@rcur = Block.making_cleaning_times(@rnct.split(','))
+        @rsched = String.new
+        @clean_stuff.each{|x|@rsched<<x.wday<<x.start}
+      end
     end
     if side == 'L' || !side
       @clean_stuff = Clean.where("cnn=? AND side=?",cnn,'L')
-      @lb = @block_stuff.botl
-      @lt = @block_stuff.topl
-      @ldir = @clean_stuff[0].dir
+      if @clean_stuff[0].dir != nil
       
-      @nts = Array.new
-      @clean_stuff.each {|x| @nts << x.nct_to_times}
-      @lnct = @nts.min
+        @lb = @block_stuff.botl
+        @lt = @block_stuff.topl
+        @ldir = @clean_stuff[0].dir
       
-      @lnct,@lcur = Block.making_cleaning_times(@lnct.split(','))
-      @lsched = ""
-      @clean_stuff.each{|x|@lsched<<x.wday<<x.start}
+        @nts = Array.new
+        @clean_stuff.each {|x| @nts << x.nct_to_times}
+        @lnct = @nts.min
+      
+        @lnct,@lcur = Block.making_cleaning_times(@lnct.split(','))
+        @lsched = ""
+        @clean_stuff.each{|x|@lsched<<x.wday<<x.start}
+      end
     end
     return @st,@sf,@rb,@rt,@rdir,@rnct,@rsched,@rcur,@lb,@lt,@ldir,@lnct,@lsched,@lcur,cnn
     

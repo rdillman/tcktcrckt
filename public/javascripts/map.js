@@ -35,6 +35,7 @@ function load(e) {
     f.element.addEventListener("click",function(e){
         clickFeature(this, e);  	
     }, false);
+
   }
 }
 
