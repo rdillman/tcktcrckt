@@ -39,7 +39,7 @@ Tcktcrckt::Application.configure do
   ActionMailer::Base.smtp_settings = {
     :address              => 'localhost',
     :port                 => 25,
-    :domain               => 'www.tcktcrckt.com',
+    :domain               => 'www.parkingcricket.com',
   }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
