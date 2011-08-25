@@ -56,12 +56,28 @@ class Ct < ActiveRecord::Base
   
   #Returns Chron parse of the start time
   def start_time
-    Chronic.parse(self.wday+" at "+self.start)
+    @start_time = nil
+    if self.wday == "Thu"
+      @start_time = Chronic.parse(self.wday+"rsday at "<<self.start)
+    elsif self.wday == "Tue"
+      @start_time = Chronic.parse(self.wday+"sday at "<<self.start)
+    else
+      @start_time = Chronic.parse(self.wday+" at "<<self.start)
+    end
+    @start_time
   end
   
   #Returns Chron parse of a stop time
   def stop_time
-    Chronic.parse(self.wday+" at "+self.stop)
+    @stop_time = nil
+    if self.wday == "Thu"
+      @stop_time = Chronic.parse(self.wday+"rsday at "<<self.stop)
+    elsif self.wday == "Tue"
+      @stop_time = Chronic.parse(self.wday+"sday at "<<self.stop)
+    else
+      @stop_time = Chronic.parse(self.wday+" at "<<self.stop)
+    end
+    @stop_time
   end
   
   #Figures out when the next non-weekly sweep for a CT is 
@@ -77,35 +93,61 @@ class Ct < ActiveRecord::Base
       #If a non-weekly is swept on a day of the week - that next time is returned
       #Since this function moves in order chronologically it returns the first clean time that is after now
       if self.boolyuns[1] == 84
-        next_time = Chronic.parse("1st "<<self.wday<<" in "<<month)
+        next_time = nil
+        if self.wday == "Thu"
+          next_time = Chronic.parse("1st "<<self.wday+"rsday in "<<month)
+        else
+          next_time = Chronic.parse("1st "<<self.wday+" in "<<month)
+        end
         next_time = self.chronify_other_weeks(next_time)
         if now < next_time && !is_holiday?(next_time)
             return self.prepare_nt(next_time,stop,now)
         end
       end
       if self.boolyuns[2] == 84
-        next_time = Chronic.parse("2nd "<<self.wday<<" in "<<month)
+        
+        next_time = nil
+        if self.wday == "Thu"
+          next_time = Chronic.parse("2nd "+self.wday+"rsday in "<<month)          
+        else
+          next_time = Chronic.parse("2nd "<<self.wday+" in "<<month)
+        end
         next_time = self.chronify_other_weeks(next_time)
         if now < next_time &&!is_holiday?(next_time)
             return self.prepare_nt(next_time,stop,now)
         end
       end
       if self.boolyuns[3] == 84
-        next_time = Chronic.parse("3rd "<<self.wday<<" in "<<month)
+        next_time = nil
+        if self.wday == "Thu"
+          next_time = Chronic.parse("3rd "<<self.wday+"rsday in "<<month)
+        else
+          next_time = Chronic.parse("3rd "<<self.wday+"in "<<month)
+        end
         next_time = self.chronify_other_weeks(next_time)
         if now < next_time && !is_holiday?(next_time)
             return self.prepare_nt(next_time,stop,now)
         end
       end
       if self.boolyuns[4] == 84
-        next_time = Chronic.parse("4th "<<self.wday<<" in "<<month)
+        next_time = nil
+        if self.wday == "Thu"
+          next_time = Chronic.parse("4th "<<self.wday+"rsday in "<<month)
+        else
+          next_time = Chronic.parse("4th "<<self.wday+" in "<<month)
+        end
         next_time = self.chronify_other_weeks(next_time)
         if now < next_time && !is_holiday?(next_time)
             return self.prepare_nt(next_time,stop,now)
         end
       end
       if self.boolyuns[5] == 84
-        next_time = Chronic.parse("5th "+self.wday+" in "+month)
+        next_time = nil
+        if self.wday == "Thu"
+          next_time = Chronic.parse("5th "<<self.wday+"rsday in "<<month)
+        else
+          next_time = Chronic.parse("5th "+self.wday+" in "+month)
+        end
         if next_time
           next_time = self.chronify_other_weeks(next_time)
           if now < next_time && !is_holiday?(next_time)
@@ -162,6 +204,6 @@ class Ct < ActiveRecord::Base
     end
               
     start, stop = self.class.set_warning(start,stop,now)
-    return start,stop
+    return start
   end
 end
