@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110627191837) do
+ActiveRecord::Schema.define(:version => 20110824220845) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -78,11 +78,13 @@ ActiveRecord::Schema.define(:version => 20110627191837) do
     t.integer "topl"
     t.integer "botr"
     t.integer "topr"
-    t.integer "txcnn"
-    t.integer "bxcnn"
+    t.string  "tx"
+    t.string  "bx"
     t.string  "nhood"
     t.boolean "cleaned"
     t.string  "nct"
+    t.string  "tint"
+    t.string  "bint"
   end
 
   create_table "cleans", :force => true do |t|

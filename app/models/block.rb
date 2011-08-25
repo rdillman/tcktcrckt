@@ -1,5 +1,109 @@
 class Block < ActiveRecord::Base
   
+  #Change from bx/tx to int1 int2 on master
+  def self.block_from_intersection(query)
+    query.upcase!
+    @streets = query.split(%r{ AND | & }).each{|x|x.strip}
+    if !@streets
+      return nil,nil
+    end
+    @recenter = 2
+
+    @target_block = Block.where("streetname=? AND tint=?",@streets[0],@streets[1])
+    if @target_block == []
+      @target_block = Block.where("streetname=? AND bint=?",@streets[0],@streets[1])
+      if @target_block == []
+        @target_block = Block.where("streetname=? AND tint=?",@streets[1],@streets[0])
+        if @target_block == []
+          @target_block = Block.where("streetname=? AND bint=?",@streets[1],@streets[0])
+          if @target_block == []
+            return nil,nil
+          end
+        end
+      end
+    end
+      #Don't forget the 1 for the map recenter
+    @cnn = @target_block[0].cnn
+    return @cnn,@recenter
+  end
+  
+  
+  def self.block_from_between(query)
+    @streets = query.upcase.split(%r{ BETWEEN | AND | & }).each{|x|x.strip}
+    @results = Block.where("streetname=? AND tint=? AND bint=?",@streets[0],@streets[1],@streets[2])
+    if @results == []
+      @results = Block.where("streetname=? AND tint=? AND bint=?",@streets[0],@streets[2],@streets[1])
+      if @results == []
+        @st1 = @streets[0]
+        @st2 = @streets[1]
+        @st3 = @streets[2]    
+        @cnn,@recenter = Block.block_from_intersection(@st1<<' and '<<@st2)
+        if !@cnn
+          @cnn,@recenter = Block.block_from_intersection(@st1<<' and '<<@st2)
+        end
+        #One for map recenter
+        return @cnn,@recenter
+      end
+    end
+    return Block.block_data(@results[0].cnn,nil),1
+  end
+  
+  def self.block_data(cnn,side)
+    if cnn == nil or side == -1
+      return nil,nil
+    end
+    
+    @st = nil
+    @sf = nil
+    @rb = nil
+    @rt = nil
+    @rdir = nil
+    @rnct = nil
+    @lb = nil
+    @lt = nil
+    @ldir = nil
+    @lnct = nil
+    @rsched = nil
+    @lsched = nil
+    @rcur = nil
+    @lcur = nil
+    @block_stuff = Block.find_by_cnn(cnn)
+
+    @st = @block_stuff.streetname
+    @sf = @block_stuff.suff
+    if side == 'R' || !side
+      @clean_stuff = Clean.where("cnn=? AND side=?",cnn,'R')
+      @rb = @block_stuff.botr
+      @rt = @block_stuff.topr
+      @rdir = @clean_stuff[0].dir
+      
+      @nts = Array.new
+      @clean_stuff.each {|x| @nts << x.nct_to_times}
+      @rnct = @nts.min
+      
+      @rnct,@rcur = Block.making_cleaning_times(@rnct.split(','))
+      @rsched = String.new
+      @clean_stuff.each{|x|@rsched<<x.wday<<x.start}
+    end
+    if side == 'L' || !side
+      @clean_stuff = Clean.where("cnn=? AND side=?",cnn,'L')
+      @lb = @block_stuff.botl
+      @lt = @block_stuff.topl
+      @ldir = @clean_stuff[0].dir
+      
+      @nts = Array.new
+      @clean_stuff.each {|x| @nts << x.nct_to_times}
+      @lnct = @nts.min
+      
+      @lnct,@lcur = Block.making_cleaning_times(@lnct.split(','))
+      @lsched = ""
+      @clean_stuff.each{|x|@lsched<<x.wday<<x.start}
+    end
+    return @st,@sf,@rb,@rt,@rdir,@rnct,@rsched,@rcur,@lb,@lt,@ldir,@lnct,@lsched,@lcur,cnn
+    
+  end
+  
+  
   def self.ltp_from_cnn(cnn,radius)
     dest = Point.find_by_cnn(cnn)
     if dest
@@ -213,4 +317,18 @@ class Block < ActiveRecord::Base
   def self.valid_addr?(addr,street,suff)
     street && addr != -1
   end
+  
+  def self.making_cleaning_times(nct)
+  #[TO-DO ]
+    
+    str  = nct[0][0].strftime("%a %B %d %H:00-")
+    str <<nct[0][1].strftime("%H:00%p")
+    rcur=0
+    time = Time.now
+    if (time >= nct[0][0] && time <= nct[0][1])
+      rcur=1
+    end
+    return str,rcur
+  end
+  
 end
