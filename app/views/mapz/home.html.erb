@@ -2,22 +2,64 @@
 	<head>
 	<title>evilBoy4Life</title>
 	<link rel="stylesheet" href="/stylesheets/mapz.css"/>
+	<link rel="stylesheet" href="/stylesheets/stylesheet.css"/>
 	<script type="text/javascript" src="/javascripts/polymaps.js"></script>
 	<script type="text/javascript" src="/javascripts/protovis.min.js"></script>
 	<script type="text/javascript" src="/javascripts/mapplication.js"></script>
 	</head>
 	<body>
 		<div class="container">
-			<script type="text/javascript" src="/javascripts/jquery.js"></script>
+			<body id="body">
+				<img id="bg" src="/images/2.jpg" />
+					<div id="user_nav">
+						<div id="logo">
+							<%= link_to image_tag("tcktcrckt.png",:border =>0), "/"%>
+						</div>
+						<div id="user_nav_basic">
+							<%= link_to I18n.translate('header.links.how_to'), lookup_how_to_path %>
+
+
+							<%if current_user == nil%> 
+
+							<%= link_to I18n.translate('header.links.alerts'), "../users/sign_up" %>
+
+							<%elsif current_user.phone_number != current_user.valphone%>
+							<%= link_to I18n.translate('header.links.alerts'), validator_enter_path %>
+
+							<%else %>
+							<%= link_to I18n.translate('header.links.alerts'), alert_show_path %>
+
+							<%end%>
+
+
+
+							<%= link_to I18n.translate('header.links.about_us'), layouts_about_us_path%>
+							<%= link_to I18n.translate('header.links.contact'), layouts_contact_us_path %>
+						</div>	
+						<div id="user_sign">
+							<% if user_signed_in? %>
+								<%=I18n.translate('header.signed_in_as')%> <%= link_to current_user.username.blank? ? current_user.email : current_user.username, edit_user_registration_path %> <%= I18n.translate('header.not_you')%>
+								<%= link_to I18n.translate('header.links.sign_out'), destroy_user_session_path %>
+							<% else %>
+								<%= link_to I18n.translate('header.links.sign_up'), new_user_registration_path %> <%= I18n.translate('header.links.or')%> 
+								<%= link_to I18n.translate('header.links.sign_in'), "/users/sign_in" %>
+							<% end %>
+
+							<% if mobile_device? %>
+						    	<%= link_to I18n.translate('header.links.full_site'), :mobile => 0 %>
+						  	<% else %>
+						    	<%= link_to I18n.translate('header.links.mobile'), "/?mobile=1" %>
+						  	<% end %>
+						</div>
+					</div>
+s			<script type="text/javascript" src="/javascripts/jquery.js"></script>
 			<script type="text/javascript" src="/javascripts/jq.js"></script>
 			<div id='searchElements'>
-				<input id="searchBar"/> <button id="search-submit">Search</button> <button id="gps">GPS</button>
+					<input id="searchBar"/> <button id="search-submit">Search</button> <button id="gps">GPS</button>
 			</div>
 			<div id='infoElements'>
-				
-				<!-- <div id="topInfoBox"><div id='tblockInfo'>crap</div><div id='tnct'></div><div id='tschedule'></div><div id='talert'></div></div>
-				<div id="bottomInfoBox"><div id='bblockInfo'></div><div id='bnct'></div><div id='bschedule'></div><div id='balert'></div></div>
-			-->
+				<div id='outputBox'></div>
+				<div id='accordion'></div>
 			</div>
 			
 			<div id="mapElements">

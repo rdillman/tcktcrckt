@@ -35,7 +35,7 @@ function nextTimeQuery(query){
 			var lt = parseFloat(newcenter[1]);
 			var ln = parseFloat(newcenter[0]);
 			map.center({lat:lt,lon:ln});		
-			$('#infoElements').html(search_stuff)
+			$('#outputBox').html(search_stuff)
 		}
 	});
 }
