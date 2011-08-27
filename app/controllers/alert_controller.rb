@@ -1,12 +1,76 @@
 class AlertController < ApplicationController
   before_filter :authenticate_user!
   before_filter :validated?
+  layout nil
+  
+  
+  
   
   def make_new_alert
     @q = params[:q]
+    @cnn = params[:cnn]
     @st = params[:st]
+    if @cnn
+      @results = Block.next_ct_from_cnn(@q)
+    else
+       @results = Block.next_ct_from_addr(@q)
+    end
+    res = @results
+    uq  = @usr_qry 
+    if res == "Invalid Address - No Address or No Street"
+      do_invalid(res,uq)
+
+    elsif res == "We don't have a record for that address for that street"
+      do_invalid(res,uq)
+  
+    elsif res == "Invalid Address"
+      do_invalid(res,uq)
+
+    elsif res[1] == "Which of these Streets?"
+      do_multiple(res,uq)
+
+    elsif res == "Oops We Don't Have a Cleaning Record for this Street"
+      do_no_entry(uq)
+  
+    elsif alert_exists?(res[1],@user)
+       do_alert_exists
+    else
+      @alert = make_regular_alarm(@q,@results,@user)
+      if @alert
+        respond_to do |format|
+          format.html
+          format.xml {render :xml => @alert}
+        end
+      else
+        @message = "@@constructorfail"
+        respond_to do |format|
+          format.html
+          format.xml {render :xml => @message}
+        end
+      end
+      
+        
+    end
     
   end
+  
+  def show_alerts_on_map
+    @user = current_user
+    if !@user
+      @message = "!!notsignedin"
+      respond_to do |format|
+        format.html
+        format.xml {render :xml => @message}
+      end
+    else
+      @alerts = Alarm.where("user_id=?",@user.id)
+      respond_to do |format|
+        format.html 
+        format.xml {render :xml => @alerts}
+      end
+    end
+  end
+  
 
   def show
     @user = current_user
@@ -199,35 +263,23 @@ class AlertController < ApplicationController
     if Alarm.exists?(kill_id)
       to_delete = Alarm.find(kill_id)
         if current_user.id == to_delete.user_id
-          @message = kill_message(to_delete)
           if to_delete.destroy
-            @alerts = Alarm.where("user_id = ?",current_user.id)
-            @box = "success"
+            @message = "success"
             respond_to do |format|
-              format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
-              format.xml  { render :xml => @alerts }
-              format.xml  { render :xml => @message }
-              format.xml  {render :xml => @box}
+              format.html
+              format.xml  {render :xml => @message}
             end
-          end
-        else
-          respond_to do |format|
-            format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
           end
         end
     else
-      @message = I18n.translate('alert_controller.create.kill.delete')
-      @alerts = Alarm.where("user_id = ?",current_user.id)
-      @box = "success"
+      @message = "fail"
       respond_to do |format|
-        format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
-        format.xml  { render :xml => @alerts }
-        format.xml  { render :xml => @message }
-        format.xml  {render :xml => @box}
+        format.html
+        format.xml  {render :xml => @message}
       end
     end
   end
-
+          
   def change_time
     change_id = params[:q]
     
@@ -271,11 +323,8 @@ class AlertController < ApplicationController
     message << I18n.translate('alert_controller.kill_message.deleted')
   end
      
-  def alert_exists?(cnn, user, st)
+  def alert_exists?(cnn, user)
     if !user
-      return false
-    end
-    if st == "Don't Create an Alarm"
       return false
     end
     if Alarm.where("cnn = ? AND user_id = ?", cnn, user.id) != []
@@ -286,59 +335,37 @@ class AlertController < ApplicationController
   end
   
   def do_alert_exists
-    @message = I18n.translate('alert_controller.do_alert_exists.message')
-    @box ="warn"
-    @alerts = Alarm.where("user_id = ?",current_user.id)
+    @message = "^^AlertAlreadyExists"
     respond_to do |format|
-      format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
-      format.xml  { render :xml => @message}
-      format.xml  { render :xml => @alerts}
-      format.xml  { render :xml => @box}
+      format.html
+      format.xml {render :xml => @message}
     end
   end
   
   
   def do_invalid(res,uq)
-    @message = I18n.translate('alert_controller.create.res.invalid_address')
-    @message<<" "<<uq
-    @box = "error"
-    @alerts = Alarm.where("user_id = ?",current_user.id)
+    @message = "##NoAddress"
     respond_to do |format|
-      format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
-      format.xml  {render :xml => @message}
-      format.xml  {render :xml => @box}
-      format.xml  { render :xml => @alerts }
-      
+      format.html
+      format.xml {render :xml => @message}
     end
   end
   
   def do_no_entry(uq)
-    @alerts = Alarm.where("user_id = ?",current_user.id)
-    @message = @results
-    @message<<" "<<uq
-    @box = "warn"
-    
+    @message = "&&MissingStreet"
     respond_to do |format|
-      format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
-      format.xml  {render :xml => @message}
-      format.xml  {render :xml => @box}
-      format.xml  { render :xml => @alerts }
-      
-      
+      format.html
+      format.xml {render :xml => @message}
     end
   end
   
   def do_multiple(res,uq)
-    @alerts = Alarm.where("user_id = ?",current_user.id)
-    @message = I18n.translate('alert_controller.do_multiple.message')
-    @box = "info"
+    @message = "%%Multiple"
     respond_to do |format|
-      format.html { render :file => "#{Rails.root}/app/views/alert/show.html.erb"}
-      format.xml  {render :xml => @message}
-      format.xml  {render :xml => @box}
-      format.xml  { render :xml => @alerts }
-      
+      format.html
+      format.xml {render :xml => @message}
     end
+      
   end
   
   def do_empty

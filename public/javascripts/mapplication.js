@@ -1,5 +1,56 @@
 var LAST_CNN = "";
 
+function makeAlert(query){
+	jQuery.ajaxSetup({ 
+	  'beforeSend': function(xhr) {
+	    xhr.setRequestHeader("Accept", "text/html");
+	  }
+	})
+	$.get("/alert/make_new_alert?q="+query, function(data){
+		if(data[0]=='$'){
+			var newalert = data.split('$');
+			$('#cur').prepend("<div id='alarm"+newalert[4]+"'>"+newalert[1]+"<button class='kill' onclick='killAlert("+newalert[4]+")'>KILL</div>");
+		}else{
+			alert("make alert failed");
+		}
+	});
+	return false;
+}
+
+function showAlerts(){
+	$.get("/alert/show_alerts_on_map", function(data){
+		if(data[0]=="$"){
+			var alerts = data.split('#');
+			var len = alerts.length -1;
+			for (var i =0; i <len; i++){
+				var alert = alerts[i].split('$');
+				$('#cur').prepend("<div id='alarm"+alert[4]+"'>"+alert[1]+"<button class='kill' onclick='killAlert("+alert[4]+")'>KILL</div>");
+			}
+		}else if (data[0]=="!"){
+			alert("not signed in");
+		}else{
+			alert("something went wrong");
+		}
+	});
+	return false;
+}
+
+function killAlert(id){
+	$('#alarm'+id).attr("onclick","")
+	jQuery.ajaxSetup({ 
+	  'beforeSend': function(xhr) {
+	    xhr.setRequestHeader("Accept", "text/html");
+	  }
+	})
+	$.get("/alert/kill?q="+id, function(data){
+			if (data == "success"){
+				$('#alarm'+id).remove();
+			}else{
+				alert("something went wrong");
+			}
+	});
+}
+
 function nextTimeQuery(query){
 	jQuery.ajaxSetup({ 
 	  'beforeSend': function(xhr) {

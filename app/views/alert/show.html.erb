@@ -1,28 +1,26 @@
+<script src="/javascripts/jquery.js" type="text/javascript"></script>
+<script src="/javascripts/jquery-ui.js" type="text/javascript"></script>
+<script src="/javascripts/jquery_ujs.js" type="text/javascript"></script>
+<script src="/javascripts/mapplication.js" type="text/javascript"></script>
+<%= stylesheet_link_tag :all %>
+
 <script>
-$(document).ready(function(){
-	$(".user_submit").click(function(){
-		htmlMakeAlert();
-	});
-	
-	$(".htmlSearchBox").keypress(function(){
-		if ( event.which == 13 ) {
-			htmlMakeAlert();
-		}
+$(document).ready(function() {
+	$( "#accordion" ).accordion();
+	$('button').click(function(){
+		var id = $('button').attr('alarm-id');
+		killAlert(id);
 	});
 });
 </script>
-
-<div class='info'><%=@message%></div>
-<br/><br/>
-<div class="lookup">
-	<div id="lookup_form_container">
-		<input class='htmlSearchBox' name ='q' placeholder='sex' type="text" value=" " />
-		<select id='alarmOptions'>
-		  <option value="1">Night Before</option>
-		  <option value="2">1 Hour Before</option>
-		  <option value="3">Don't Create Alarm</option>
-		</select>
-		<input class='user_submit' type="submit" value="Go" />
-	</div>
+<div id='accordion'>
+	<h3><a href="#">Active Alerts</a></h3>
+		<div id='cur'>
+			c
+		</div>
+	<h3><a href="#">Recent Alerts</a></h3>
+		<div id='rec'>
+			r
+		</div>
 </div>
 

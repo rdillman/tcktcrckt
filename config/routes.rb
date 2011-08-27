@@ -31,6 +31,8 @@ Tcktcrckt::Application.routes.draw do
   
   get "mapz/timecnn"
   
+  get "alert/show_alerts_on_map"
+  
   get "mapz/timequery"
   
   get "alert/beef"
@@ -38,6 +40,8 @@ Tcktcrckt::Application.routes.draw do
   get "alert/edit"
   
   get "alert/update_phone"
+  
+  get "alert/make_new_alert"
 
   resources :authentications
   ActiveAdmin.routes(self)
