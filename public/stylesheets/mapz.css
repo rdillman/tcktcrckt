@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -13,34 +13,48 @@ a {
   color: #00B7FF;
 }
 
-.container {
+.containerM {
   margin-left:auto;
   margin-right:auto;
   height:auto;
   width:auto;
+
 }
 
 #searchElements{
-	height:20%;
+	height:100px;
 	width:100%;
 	position:absolute;
-	top:0%;
+	top:54px;
 	left:0%;
 
 }
 
 #infoElements{
 	height:80%;
-	width:24%;
+	width:28%;
 	position:absolute;
-	top:20%;
+	top:154px;
+	background-color:white;
+	opacity:50;
+	margin-left:1%;
+	font-size:1.5em;
+}
+
+#outputBox{
+	height:50%;
+	width:100%;
+}
+#accordion{
+	height:50%;
+	top:50%;
 }
 
 #mapElements{
 	height:80%;
-	width:75%;
+	width:69%;
 	position:absolute;
-	top:20%;
+	top:154px;
 	left:30%;
 }
 
@@ -50,28 +64,45 @@ a {
 
 
 
-input {
+#searchBar {
 	height:60%;
 	font-size:2em;
 	width:40%;
 	position:absolute;
-	margin:20%;
+	margin-top:20%;
+	margin-bottom:20%;
+	margin-left:0%;
+	margin-right:0%;
+	left:32%;
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
 }
 
 #search-submit{
 	width:10%;
 	height:60%;
 	position:absolute;
-	margin:20%;
-	left:40%;
+	margin-top:20%;
+	margin-bottom:20%;
+	margin-left:0%;
+	margin-right:0%;
+	left:75%;
 }
 
 #gps{
 	width:10%;
 	height:60%;
 	position:absolute;
-	margin:20%;
-	left:60%;
+	margin-top:20%;
+	margin-bottom:20%;
+	margin-left:0%;
+	margin-right:0%;
+	left:90%;
+}
+
+#accordion{
+	height= 
 }
 
 
