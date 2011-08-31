@@ -14,7 +14,7 @@
 		<br/>
 		<%=@results[11] %>
 		Rollover to See Schedule<br/>
-		Make Street Cleaning Alert for this Block
+		<button class='make' onclick='makeAlert('+<%=@results[8]%>+')' >MAKE ALERT</button>
 	<%end%>
 	<%if @recenter == 1%>
 		##<%=@results[14]%>

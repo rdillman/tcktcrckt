@@ -4,11 +4,13 @@ var color = pv.Scale.linear()
     .domain(0, 10000,100000000)
     .range("#F00", "#3B0");
 
+
+
 var map = po.map()
 	.container(document.getElementById("map").appendChild(po.svg("svg")))
 	.center({lat: 37.779032 , lon: -122.401843})
-	.zoom(17)
-	.zoomRange([13, 19])
+	.zoom(13)
+	.zoomRange([12, 19])
 	.add(po.interact())
 	;
 
@@ -20,11 +22,13 @@ map.add(po.geoJson()
 	.on("load",load)
     .url("/json/clean.json")
     .id("clean")
-    .zoom(13)
+    .zoom(12)
     .tile(false));
 
 map.add(po.compass()
     .pan("none"));
+
+
 
 function load(e) {
   for (var i = 0; i < e.features.length; i++) {

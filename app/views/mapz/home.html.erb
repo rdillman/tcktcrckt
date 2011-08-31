@@ -3,9 +3,28 @@
 	<title>evilBoy4Life</title>
 	<link rel="stylesheet" href="/stylesheets/mapz.css"/>
 	<link rel="stylesheet" href="/stylesheets/stylesheet.css"/>
-	<script type="text/javascript" src="/javascripts/polymaps.js"></script>
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
+		<script type="text/javascript" src="/javascripts/polymaps.js"></script>
 	<script type="text/javascript" src="/javascripts/protovis.min.js"></script>
 	<script type="text/javascript" src="/javascripts/mapplication.js"></script>
+	<script>
+	
+	$(document).ready(function() {
+		$
+		$('#accordion').accordion({fillSpace:true});
+		$('button').button();
+		$("#search-submit").click(function(){
+			var query = $('#searchBar').attr('value');
+			nextTimeQuery(query);
+		});
+	});
+	$(window).bind("load", function() {
+		$('#mapLoadingImage').remove();
+	});
+	</script>
 	</head>
 	<body>
 		<div class="container">
@@ -52,29 +71,30 @@
 						  	<% end %>
 						</div>
 					</div>
-s			<script type="text/javascript" src="/javascripts/jquery.js"></script>
 			<script type="text/javascript" src="/javascripts/jq.js"></script>
 			<div id='searchElements'>
 					<input id="searchBar"/> <button id="search-submit">Search</button> <button id="gps">GPS</button>
 			</div>
 			<div id='infoElements'>
-				<div id='outputBox'></div>
-				<div id='accordion'></div>
+				<div id="accordion">
+				    <h3><a href="#">Cleaning Results</a></h3>
+				    <div id='infoBox'>Welcome to ParkingCricket!</div>
+				    <h3><a href="#">Current Alarms</a></h3>
+				    <div id='currentAlarms'>Second content</div>
+				    <h3><a href="recentAlarms">Recent Alarms</a></h3>
+					<div>Second content</div>
+				    
+				</div>
 			</div>
 			
 			<div id="mapElements">
+				<!-- <img id='mapLoadingImage' src='/images/mapLoad.gif'/> -->
 				<div id='map'>
 					<script type="text/javascript" src="/javascripts/map.js"></script>
 				</div>
+				
 			</div>
 		</div>
-		<script>
-		$(document).ready(function() {
-			$("#search-submit").click(function(){
-				var query = $('#searchBar').attr('value');
-				nextTimeQuery(query);	
-			});
-		});
-		</script>
+
 	</body>
 </html>

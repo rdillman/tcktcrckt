@@ -9,7 +9,7 @@ function makeAlert(query){
 	$.get("/alert/make_new_alert?q="+query, function(data){
 		if(data[0]=='$'){
 			var newalert = data.split('$');
-			$('#cur').prepend("<div id='alarm"+newalert[4]+"'>"+newalert[1]+"<button class='kill' onclick='killAlert("+newalert[4]+")'>KILL</div>");
+			$('#currentAlerts').prepend("<div id='alarm"+newalert[4]+"'>"+newalert[1]+"<button class='kill' onclick='killAlert("+newalert[4]+")'>KILL</div>");
 		}else{
 			alert("make alert failed");
 		}
@@ -24,7 +24,7 @@ function showAlerts(){
 			var len = alerts.length -1;
 			for (var i =0; i <len; i++){
 				var alert = alerts[i].split('$');
-				$('#cur').prepend("<div id='alarm"+alert[4]+"'>"+alert[1]+"<button class='kill' onclick='killAlert("+alert[4]+")'>KILL</div>");
+				$('#currentAlert').prepend("<div id='alarm"+alert[4]+"'>"+alert[1]+"<button class='kill' onclick='killAlert("+alert[4]+")'>KILL</div>");
 			}
 		}else if (data[0]=="!"){
 			alert("not signed in");
@@ -61,7 +61,7 @@ function nextTimeQuery(query){
 	$.get("/mapz/timequery?q="+query, function(data){
 		if (data[0]=='$')
 		{
-			$('#infoElements').html("We couldn't find that street.<br/>Please search again");
+			$('#infoBox').html("We couldn't find that street.<br/>Please search again");
 		}
 		else if(data[0]=='@')
 		{
@@ -72,7 +72,7 @@ function nextTimeQuery(query){
 			var lt = parseFloat(newcenter[1]);
 			var ln = parseFloat(newcenter[0]);
 			map.center({lat:lt,lon:ln});
-			$('#infoElements').html("Please Select Street On Map")
+			$('#infoBox').html("Please Select Street On Map")
 			
 		}
 		else
@@ -86,7 +86,7 @@ function nextTimeQuery(query){
 			var lt = parseFloat(newcenter[1]);
 			var ln = parseFloat(newcenter[0]);
 			map.center({lat:lt,lon:ln});		
-			$('#outputBox').html(search_stuff)
+			$('#infoBox').html(search_stuff)
 		}
 	});
 }
@@ -110,7 +110,7 @@ function getNextCleanTime(cnn){
 	LAST_CNN = cnn;
 		//@st,@sf,@br,@tr,@rside,@rnct,@right_times,@rhol,@bl,@tl,@lside,@lnct,@left_times,@lhol
 		$.get("/mapz/timecnn?q="+cnn, function(data){
-			$('#infoElements').html(data)
+			$('#infoBox').html(data)
 			$('#searchBar').attr('value',"");
 		});	
 	}
