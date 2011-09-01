@@ -13,16 +13,12 @@
 	<script>
 	
 	$(document).ready(function() {
-		$
 		$('#accordion').accordion({fillSpace:true});
 		$('button').button();
 		$("#search-submit").click(function(){
 			var query = $('#searchBar').attr('value');
 			nextTimeQuery(query);
 		});
-	});
-	$(window).bind("load", function() {
-		$('#mapLoadingImage').remove();
 	});
 	</script>
 	</head>
@@ -88,11 +84,9 @@
 			</div>
 			
 			<div id="mapElements">
-				<!-- <img id='mapLoadingImage' src='/images/mapLoad.gif'/> -->
 				<div id='map'>
 					<script type="text/javascript" src="/javascripts/map.js"></script>
 				</div>
-				
 			</div>
 		</div>
 

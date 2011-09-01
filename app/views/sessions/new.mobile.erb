@@ -1,0 +1,20 @@
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <%= f.label :email %><br />
+  <%= f.email_field :email %></p>
+
+  <p><%= f.label :password %><br />
+  <%= f.password_field :password %></p>
+
+  <p><%= f.label :language, "language"%><br />
+  <%= f.select :language, [['English', 'en'], ['Espanol', 'es']]%></p>
+
+  <% if devise_mapping.rememberable? -%>
+    <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+  <% end -%>
+
+  <p><%= f.submit "Sign in", :class => "user_submit" , :rel => 'external'%></p>
+<% end %>
+
+<%= render :partial => "devise/shared/links" %>
+
+</div>

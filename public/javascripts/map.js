@@ -8,7 +8,7 @@ var color = pv.Scale.linear()
 
 var map = po.map()
 	.container(document.getElementById("map").appendChild(po.svg("svg")))
-	.center({lat: 37.779032 , lon: -122.401843})
+	.center({lon:-122.441886,lat:37.753365})
 	.zoom(13)
 	.zoomRange([12, 19])
 	.add(po.interact())
@@ -22,7 +22,7 @@ map.add(po.geoJson()
 	.on("load",load)
     .url("/json/clean.json")
     .id("clean")
-    .zoom(12)
+    .zoom(15)
     .tile(false));
 
 map.add(po.compass()
@@ -35,6 +35,7 @@ function load(e) {
     var f = e.features[i];;
     f.element.setAttribute("stroke", color(f.data.properties.CNN).color);
 	f.element.setAttribute('lid',f.data.geometry.coordinates[0]);
+	f.element.setAttribute('class',"s")
     f.element.id = f.data.properties.CNN;
     f.element.addEventListener("click",function(e){
         clickFeature(this, e);  	

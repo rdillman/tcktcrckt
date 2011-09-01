@@ -55,6 +55,7 @@ function nextTimeQuery(query){
 	jQuery.ajaxSetup({ 
 	  'beforeSend': function(xhr) {
 	    xhr.setRequestHeader("Accept", "text/html");
+		$('#infoBox').html("<img src='/images/mapLoad.gif' style='postion: abosulte; top: 50%;'/>");
 	  }
 	})
 	
@@ -97,6 +98,7 @@ function getNextCleanTime(cnn){
 	jQuery.ajaxSetup({ 
 	  'beforeSend': function(xhr) {
 	    xhr.setRequestHeader("Accept", "text/html");
+		$('#infoBox').html("<img src='/images/mapLoad.gif' style='postion: abosulte; top: 50%;'/>");
 	  }
 	})
 

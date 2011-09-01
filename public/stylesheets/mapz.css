@@ -7,6 +7,7 @@ path {
 	opacity:.2;
 	height:75%;
 	width:75%;
+	stroke-width:10px;
 }
 
 a {
@@ -59,16 +60,16 @@ a {
 }
 
 #map {
-	z-index:0;
 }
 
-/*#mapLoadingImage{
+#mapLoadingImage{
 	margin:auto;
-	z-index:1;;
 	height:100%;
 	width:100%;
-	
-}*/
+	position:absolute;
+	top:0%;
+	visibility:hidden;
+}
 
 
 
@@ -112,66 +113,3 @@ a {
 #accordion{
 
 }
-
-
-/*#topInfoBox{
-  height:50%;
-  width:75%;
-  position:absolute;
-  top:0%;
-}
-
-#bottomInfoBox{
-  height:50%;
-  width:75%;
-  position:absolute;
-  top:50%;
-}
-#tblockInfo{
-  height:25%;
-  width:100%;
-  position:absolute;
-  top:0%;
-}
-#tnct{
-  height:25%;
-  width:100%;
-  position:absolute;
-  top:25%;
-}
-#tschedule{
-  height:25%;
-  width:100%;
-  position:absolute;
-  top:50%;
-}
-#talert{
-  height:25%;
-  width:100%;
-  position:absolute;
-  top:75%;
-}
-#bblockInfo{
-  height:25%;
-  width:100%;
-  position:absolute;
-  top:0%;
-}
-#bnct{
-  height:25%;
-  width:100%;
-  position:absolute;
-  top:25%;
-}
-#bschedule{
-  height:25%;
-  width:100%;
-  position:absolute;
-  top:50%;
-}
-#balert{
-  height:25%;
-  width:100%;
-  position:absolute;
-  top:75%;
-}*/
