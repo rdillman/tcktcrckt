@@ -9,8 +9,8 @@ class Clean < ActiveRecord::Base
     return times
   end
   
-  def self.next_ct_from_cnn(cnn)
-    cts = Clean.where("cnn = ?",cnn)
+  def self.next_ct_from_cnn(cnn,side)
+    cts = Clean.where("cnn = ? AND side=?",cnn,side)
     if cts == [] #FUCK we don't have the records - maybe in the north beach or ingleside black hole?
       return "Oops We Don't Have a Cleaning Record for this Street"
     else

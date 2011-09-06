@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
 		<script type="text/javascript" src="/javascripts/polymaps.js"></script>
 	<script type="text/javascript" src="/javascripts/protovis.min.js"></script>
-	<script type="text/javascript" src="/javascripts/mapplication.js"></script>
+	<script type="text/javascript" src="/javascripts/mapplication-alerts.js"></script>
 	<script>
 	
 	$(document).ready(function() {
@@ -19,13 +19,30 @@
 			var query = $('#searchBar').attr('value');
 			nextTimeQuery(query);
 		});
+		showAlerts();
+		$(".kill").click(function(){
+			var id =$(".kill").attr('id');
+			$( "#dialog-confirm" ).show();
+			$( "#dialog-confirm" ).dialog( "option", "buttons", {
+				"Delete": function() {
+					killAlert(id);
+					$( this ).dialog( "close" );
+				},
+				"Cancel": function() {
+					$( this ).dialog( "close" );
+					( "#dialog-confirm" ).hide();
+					
+				}
+			});
+			$( "#dialog-confirm" ).dialog('open');
+		})
 	});
 	</script>
 	</head>
 	<body>
 		<div class="container">
 			<body id="body">
-				<img id="bg" src="/images/2.jpg" />
+				<!-- <img id="bg" src="/images/2.jpg" /> -->
 					<div id="user_nav">
 						<div id="logo">
 							<%= link_to image_tag("tcktcrckt.png",:border =>0), "/"%>
@@ -68,6 +85,8 @@
 						</div>
 					</div>
 			<script type="text/javascript" src="/javascripts/jq.js"></script>
+			<div id="dialog-confirm" title="Empty the recycle bin?" style='visibility:hidden'><p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>These items will be permanently deleted and cannot be recovered. Are you sure?</p>
+			</div>
 			<div id='searchElements'>
 					<input id="searchBar"/> <button id="search-submit">Search</button> <button id="gps">GPS</button>
 			</div>
@@ -76,7 +95,7 @@
 				    <h3><a href="#">Cleaning Results</a></h3>
 				    <div id='infoBox'>Welcome to ParkingCricket!</div>
 				    <h3><a href="#">Current Alarms</a></h3>
-				    <div id='currentAlarms'>Second content</div>
+				    <div id='currentAlarms'></div>
 				    <h3><a href="recentAlarms">Recent Alarms</a></h3>
 					<div>Second content</div>
 				    

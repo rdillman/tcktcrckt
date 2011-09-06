@@ -74,7 +74,7 @@ class Block < ActiveRecord::Base
     if side == 'R' || !side
       @clean_stuff = Clean.where("cnn=? AND side=?",cnn,'R')
       
-      if @clean_stuff[0].dir != nil
+      if @clean_stuff[0]
         @rb = @block_stuff.botr
         @rt = @block_stuff.topr
 
@@ -91,7 +91,7 @@ class Block < ActiveRecord::Base
     end
     if side == 'L' || !side
       @clean_stuff = Clean.where("cnn=? AND side=?",cnn,'L')
-      if @clean_stuff[0].dir != nil
+      if @clean_stuff[0]
       
         @lb = @block_stuff.botl
         @lt = @block_stuff.topl
@@ -151,8 +151,8 @@ class Block < ActiveRecord::Base
   end
 
 
-  def self.next_ct_from_cnn(cnn)
-    return Clean.next_ct_from_cnn(cnn)
+  def self.next_ct_from_cnn(cnn,side)
+    return Clean.next_ct_from_cnn(cnn,side)
   end
 
 

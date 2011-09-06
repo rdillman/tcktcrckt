@@ -37,11 +37,15 @@ Tcktcrckt::Application.routes.draw do
   
   get "alert/beef"
   
-  get "alert/edit"
+  get "alert/show"
   
   get "alert/update_phone"
   
   get "alert/make_new_alert"
+  
+  get "alert/timecnn"
+  
+  get "alert/timequery"
 
   resources :authentications
   ActiveAdmin.routes(self)

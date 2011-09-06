@@ -4,16 +4,83 @@ class AlertController < ApplicationController
   layout nil
   
   
+  def timecnn
+     @usr_qry = params[:q]
+      if @usr_qry
+        @results = Block.block_data(@usr_qry,nil)
+        @recenter = 0
+        respond_to do |format|  
+          format.html { render :file => "#{Rails.root}/app/views/alert/queryresult.html.erb" }
+          format.js
+          format.xml {render :xml => @results}
+          format.xml {render :xml => @recenter}
+          format.xml {render :xml => @buttonr}
+          format.xml {render :xml => @buttonl}
+          
+        end
+      else
+        @message = "Please Enter Something"
+        respond_to do |format|      
+          format.html { render :file => "#{Rails.root}/app/views/alert/queryresult.html.erb" }
+          format.js
+          format.xml {render :xml => @message}
+        end
+      end
+  end
+
+  def timequery
+     @usr_qry = params[:q]
+      @user = current_user
+      if @usr_qry
+        standard_regex = /\d+(\s)*((\d*)[a-zA-Z]*(\s)*)+/
+        and_regex = /((\d*)[a-zA-Z]+(\s)+)+([aA][nN][dD]|&+)(\s)+((\d*)[a-zA-Z]+(\s)*)+/
+        between_regex =/((\d*)[a-zA-Z]+(\s)+)+[bB][eE][tT][wW][eE]+[nN](\s)+((\d*)[a-zA-Z]+(\s)+)+([aA][nN][dD]|&+)(\s)+((\d*)[a-zA-Z]+(\s)*)+/
+        @results = nil
+        @recenter = nil
+        if between_regex === @usr_qry
+          @results, @recenter = Block.block_from_between(@usr_qry)
+        elsif and_regex === @usr_qry
+          @results, @recenter = Block.block_from_intersection(@usr_qry)
+        else
+          @cnn, @side = Block.lookup_cnn(@usr_qry)
+          if @side != -1
+            @results = Block.block_data(@cnn[0].cnn,@side)
+            @recenter = 1
+          else
+            @results = nil
+            @recenter = nil
+          end
+        end
+       #What does res mean?? Does uq mean user_query?
+        respond_to do |format|      
+          format.html { render :file => "#{Rails.root}/app/views/alert/queryresult.html.erb" }
+          format.js
+          format.xml {render :xml => @results}
+          format.xml {render :xml => @recenter}
+        end
+      else
+        @message = "Please Enter Something"
+        respond_to do |format|      
+          format.html { render :file => "#{Rails.root}/app/views/alert/queryresult.html.erb" }
+          format.js
+          format.xml {render :xml => @message}
+          format.xml {render :xml => @address}
+        end
+      end
+  end
+  
+  
+  
   
   
   def make_new_alert
-    @q = params[:q]
+    @q =params[:q]
     @cnn = params[:cnn]
-    @st = params[:st]
+    @side = params[:side]
     if @cnn
-      @results = Block.next_ct_from_cnn(@q)
+      @results = Block.next_ct_from_cnn(@cnn,@side)
     else
-       @results = Block.next_ct_from_addr(@q)
+       @results = Block.next_ct_from_addr(@q,@side)
     end
     res = @results
     uq  = @usr_qry 
@@ -35,7 +102,7 @@ class AlertController < ApplicationController
     elsif alert_exists?(res[1],@user)
        do_alert_exists
     else
-      @alert = make_regular_alarm(@q,@results,@user)
+      @alert = make_regular_alarm(@cnn,@results,@user)
       if @alert
         respond_to do |format|
           format.html
@@ -295,8 +362,8 @@ class AlertController < ApplicationController
   end
     
   def make_regular_alarm(uq,res,usr)
-      send = res[0][0] - 1.hour
-      @a = Alarm.create!(:location => uq, :clean_time => res[0][0].strftime(I18n.translate("time.formats.short")), :send_time => send.strftime(I18n.translate("time.formats.short")), :cnn => res[1], :nb4 => false, :user_id => usr.id)
+      send = res[0] - 1.hour
+      @a = Alarm.create!(:location => uq, :clean_time => res[0].strftime(I18n.translate("time.formats.short")), :send_time => send.strftime(I18n.translate("time.formats.short")), :cnn => res[1], :nb4 => false, :user_id => usr.id)
   end
   
   def night_before?(alarm_type)

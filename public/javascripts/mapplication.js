@@ -1,21 +1,32 @@
 var LAST_CNN = "";
 
-function makeAlert(query){
+function login(cnn,side){
+	location.replace("/alert/show");
+	return true;
+}
+
+function makeAlert(cnn,side){
+	debugger
 	jQuery.ajaxSetup({ 
 	  'beforeSend': function(xhr) {
-	    xhr.setRequestHeader("Accept", "text/html");
+	    xhr.setRequestHeader("Accept", "text/javascript");
+		debugger
 	  }
 	})
-	$.get("/alert/make_new_alert?q="+query, function(data){
+	debugger
+	$.get("/alert/make_new_alert?cnn="+cnn+"&side="+side, function(data){
+		debugger
 		if(data[0]=='$'){
 			var newalert = data.split('$');
-			$('#currentAlerts').prepend("<div id='alarm"+newalert[4]+"'>"+newalert[1]+"<button class='kill' onclick='killAlert("+newalert[4]+")'>KILL</div>");
+			$('#currentAlerts').prepend("<div id='alarm"+newalert[4]+"'>"+newalert[1]+"<button class='kill' onclick='makeAlert("+alert[4]+"')>KILL</div>");
 		}else{
 			alert("make alert failed");
 		}
 	});
 	return false;
 }
+
+
 
 function showAlerts(){
 	$.get("/alert/show_alerts_on_map", function(data){
@@ -87,7 +98,7 @@ function nextTimeQuery(query){
 			var lt = parseFloat(newcenter[1]);
 			var ln = parseFloat(newcenter[0]);
 			map.center({lat:lt,lon:ln});		
-			$('#infoBox').html(search_stuff)
+			$('#infoBox').html(search_stuff);
 		}
 	});
 }
