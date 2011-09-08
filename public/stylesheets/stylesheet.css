@@ -311,11 +311,12 @@ input{
 	padding:5px;
 	margin-top:2px;
 	text-align:center;
-	vertical-align:middle;
+	/*vertical-align:middle;*/
 }
 
-.form_container p{
+.form_container{
 	margin-bottom:10px;
+	text-align: center;
 }
 
 select{
@@ -359,6 +360,7 @@ label{
 	font-family: Futura,Helvetica,sans serif;
 	font-size: 12px;
 	text-decoration: none;
+	text-align: center;
 	color: #06275D;
 	background: -moz-linear-gradient(center bottom, #EEBF15 40%, #FFE631 100%);
 	background: -webkit-gradient(linear,left bottom,left top,color-stop(0.4, #EEBF15),color-stop(1, #FFE631));

@@ -1,0 +1,27 @@
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title><%= I18n.translate('how_to.title')%></title>
+</head>
+	
+<article id = "how_body">
+	<div class = "content_box">
+		<h2 id = "how_title">
+			<%= I18n.translate('how_to.title')%>
+		</h2>
+		<%= I18n.translate('how_to.intro.intro_1')%><%= link_to " TcktCrckt", lookup_addr_path %> <%= I18n.translate('how_to.intro.intro_2')%> <%= link_to I18n.translate('how_to.intro.sign_up_link'), new_user_registration_path %> <%= I18n.translate('how_to.intro.intro_3')%><br><hr>
+		<%= I18n.translate('how_to.intro.intro_4')%><hr>
+		<div id ="how_para">	
+			<ol>
+				<li><%= I18n.translate('how_to.steps.step_1')%></li>
+					<ul>
+						<li><%= I18n.translate('how_to.steps.step_2')%></li>
+						<li><%= I18n.translate('how_to.steps.step_3')%></li>
+					</ul>
+				<li><%= I18n.translate('how_to.steps.step_4')%></li>
+				<li><%= I18n.translate('how_to.steps.step_5')%></li>
+				<li><%= I18n.translate('how_to.steps.step_6')%></li>
+			</ol>
+		</div>
+	</div>
+</article>			
+		

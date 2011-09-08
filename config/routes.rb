@@ -25,7 +25,7 @@ Tcktcrckt::Application.routes.draw do
 
   get "lookup/map"
   
-  get "lookup/how_to"
+  get "mapz/how_to"
   
   get "mapz/home"
   
@@ -57,9 +57,9 @@ Tcktcrckt::Application.routes.draw do
   match '/auth/:provider/callback', :to => 'authentications#create'
   
   # Links
-  get "layouts/about_us"
-  get "layouts/contact_us"
-  get "layouts/tos"
+  get "mapz/about_us"
+  get "mapz/contact_us"
+  get "mapz/tos"
   
 
   # The priority is based upon order of creation:
@@ -111,7 +111,7 @@ Tcktcrckt::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "lookup#addr"
+  root :to => "mapz#home"
 
   # See how all your routes lay out with "rake routes"
 
