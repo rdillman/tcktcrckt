@@ -1,4 +1,5 @@
 
+
 <%if @message&&@box%>
 	<%if @box == "error"%>
 		<div class='error'><%=@message%></div>
@@ -11,27 +12,27 @@
 	<%end%>
 <%end%>
 
-<h2>Sign in to create an alert</h2>
-
 <div class="form_container">
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <%= f.label :email %><br />
-  <%= f.email_field :email, :class => "input3" %></p>
+	<h2>Sign in to create an alert</h2>
 
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password, :class => "input3" %></p>
+	<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+	  <p><%= f.label :email %><br />
+	  <%= f.email_field :email, :class => "input3" %></p>
 
-  <p><%= f.label :language, "language"%><br />
-  <%= f.select :language, [['English', 'en'], ['Espanol', 'es']], :class => "input3"%></p>
+	  <p><%= f.label :password %><br />
+	  <%= f.password_field :password, :class => "input3" %></p>
 
-  <% if devise_mapping.rememberable? -%>
-    <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
-  <% end -%>
+	  <p><%= f.label :language, "language"%><br />
+	  <%= f.select :language, [['English', 'en'], ['Espanol', 'es']], :class => "input3"%></p>
 
-  <p><%= f.submit "Sign in", :class => "user_submit" %></p>
-<% end %>
+	  <% if devise_mapping.rememberable? -%>
+	    <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+	  <% end -%>
 
-<%= render :partial => "devise/shared/links" %>
+	  <p><%= f.submit "Sign in", :class => "user_submit" %></p>
+	<% end %>
+
+	<%= render :partial => "devise/shared/links" %>
 
 </div>

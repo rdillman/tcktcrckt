@@ -31,7 +31,7 @@
 							<%= link_to image_tag("tcktcrckt.png",:border =>0), "/"%>
 						</div>
 						<div id="user_nav_basic">
-							<%= link_to I18n.translate('header.links.how_to'), lookup_how_to_path %>
+							<%= link_to I18n.translate('header.links.how_to'), mapz_how_to_path %>
 
 
 							<%if current_user == nil%> 
@@ -48,8 +48,8 @@
 
 
 
-							<%= link_to I18n.translate('header.links.about_us'), layouts_about_us_path%>
-							<%= link_to I18n.translate('header.links.contact'), layouts_contact_us_path %>
+							<%= link_to I18n.translate('header.links.about_us'), mapz_about_us_path%>
+							<%= link_to I18n.translate('header.links.contact'), mapz_contact_us_path %>
 						</div>	
 						<div id="user_sign">
 							<% if user_signed_in? %>
