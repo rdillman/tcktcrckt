@@ -35,7 +35,6 @@ function load(e) {
     var f = e.features[i];;
     f.element.setAttribute("stroke", color(f.data.properties.CNN).color);
 	f.element.setAttribute('lid',f.data.geometry.coordinates[0]);
-	f.element.setAttribute('class',"s")
     f.element.id = f.data.properties.CNN;
     f.element.addEventListener("click",function(e){
         clickFeature(this, e);  	

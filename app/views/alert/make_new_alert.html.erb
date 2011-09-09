@@ -1,1 +1,1 @@
-<%if @alert%>$<%=@alert.location%>$<%=@alert.clean_time%>$<%=@alert.send_time%>$<%=@alert.id%><%else%><%=@message%><%end%>
+$<%=@id%>$<div id="alarm<%=@id%>" class="ui-widget-content"><%=@alert_string%><br/><button id="kill<%=@id%>" value="make alert" onclick="killAlert(<%=@id%>)" style="font-size:0.5em;">delete alert</button></div>

@@ -2,30 +2,32 @@ var LAST_CNN = "";
 
 function login(cnn,side){
 	location.replace("/alert/show");
-	return true
+	return true;
 }
 
 function makeAlert(cnn,side){
+	cA = $('#currentAlarms')
 	jQuery.ajaxSetup({ 
 	  'beforeSend': function(xhr) {
 	    xhr.setRequestHeader("Accept", "text/html");
 	  }
 	})
 	$.get("/alert/make_new_alert?cnn="+cnn+"&side="+side, function(data){
-		debugger
-		if(data[0]=='$'){
+		if(data[0]==='$'){
 			var alert = data.split('$');
-			var masterString ="<div id='alarm"
-			masterString +=alert[4]
-			masterString +="'>"
-			masterString +=alert[1];
-			masterString +="<button class='kill' onclick='killAlert(";
-			masterString +=alert[4];
-			masterString +=")'>KILL</div>";
-			$('#currentAlarms').prepend(masterString);
-			$( "#accordion" ).accordion( "option", "active", 1 );
+			var numberRegEx = /currently/i;
+			var id = alert[1]
+			var divStuff = alert[2]
+			if (numberRegEx.test(cA.html())){
+				cA.html(divStuff);
+			}else{
+				cA.prepend(divStuff);
+			}
+			$('#kill'+id).button();
+			$('#accordion').accordion("option","active",1);
 		}else{
-			alert(data);
+			 $('#infoBox').html("oops something went wrong");
+			 $('#accordion').accordion("option","active",0);
 		}
 	});
 	return false;
@@ -40,24 +42,19 @@ function showAlerts(){
 	  }
 	})
 	$.get("/alert/show_alerts_on_map", function(data){
-		if(data[0]=="$"){
+		if(data[0]=="#"){
 			var alerts = data.split('#');
-			var len = alerts.length -1;
-			for (var i =0; i <len; i++){
+			var len = alerts.length;
+			for (var i =1; i <len; i++){
 				var alert = alerts[i].split('$');
-				var masterString ="<div id='alarm";
-				masterString +=alert[4];
-				masterString +="'>";
-				masterString +=alert[1];
-				masterString +="<button class='kill' onclick='killAlert(";
-				masterString +=alert[4];
-				masterString +=")'>KILL</div>";
-				$('#currentAlarms').prepend(masterString);
+				var id = alert[0];
+				$('#currentAlarms').prepend(alert[1]);
+				$('#kill'+id).button();
 			}
-		}else if (data[0]=="!"){
-			alert("not signed in");
+		}else if (data!=""){
+			$('#currentAlarms').html(data);
 		}else{
-			alert("something went wrong");
+			$('#currentAlarms').html("Oops something went wrong.<br/> We are working on fixing that now");
 		}
 	});
 	return false;
@@ -68,18 +65,20 @@ function killAlert(id){
 	jQuery.ajaxSetup({ 
 	  'beforeSend': function(xhr) {
 	    xhr.setRequestHeader("Accept", "text/html");
-		$('#alarm'+id).html("<img src='/images/mapLoad.gif' style='postion: abosulte; top: 50%;'/>");
+		$('#alarm'+id).html("<img src='/images/mapLoad.gif' style='postion: abosulte; top: 50%;'/><br><span>deleting alert</span>");
 		
 	  }
 	})
 	$.get("/alert/kill?q="+id, function(data){
 		if (data == "success"){
 			$('#alarm'+id).remove();
-			if ($('#currentAlarms').html() == ""){
-				$('#currentAlarms').html("You have no alerts");
+			var lastAlert = /[\S|oops]/i;
+			if (lastAlert.test($('#currentAlarms').html()) == false){
+				$('#currentAlarms').html("You currently have no alerts");
 			}
 		}else{
-			alert("something went wrong");
+			 $('#infoBox').html("oops something went wrong");
+			 $('#accordion').accordion("option","active",0);
 		}
 	});
 	return false;
@@ -133,12 +132,12 @@ function nextTimeQuery(query){
 }
 
 function getNextCleanTime(cnn){
-	
+	var iB = $('#infoBox');
 	
 	jQuery.ajaxSetup({ 
 	  'beforeSend': function(xhr) {
 	    xhr.setRequestHeader("Accept", "text/html");
-		$('#infoBox').html("<img src='/images/mapLoad.gif' style='postion: abosulte; top: 50%;'/>");
+		iB.html("<img src='/images/mapLoad.gif' style='postion: abosulte; top: 50%;'/>");
 	  }
 	})
 
@@ -152,10 +151,7 @@ function getNextCleanTime(cnn){
 	LAST_CNN = cnn;
 		//@st,@sf,@br,@tr,@rside,@rnct,@right_times,@rhol,@bl,@tl,@lside,@lnct,@left_times,@lhol
 		$.get("/alert/timecnn?q="+cnn, function(data){
-			$('#infoBox').html(data)
-			$('#infoBox').append('<button id= class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Make Alert</span></button>')
-			$('#searchBar').attr('value',"");
-			
+			iB.html(data)			
 		});	
 	}
 

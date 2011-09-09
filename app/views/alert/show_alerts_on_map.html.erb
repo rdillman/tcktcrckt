@@ -1,1 +1,5 @@
-<%@alerts.each do |alert| %>$<%=alert.location%>$<%=alert.send_time%>$<%=alert.clean_time%>$<%=alert.id%>#<%end%>
+<%@master_list_of_alerts.each do |record|%>
+#<%=record[0]%>
+$
+<div id="alarm<%=record[0]-%>" class="ui-widget-content"><%=record[1]-%><br/><button id="kill<%=record[0]-%>" value="make alert" onclick="killAlert(<%=record[0]-%>)" style="font-size:0.5em;">delete alert</button></div>
+<%end%>

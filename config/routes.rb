@@ -46,6 +46,8 @@ Tcktcrckt::Application.routes.draw do
   get "alert/timecnn"
   
   get "alert/timequery"
+  
+  get "alert/recent_alerts"
 
   resources :authentications
   ActiveAdmin.routes(self)

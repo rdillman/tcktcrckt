@@ -3,6 +3,16 @@ class AlertController < ApplicationController
   before_filter :validated?
   layout nil
   
+  def recent_alerts
+    @user = current_user
+    @recent_alerts = Array.new
+    @recent_alerts <<@user.rec1<<@user.rec2<<@user.rec3
+    respond_to do |format|  
+      format.html 
+      format.js
+      format.xml {render :xml => @recent_alerts}
+    end
+  end
   
   def timecnn
      @usr_qry = params[:q]
@@ -102,11 +112,18 @@ class AlertController < ApplicationController
     elsif alert_exists?(res[1],@user)
        do_alert_exists
     else
-      @alert = make_regular_alarm(@cnn,@results,@user)
+      @alert_string = Block.alert_string(@cnn,@side)
+      @alert = make_regular_alarm(@alert_string,@results,@user)
       if @alert
-        respond_to do |format|
-          format.html
-          format.xml {render :xml => @alert}
+        @user.update_rec(@alert_string+'!'+@cnn)
+        if @alert_string !=-1
+          @id = @alert.id
+          respond_to do |format|
+            format.html
+            format.xml {render :xml => @id}
+            format.xml {render :xml => @cnn}
+            format.xml {render :xml => @alert_string}
+          end
         end
       else
         @message = "@@constructorfail"
@@ -130,10 +147,22 @@ class AlertController < ApplicationController
         format.xml {render :xml => @message}
       end
     else
+      @master_list_of_alerts = Array.new
       @alerts = Alarm.where("user_id=?",@user.id)
-      respond_to do |format|
-        format.html 
-        format.xml {render :xml => @alerts}
+      @alerts.each do |alert|
+        temp = Array.new
+        temp<<alert.id<<alert.location
+        @master_list_of_alerts<<temp
+      end
+      if @master_list_of_alerts != []
+        respond_to do |format|
+          format.html 
+          format.xml {render :xml => @master_list_alerts}
+        end
+      else
+        respond_to do |format|
+          format.html {render :file => "#{Rails.root}/app/views/alert/no_alerts.html"}
+        end
       end
     end
   end
@@ -422,7 +451,7 @@ class AlertController < ApplicationController
     @message = "&&MissingStreet"
     respond_to do |format|
       format.html
-      format.xml {render :xml => @message}
+      format.xml {render :xml => @message.html_safe}
     end
   end
   

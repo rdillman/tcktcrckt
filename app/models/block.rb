@@ -1,4 +1,17 @@
 class Block < ActiveRecord::Base
+  def self.alert_string(cnn,side)
+    @string = ""
+    @alert_clean = Clean.where("cnn=? AND side=?",cnn,side)
+    @alert_block = Block.find_by_cnn(cnn)
+    if @alert_clean != [] and @alert_block
+      if side == 'R'
+        @string<<@alert_block.botr.to_s<<" "<<@alert_block.streetname<<" "<<@alert_block.suff<<" "<<@alert_clean[0].dir
+      else
+        @string<<@alert_block.botl.to_s<<" "<<@alert_block.streetname<<" "<<@alert_block.suff<<" "<<@alert_clean[0].dir
+      end
+    end 
+    @string
+  end
   
   #Change from bx/tx to int1 int2 on master
   def self.block_from_intersection(query)
