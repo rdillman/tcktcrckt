@@ -47,7 +47,6 @@ class MapzController < ApplicationController
           end
         end
        #What does res mean?? Does uq mean user_query?
-       
         respond_to do |format|      
           format.html {render :html => "#{Rails.root}/app/views/mapz/timecnn.html.erb"}
           format.js

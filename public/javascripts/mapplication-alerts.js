@@ -160,10 +160,6 @@ function getNextCleanTime(cnn){
 	return false;
 }
 
-function readData(data){
-	alert(data);
-}
-
 function showLocation(position) {
   var latitude = position.coords.latitude;
   var longitude = position.coords.longitude;
@@ -184,8 +180,8 @@ function getGPSCoords(){
 	//return map.center({lat: 37.7793+Math.random()/30, lon: -122.4192-Math.random()/30})
 // Un Comment for in San Francisco Testing
    if(navigator.geolocation){
-      // timeout at 60000 milliseconds (60 seconds)
-      var options = {timeout:60000};
+      // timeout at 15000 milliseconds (15 seconds)
+      var options = {timeout:15000};
       navigator.geolocation.getCurrentPosition(showLocation, 
                                                errorHandler,
                                                {enableHighAccuracy: true});

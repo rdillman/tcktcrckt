@@ -2,7 +2,7 @@
 	<%if @results[2] != nil%>
 		<b><%=@results[0] %> <%=@results[1] %></b><br/><%=@results[2] %> - <%=@results[3] %> <%=@results[4] %><br/>
 		<br/>
-		<%=@results[5] %><br/>
+		<%=simple_format(@results[5]) %><br/>
 		<button id="make<%=@results[14]%>" side="R" value="make alert" onclick="makeAlert(<%=@results[14]%>,'R')" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">make alert</span></button>
 	<%end%>
 	<%if @results[8] != nil%>
@@ -11,7 +11,7 @@
 		<%end%>
 	<b><%=@results[0] %> <%=@results[1] %></b><br/><%=@results[8] %> - <%=@results[9] %> <%=@results[10] %><br/>
 	<br/>
-	<%=@results[11] %><br/>
+	<%=simple_format(@results[11])%><br/>
 	<button id="make<%=@results[14]%>" side="L" value="make alert" onclick="makeAlert(<%=@results[14]%>,'L')" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">make alert</span></button>
 	<%end%>
 	<%if @recenter == 1%>

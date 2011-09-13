@@ -1,23 +1,24 @@
 <html>
 	<head>
-	<title>evilBoy4Life</title>
+	<title>San Francisco Street Cleaning Times</title>
 	<link rel="stylesheet" href="/stylesheets/mapz.css"/>
 	<link rel="stylesheet" href="/stylesheets/stylesheet.css"/>
-
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css" type="text/css" media="all" />
-		<script type="text/javascript" src="/javascripts/polymaps.js"></script>
+	<script type="text/javascript" src="http://raw.github.com/simplegeo/polymaps/v2.5.1/polymaps.min.js"></script>
 	<script type="text/javascript" src="/javascripts/protovis.min.js"></script>
 	<script type="text/javascript" src="/javascripts/mapplication.js"></script>
-	<script>
-	
+	<script type="text/javascript">
 	$(document).ready(function() {
 		$('#accordion').accordion({fillSpace:true});
 		$('button').button();
 		$("#search-submit").click(function(){
 			var query = $('#searchBar').attr('value');
 			nextTimeQuery(query);
+		});
+		$("button#gps").click(function(){
+			getGPSCoords();
 		});
 	});
 	</script>
@@ -32,22 +33,13 @@
 						</div>
 						<div id="user_nav_basic">
 							<%= link_to I18n.translate('header.links.how_to'), mapz_how_to_path %>
-
-
 							<%if current_user == nil%> 
-
 							<%= link_to I18n.translate('header.links.alerts'), "../users/sign_up" %>
-
 							<%elsif current_user.phone_number != current_user.valphone%>
 							<%= link_to I18n.translate('header.links.alerts'), validator_enter_path %>
-
 							<%else %>
 							<%= link_to I18n.translate('header.links.alerts'), alert_show_path %>
-
 							<%end%>
-
-
-
 							<%= link_to I18n.translate('header.links.about_us'), mapz_about_us_path%>
 							<%= link_to I18n.translate('header.links.contact'), mapz_contact_us_path %>
 						</div>	
@@ -60,30 +52,17 @@
 								<%= link_to I18n.translate('header.links.sign_in'), "/users/sign_in" %>
 							<% end %>
 
-							<% if mobile_device? %>
-						    	<%= link_to I18n.translate('header.links.full_site'), :mobile => 0 %>
-						  	<% else %>
-						    	<%= link_to I18n.translate('header.links.mobile'), "/?mobile=1" %>
-						  	<% end %>
-						</div>
-					</div>
-			<script type="text/javascript" src="/javascripts/jq.js"></script>
-			<div id='searchElements'>
-					<input id="searchBar"/> <button id="search-submit">Search</button> <button id="gps">GPS</button>
-			</div>
-			<div id='infoElements'>
-				<div id="accordion">
-				    <h3><a href="#">Cleaning Results</a></h3>
-				    <div id='infoBox'>Welcome to ParkingCricket!</div>
-				</div>
-			</div>
-			
-			<div id="mapElements">
-				<div id='map'>
-					<script type="text/javascript" src="/javascripts/map.js"></script>
-				</div>
-			</div>
-		</div>
-
+							<% if mobile_device? %> <%= link_to I18n.translate('header.links.full_site'), :mobile => 0 %> <% else
+                            %> <%= link_to I18n.translate('header.links.mobile'), "/?mobile=1" %> <% end %> </div> </div>
+<div id='searchElements'>
+	<input id="searchBar"/> <button id="search-submit">Search</button> <button id="gps">GPS</button> </div> 
+	
+	<div id='infoElements'>
+		<div id="accordion">
+			<h3><a href="#">Cleaning Results</a></h3> <div id='infoBox'>Welcome to ParkingCricket!</div> </div> </div>
+							
+	<div id="mapElements">
+		<div id='map'>
+			<script type="text/javascript" src="/javascripts/map.js"></script> </div> </div> </div>
 	</body>
 </html>

@@ -341,7 +341,7 @@ class Block < ActiveRecord::Base
   def self.making_cleaning_times(nct)
   #[TO-DO ]
     
-    str  = nct[0][0].strftime("%a %B %d %H:00-")
+    str  = nct[0][0].strftime("%a %B %d%n%H:00-")
     str <<nct[0][1].strftime("%H:00%p")
     rcur=0
     time = Time.now

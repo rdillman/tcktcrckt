@@ -58,7 +58,6 @@ class Ct < ActiveRecord::Base
   def start_time
     @start_time = nil
     if self.wday == "Thu"
-      debugger
       @start_time = Chronic.parse(self.wday+"rsday at "<<self.start)
     elsif self.wday == "Tue"
       @start_time = Chronic.parse(self.wday+"sday at "<<self.start)

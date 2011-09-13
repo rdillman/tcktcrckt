@@ -1,21 +1,19 @@
 var LAST_CNN = "";
 
+//this is a lazy href, this function redirects to alert/show
 function login(cnn,side){
 	location.replace("/alert/show");
 	return true;
 }
 
+//this creates a new alert
 function makeAlert(cnn,side){
-	debugger
 	jQuery.ajaxSetup({ 
 	  'beforeSend': function(xhr) {
 	    xhr.setRequestHeader("Accept", "text/javascript");
-		debugger
 	  }
 	})
-	debugger
 	$.get("/alert/make_new_alert?cnn="+cnn+"&side="+side, function(data){
-		debugger
 		if(data[0]=='$'){
 			var newalert = data.split('$');
 			$('#currentAlerts').prepend("<div id='alarm"+newalert[4]+"'>"+newalert[1]+"<button class='kill' onclick='makeAlert("+alert[4]+"')>KILL</div>");
@@ -24,42 +22,6 @@ function makeAlert(cnn,side){
 		}
 	});
 	return false;
-}
-
-
-
-function showAlerts(){
-	$.get("/alert/show_alerts_on_map", function(data){
-		if(data[0]=="$"){
-			var alerts = data.split('#');
-			var len = alerts.length -1;
-			for (var i =0; i <len; i++){
-				var alert = alerts[i].split('$');
-				$('#currentAlert').prepend("<div id='alarm"+alert[4]+"'>"+alert[1]+"<button class='kill' onclick='killAlert("+alert[4]+")'>KILL</div>");
-			}
-		}else if (data[0]=="!"){
-			alert("not signed in");
-		}else{
-			alert("something went wrong");
-		}
-	});
-	return false;
-}
-
-function killAlert(id){
-	$('#alarm'+id).attr("onclick","")
-	jQuery.ajaxSetup({ 
-	  'beforeSend': function(xhr) {
-	    xhr.setRequestHeader("Accept", "text/html");
-	  }
-	})
-	$.get("/alert/kill?q="+id, function(data){
-			if (data == "success"){
-				$('#alarm'+id).remove();
-			}else{
-				alert("something went wrong");
-			}
-	});
 }
 
 function nextTimeQuery(query){
@@ -77,15 +39,15 @@ function nextTimeQuery(query){
 		}
 		else if(data[0]=='@')
 		{
-			var cnn = data.split('@@');
-			cnn = cnn[1];
+			var temp_cnn = data.split('@@');
+			cnn = temp_cnn[1];
 			if (LAST_CNN != "" && LAST_CNN !== cnn){$("path#"+LAST_CNN).attr("stroke","rgb(0,255,0)");LAST_CNN==""}	
 			var newcenter = $('path#'+cnn).attr('lid').split(',');
 			var lt = parseFloat(newcenter[1]);
 			var ln = parseFloat(newcenter[0]);
 			map.center({lat:lt,lon:ln});
+			map.zoom(18);
 			$('#infoBox').html("Please Select Street On Map")
-			
 		}
 		else
 		{
@@ -132,10 +94,6 @@ function getNextCleanTime(cnn){
 	return false;
 }
 
-function readData(data){
-	alert(data);
-}
-
 function showLocation(position) {
   var latitude = position.coords.latitude;
   var longitude = position.coords.longitude;
@@ -143,7 +101,7 @@ function showLocation(position) {
 
 }
 
-function errorHandler(err) {
+function gpsErrorHandler(err) {
   if(err.code == 1) {
     alert("Error: Access is denied!");
   }else if( err.code == 2) {
@@ -159,7 +117,7 @@ function getGPSCoords(){
       // timeout at 60000 milliseconds (60 seconds)
       var options = {timeout:60000};
       navigator.geolocation.getCurrentPosition(showLocation, 
-                                               errorHandler,
+                                               gpsErrorHandler,
                                                {enableHighAccuracy: true});
    }else{
       alert("Sorry, browser does not support geolocation!");
